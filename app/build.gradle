@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.inz.z_inz"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    /**
+     *  okdownload 文件下载
+     *  需配置 maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }*
+     * */
+    implementation 'com.liulishuo.okdownload:okdownload:1.0.3'
+    implementation 'com.liulishuo.okdownload:sqlite:1.0.3'
+    implementation 'com.liulishuo.okdownload:okhttp:1.0.3'
+    /**
+     * 网络连接
+     * */
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    /**
+     * 图片缩放库
+     * 需配置  maven { url "https://jitpack.io" }
+     * */
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+
+    /**
+     * Picasso 图片加载器 加载小型图片
+     * */
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    /**
+     * Glide 4 图片加载器 加载大型图片
+     * */
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+}
