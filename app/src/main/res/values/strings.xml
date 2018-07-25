@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Z_inz</string>
+    <string name="home_page">主页</string>
+    <string name="example">例子</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+    <string name="person_center">个人中心</string>
+    <string name="my_photo_album">我的相册</string>
+    <string name="my_file">我的文件</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="user_name">用户名</string>
+    <string name="user_email_example">123456789@example.com</string>
+    <string name="nav_no_detail_example">登录系统 体验更多 功能</string>
+    <string name="login_immediately">立即登录</string>
+
+    <string name="example_name">实例名称</string>
+    <string name="black"> </string>
 </resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/navigation_group_main"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_home"
+            android:title="@string/home_page" />
+        <item
+            android:id="@+id/navigation_item_example"
+            android:title="@string/example" />
+
+    </group>
+    <group
+        android:id="@+id/navigation_group_person"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_person_center"
+            android:title="@string/person_center" />
+        <item
+            android:id="@+id/navigation_item_my_photo_album"
+            android:title="@string/my_photo_album" />
+        <item
+            android:id="@+id/navigation_item_my_file"
+            android:title="@string/my_file" />
+    </group>
+    <group
+        android:id="@+id/navigation_group_set"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_setting"
+            android:title="@string/setting" />
+        <item
+            android:id="@+id/navigation_item_about"
+            android:title="@string/about" />
+    </group>
+</menu>
