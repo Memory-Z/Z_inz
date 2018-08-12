@@ -1,4 +1,4 @@
-package com.inz.z_inz.fragment;
+package com.inz.z_inz.view.fragment;
 
 import android.support.v4.app.Fragment;
 

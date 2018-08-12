@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
             name="itemExample"
             type="com.inz.z_inz.entity.Example" />

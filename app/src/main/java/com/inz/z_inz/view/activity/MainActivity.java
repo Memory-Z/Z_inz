@@ -1,4 +1,4 @@
-package com.inz.z_inz;
+package com.inz.z_inz.view.activity;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -12,14 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.inz.z_inz.R;
 import com.inz.z_inz.databinding.IncludeToolbarBinding;
 import com.inz.z_inz.databinding.NavigationHeaderBinding;
-import com.inz.z_inz.fragment.BaseFragment;
-import com.inz.z_inz.widget.AbsBackHandledFragment;
+import com.inz.z_inz.view.fragment.BaseFragment;
+import com.inz.z_inz.view.widget.AbsBackHandledFragment;
 import com.inz.z_inz.databinding.ActivityMainBinding;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * 主界面
+ * Create by 116546
+ *
+ * @author Zhenglj
+ */
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;

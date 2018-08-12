@@ -3,7 +3,7 @@ package com.inz.z_inz.util;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 
-import com.inz.z_inz.entity.Constants;
+import com.inz.z_inz.model.Constants;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.inz.z_inz.activity;
+package com.inz.z_inz.view.activity;
 
 import android.app.Application;
 import android.content.Context;

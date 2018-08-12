@@ -1,4 +1,4 @@
-package com.inz.z_inz.entity;
+package com.inz.z_inz.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;

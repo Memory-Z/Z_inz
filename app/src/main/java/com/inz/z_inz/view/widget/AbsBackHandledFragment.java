@@ -1,4 +1,4 @@
-package com.inz.z_inz.widget;
+package com.inz.z_inz.view.widget;
 
 
 import android.app.Fragment;
@@ -25,7 +25,7 @@ public abstract class AbsBackHandledFragment extends Fragment {
      * 处理接口
      */
     public interface BackHandlerInterface {
-        public void setSelectedFragment(AbsBackHandledFragment absBackHandledFragment);
+        void setSelectedFragment(AbsBackHandledFragment absBackHandledFragment);
     }
 
     @Override
