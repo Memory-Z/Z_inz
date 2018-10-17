@@ -2,11 +2,11 @@ package com.inz.z_inz.presenter;
 
 import com.inz.z_inz.base.BasePresenter;
 import com.inz.z_inz.base.IBaseLoadListener;
+import com.inz.z_inz.entity.ApiUserInfo;
 import com.inz.z_inz.model.ILoginModel;
-import com.inz.z_inz.model.LoginModelImpl;
-import com.inz.z_inz.model.entity.BaseRequest;
+import com.inz.z_inz.model.impl.LoginModelImpl;
+import com.inz.z_inz.entity.AbsRequestTemp1;
 import com.inz.z_inz.view.ILoginView;
-import com.inz.z_inz.view.activity.MainActivity;
 
 /**
  * Create By 11654
@@ -17,7 +17,7 @@ import com.inz.z_inz.view.activity.MainActivity;
  */
 public class LoginPresenter extends BasePresenter<ILoginView> {
 
-    public void getData(String userName, String password){
+    public void getData(String userName, String password) {
         if (isViewAttached()) {
             // 如果没有View 引入，返回
             return;
@@ -26,33 +26,25 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         getBaseView().showLoading();
 
         ILoginModel loginModel = new LoginModelImpl();
-        loginModel.postLogin(userName, password, new IBaseLoadListener<BaseRequest>() {
+        loginModel.postLogin(userName, password, new IBaseLoadListener<ApiUserInfo>() {
             @Override
             public void loadStart() {
-                if (isViewAttached()) {
 
-                }
             }
 
             @Override
-            public void loadSuccess(BaseRequest data) {
-                if (isViewAttached()) {
+            public void loadSuccess(ApiUserInfo data) {
 
-                }
             }
 
             @Override
             public void loadFailure(int failureType, String msg) {
-                if (isViewAttached()){
-                    getBaseView().showToast(msg);
-                }
+
             }
 
             @Override
             public void loadComplete() {
-                if (isViewAttached()) {
-                    getBaseView().hideLoading();
-                }
+
             }
         });
 

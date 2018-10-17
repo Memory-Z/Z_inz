@@ -1,17 +1,18 @@
-package com.inz.z_inz.util;
+package com.inz.z_inz.http;
 
-import com.inz.z_inz.model.entity.BaseRequest;
+import com.inz.z_inz.entity.ApiUserInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
+ * 网络请求地址
  * Create By 11654
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/8/12 14:06
+ * Create By 2018/8/12 14:06
  */
 public interface RetrofitInterface {
 
@@ -20,9 +21,9 @@ public interface RetrofitInterface {
      *
      * @param userName 用户名
      * @param password 密码
-     * @return
+     * @return 用户信息
      */
-    @POST("dataForAppController.do?login")
-    Observable<BaseRequest> postLogin(@Query("userName") String userName,
+    @POST("login")
+    Observable<ApiUserInfo> postLogin(@Query("userName") String userName,
                                       @Query("password") String password);
 }

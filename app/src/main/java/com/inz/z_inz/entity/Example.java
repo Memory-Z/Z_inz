@@ -1,4 +1,4 @@
-package com.inz.z_inz.model.entity;
+package com.inz.z_inz.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Date;
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/7/26 00:42
+ * Create By 2018/7/26 00:42
  */
 public class Example implements Serializable {
     // 实例ID

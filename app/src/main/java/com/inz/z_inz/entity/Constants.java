@@ -1,4 +1,4 @@
-package com.inz.z_inz.model;
+package com.inz.z_inz.entity;
 
 import java.io.File;
 
@@ -8,13 +8,15 @@ import java.io.File;
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/7/21 10:16
+ * Create By 2018/7/21 10:16
  */
 public class Constants {
     // 是否为 测试 状态
     private final static boolean isTest = true;
+    // 服务器IP
+    private final static String IP = "47.99.69.193";
     // 测试链接
-    private final static String TEST_URL = "";
+    private final static String TEST_URL = "http://" + IP + "/about/api/";
     // 正式链接
     private final static String FORMAL_URL = "";
 

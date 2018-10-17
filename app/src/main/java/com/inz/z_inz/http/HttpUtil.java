@@ -1,9 +1,7 @@
-package com.inz.z_inz.util;
+package com.inz.z_inz.http;
 
-import android.util.TimeUtils;
-
-import com.inz.z_inz.model.Constants;
-import com.inz.z_inz.model.entity.BaseRequest;
+import com.inz.z_inz.entity.ApiUserInfo;
+import com.inz.z_inz.entity.Constants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,9 +17,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/8/12 14:24
+ * Create By 2018/8/12 14:24
  */
-public class RequestDataUtil {
+public class HttpUtil {
 
     /**
      * 默认连接超时时间，单位：秒
@@ -42,7 +40,7 @@ public class RequestDataUtil {
     /**
      * 获取更新数据接口
      *
-     * @return
+     * @return RetrofitInterface
      */
     private static synchronized RetrofitInterface getRetrofitInterface() {
         // 初始化 Retrofit 配置
@@ -65,7 +63,7 @@ public class RequestDataUtil {
      * @param password 用户密码
      * @return 接口返回数据
      */
-    public static Observable<BaseRequest> postLogin(String userName, String password) {
+    public static Observable<ApiUserInfo> postLogin(String userName, String password) {
         return getRetrofitInterface().postLogin(userName, password);
     }
 
