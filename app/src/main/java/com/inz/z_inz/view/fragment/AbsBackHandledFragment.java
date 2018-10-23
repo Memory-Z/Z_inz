@@ -1,4 +1,4 @@
-package com.inz.z_inz.view.widget;
+package com.inz.z_inz.view.fragment;
 
 
 import android.app.Fragment;
@@ -11,7 +11,7 @@ import android.support.annotation.Nullable;
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/7/21 20:39
+ * Create By 2018/7/21 20:39
  */
 public abstract class AbsBackHandledFragment extends Fragment {
     // 受保护 的接口

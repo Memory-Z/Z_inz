@@ -16,7 +16,7 @@ import java.util.List;
  * @version 1.0.0
  * Create By 2018/8/12 11:02
  */
-public abstract class AbsBaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
     /**
      * 上下文
      */
@@ -32,7 +32,7 @@ public abstract class AbsBaseRecyclerAdapter<T, VH extends RecyclerView.ViewHold
      */
     LayoutInflater mLayoutInflater;
 
-    public AbsBaseRecyclerAdapter(Context mContext) {
+    public AbsBaseRvAdapter(Context mContext) {
         this.mContext = mContext;
         this.list = new ArrayList<>();
         mLayoutInflater = (LayoutInflater) mContext.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

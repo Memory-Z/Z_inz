@@ -12,5 +12,5 @@ import com.inz.z_inz.base.IBaseView;
  * @date Create By 2018/8/12 14:53
  */
 public interface ILoginView extends IBaseView {
-
+    void showUpload();
 }

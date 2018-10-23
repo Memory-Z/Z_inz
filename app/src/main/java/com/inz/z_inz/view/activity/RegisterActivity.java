@@ -3,28 +3,18 @@ package com.inz.z_inz.view.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.inz.z_inz.view.ILoginView;
+import com.inz.z_inz.R;
 
 /**
- * 登录界面
- * Create By 11654
- *
  * @author Zhenglj
  * @version 1.0.0
- * Create By 2018/8/12 14:54
+ * Create by inz in 2018/10/23 19:34.
  */
-public class LoginActivity extends AbsBaseActivity implements ILoginView {
-    private static final String TAG = "LoginActivity";
-
+public class RegisterActivity extends AbsBaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
-    }
-
-    @Override
-    public void showUpload() {
-
+        setContentView(R.layout.activity_register);
     }
 
     @Override

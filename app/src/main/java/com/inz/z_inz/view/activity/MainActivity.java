@@ -15,8 +15,8 @@ import android.view.View;
 import com.inz.z_inz.R;
 import com.inz.z_inz.databinding.IncludeToolbarBinding;
 import com.inz.z_inz.databinding.NavigationHeaderBinding;
-import com.inz.z_inz.view.fragment.BaseFragment;
-import com.inz.z_inz.view.widget.AbsBackHandledFragment;
+import com.inz.z_inz.view.fragment.AbsBaseFragment;
+import com.inz.z_inz.view.fragment.AbsBackHandledFragment;
 import com.inz.z_inz.databinding.ActivityMainBinding;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         mNavigationView = activityMainBinding.mainNv;
     }
 
+    /**
+     * 设置 导航头
+     */
     private void setNavHeader() {
 //        View headerView = mNavigationView.findViewById(R.id.nav_header_user_name_tv);
         NavigationHeaderBinding navigationHeaderBinding = DataBindingUtil.bind(mNavigationView.getHeaderView(0));
@@ -114,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 切换框架 中的 布局内容
      *
-     * @param baseFragment 框架
-     * @param tag          框架标题
+     * @param absBaseFragment 框架
+     * @param tag             框架标题
      */
-    private void switchToFragment(BaseFragment baseFragment, String tag) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, baseFragment).commit();
+    private void switchToFragment(AbsBaseFragment absBaseFragment, String tag) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, absBaseFragment).commit();
         mToolbar.setTitle(tag);
     }
 }

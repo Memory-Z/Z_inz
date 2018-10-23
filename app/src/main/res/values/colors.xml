@@ -4,6 +4,46 @@
     <color name="colorPrimaryDark">#FF236AAF</color>
     <color name="colorAccent">#6B8E23</color>
 
+    <color name="color_line_gray_default">#DAF1F1F1</color>
+    <color name="color_line_gray_1">#87EDEDED</color>
+
+    <!-- 默认字体颜色 -->
+    <color name="color_text_default">#FF363636</color>
+    <!-- 字体颜色 灰 -->
+    <color name="color_text_gray_default">#FF969696</color>
+    <color name="color_text_gray_1">#FFC6C6C6</color>
+    <color name="color_text_gray_2">#AACACACA</color>
+    <!-- 字体颜色 红 -->
+    <color name="color_text_red_default">#E15252</color>
+    <!-- 字体颜色 绿 -->
+    <color name="color_text_green_default">#FF01AE10</color>
+    <!-- 字体颜色 白 -->
+    <color name="color_text_white_default">#FFF5F5F5</color>
+
+    <!-- 卡片颜色 -->
+    <color name="color_card_default">#FFF5F5F5</color>
+    <!-- 卡片颜色 蓝 -->
+    <color name="color_card_blue_default">#FF4C6DF1</color>
+    <color name="color_card_blue_1">#FF3951B1</color>
+    <!-- 卡片颜色 红 -->
+    <color name="color_card_red_default">#E15252</color>
+    <color name="color_card_red_1">#FFAB3E3E</color>
+    <!-- 卡片颜色 灰 -->
+    <color name="color_card_gray_default">#D2F5F5F5</color>
+    <color name="color_card_gray_1">#84F5F5F5</color>
+    <color name="color_card_gray_2">#32F5F5F5</color>
+    <!-- 卡片颜色 黑 -->
+    <color name="color_card_black_default">#FF363636</color>
+    <color name="color_card_black_1">#B4363636</color>
+    <color name="color_card_black_2">#7F363636</color>
+    <color name="color_card_black_3">#3C363636</color>
+    <!-- 卡片颜色 白 -->
+    <color name="color_card_white_default">#F8F5F5F5</color>
+    <color name="color_card_white_1">#D3F1F1F1</color>
+    <color name="color_card_white_2">#A9EFEFEF</color>
+    <color name="color_card_white_3">#D4B4B4B4</color>
+
+
     <color name="white">#FFFFFF</color><!-- 白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
     <color name="lightyellow">#FFFFE0</color><!--亮黄色 -->

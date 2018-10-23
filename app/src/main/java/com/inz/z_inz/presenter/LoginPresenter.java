@@ -5,7 +5,6 @@ import com.inz.z_inz.base.IBaseLoadListener;
 import com.inz.z_inz.entity.ApiUserInfo;
 import com.inz.z_inz.model.ILoginModel;
 import com.inz.z_inz.model.impl.LoginModelImpl;
-import com.inz.z_inz.entity.AbsRequestTemp1;
 import com.inz.z_inz.view.ILoginView;
 
 /**

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- register card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginStart="@dimen/dp24"
+            android:layout_marginEnd="@dimen/dp24"
+            android:background="@drawable/bg_card_default"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp08"
+            android:paddingEnd="@dimen/dp08">
+
+            <TextView
+                android:layout_width="@dimen/dp96"
+                android:layout_height="@dimen/dp32"
+                android:gravity="center_vertical"
+                android:text="@string/user_name"
+                android:textColor="@color/color_text_default"
+                android:textSize="@dimen/sp16" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp32"
+                android:background="@drawable/bg_edit_text_default"
+                android:hint="@string/user_name"
+                android:inputType="text"
+                android:maxLength="16"
+                android:textSize="@dimen/sp14"
+                tools:ignore="Autofill" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginStart="@dimen/dp24"
+            android:layout_marginEnd="@dimen/dp24"
+            android:background="@drawable/bg_card_default"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp08"
+            android:paddingEnd="@dimen/dp08">
+
+            <TextView
+                android:layout_width="@dimen/dp96"
+                android:layout_height="@dimen/dp32"
+                android:gravity="center_vertical"
+                android:text="@string/user_password"
+                android:textColor="@color/color_text_default"
+                android:textSize="@dimen/sp16" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp32"
+                android:background="@drawable/bg_edit_text_default"
+                android:hint="@string/user_password"
+                android:inputType="textPassword"
+                android:maxLength="32"
+                android:textSize="@dimen/sp14"
+                tools:ignore="Autofill" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

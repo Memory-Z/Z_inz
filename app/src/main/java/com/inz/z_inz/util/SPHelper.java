@@ -2,6 +2,7 @@ package com.inz.z_inz.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/7/21 10:33
+ * Create By 2018/7/21 10:33
  */
 public class SPHelper {
 
@@ -33,12 +34,11 @@ public class SPHelper {
     }
 
     private SharedPreferences.Editor getEditor() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        return editor;
+        return sharedPreferences.edit();
     }
 
     /**
-     * 初始化 SharePreferences ，推荐在 MyApplication 中进行
+     * 初始化 SharePreferences ，推荐在 InzApplication 中进行
      *
      * @param context 上下文
      */
