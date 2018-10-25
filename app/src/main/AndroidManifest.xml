@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.inz.z_inz">
+    package="com.inz.z">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".InzApplication"
+        android:name="com.inz.z.InzApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -16,14 +17,14 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <!-- 主界面 -->
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="com.inz.z.view.activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <!-- 登录 -->
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name="com.inz.z.view.activity.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,7 +32,7 @@
         </activity>
         <!-- 注册 -->
         <activity
-            android:name=".view.activity.RegisterActivity"
+            android:name="com.inz.z.view.activity.RegisterActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">

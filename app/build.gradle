@@ -3,11 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.inz.z_inz"
+        applicationId "com.inz.z"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -78,4 +78,6 @@ dependencies {
      * 环形图片
      * */
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // Logger 日志输出
+    implementation 'com.orhanobut:logger:2.2.0'
 }

@@ -1,77 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- register card -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="vertical">
-
+        <!-- register card -->
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:layout_marginStart="@dimen/dp24"
+                android:layout_marginEnd="@dimen/dp24"
+                android:background="@drawable/bg_card_default"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/dp08"
+                android:paddingEnd="@dimen/dp08">
+
+                <TextView
+                    android:layout_width="@dimen/dp72"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end"
+                    android:paddingStart="@dimen/dp08"
+                    android:paddingEnd="@dimen/dp08"
+                    android:text="@string/user_name"
+                    android:textColor="@color/color_text_gray_3"
+                    android:textSize="@dimen/sp16"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp32"
+                    android:background="@drawable/bg_edit_text_default"
+                    android:hint="@string/user_name"
+                    android:inputType="text"
+                    android:maxLength="16"
+                    android:paddingStart="@dimen/dp08"
+                    android:paddingEnd="@dimen/dp08"
+                    android:textSize="@dimen/sp14"
+                    tools:ignore="Autofill" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:layout_marginStart="@dimen/dp24"
+                android:layout_marginTop="@dimen/dp24"
+                android:layout_marginEnd="@dimen/dp24"
+                android:background="@drawable/bg_card_default"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/dp08"
+                android:paddingEnd="@dimen/dp08">
+
+                <TextView
+                    android:layout_width="@dimen/dp72"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|end"
+                    android:paddingStart="@dimen/dp08"
+                    android:paddingEnd="@dimen/dp08"
+                    android:text="@string/user_password"
+                    android:textColor="@color/color_text_gray_3"
+                    android:textSize="@dimen/sp16" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp32"
+                    android:background="@drawable/bg_edit_text_default"
+                    android:hint="@string/user_password"
+                    android:inputType="textPassword"
+                    android:maxLength="32"
+                    android:paddingStart="@dimen/dp08"
+                    android:paddingEnd="@dimen/dp08"
+                    android:textSize="@dimen/sp14"
+                    tools:ignore="Autofill" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp48"
             android:layout_marginStart="@dimen/dp24"
+            android:layout_marginTop="@dimen/dp48"
             android:layout_marginEnd="@dimen/dp24"
-            android:background="@drawable/bg_card_default"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/dp08"
-            android:paddingEnd="@dimen/dp08">
+            android:background="@drawable/bg_button_default"
+            android:text="@string/register_immediately"
+            android:textColor="@drawable/bg_button_text_default"
+            android:textSize="@dimen/sp18" />
 
-            <TextView
-                android:layout_width="@dimen/dp96"
-                android:layout_height="@dimen/dp32"
-                android:gravity="center_vertical"
-                android:text="@string/user_name"
-                android:textColor="@color/color_text_default"
-                android:textSize="@dimen/sp16" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp32"
-                android:background="@drawable/bg_edit_text_default"
-                android:hint="@string/user_name"
-                android:inputType="text"
-                android:maxLength="16"
-                android:textSize="@dimen/sp14"
-                tools:ignore="Autofill" />
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp48"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp24"
+            android:layout_marginTop="@dimen/dp24"
             android:layout_marginEnd="@dimen/dp24"
-            android:background="@drawable/bg_card_default"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/dp08"
-            android:paddingEnd="@dimen/dp08">
+            android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="@dimen/dp96"
-                android:layout_height="@dimen/dp32"
-                android:gravity="center_vertical"
-                android:text="@string/user_password"
-                android:textColor="@color/color_text_default"
-                android:textSize="@dimen/sp16" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/register_to_login_iv"
+                android:text="@string/have_account"
+                android:textColor="@color/color_text_gray_default"
+                android:textSize="@dimen/sp14" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp32"
-                android:background="@drawable/bg_edit_text_default"
-                android:hint="@string/user_password"
-                android:inputType="textPassword"
-                android:maxLength="32"
-                android:textSize="@dimen/sp14"
-                tools:ignore="Autofill" />
+            <ImageView
+                android:id="@+id/register_to_login_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/have_account"
+                android:src="@drawable/ic_chevron_right_black_24dp" />
+        </RelativeLayout>
 
-        </LinearLayout>
     </LinearLayout>
 
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/register_other_account_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_card_2"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px01"
+            android:background="@color/color_line_gray_default" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/use_third_to_login"
+            android:textColor="@drawable/bg_card_2_text" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

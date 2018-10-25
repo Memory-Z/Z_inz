@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF67B4FF</color>
-    <color name="colorPrimaryDark">#FF236AAF</color>
-    <color name="colorAccent">#6B8E23</color>
+    <color name="colorPrimary">#767676</color>
+    <color name="colorPrimaryDark">#FF363636</color>
+    <color name="colorAccent">#73A709</color>
 
     <color name="color_line_gray_default">#DAF1F1F1</color>
     <color name="color_line_gray_1">#87EDEDED</color>
+    <color name="color_line_black_default">#FF363636</color>
+    <color name="color_line_black_1">#FF767676</color>
+    <color name="color_line_black_2">#7F363636</color>
+    <color name="color_line_black_3">#56363636</color>
 
     <!-- 默认字体颜色 -->
     <color name="color_text_default">#FF363636</color>
@@ -13,6 +17,7 @@
     <color name="color_text_gray_default">#FF969696</color>
     <color name="color_text_gray_1">#FFC6C6C6</color>
     <color name="color_text_gray_2">#AACACACA</color>
+    <color name="color_text_gray_3">#6B6B6B</color>
     <!-- 字体颜色 红 -->
     <color name="color_text_red_default">#E15252</color>
     <!-- 字体颜色 绿 -->
@@ -32,17 +37,17 @@
     <color name="color_card_gray_default">#D2F5F5F5</color>
     <color name="color_card_gray_1">#84F5F5F5</color>
     <color name="color_card_gray_2">#32F5F5F5</color>
+    <color name="color_card_gray_3">#89808080</color>
     <!-- 卡片颜色 黑 -->
-    <color name="color_card_black_default">#FF363636</color>
-    <color name="color_card_black_1">#B4363636</color>
-    <color name="color_card_black_2">#7F363636</color>
-    <color name="color_card_black_3">#3C363636</color>
+    <color name="color_card_black_default">#FF6B6B6B</color>
+    <color name="color_card_black_1">#B46B6B6B</color>
+    <color name="color_card_black_2">#7F6B6B6B</color>
+    <color name="color_card_black_3">#3C6B6B6B</color>
     <!-- 卡片颜色 白 -->
     <color name="color_card_white_default">#F8F5F5F5</color>
     <color name="color_card_white_1">#D3F1F1F1</color>
     <color name="color_card_white_2">#A9EFEFEF</color>
     <color name="color_card_white_3">#D4B4B4B4</color>
-
 
     <color name="white">#FFFFFF</color><!-- 白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->

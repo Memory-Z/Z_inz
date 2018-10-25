@@ -3,26 +3,26 @@
     <!-- 按下 -->
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/color_card_blue_1" />
+            <solid android:color="@color/color_card_black_1" />
             <corners android:radius="@dimen/dp04" />
-            <stroke android:width="@dimen/dp01" android:color="@color/color_line_gray_default" />
+            <stroke android:width="@dimen/dp01" android:color="@color/color_line_black_1" />
         </shape>
     </item>
 
     <!-- 弹起 -->
     <item android:state_pressed="false">
         <shape>
-            <solid android:color="@color/color_card_blue_default" />
+            <solid android:color="@color/color_card_white_default" />
             <corners android:radius="@dimen/dp04" />
-            <stroke android:width="@dimen/dp01" android:color="@color/color_line_gray_default" />
+            <stroke android:width="@dimen/dp01" android:color="@color/color_line_black_1" />
         </shape>
     </item>
     <!-- 默认 -->
     <item>
         <shape>
-            <solid android:color="@color/color_card_blue_default" />
+            <solid android:color="@color/color_card_gray_default" />
             <corners android:radius="@dimen/dp04" />
-            <stroke android:width="@dimen/dp01" android:color="@color/color_line_gray_1" />
+            <stroke android:width="@dimen/dp01" android:color="@color/color_line_black_1" />
         </shape>
     </item>
 
