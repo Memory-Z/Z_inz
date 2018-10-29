@@ -6,8 +6,16 @@
         android:right="@dimen/dp02"
         android:top="@dimen/dp02">
         <shape android:shape="rectangle">
+            <padding
+                android:bottom="@dimen/dp01"
+                android:left="@dimen/dp16"
+                android:right="@dimen/dp16"
+                android:top="@dimen/dp01" />
             <solid android:color="@color/color_card_white_default" />
-            <corners android:radius="@dimen/dp02" />
+            <corners android:radius="@dimen/dp04" />
+            <stroke
+                android:width="@dimen/dp01"
+                android:color="@color/color_line_black_2" />
         </shape>
     </item>
 </layer-list>

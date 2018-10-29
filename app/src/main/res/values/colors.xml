@@ -33,6 +33,12 @@
     <!-- 卡片颜色 红 -->
     <color name="color_card_red_default">#E15252</color>
     <color name="color_card_red_1">#FFAB3E3E</color>
+    <!-- 卡片颜色 绿 -->
+    <color name="color_card_green_default">#008577</color>
+    <color name="color_card_green_1">#BF008577</color>
+    <color name="color_card_green_2">#89008577</color>
+    <color name="color_card_green_3">#44008577</color>
+    <color name="color_card_green_4">#13008577</color>
     <!-- 卡片颜色 灰 -->
     <color name="color_card_gray_default">#D2F5F5F5</color>
     <color name="color_card_gray_1">#84F5F5F5</color>

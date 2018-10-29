@@ -38,15 +38,17 @@ public class InzApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.i(TAG, "onCreate: " + System.currentTimeMillis());
         mContext = this;
         // 初始化 异常信息收集
-        initCrash();
+//        initCrash();
         // 注册 Activity 生命周期 回调 函数
         registerActivityLifecycleCallbacks(new InzActivityLifecycleCallbacks());
         // 初始化 SharePreferences
         SPHelper.getInstance().initSharedPreferences(mContext);
         // 创建 项目的文件目录
         createFile();
+        Log.i(TAG, "onCreate: " + System.currentTimeMillis());
     }
 
     /**

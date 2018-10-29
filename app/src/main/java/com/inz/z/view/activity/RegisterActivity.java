@@ -17,9 +17,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.inz.z.R;
+import com.inz.z.view.fragment.CheckEmailDialogFragment;
 import com.inz.z.view.fragment.ThirdLoginDialogFragment;
 
 import java.util.ArrayList;
@@ -41,6 +44,9 @@ public class RegisterActivity extends AbsBaseActivity {
      */
     private LinearLayout thirdLoginLl;
     private DialogFragment thirdDialogFragment;
+    private Button registerBtn;
+    private DialogFragment checkEmailDialogFragment;
+    private RelativeLayout toLoginRl;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +73,26 @@ public class RegisterActivity extends AbsBaseActivity {
                     thirdDialogFragment = new ThirdLoginDialogFragment();
                     thirdDialogFragment.show(getSupportFragmentManager(), "thirdLoginDialogFragment");
                 }
+            }
+        });
+        registerBtn = findViewById(R.id.register_btn);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkEmailDialogFragment = (DialogFragment) getSupportFragmentManager().findFragmentByTag("checkEmailDialogFragment");
+                if (checkEmailDialogFragment == null) {
+                    checkEmailDialogFragment = new CheckEmailDialogFragment();
+                    checkEmailDialogFragment.show(getSupportFragmentManager(), "checkEmailDialogFragment");
+                }
+            }
+        });
+        toLoginRl = findViewById(R.id.register_to_login_rl);
+        toLoginRl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
