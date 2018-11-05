@@ -76,15 +76,14 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
      * 获取实例 ： 单例模式
-     *
-     * @return 自定义异常处理
+     * <p>
+     * //     * @return 自定义异常处理
      */
-    public static CrashHandler instance(Context context) {
+    public static void instance(Context context) {
         if (crashHandler == null) {
             crashHandler = new CrashHandler();
         }
         init(context);
-        return crashHandler;
     }
 
     @Override

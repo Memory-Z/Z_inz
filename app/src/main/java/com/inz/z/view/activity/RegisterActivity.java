@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.inz.z.R;
+import com.inz.z.view.IRegisterView;
 import com.inz.z.view.fragment.CheckEmailDialogFragment;
 import com.inz.z.view.fragment.ThirdLoginDialogFragment;
 
@@ -33,12 +34,11 @@ import java.util.List;
  * @version 1.0.0
  * Create by inz in 2018/10/23 19:34.
  */
-public class RegisterActivity extends AbsBaseActivity {
+public class RegisterActivity extends AbsBaseActivity implements IRegisterView {
     private static final String TAG = "RegisterActivity";
     private static final int INSTALL_PACKAGE = 100001;
     private static final int INSTALL_PACKAGE_SETTING = 100002;
 
-    private Context mContext;
     /**
      * 第三方登录按钮
      */
@@ -49,17 +49,30 @@ public class RegisterActivity extends AbsBaseActivity {
     private RelativeLayout toLoginRl;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreateView(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_register);
         mContext = this;
-        initView();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         initData();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     @Override
@@ -97,12 +110,6 @@ public class RegisterActivity extends AbsBaseActivity {
         });
     }
 
-    @Override
-    public void initData() {
-
-    }
-
-
     /**
      * 需要申请的权限
      */
@@ -116,7 +123,7 @@ public class RegisterActivity extends AbsBaseActivity {
      */
     private void requestPermission() {
         List<String> list = new ArrayList<>();
-        //
+        // 权限获取
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(mContext, permission) != PackageManager.PERMISSION_GRANTED) {
                 list.add(permission);

@@ -30,8 +30,10 @@ public interface IBaseView {
 
     /**
      * 显示错误信息
+     *
+     * @param errorMsg 错误信息
      */
-    void showError();
+    void showError(String errorMsg);
 
     /**
      * 获取上下文

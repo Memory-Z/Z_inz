@@ -4,56 +4,42 @@
     <color name="colorPrimaryDark">#FF363636</color>
     <color name="colorAccent">#73A709</color>
 
-    <color name="color_line_gray_default">#DAF1F1F1</color>
-    <color name="color_line_gray_1">#87EDEDED</color>
-    <color name="color_line_black_default">#FF363636</color>
-    <color name="color_line_black_1">#FF767676</color>
-    <color name="color_line_black_2">#7F363636</color>
-    <color name="color_line_black_3">#56363636</color>
-
-    <!-- 默认字体颜色 -->
-    <color name="color_text_default">#FF363636</color>
-    <!-- 字体颜色 灰 -->
-    <color name="color_text_gray_default">#FF969696</color>
-    <color name="color_text_gray_1">#FFC6C6C6</color>
-    <color name="color_text_gray_2">#AACACACA</color>
-    <color name="color_text_gray_3">#6B6B6B</color>
-    <!-- 字体颜色 红 -->
-    <color name="color_text_red_default">#E15252</color>
-    <!-- 字体颜色 绿 -->
-    <color name="color_text_green_default">#FF01AE10</color>
-    <!-- 字体颜色 白 -->
-    <color name="color_text_white_default">#FFF5F5F5</color>
-
-    <!-- 卡片颜色 -->
-    <color name="color_card_default">#FFF5F5F5</color>
     <!-- 卡片颜色 蓝 -->
-    <color name="color_card_blue_default">#FF4C6DF1</color>
-    <color name="color_card_blue_1">#FF3951B1</color>
+    <color name="card_blue_default">#FF4E6EF2</color>
+    <color name="card_blue_1">#BF4E6EF2</color>
+    <color name="card_blue_2">#894E6EF2</color>
+    <color name="card_blue_3">#444E6EF2</color>
+    <color name="card_blue_4">#134E6EF2</color>
     <!-- 卡片颜色 红 -->
-    <color name="color_card_red_default">#E15252</color>
-    <color name="color_card_red_1">#FFAB3E3E</color>
+    <color name="card_red_default">#F24E6E</color>
+    <color name="card_red_1">#BFF24E6E</color>
+    <color name="card_red_2">#89F24E6E</color>
+    <color name="card_red_3">#44F24E6E</color>
+    <color name="card_red_4">#13F24E6E</color>
     <!-- 卡片颜色 绿 -->
-    <color name="color_card_green_default">#008577</color>
-    <color name="color_card_green_1">#BF008577</color>
-    <color name="color_card_green_2">#89008577</color>
-    <color name="color_card_green_3">#44008577</color>
-    <color name="color_card_green_4">#13008577</color>
+    <color name="card_green_default">#6EF24E</color>
+    <color name="card_green_1">#BF6EF24E</color>
+    <color name="card_green_2">#896EF24E</color>
+    <color name="card_green_3">#446EF24E</color>
+    <color name="card_green_4">#136EF24E</color>
     <!-- 卡片颜色 灰 -->
-    <color name="color_card_gray_default">#D2F5F5F5</color>
-    <color name="color_card_gray_1">#84F5F5F5</color>
-    <color name="color_card_gray_2">#32F5F5F5</color>
-    <color name="color_card_gray_3">#89808080</color>
+    <color name="card_gray_default">#808080</color>
+    <color name="card_gray_1">#BF808080</color>
+    <color name="card_gray_2">#89808080</color>
+    <color name="card_gray_3">#44808080</color>
+    <color name="card_gray_4">#13808080</color>
     <!-- 卡片颜色 黑 -->
-    <color name="color_card_black_default">#FF6B6B6B</color>
-    <color name="color_card_black_1">#B46B6B6B</color>
-    <color name="color_card_black_2">#7F6B6B6B</color>
-    <color name="color_card_black_3">#3C6B6B6B</color>
+    <color name="card_black_default">#696969</color>
+    <color name="card_black_1">#BF696969</color>
+    <color name="card_black_2">#89696969</color>
+    <color name="card_black_3">#44696969</color>
+    <color name="card_black_4">#13696969</color>
     <!-- 卡片颜色 白 -->
-    <color name="color_card_white_default">#F8F5F5F5</color>
-    <color name="color_card_white_1">#D3F1F1F1</color>
-    <color name="color_card_white_2">#A9EFEFEF</color>
-    <color name="color_card_white_3">#D4B4B4B4</color>
+    <color name="card_white_default">#FFF5F5F5</color>
+    <color name="card_white_1">#BFF5F5F5</color>
+    <color name="card_white_2">#89F5F5F5</color>
+    <color name="card_white_3">#44F5F5F5</color>
+    <color name="card_white_4">#13F5F5F5</color>
 
     <color name="white">#FFFFFF</color><!-- 白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
@@ -202,7 +188,7 @@
     <color name="navy">#000080</color><!--海军色 -->
     <color name="black">#000000</color><!--黑色 -->
 
-    <color name="transparency">#00000000</color><!--透明-->
+    <color name="transparent">#00000000</color><!--透明-->
     <color name="default_btn_color">#FF67B4FF</color><!--默认按钮颜色-->
     <color name="checked_btn_color">#FF236AAF</color><!--按钮选中颜色-->
 </resources>

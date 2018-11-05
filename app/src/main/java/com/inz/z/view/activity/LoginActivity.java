@@ -18,11 +18,9 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
     private static final String TAG = "LoginActivity";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreateView(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
         mContext = this;
-        initView();
     }
 
     @Override
@@ -46,13 +44,24 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
 
     }
 
+
+    @Override
+    public void initData() {
+
+    }
+
+    /**
+     * 初始化视图
+     */
     @Override
     public void initView() {
 
     }
 
-    @Override
-    public void initData() {
+    /**
+     * 退出视图
+     */
+    private void quitView() {
 
     }
 }

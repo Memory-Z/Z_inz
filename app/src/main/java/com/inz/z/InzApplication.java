@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.inz.z.entity.Constants;
@@ -12,13 +11,10 @@ import com.inz.z.util.CrashHandler;
 import com.inz.z.util.FileUtils;
 import com.inz.z.util.SPHelper;
 import com.inz.z.util.Tools;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.BuildConfig;
 import com.orhanobut.logger.CsvFormatStrategy;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
-import com.orhanobut.logger.PrettyFormatStrategy;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -40,8 +36,11 @@ public class InzApplication extends Application {
         super.onCreate();
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
         mContext = this;
-        // 初始化 异常信息收集
-//        initCrash();
+        // 非 测试环境
+        if (!Constants.isIsTest()) {
+            // 初始化 异常信息收集
+            initCrash();
+        }
         // 注册 Activity 生命周期 回调 函数
         registerActivityLifecycleCallbacks(new InzActivityLifecycleCallbacks());
         // 初始化 SharePreferences
@@ -49,6 +48,8 @@ public class InzApplication extends Application {
         // 创建 项目的文件目录
         createFile();
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
+        // 初始化 日志
+        initLogger();
     }
 
     /**
@@ -74,16 +75,16 @@ public class InzApplication extends Application {
      * 初始化日志管理
      */
     private void initLogger() {
-        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                .tag("SKYVIS_LinkCourt")
-                .build();
-        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
-            @Override
-            public boolean isLoggable(int priority, @Nullable String tag) {
-                return BuildConfig.DEBUG;
-            }
-        });
-        Logger.i("初始化 Logcat 完成");
+//        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+//                .tag("SKYVIS_LinkCourt")
+//                .build();
+//        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
+//            @Override
+//            public boolean isLoggable(int priority, @Nullable String tag) {
+//                return BuildConfig.DEBUG;
+//            }
+//        });
+//        Logger.i("初始化 Logcat 完成");
         // 保存到本地
         FormatStrategy fileStrategy = CsvFormatStrategy.newBuilder()
                 .dateFormat((SimpleDateFormat) Tools.baseDateFormat)

@@ -1,25 +1,34 @@
 package com.inz.z.view.fragment;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 
-import com.inz.z.base.IViewTemplate;
+import com.inz.z.base.IBaseView;
+import com.inz.z.util.Tools;
+import com.orhanobut.logger.Logger;
 
 /**
- * 弹窗
+ * 基础弹窗 Fragment
  *
  * @author Zhenglj
  * @version 1.0.0
  * Create by inz in 2018/10/25 16:43.
  */
-public abstract class AbsBaseDialogFragment extends DialogFragment implements IViewTemplate {
+public abstract class AbsBaseDialogFragment extends DialogFragment implements IBaseView {
+
+    Context mContext;
+    View mView;
+    private Dialog loadDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mView = view;
         initView();
     }
 
@@ -29,23 +38,45 @@ public abstract class AbsBaseDialogFragment extends DialogFragment implements IV
         initData();
     }
 
+    /* / -- IBaseView - Start -- / */
     @Override
     public void showLoading() {
-
+        if (loadDialog == null) {
+            loadDialog = Tools.loadDialog(mContext);
+        }
+        loadDialog.show();
+        Logger.i(mContext.getPackageName() + "; showLoading.");
     }
 
     @Override
     public void hideLoading() {
-
+        if (loadDialog != null) {
+            loadDialog.dismiss();
+            loadDialog = null;
+        }
+        Logger.i(mContext.getPackageName() + "; hideLoading.");
     }
 
     @Override
     public void showToast(String msg) {
-
+        Tools.showShortToast(mContext, msg);
+        Logger.i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
-    public void showError() {
-
+    public void showError(String errorMsg) {
+        Tools.showShortToast(mContext, errorMsg);
+        Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
     }
+    /* / -- IBaseView - End -- / */
+
+    /**
+     * 初始化视图
+     */
+    public abstract void initView();
+
+    /**
+     * 初始化数据
+     */
+    public abstract void initData();
 }

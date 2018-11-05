@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/dp16"
             android:layout_toStartOf="@+id/third_login_title_tv"
-            android:background="@color/color_line_black_1" />
+            android:background="@color/card_black_3" />
 
         <TextView
             android:id="@+id/third_login_title_tv"
@@ -37,7 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp16"
             android:layout_toEndOf="@id/third_login_title_tv"
-            android:background="@color/color_line_black_1" />
+            android:background="@color/card_black_1" />
     </RelativeLayout>
 
 
@@ -115,7 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp01"
         android:layout_marginTop="@dimen/dp08"
-        android:background="@color/color_line_gray_default" />
+        android:background="@color/card_gray_default" />
 
     <!-- 取消按钮 -->
     <TextView

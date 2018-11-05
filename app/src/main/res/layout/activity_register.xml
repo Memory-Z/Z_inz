@@ -33,8 +33,8 @@
                     android:paddingStart="@dimen/dp08"
                     android:paddingEnd="@dimen/dp08"
                     android:text="@string/user_name"
-                    android:textColor="@color/color_text_gray_3"
-                    android:textSize="@dimen/sp16"/>
+                    android:textColor="@color/card_gray_3"
+                    android:textSize="@dimen/sp16" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                     android:paddingStart="@dimen/dp08"
                     android:paddingEnd="@dimen/dp08"
                     android:text="@string/user_password"
-                    android:textColor="@color/color_text_gray_3"
+                    android:textColor="@color/card_gray_3"
                     android:textSize="@dimen/sp16" />
 
                 <EditText
@@ -113,7 +113,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/register_to_login_iv"
                 android:text="@string/have_account"
-                android:textColor="@color/color_text_gray_default"
+                android:textColor="@color/card_gray_default"
                 android:textSize="@dimen/sp14" />
 
             <ImageView
@@ -140,7 +140,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/px01"
-            android:background="@color/color_line_gray_default" />
+            android:background="@color/card_gray_default" />
 
         <TextView
             android:layout_width="match_parent"

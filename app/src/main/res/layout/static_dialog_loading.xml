@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_dialog_default">
+    <!-- 静态 加载弹窗 -->
+
+    <!-- 加载图片 -->
+    <ImageView
+        android:id="@+id/static_dialog_loading_iv"
+        android:layout_width="@dimen/dp120"
+        android:layout_height="@dimen/dp120"
+        android:contentDescription="@string/loading"
+        android:padding="@dimen/dp08"
+        android:src="@drawable/ic_vd_loading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp16"
+        android:text="@string/loading"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/static_dialog_loading_iv" />
+
+</android.support.constraint.ConstraintLayout>

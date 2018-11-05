@@ -78,11 +78,11 @@ public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> ex
     /**
      * 创建 ViewHolder
      *
-     * @param parnet
+     * @param parent
      * @param viewType
      * @return
      */
-    abstract VH onCreateVH(@NonNull ViewGroup parnet, int viewType);
+    abstract VH onCreateVH(@NonNull ViewGroup parent, int viewType);
 
     /**
      * 绑定 ViewHolder

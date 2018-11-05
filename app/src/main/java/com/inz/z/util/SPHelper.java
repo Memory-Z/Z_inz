@@ -16,7 +16,7 @@ import java.util.Set;
 public class SPHelper {
 
     // 默认保存文件名
-    private static final String FILE_NAME = "share_data";
+    private static final String FILE_NAME = "inzShareData";
     private static SharedPreferences sharedPreferences = null;
     private static SPHelper spHelper;
 

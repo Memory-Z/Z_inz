@@ -1,16 +1,13 @@
 package com.inz.z.view.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 
 import com.inz.z.R;
 
@@ -23,9 +20,6 @@ import com.inz.z.R;
  */
 public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
 
-    private Context mContext;
-    private View mView;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +31,7 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_register_email, container, false);
-        return mView;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initView();
+        return LayoutInflater.from(mContext).inflate(R.layout.fragment_register_email, container, false);
     }
 
     @Override
@@ -52,7 +39,7 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
         super.onStart();
         Window window = getDialog().getWindow();
         if (window != null) {
-            window.setBackgroundDrawableResource(R.color.transparency);
+            window.setBackgroundDrawableResource(R.color.transparent);
         }
         initData();
     }

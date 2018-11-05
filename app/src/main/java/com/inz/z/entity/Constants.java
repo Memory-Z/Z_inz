@@ -34,6 +34,10 @@ public class Constants {
         return FORMAL_URL;
     }
 
+    public static boolean isIsTest() {
+        return isTest;
+    }
+
     /**
      * 获取 基本 目录文件地址
      *
