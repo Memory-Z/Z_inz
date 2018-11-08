@@ -8,15 +8,13 @@ import android.util.Log;
 
 import com.inz.z.entity.Constants;
 import com.inz.z.util.CrashHandler;
-import com.inz.z.util.FileUtils;
+import com.inz.z.util.MyCsvFormatStrategy;
 import com.inz.z.util.SPHelper;
 import com.inz.z.util.Tools;
-import com.orhanobut.logger.CsvFormatStrategy;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 
 /**
@@ -36,6 +34,8 @@ public class InzApplication extends Application {
         super.onCreate();
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
         mContext = this;
+        // 初始化 日志
+        initLogger();
         // 非 测试环境
         if (!Constants.isIsTest()) {
             // 初始化 异常信息收集
@@ -45,11 +45,7 @@ public class InzApplication extends Application {
         registerActivityLifecycleCallbacks(new InzActivityLifecycleCallbacks());
         // 初始化 SharePreferences
         SPHelper.getInstance().initSharedPreferences(mContext);
-        // 创建 项目的文件目录
-        createFile();
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
-        // 初始化 日志
-        initLogger();
     }
 
     /**
@@ -60,23 +56,11 @@ public class InzApplication extends Application {
     }
 
     /**
-     * 创建文件
-     */
-    private void createFile() {
-        File file = new File(FileUtils.getSDPath() + Constants.getBaseDirPath());
-        boolean flag = true;
-        if (!file.exists()) {
-            flag = file.mkdirs();
-        }
-        Log.i(TAG, "createFile: 文件夹 - 创建" + flag + " ： " + file.getAbsolutePath());
-    }
-
-    /**
      * 初始化日志管理
      */
     private void initLogger() {
 //        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-//                .tag("SKYVIS_LinkCourt")
+//                .tag(" - Inz - ")
 //                .build();
 //        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
 //            @Override
@@ -84,14 +68,14 @@ public class InzApplication extends Application {
 //                return BuildConfig.DEBUG;
 //            }
 //        });
-//        Logger.i("初始化 Logcat 完成");
+//        Logger.i("初始化 Logger Logcat 完成 : " + Tools.baseDateFormat.format(System.currentTimeMillis()));
         // 保存到本地
-        FormatStrategy fileStrategy = CsvFormatStrategy.newBuilder()
+        FormatStrategy fileStrategy = MyCsvFormatStrategy.newBuilder()
                 .dateFormat((SimpleDateFormat) Tools.baseDateFormat)
-                .tag("SKYVIS_LinkCourt")
+                .tag(" - Inz - ")
                 .build();
         Logger.addLogAdapter(new DiskLogAdapter(fileStrategy));
-        Logger.i("初始化 Logger File 完成");
+        Logger.i("初始化 Logger File 完成 : " + Tools.baseDateFormat.format(System.currentTimeMillis()));
     }
 
     /**
@@ -100,37 +84,37 @@ public class InzApplication extends Application {
     private class InzActivityLifecycleCallbacks implements ActivityLifecycleCallbacks {
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+            Logger.i("onActivityCreated - " + activity.getLocalClassName() + ";");
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
-
+            Logger.i("onActivityStarted - " + activity.getLocalClassName() + ";");
         }
 
         @Override
         public void onActivityResumed(Activity activity) {
-
+            Logger.i("onActivityResumed - " + activity.getLocalClassName() + ";");
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-
+            Logger.i("onActivityCreated - " + activity.getLocalClassName() + ";");
         }
 
         @Override
         public void onActivityStopped(Activity activity) {
-
+            Logger.i("onActivityStopped - " + activity.getLocalClassName() + ";");
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+            Logger.i("onActivitySaveInstanceState - " + activity.getLocalClassName() + ";");
         }
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-
+            Logger.i("onActivityDestroyed - " + activity.getLocalClassName() + ";");
         }
     }
 }
