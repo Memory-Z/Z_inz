@@ -209,7 +209,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      */
     private String saveLogToFile(String content, String prefix) {
         String fileName = prefix + "-" + dateStr + ".log";
-        String filePath = FileUtils.getSDPath() + Constants.getBaseDirPath() + "crash" + File.separator;
+        String filePath = Constants.getCrashPath();
         File dir = new File(filePath);
         boolean isMkdirs = true;
         if (!dir.exists()) {

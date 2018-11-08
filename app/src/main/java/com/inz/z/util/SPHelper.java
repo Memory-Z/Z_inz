@@ -80,7 +80,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    public void setSharedString(String key, String value) {
+    private void setSharedString(String key, String value) {
         setShared(key, value);
     }
 
@@ -90,7 +90,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 null
      */
-    public String getSharedString(String key) {
+    private String getSharedString(String key) {
         return sharedPreferences.getString(key, null);
     }
 
@@ -100,7 +100,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    public void setSharedBoolean(String key, boolean value) {
+    private void setSharedBoolean(String key, boolean value) {
         setShared(key, value);
     }
 
@@ -110,7 +110,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认false
      */
-    public boolean getSharedBoolean(String key) {
+    private boolean getSharedBoolean(String key) {
         return sharedPreferences.getBoolean(key, false);
     }
 
@@ -120,7 +120,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    public void setSharedInteger(String key, int value) {
+    private void setSharedInteger(String key, int value) {
         setShared(key, value);
     }
 
@@ -130,7 +130,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认-1
      */
-    public Integer getSharedInteger(String key) {
+    private Integer getSharedInteger(String key) {
         return sharedPreferences.getInt(key, -1);
     }
 
@@ -140,7 +140,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    public void setSharedFloat(String key, Float value) {
+    private void setSharedFloat(String key, Float value) {
         setShared(key, value);
     }
 
@@ -150,7 +150,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 -1F
      */
-    public Float getSharedFloat(String key) {
+    private Float getSharedFloat(String key) {
         return sharedPreferences.getFloat(key, -1F);
     }
 
@@ -160,7 +160,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    public void setSharedLong(String key, Long value) {
+    private void setSharedLong(String key, Long value) {
         setShared(key, value);
     }
 
@@ -170,7 +170,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 -1L
      */
-    public Long getSharedLong(String key) {
+    private Long getSharedLong(String key) {
         return sharedPreferences.getLong(key, -1L);
     }
 
@@ -180,7 +180,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    public void setSharedSet(String key, Set<String> value) {
+    private void setSharedSet(String key, Set<String> value) {
         setShared(key, value);
     }
 
@@ -190,7 +190,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 null
      */
-    public Set<String> getSharedSet(String key) {
+    private Set<String> getSharedSet(String key) {
         return sharedPreferences.getStringSet(key, null);
     }
 
@@ -199,7 +199,7 @@ public class SPHelper {
      *
      * @param key 保存的 键
      */
-    public void delShare(String key) {
+    private void delShare(String key) {
         try {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove(key);
@@ -209,4 +209,91 @@ public class SPHelper {
         }
     }
 
+    /**
+     * 设置是否存在用户
+     */
+    public void setHaveUser(boolean haveUser) {
+        setSharedBoolean("haveUser", haveUser);
+    }
+
+    /**
+     * 获取是否存在用户
+     *
+     * @return 是否存在用户
+     */
+    public boolean isHaveUser() {
+        return getSharedBoolean("haveUser");
+    }
+
+    /**
+     * 保存用户Id
+     *
+     * @param userId 用户ID
+     */
+    public void saveUserId(String userId) {
+        setSharedString("userId", userId);
+    }
+
+    /**
+     * 获取用户ID
+     *
+     * @return 用户ID
+     */
+    public String getUserId() {
+        return getSharedString("userId");
+    }
+
+    /**
+     * 保存用户登录信息
+     *
+     * @param userLoginInfo 用户登录信息
+     */
+    public void saveUserLoginInfo(String userLoginInfo) {
+        setSharedString("userLoginInfo", userLoginInfo);
+    }
+
+    /**
+     * 获取用户登录信息
+     *
+     * @return 用户登录信息
+     */
+    public String getUserLoginInfo() {
+        return getSharedString("userLoginInfo");
+    }
+
+    /**
+     * 保存用户登录名
+     *
+     * @param loginName 登录名
+     */
+    public void saveUserLoginName(String loginName) {
+        setSharedString("loginName", loginName);
+    }
+
+    /**
+     * 获取用户登录名
+     *
+     * @return 登录名
+     */
+    public String getUserLoginName() {
+        return getSharedString("loginName");
+    }
+
+    /**
+     * 保存用户登录密码
+     *
+     * @param password 密码
+     */
+    public void saveUserPassword(String password) {
+        setSharedString("userPassword", password);
+    }
+
+    /**
+     * 获取用户登录密码
+     *
+     * @return 密码
+     */
+    public String getUserPassword() {
+        return getSharedString("userPassword");
+    }
 }

@@ -54,11 +54,7 @@ public class FileUtils {
     public static boolean isFolderExistWithCreate(String folderStr) {
         File dir = new File(folderStr);
         if (!dir.exists()) {
-            if (dir.mkdirs()) {
-                return true;
-            } else {
-                return false;
-            }
+            return dir.mkdirs();
         }
         return true;
     }
@@ -68,7 +64,7 @@ public class FileUtils {
      *
      * @return 返回 是否存在 SD 卡
      */
-    public static boolean existsSDCard() {
+    private static boolean existsSDCard() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
@@ -81,7 +77,7 @@ public class FileUtils {
         if (existsSDCard()) {
             return Environment.getExternalStorageDirectory().getAbsolutePath();
         }
-        return "";
+        return Environment.getExternalStorageDirectory().toString();
     }
 
     /**
@@ -91,7 +87,7 @@ public class FileUtils {
      * @return 文件 所在的 路径
      */
     public static String createFileDir(String dirStr) {
-        String filePath = getSDPath() + Constants.getBaseDirPath() + dirStr;
+        String filePath = Constants.getBaseDirPath() + dirStr;
         File dir = new File(filePath);
         boolean flag = true;
         if (!dir.exists()) {
@@ -111,7 +107,7 @@ public class FileUtils {
      * @return 文件所在 路径
      */
     public static String createFile(@Nullable String dirStr, String fileStr) {
-        String filePath = getSDPath() + Constants.getBaseDirPath();
+        String filePath = Constants.getBaseDirPath();
         if (dirStr == null || "".equals(dirStr)) {
             filePath = filePath + fileStr;
         } else {

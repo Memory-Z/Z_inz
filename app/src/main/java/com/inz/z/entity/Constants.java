@@ -1,5 +1,8 @@
 package com.inz.z.entity;
 
+import com.inz.z.util.FileUtils;
+import com.orhanobut.logger.Logger;
+
 import java.io.File;
 
 /**
@@ -20,7 +23,7 @@ public class Constants {
     // 正式链接
     private final static String FORMAL_URL = "";
 
-    private final static String BASE_PATH = File.separator + "com.inz.z" + File.separator;
+    private final static String BASE_PATH = File.separator + "com.inz.z";
 
     /**
      * 获取请求 链接
@@ -38,13 +41,41 @@ public class Constants {
         return isTest;
     }
 
+    private static String getBasePath() {
+        return FileUtils.getSDPath() + BASE_PATH;
+    }
+
     /**
      * 获取 基本 目录文件地址
      *
      * @return 目录地址
      */
     public static String getBaseDirPath() {
-        return BASE_PATH;
+        return getBasePath();
+    }
+
+    public static String getImagePath() {
+        return getBasePath() + File.separator + "image";
+    }
+
+    public static String getTempDataPath() {
+        return getBasePath() + File.separator + "tempData";
+    }
+
+    public static String getCrashPath() {
+        return getBasePath() + File.separator + "Crash";
+    }
+
+    /**
+     * 创建文件
+     */
+    public static void createFile() {
+        File file = new File(Constants.getBaseDirPath());
+        boolean flag = true;
+        if (!file.exists()) {
+            flag = file.mkdirs();
+        }
+        Logger.i("文件创建结果：" + flag + "; " + Constants.getBaseDirPath());
     }
 
 }
