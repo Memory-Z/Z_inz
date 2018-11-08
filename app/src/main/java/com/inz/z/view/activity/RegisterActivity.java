@@ -36,20 +36,13 @@ import java.util.List;
  */
 public class RegisterActivity extends AbsBaseActivity implements IRegisterView {
     private static final String TAG = "RegisterActivity";
-    private static final int INSTALL_PACKAGE = 100001;
-    private static final int INSTALL_PACKAGE_SETTING = 100002;
 
-    /**
-     * 第三方登录按钮
-     */
-    private LinearLayout thirdLoginLl;
+
     private DialogFragment thirdDialogFragment;
-    private Button registerBtn;
     private DialogFragment checkEmailDialogFragment;
-    private RelativeLayout toLoginRl;
 
     @Override
-    public void onCreateView(@Nullable Bundle savedInstanceState) {
+    public void onCreateZ(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_register);
         mContext = this;
     }
@@ -77,7 +70,8 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView {
 
     @Override
     public void initView() {
-        thirdLoginLl = findViewById(R.id.register_other_account_ll);
+        // 第三方登录按钮
+        LinearLayout thirdLoginLl = findViewById(R.id.register_other_account_ll);
         thirdLoginLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +82,7 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView {
                 }
             }
         });
-        registerBtn = findViewById(R.id.register_btn);
+        Button registerBtn = findViewById(R.id.register_btn);
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,89 +93,22 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView {
                 }
             }
         });
-        toLoginRl = findViewById(R.id.register_to_login_rl);
+        RelativeLayout toLoginRl = findViewById(R.id.register_to_login_rl);
         toLoginRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
-                finish();
+                quitView();
             }
         });
     }
 
     /**
-     * 需要申请的权限
+     * 退出 视图
      */
-    private String[] permissions = new String[]{
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
-
-    /**
-     * 权限申请(所有权限)
-     */
-    private void requestPermission() {
-        List<String> list = new ArrayList<>();
-        // 权限获取
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(mContext, permission) != PackageManager.PERMISSION_GRANTED) {
-                list.add(permission);
-            }
-        }
-        String[] ps = new String[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-            ps[i] = list.get(i);
-        }
-        if (ps.length > 0) {
-            ActivityCompat.requestPermissions(this, ps, 1);
-        }
-        // 如果大于 Android 8.0
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // 是否支持安装
-            boolean canInstallPackage = mContext.getPackageManager().canRequestPackageInstalls();
-            if (!canInstallPackage) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_PACKAGE);
-            }
-        } else {
-            // 检查更新
-//            appUpdate();
-        }
+    private void quitView() {
+        RegisterActivity.this.finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == INSTALL_PACKAGE_SETTING) {
-                // 检查更新
-//                appUpdate();
-            }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == INSTALL_PACKAGE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                appUpdate();
-            } else {
-                AlertDialog alertDialog = new AlertDialog.Builder(mContext)
-                        .setTitle("提示")
-                        .setMessage("请开启当前程序安装未知应用来源的权限！")
-                        .setNegativeButton("前往", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
-                                startActivityForResult(intent, INSTALL_PACKAGE);
-                            }
-                        })
-                        .create();
-                alertDialog.show();
-            }
-        }
-    }
 }

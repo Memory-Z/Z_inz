@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="vertical">
-        <!-- register card -->
+        <!-- login card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,6 +36,7 @@
                     android:textSize="@dimen/sp16" />
 
                 <EditText
+                    android:id="@+id/login_user_name_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp32"
                     android:background="@drawable/bg_edit_text_default"
@@ -70,6 +71,7 @@
                     android:textSize="@dimen/sp16" />
 
                 <EditText
+                    android:id="@+id/login_user_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp32"
                     android:background="@drawable/bg_edit_text_default"
@@ -95,39 +97,26 @@
             android:textColor="@drawable/bg_button_text_default"
             android:textSize="@dimen/sp18" />
 
-        <RelativeLayout
+
+        <TextView
+            android:id="@+id/login_to_register_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginStart="@dimen/dp24"
             android:layout_marginTop="@dimen/dp24"
             android:layout_marginEnd="@dimen/dp24"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/login_to_register_iv"
-                android:text="@string/no_account"
-                android:textColor="@color/card_gray_default"
-                android:textSize="@dimen/sp14" />
-
-            <ImageView
-                android:id="@+id/login_to_register_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:contentDescription="@string/no_account"
-                android:src="@drawable/ic_chevron_right_black_24dp" />
-        </RelativeLayout>
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:gravity="center"
+            android:text="@string/no_account"
+            android:textColor="@color/card_gray_default"
+            android:textSize="@dimen/sp14" />
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:id="@+id/register_other_account_ll"
+        android:id="@+id/login_other_account_ll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp56"
         android:layout_alignParentBottom="true"

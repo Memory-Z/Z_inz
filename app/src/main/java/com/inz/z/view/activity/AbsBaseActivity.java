@@ -29,7 +29,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreateView(savedInstanceState);
+        onCreateZ(savedInstanceState);
         initView();
     }
 
@@ -45,7 +45,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
      *
      * @param savedInstanceState Data
      */
-    public abstract void onCreateView(@Nullable Bundle savedInstanceState);
+    public abstract void onCreateZ(@Nullable Bundle savedInstanceState);
 
     /**
      * 初始化界面
