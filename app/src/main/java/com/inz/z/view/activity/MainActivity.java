@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,7 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  *
  * @author Zhenglj
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AbsBaseActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -42,19 +43,17 @@ public class MainActivity extends AppCompatActivity {
     private static final int ANIM_DURATION_TOOLBAR = 300;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+    public void onCreateZ(@Nullable Bundle savedInstanceState) {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mContext = this;
-        initView();
         setupDrawerContent(mNavigationView);
     }
 
     /**
      * 初始化 视图
      */
-    private void initView() {
+    @Override
+    public void initView() {
         IncludeToolbarBinding includeToolbarBinding = activityMainBinding.mainIncludeToolbar;
         mToolbar = includeToolbarBinding.toolbar;
         setSupportActionBar(mToolbar);
@@ -63,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mNavigationView = activityMainBinding.mainNv;
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     /**

@@ -12,7 +12,7 @@ import com.inz.z.view.ILoginView;
  *
  * @author Zhenglj
  * @version 1.0.0
- * @date Create By 2018/8/12 12:07
+ * Create By 2018/8/12 12:07
  */
 public class LoginPresenter extends BasePresenter<ILoginView> {
 

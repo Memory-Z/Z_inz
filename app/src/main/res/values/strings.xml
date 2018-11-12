@@ -42,5 +42,8 @@
     <string name="other">其他</string>
     <string name="title">标题</string>
     <string name="back">返回</string>
+    <string name="op_left_icon">左侧图标</string>
+    <string name="op_right_icon">右侧图标</string>
+    <string name="number_99">99+</string>
 
 </resources>

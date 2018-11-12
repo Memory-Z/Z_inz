@@ -6,16 +6,33 @@
     android:background="@drawable/bg_card_no_stroke">
 
     <!-- 返回 -->
-    <ImageButton
-        android:id="@+id/base_top_back_ibtn"
-        android:layout_width="@dimen/dp56"
-        android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:contentDescription="@string/back"
-        android:src="@drawable/ic_vd_back_left"
+    <LinearLayout
+        android:id="@+id/base_top_back_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp48"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/base_top_back_ibtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_vd_back_left" />
+
+        <!-- 返回按钮 -->
+        <TextView
+            android:id="@+id/base_top_back_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp16" />
+
+    </LinearLayout>
 
     <!-- 标题 -->
     <TextView
@@ -28,11 +45,11 @@
         android:gravity="center"
         android:lines="1"
         android:text="@string/title"
-        android:textColor="@color/card_white_3"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/sp18"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/base_top_end_rl"
-        app:layout_constraintStart_toEndOf="@id/base_top_back_ibtn"
+        app:layout_constraintStart_toEndOf="@id/base_top_back_ll"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 其他操作 -->
@@ -41,7 +58,7 @@
         android:layout_width="@dimen/dp56"
         android:layout_height="@dimen/dp56"
         app:layout_constraintEnd_toEndOf="parent">
-
+        <!-- icon -->
         <ImageButton
             android:id="@+id/base_top_other_ibtn"
             android:layout_width="match_parent"
@@ -50,6 +67,7 @@
             android:contentDescription="@string/other"
             android:visibility="gone" />
 
+        <!-- icon + 文字（上下） -->
         <TextView
             android:id="@+id/base_top_other_tv"
             android:layout_width="wrap_content"

@@ -1,6 +1,5 @@
 package com.inz.z.util;
 
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -10,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.inz.z.entity.Constants;
-import com.orhanobut.logger.CsvFormatStrategy;
 import com.orhanobut.logger.DiskLogStrategy;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogStrategy;
@@ -255,7 +253,7 @@ public class MyCsvFormatStrategy implements FormatStrategy {
             String content = (String) msg.obj;
 
             FileWriter fileWriter = null;
-            File logFile = getLogFile(folder, "logs");
+            File logFile = getLogFile(folder, "inz_logs");
 
             try {
                 fileWriter = new FileWriter(logFile, true);

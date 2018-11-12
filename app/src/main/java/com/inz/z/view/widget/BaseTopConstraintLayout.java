@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.inz.z.R;
@@ -33,16 +35,9 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
     }
 
     /**
-     * 其他按钮点击监听
+     * 右侧图标点击监听
      */
-    public interface OnBaseTopOtherClickListener {
-        void onClick(View view);
-    }
-
-    /**
-     * 右侧文字图标点击监听
-     */
-    public interface OnBaseTopRightTextClickListener {
+    public interface OnBaseTopRightClickListener {
         void onClick(View view);
     }
 
@@ -66,6 +61,10 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
             if (leftIcon != null) {
                 setBackIBtn(leftIcon);
             }
+            String leftStr = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_left_text);
+            if (leftStr != null) {
+                setLeftTextStr(leftStr);
+            }
             Drawable rightIcon = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_right_icon);
             if (rightIcon != null) {
                 setOtherIBtn(rightIcon);
@@ -84,24 +83,33 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
             if (text != null) {
                 setOtherTv(text);
             }
+            boolean showRight = tintTypedArray.getBoolean(R.styleable.BaseTopConstraintLayout_top_right_show, false);
+            showRightView(showRight);
+            tintTypedArray.recycle();
         }
     }
 
+    private LinearLayout backLl;
+    private TextView backTv;
     private ImageButton backIBtn;
     private ImageButton otherIBtn;
     private TextView titleTv;
     private TextView otherTv;
+    private RelativeLayout rightRl;
 
     /**
      * 初始化视图
      */
     private void initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(getContext()).inflate(R.layout.base_top_layout, null);
+            mView = LayoutInflater.from(getContext()).inflate(R.layout.base_top_layout, this);
+            backLl = mView.findViewById(R.id.base_top_back_ll);
+            backTv = mView.findViewById(R.id.base_top_back_tv);
             backIBtn = mView.findViewById(R.id.base_top_back_ibtn);
             titleTv = mView.findViewById(R.id.base_top_title_tv);
             otherIBtn = mView.findViewById(R.id.base_top_other_ibtn);
             otherTv = mView.findViewById(R.id.base_top_other_tv);
+            rightRl = mView.findViewById(R.id.base_top_end_rl);
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             addView(mView, lp);
         }
@@ -115,6 +123,17 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
     private void setBackIBtn(Drawable drawable) {
         if (backIBtn != null) {
             backIBtn.setImageDrawable(drawable);
+        }
+    }
+
+    /**
+     * 设置左侧 按钮文字
+     *
+     * @param leftTextStr 文字
+     */
+    private void setLeftTextStr(String leftTextStr) {
+        if (backTv != null) {
+            backTv.setText(leftTextStr);
         }
     }
 
@@ -154,6 +173,12 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
         }
     }
 
+    private void showRightView(boolean isShow) {
+        if (rightRl != null) {
+            rightRl.setVisibility(isShow ? VISIBLE : INVISIBLE);
+        }
+    }
+
     private void setOtherTvTopIcon(Drawable drawable) {
         if (otherTv != null) {
             // 这一步必须要做,否则不会显示.
@@ -171,8 +196,8 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
      */
     public void setOnBaseTopBackClickListener(OnBaseTopBackClickListener baseTopBackClickListener) {
         this.onBaseTopBackClickListener = baseTopBackClickListener;
-        if (backIBtn != null) {
-            backIBtn.setOnClickListener(new OnClickListener() {
+        if (backLl != null) {
+            backLl.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onBaseTopBackClickListener.onClick(v);
@@ -182,39 +207,20 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
     }
 
 
-    private OnBaseTopOtherClickListener onBaseTopOtherClickListener;
+    private OnBaseTopRightClickListener onBaseTopRightClickListener;
 
     /**
-     * 设置其他点击 监听
+     * 设置右侧点击 监听
      *
-     * @param baseTopOtherClickListener 点击监听
+     * @param baseTopRightClickListener 点击监听
      */
-    public void setOnBaseTopOtherClickListener(OnBaseTopOtherClickListener baseTopOtherClickListener) {
-        this.onBaseTopOtherClickListener = baseTopOtherClickListener;
-        if (otherIBtn != null) {
-            otherIBtn.setOnClickListener(new OnClickListener() {
+    public void setOnBaseTopRightClickListener(OnBaseTopRightClickListener baseTopRightClickListener) {
+        this.onBaseTopRightClickListener = baseTopRightClickListener;
+        if (rightRl != null) {
+            rightRl.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onBaseTopOtherClickListener.onClick(v);
-                }
-            });
-        }
-    }
-
-    private OnBaseTopRightTextClickListener onBaseTopRightTextClickListener;
-
-    /**
-     * 设置 右侧 文本点击监听
-     *
-     * @param baseTopRightTextClickListener 监听
-     */
-    public void setOnBaseTopRightTextClickListener(OnBaseTopRightTextClickListener baseTopRightTextClickListener) {
-        onBaseTopRightTextClickListener = baseTopRightTextClickListener;
-        if (otherTv != null) {
-            otherTv.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBaseTopRightTextClickListener.onClick(v);
+                    onBaseTopRightClickListener.onClick(v);
                 }
             });
         }

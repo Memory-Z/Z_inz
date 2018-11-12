@@ -3,12 +3,49 @@
     <!-- 顶部栏 -->
     <declare-styleable name="BaseTopConstraintLayout">
         <attr name="top_left_icon" format="reference" />
+        <attr name="top_left_text" format="string" />
         <attr name="top_title" format="string" />
         <!-- 是否为文本 -->
         <attr name="top_type_is_text" format="boolean" />
         <attr name="top_right_icon" format="reference" />
         <attr name="top_right_text" format="string" />
         <attr name="top_right_text_icon" format="reference" />
+        <attr name="top_right_show" format="boolean" />
+    </declare-styleable>
+
+    <!-- 操作栏（带标记） -->
+    <declare-styleable name="BaseOperationBadgeLayout">
+        <attr name="op_top_line_show" format="boolean" />
+        <attr name="op_bottom_line_show" format="boolean" />
+        <attr name="op_height" format="integer" />
+        <attr name="op_left_icon_show" format="boolean" />
+        <attr name="op_left_icon" format="reference" />
+        <attr name="op_left_icon_size" format="integer" />
+        <attr name="op_content_size" format="float" />
+        <attr name="op_content_text" format="string" />
+        <attr name="op_content_text_color" format="color" />
+        <attr name="op_badge_show" format="boolean" />
+        <attr name="op_badge_text" format="string" />
+        <attr name="op_right_icon_show" format="boolean" />
+        <attr name="op_right_icon" format="reference" />
+
+    </declare-styleable>
+
+    <!-- 操作栏 （带文字） -->
+    <declare-styleable name="BaseOperationTextLayout">
+        <attr name="op_t_top_line_show" format="boolean" />
+        <attr name="op_t_bottom_line_show" format="boolean" />
+        <attr name="op_t_content_min_height" format="integer" />
+        <attr name="op_t_left_icon_show" format="boolean" />
+        <attr name="op_t_left_icon" format="reference" />
+        <attr name="op_t_left_icon_size" format="integer" />
+        <attr name="op_t_content_text" format="string" />
+        <attr name="op_t_content_size" format="float" />
+        <attr name="op_t_content_text_color" format="color" />
+        <attr name="op_t_text_show" format="boolean" />
+        <attr name="op_t_text" format="string" />
+        <attr name="op_t_right_icon_show" format="boolean" />
+        <attr name="op_t_right_icon" format="reference" />
     </declare-styleable>
 
 </resources>

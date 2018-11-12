@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <padding
+        android:bottom="@dimen/dp04"
+        android:left="@dimen/dp04"
+        android:right="@dimen/dp04"
+        android:top="@dimen/dp04" />
+    <solid android:color="@color/card_red_default" />
+    <corners android:radius="@dimen/dp12" />
+
+</shape>
