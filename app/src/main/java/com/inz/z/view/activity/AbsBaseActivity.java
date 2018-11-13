@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 
 import com.inz.z.base.IBaseView;
 import com.inz.z.util.Tools;
@@ -93,4 +94,25 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
         return mContext;
     }
     /* / -- IBaseView - End -- / */
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (loadDialog != null && loadDialog.isShowing()) {
+                loadDialog.dismiss();
+            } else {
+                return myOnKeyDown(keyCode, event);
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 自定义按钮 点击
+     *
+     * @param keyCode 点击按键
+     * @param event   事件
+     * @return 是否拦截
+     */
+    public abstract boolean myOnKeyDown(int keyCode, KeyEvent event);
 }

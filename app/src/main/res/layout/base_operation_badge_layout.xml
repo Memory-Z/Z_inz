@@ -56,7 +56,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/dp08"
             android:layout_toStartOf="@+id/base_op_badge_content_right_icon_iv"
-            android:background="@drawable/bg_badge_gray"
+            android:background="@drawable/bg_badge_red"
             android:gravity="center"
             android:minWidth="@dimen/dp24"
             android:text="@string/number_99"

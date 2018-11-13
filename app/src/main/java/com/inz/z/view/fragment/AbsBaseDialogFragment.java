@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.inz.z.base.IBaseView;
@@ -79,4 +80,5 @@ public abstract class AbsBaseDialogFragment extends DialogFragment implements IB
      * 初始化数据
      */
     public abstract void initData();
+
 }

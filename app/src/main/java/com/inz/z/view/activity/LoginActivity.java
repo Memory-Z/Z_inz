@@ -1,18 +1,15 @@
 package com.inz.z.view.activity;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +21,6 @@ import com.inz.z.R;
 import com.inz.z.util.SPHelper;
 import com.inz.z.view.ILoginView;
 import com.inz.z.view.fragment.ThirdLoginDialogFragment;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +117,11 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
 
     }
 
+    @Override
+    public boolean myOnKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
+
     /**
      * 退出视图
      */
@@ -128,9 +129,6 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
         LoginActivity.this.finish();
     }
 
-
-    private static final int INSTALL_PACKAGE = 10001;
-    private static final int INSTALL_PACKAGE_SETTING = 10002;
 
     /**
      * 需要申请的权限
@@ -164,59 +162,8 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
         }
 
         // 检查安装APK
-        checkInstallApk();
+//        checkInstallApk();
     }
 
-    /**
-     * 检查安装
-     */
-    private void checkInstallApk() {
-        // 如果大于 Android 8.0
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // 是否支持安装
-            boolean canInstallPackage = mContext.getPackageManager().canRequestPackageInstalls();
-            if (!canInstallPackage) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_PACKAGE);
-            }
-        } else {
-            Logger.i("检查更新");
-            // 检查更新
-//            appUpdate();
-        }
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == INSTALL_PACKAGE_SETTING) {
-                // 检查更新
-//                appUpdate();
-            }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == INSTALL_PACKAGE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                appUpdate();
-            } else {
-//                AlertDialog alertDialog = new AlertDialog.Builder(mContext)
-//                        .setTitle("提示")
-//                        .setMessage("请开启当前程序安装未知应用来源的权限！")
-//                        .setNegativeButton("前往", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
-//                                startActivityForResult(intent, INSTALL_PACKAGE);
-//                            }
-//                        })
-//                        .create();
-//                alertDialog.show();
-            }
-        }
-    }
 }

@@ -1,6 +1,5 @@
 package com.inz.z.view.activity;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -32,7 +31,6 @@ public class MainActivity extends AbsBaseActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private Context mContext;
     private Toolbar mToolbar;
     // 抽象类 选中的 框架
     private AbsBackHandledFragment selectFragment;
@@ -46,7 +44,6 @@ public class MainActivity extends AbsBaseActivity {
     public void onCreateZ(@Nullable Bundle savedInstanceState) {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mContext = this;
-        setupDrawerContent(mNavigationView);
     }
 
     /**
@@ -62,11 +59,17 @@ public class MainActivity extends AbsBaseActivity {
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mNavigationView = activityMainBinding.mainNv;
+        setupDrawerContent(mNavigationView);
     }
 
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    public boolean myOnKeyDown(int keyCode, KeyEvent event) {
+        return false;
     }
 
     /**

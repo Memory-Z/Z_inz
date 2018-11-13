@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
@@ -73,4 +74,8 @@ public class SplashActivity extends AbsBaseActivity {
         Constants.createFile();
     }
 
+    @Override
+    public boolean myOnKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
 }

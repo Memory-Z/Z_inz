@@ -28,10 +28,14 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:padding="@dimen/dp08">
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_marginEnd="@dimen/dp16"
+        android:padding="@dimen/dp08"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/splash_court_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/number_99" />
