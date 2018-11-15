@@ -26,6 +26,7 @@ import com.inz.z.R;
 public class BaseTopConstraintLayout extends ConstraintLayout {
 
     private View mView;
+    private Context mContext;
 
     /**
      * 返回按钮点击监听
@@ -49,43 +50,12 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
         this(context, attrs, 0);
     }
 
-    @SuppressLint("RestrictedApi")
     public BaseTopConstraintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         initView();
         if (attrs != null) {
-            TintTypedArray tintTypedArray = TintTypedArray.obtainStyledAttributes(getContext(),
-                    attrs, R.styleable.BaseTopConstraintLayout, 0, 0);
-
-            Drawable leftIcon = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_left_icon);
-            if (leftIcon != null) {
-                setBackIBtn(leftIcon);
-            }
-            String leftStr = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_left_text);
-            if (leftStr != null) {
-                setLeftTextStr(leftStr);
-            }
-            Drawable rightIcon = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_right_icon);
-            if (rightIcon != null) {
-                setOtherIBtn(rightIcon);
-            }
-            String title = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_title);
-            if (title != null) {
-                setTitleTv(title);
-            }
-            boolean isText = tintTypedArray.getBoolean(R.styleable.BaseTopConstraintLayout_top_type_is_text, false);
-            setOtherType(isText);
-            Drawable textTopDrawable = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_right_text_icon);
-            if (textTopDrawable != null) {
-                setOtherTvTopIcon(textTopDrawable);
-            }
-            String text = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_right_text);
-            if (text != null) {
-                setOtherTv(text);
-            }
-            boolean showRight = tintTypedArray.getBoolean(R.styleable.BaseTopConstraintLayout_top_right_show, false);
-            showRightView(showRight);
-            tintTypedArray.recycle();
+            initStyle(attrs);
         }
     }
 
@@ -102,7 +72,7 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
      */
     private void initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(getContext()).inflate(R.layout.base_top_layout, this);
+            mView = LayoutInflater.from(mContext).inflate(R.layout.base_top_layout, null);
             backLl = mView.findViewById(R.id.base_top_back_ll);
             backTv = mView.findViewById(R.id.base_top_back_tv);
             backIBtn = mView.findViewById(R.id.base_top_back_ibtn);
@@ -110,9 +80,45 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
             otherIBtn = mView.findViewById(R.id.base_top_other_ibtn);
             otherTv = mView.findViewById(R.id.base_top_other_tv);
             rightRl = mView.findViewById(R.id.base_top_end_rl);
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             addView(mView, lp);
         }
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void initStyle(AttributeSet attrs) {
+        TintTypedArray tintTypedArray = TintTypedArray.obtainStyledAttributes(getContext(),
+                attrs, R.styleable.BaseTopConstraintLayout, 0, 0);
+
+        Drawable leftIcon = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_left_icon);
+        if (leftIcon != null) {
+            setBackIBtn(leftIcon);
+        }
+        String leftStr = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_left_text);
+        if (leftStr != null) {
+            setLeftTextStr(leftStr);
+        }
+        Drawable rightIcon = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_right_icon);
+        if (rightIcon != null) {
+            setOtherIBtn(rightIcon);
+        }
+        String title = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_title);
+        if (title != null) {
+            setTitleTv(title);
+        }
+        boolean isText = tintTypedArray.getBoolean(R.styleable.BaseTopConstraintLayout_top_type_is_text, false);
+        setOtherType(isText);
+        Drawable textTopDrawable = tintTypedArray.getDrawable(R.styleable.BaseTopConstraintLayout_top_right_text_icon);
+        if (textTopDrawable != null) {
+            setOtherTvTopIcon(textTopDrawable);
+        }
+        String text = tintTypedArray.getString(R.styleable.BaseTopConstraintLayout_top_right_text);
+        if (text != null) {
+            setOtherTv(text);
+        }
+        boolean showRight = tintTypedArray.getBoolean(R.styleable.BaseTopConstraintLayout_top_right_show, false);
+        showRightView(showRight);
+        tintTypedArray.recycle();
     }
 
     /**

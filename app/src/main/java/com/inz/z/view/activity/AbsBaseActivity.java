@@ -100,11 +100,9 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (loadDialog != null && loadDialog.isShowing()) {
                 loadDialog.dismiss();
-            } else {
-                return myOnKeyDown(keyCode, event);
             }
         }
-        return super.onKeyDown(keyCode, event);
+        return myOnKeyDown(keyCode, event);
     }
 
     /**

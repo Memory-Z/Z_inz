@@ -8,6 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.inz.z.R;
 public class BaseOperationTextLayout extends ConstraintLayout {
 
     private View mView;
+    private Context mContext;
 
     public BaseOperationTextLayout(Context context) {
         this(context, null);
@@ -38,6 +40,7 @@ public class BaseOperationTextLayout extends ConstraintLayout {
 
     public BaseOperationTextLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         initView();
         if (attrs != null) {
             initStyle(attrs);
@@ -51,7 +54,7 @@ public class BaseOperationTextLayout extends ConstraintLayout {
 
     private void initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(getContext()).inflate(R.layout.base_operation_text_layout, this);
+            mView = LayoutInflater.from(mContext).inflate(R.layout.base_operation_text_layout, null);
             topLineV = mView.findViewById(R.id.base_op_text_top_line_v);
             bottomLineV = mView.findViewById(R.id.base_op_text_bottom_line_v);
             contentRl = mView.findViewById(R.id.base_op_text_rl);
@@ -72,14 +75,16 @@ public class BaseOperationTextLayout extends ConstraintLayout {
         showTopLineV(isShowTopLine);
         boolean isShowBottomLine = tintTypedArray.getBoolean(R.styleable.BaseOperationTextLayout_op_t_bottom_line_show, false);
         showBottomLineV(isShowBottomLine);
-        int contentHeight = tintTypedArray.getInt(R.styleable.BaseOperationTextLayout_op_t_content_min_height, 48);
-        setContentRlHeight(contentHeight);
+//        int contentHeight = tintTypedArray.getInt(R.styleable.BaseOperationTextLayout_op_t_content_min_height, 48);
+//        setContentRlHeight(contentHeight);
         Drawable leftIconIv = tintTypedArray.getDrawable(R.styleable.BaseOperationTextLayout_op_t_left_icon);
         if (leftIconIv != null) {
             setLeftIconIv(leftIconIv);
         }
-        int leftIconWidth = tintTypedArray.getInt(R.styleable.BaseOperationTextLayout_op_t_left_icon_size, 36);
-        setLeftIconSize(leftIconWidth);
+        boolean isShowLeftIcon = tintTypedArray.getBoolean(R.styleable.BaseOperationTextLayout_op_t_left_icon_show, false);
+        showLeftIcon(isShowLeftIcon);
+//        int leftIconWidth = tintTypedArray.getInt(R.styleable.BaseOperationTextLayout_op_t_left_icon_size, 36);
+//        setLeftIconSize(leftIconWidth);
         String content = tintTypedArray.getString(R.styleable.BaseOperationTextLayout_op_t_content_text);
         if (content != null) {
             setContentStr(content);
@@ -127,10 +132,16 @@ public class BaseOperationTextLayout extends ConstraintLayout {
         }
     }
 
+    public void showLeftIcon(boolean isShow) {
+        if (leftIconIv != null) {
+            leftIconIv.setVisibility(isShow ? VISIBLE : GONE);
+        }
+    }
+
     public void setLeftIconSize(int width) {
         if (leftIconIv != null) {
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
             lp.width = width;
             //noinspection SuspiciousNameCombination
             lp.height = width;

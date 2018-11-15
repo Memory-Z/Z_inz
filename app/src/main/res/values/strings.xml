@@ -34,7 +34,7 @@
     <string name="next_step">下一步</string>
     <string name="cancel">取消</string>
     <string name="splash_screen">闪屏</string>
-    <string name="copyright_hint">Copyright &#169; 2018 Z_inz.</string>
+    <string name="copyright_hint">Copyright &#169; 2017&#8211;2018 Z_inz.</string>
 
     <string name="example_name">实例名称</string>
     <string name="black"> </string>
@@ -45,5 +45,17 @@
     <string name="op_left_icon">左侧图标</string>
     <string name="op_right_icon">右侧图标</string>
     <string name="number_99">99+</string>
+    <string name="user_photo">用户头像</string>
+    <string name="more">更多</string>
+    <string name="attention">关注</string>
+    <string name="user_sign">用户标签</string>
+    <string name="check_update">检版本更新</string>
+    <string name="feedback">意见反馈</string>
+    <string name="local_version">当前版本：1.0.0</string>
+    <string name="use_help">使用帮助</string>
+    <string name="about_us">关于我们</string>
+    <string name="send_time">2017&#8211;08&#8211;09 12:34:56</string>
+
+    <string name="test_text">测试文本测试文本测试文本测试文本测试文本本测试文本测试文本测试文本测试文本测试文本测试文本测试文本</string>
 
 </resources>

@@ -3,7 +3,6 @@ package com.inz.z.view.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.TintTypedArray;
@@ -28,6 +27,7 @@ import com.inz.z.R;
 public class BaseOperationBadgeLayout extends ConstraintLayout {
 
     private View mView;
+    private Context mContext;
 
     public BaseOperationBadgeLayout(Context context) {
         this(context, null);
@@ -39,6 +39,7 @@ public class BaseOperationBadgeLayout extends ConstraintLayout {
 
     public BaseOperationBadgeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         initView();
         if (attrs != null) {
             initStyle(attrs);
@@ -55,7 +56,7 @@ public class BaseOperationBadgeLayout extends ConstraintLayout {
      */
     private void initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(getContext()).inflate(R.layout.base_operation_badge_layout, this);
+            mView = LayoutInflater.from(mContext).inflate(R.layout.base_operation_badge_layout, null);
             topLineV = mView.findViewById(R.id.base_op_badge_top_line_v);
             bottomLineV = mView.findViewById(R.id.base_op_badge_bottom_line_v);
             contentRl = mView.findViewById(R.id.base_op_badge_rl);
@@ -63,7 +64,7 @@ public class BaseOperationBadgeLayout extends ConstraintLayout {
             rightIconIv = mView.findViewById(R.id.base_op_badge_content_right_icon_iv);
             contentTv = mView.findViewById(R.id.base_op_badge_content_tv);
             badgeTv = mView.findViewById(R.id.base_op_badge_content_badge_tv);
-            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             addView(mView, lp);
         }
     }
@@ -79,12 +80,14 @@ public class BaseOperationBadgeLayout extends ConstraintLayout {
         showTopLineV(isShowTopLine);
         boolean isShowBottomLine = tintTypedArray.getBoolean(R.styleable.BaseOperationBadgeLayout_op_bottom_line_show, false);
         showBottomLineV(isShowBottomLine);
-        int contentHeight = tintTypedArray.getInt(R.styleable.BaseOperationBadgeLayout_op_height, 48);
-        setContentRlHeight(contentHeight);
+//        int contentHeight = tintTypedArray.getInt(R.styleable.BaseOperationBadgeLayout_op_height, 48);
+//        setContentRlHeight(contentHeight);
         Drawable leftIconIv = tintTypedArray.getDrawable(R.styleable.BaseOperationBadgeLayout_op_left_icon);
         if (leftIconIv != null) {
             setLeftIconIv(leftIconIv);
         }
+        boolean isShowLeftIcon = tintTypedArray.getBoolean(R.styleable.BaseOperationBadgeLayout_op_left_icon_show, false);
+        showLeftIcon(isShowLeftIcon);
         int leftIconWidth = tintTypedArray.getInt(R.styleable.BaseOperationBadgeLayout_op_left_icon_size, 36);
         setLeftIconSize(leftIconWidth);
         String content = tintTypedArray.getString(R.styleable.BaseOperationBadgeLayout_op_content_text);
@@ -139,10 +142,16 @@ public class BaseOperationBadgeLayout extends ConstraintLayout {
         }
     }
 
+    public void showLeftIcon(boolean isShow) {
+        if (leftIconIv != null) {
+            leftIconIv.setVisibility(isShow ? VISIBLE : GONE);
+        }
+    }
+
     public void setLeftIconSize(int width) {
         if (leftIconIv != null) {
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
             lp.width = width;
             //noinspection SuspiciousNameCombination
             lp.height = width;
