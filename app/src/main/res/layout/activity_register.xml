@@ -37,6 +37,7 @@
                     android:textSize="@dimen/sp16" />
 
                 <EditText
+                    android:id="@+id/register_user_name_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp32"
                     android:background="@drawable/bg_edit_text_default"
@@ -72,6 +73,7 @@
                     android:textSize="@dimen/sp16" />
 
                 <EditText
+                    android:id="@+id/register_user_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp32"
                     android:background="@drawable/bg_edit_text_default"

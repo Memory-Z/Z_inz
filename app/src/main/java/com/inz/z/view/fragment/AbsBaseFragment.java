@@ -60,13 +60,13 @@ public abstract class AbsBaseFragment extends Fragment implements IBaseView {
 
     @Override
     public void showToast(String msg) {
-        Tools.showShortToast(mContext, msg);
+        Tools.showShortCenterToast(mContext, msg);
         Logger.i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
     public void showError(String errorMsg) {
-        Tools.showShortToast(mContext, errorMsg);
+        Tools.showShortCenterToast(mContext, errorMsg);
         Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
     }
 

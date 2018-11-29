@@ -11,4 +11,17 @@ import com.inz.z.base.IBaseView;
  */
 public interface IRegisterView extends IBaseView {
 
+    void setIsRegister(boolean isRegister);
+
+    void setIsSend(boolean isSend);
+
+    /**
+     * 获取注册用户ID
+     *
+     * @param userId 用户ID
+     */
+    void setRegisterUserId(String userId);
+
+    void setCheckRegister(boolean checkRegister);
+
 }

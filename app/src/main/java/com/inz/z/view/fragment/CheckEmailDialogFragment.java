@@ -1,15 +1,24 @@
 package com.inz.z.view.fragment;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.inz.z.R;
+import com.inz.z.util.Tools;
+
+import java.util.TimerTask;
 
 /**
  * 监测邮箱弹窗
@@ -19,6 +28,16 @@ import com.inz.z.R;
  * Create by inz in 2018/10/29 11:39.
  */
 public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
+
+    private EditText userEmailEt, emailCodeEt;
+    private Button sendCodeBtn, nextBtn;
+    private FragmentRegisterInterface fragmentRegisterInterface;
+
+    public interface FragmentRegisterInterface {
+        void setUserEmail(String userEmail);
+
+        void setEmailCode(String emailCode);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,11 +75,118 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
 
     @Override
     public void initView() {
-
+        userEmailEt = mView.findViewById(R.id.fragment_register_email_et);
+        emailCodeEt = mView.findViewById(R.id.fragment_register_code_et);
+        sendCodeBtn = mView.findViewById(R.id.fragment_register_get_code_btn);
+        nextBtn = mView.findViewById(R.id.fragment_register_next_btn);
+        ImageButton closeIBtn = mView.findViewById(R.id.fragment_register_close_ibtn);
+        closeIBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckEmailDialogFragment.this.dismiss();
+            }
+        });
     }
 
     @Override
     public void initData() {
+        // 发送按钮点击事件
+        sendCodeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fragmentRegisterInterface != null) {
+                    String userEmail = userEmailEt.getText().toString();
+                    if (!"".equals(userEmail)) {
+                        fragmentRegisterInterface.setUserEmail(userEmail);
+                        sendCodeBtn.setText("发送中...");
+                        sendCodeBtn.setClickable(false);
+                        sendCodeBtn.setFocusable(false);
+                        countDownTimer.start();
+                    } else {
+                        Tools.showShortCenterToast(mContext, "邮箱不能为空");
+                    }
+                }
+            }
+        });
+        userEmailEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    sendCodeBtn.setClickable(true);
+                    sendCodeBtn.setFocusable(true);
+                } else {
+                    sendCodeBtn.setClickable(false);
+                    sendCodeBtn.setFocusable(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        emailCodeEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 6) {
+                    nextBtn.setClickable(true);
+                    nextBtn.setFocusable(true);
+                } else {
+                    nextBtn.setFocusable(false);
+                    nextBtn.setClickable(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fragmentRegisterInterface != null) {
+                    String emailCode = emailCodeEt.getText().toString();
+                    if (!"".equals(emailCode)) {
+                        fragmentRegisterInterface.setEmailCode(emailCode);
+                    }
+                }
+            }
+        });
     }
+
+    public void setFragmentRegisterInterface(FragmentRegisterInterface fragmentRegisterInterface) {
+        this.fragmentRegisterInterface = fragmentRegisterInterface;
+    }
+
+    private CountDownTimer countDownTimer = new CountDownTimer(90000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            if (millisUntilFinished > 999) {
+                String timeStr = (millisUntilFinished / 1000) + "s";
+                sendCodeBtn.setText(timeStr);
+            } else {
+                sendCodeBtn.setText(R.string.get_email_code);
+                sendCodeBtn.setFocusable(true);
+                sendCodeBtn.setClickable(true);
+            }
+        }
+
+        @Override
+        public void onFinish() {
+            sendCodeBtn.setText(R.string.get_email_code);
+            sendCodeBtn.setFocusable(true);
+            sendCodeBtn.setClickable(true);
+        }
+    };
 }

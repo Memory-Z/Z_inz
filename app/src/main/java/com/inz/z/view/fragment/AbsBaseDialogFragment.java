@@ -24,7 +24,6 @@ public abstract class AbsBaseDialogFragment extends DialogFragment implements IB
 
     Context mContext;
     View mView;
-    private Dialog loadDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -42,31 +41,21 @@ public abstract class AbsBaseDialogFragment extends DialogFragment implements IB
     /* / -- IBaseView - Start -- / */
     @Override
     public void showLoading() {
-        if (loadDialog == null) {
-            loadDialog = Tools.loadDialog(mContext);
-        }
-        loadDialog.show();
-        Logger.i(mContext.getPackageName() + "; showLoading.");
     }
 
     @Override
     public void hideLoading() {
-        if (loadDialog != null) {
-            loadDialog.dismiss();
-            loadDialog = null;
-        }
-        Logger.i(mContext.getPackageName() + "; hideLoading.");
     }
 
     @Override
     public void showToast(String msg) {
-        Tools.showShortToast(mContext, msg);
+        Tools.showShortCenterToast(mContext, msg);
         Logger.i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
     public void showError(String errorMsg) {
-        Tools.showShortToast(mContext, errorMsg);
+        Tools.showShortCenterToast(mContext, errorMsg);
         Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
     }
     /* / -- IBaseView - End -- / */

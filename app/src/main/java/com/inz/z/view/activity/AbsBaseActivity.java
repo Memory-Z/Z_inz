@@ -40,7 +40,6 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
         initData();
     }
 
-
     /**
      * OnCreateView
      *
@@ -64,7 +63,9 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
         if (loadDialog == null) {
             loadDialog = Tools.loadDialog(mContext);
         }
-        loadDialog.show();
+        if (!loadDialog.isShowing()) {
+            loadDialog.show();
+        }
         Logger.i(mContext.getPackageName() + "; showLoading.");
     }
 
@@ -79,13 +80,13 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
 
     @Override
     public void showToast(String msg) {
-        Tools.showShortToast(mContext, msg);
+        Tools.showShortCenterToast(mContext, msg);
         Logger.i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
     public void showError(String errorMsg) {
-        Tools.showShortToast(mContext, errorMsg);
+        Tools.showShortCenterToast(mContext, errorMsg);
         Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
     }
 
@@ -97,12 +98,14 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Logger.i("onKeyDown : " + keyCode);
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (loadDialog != null && loadDialog.isShowing()) {
                 loadDialog.dismiss();
+                return true;
             }
         }
-        return myOnKeyDown(keyCode, event);
+        return myOnKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
     }
 
     /**

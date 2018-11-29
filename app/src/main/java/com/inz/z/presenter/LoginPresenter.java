@@ -37,7 +37,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
             }
 
             @Override
-            public void loadFailure(int failureType, String msg) {
+            public void loadFailure(String msg) {
 
             }
 

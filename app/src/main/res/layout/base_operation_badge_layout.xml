@@ -5,82 +5,82 @@
     android:layout_height="wrap_content"
     android:layout_centerVertical="true">
 
-    <!-- 带badge的操作栏 -->
+  <!-- 带badge的操作栏 -->
 
-    <View
-        android:id="@+id/base_op_badge_top_line_v"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px01"
-        android:background="@color/card_gray_3"
-        app:layout_constraintBottom_toTopOf="@id/base_op_badge_rl"
-        app:layout_constraintTop_toTopOf="parent" />
+  <View
+      android:id="@+id/base_op_badge_top_line_v"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/px01"
+      android:background="@color/card_gray_3"
+      app:layout_constraintBottom_toTopOf="@id/base_op_badge_rl"
+      app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 中间内容 -->
-    <RelativeLayout
-        android:id="@+id/base_op_badge_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp48"
-        android:paddingStart="@dimen/dp08"
-        android:paddingEnd="@dimen/dp08"
-        app:layout_constraintTop_toBottomOf="@id/base_op_badge_top_line_v">
+  <!-- 中间内容 -->
+  <RelativeLayout
+      android:id="@+id/base_op_badge_rl"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:minHeight="@dimen/dp48"
+      android:paddingStart="@dimen/dp08"
+      android:paddingEnd="@dimen/dp08"
+      app:layout_constraintTop_toBottomOf="@id/base_op_badge_top_line_v">
 
-        <!-- 左侧图标 -->
-        <ImageView
-            android:id="@+id/base_op_badge_content_left_icon_iv"
-            android:layout_width="@dimen/dp36"
-            android:layout_height="@dimen/dp36"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/op_left_icon"
-            android:src="@drawable/ic_vd_youjian" />
+    <!-- 左侧图标 -->
+    <ImageView
+        android:id="@+id/base_op_badge_content_left_icon_iv"
+        android:layout_width="@dimen/dp36"
+        android:layout_height="@dimen/dp36"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/op_left_icon"
+        android:src="@drawable/ic_vd_youjian" />
 
-        <!-- 内容 -->
-        <TextView
-            android:id="@+id/base_op_badge_content_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dp08"
-            android:layout_marginEnd="@dimen/dp08"
-            android:layout_toStartOf="@+id/base_op_badge_content_badge_tv"
-            android:layout_toEndOf="@id/base_op_badge_content_left_icon_iv"
-            android:gravity="center_vertical"
-            android:text="@string/op_left_icon"
-            android:textColor="@color/card_black_default"
-            android:textSize="@dimen/sp16" />
-
-        <TextView
-            android:id="@+id/base_op_badge_content_badge_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/dp08"
-            android:layout_toStartOf="@+id/base_op_badge_content_right_icon_iv"
-            android:background="@drawable/bg_badge_red"
-            android:gravity="center"
-            android:minWidth="@dimen/dp24"
-            android:text="@string/number_99"
-            android:textColor="@color/card_white_default"
-            android:textSize="@dimen/sp12" />
-
-        <ImageView
-            android:id="@+id/base_op_badge_content_right_icon_iv"
-            android:layout_width="@dimen/dp16"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/op_right_icon"
-            android:src="@drawable/ic_vd_nav_right" />
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/base_op_badge_bottom_line_v"
+    <!-- 内容 -->
+    <TextView
+        android:id="@+id/base_op_badge_content_tv"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/px01"
-        android:background="@color/card_gray_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/base_op_badge_rl" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dp08"
+        android:layout_marginEnd="@dimen/dp08"
+        android:layout_toStartOf="@+id/base_op_badge_content_badge_tv"
+        android:layout_toEndOf="@id/base_op_badge_content_left_icon_iv"
+        android:gravity="center_vertical"
+        android:text="@string/op_left_icon"
+        android:textColor="@color/card_black_default"
+        android:textSize="@dimen/sp16" />
+
+    <TextView
+        android:id="@+id/base_op_badge_content_badge_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dp08"
+        android:layout_toStartOf="@+id/base_op_badge_content_right_icon_iv"
+        android:background="@drawable/bg_badge_red"
+        android:gravity="center"
+        android:minWidth="@dimen/dp24"
+        android:text="@string/number_99"
+        android:textColor="@color/card_white_default"
+        android:textSize="@dimen/sp12" />
+
+    <ImageView
+        android:id="@+id/base_op_badge_content_right_icon_iv"
+        android:layout_width="@dimen/dp16"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/op_right_icon"
+        android:src="@drawable/ic_vd_nav_right" />
+
+  </RelativeLayout>
+
+  <View
+      android:id="@+id/base_op_badge_bottom_line_v"
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/px01"
+      android:background="@color/card_gray_3"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/base_op_badge_rl" />
 
 </android.support.constraint.ConstraintLayout>

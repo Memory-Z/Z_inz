@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @version 1.0.0
  * Create by inz in 2018/10/19 10:55.
  */
-public class ApiString extends AbsRequestTemp1 implements Serializable {
+public class ApiString extends AbsRequestTemp1<String> implements Serializable {
     @NonNull
     @Override
     public String toString() {

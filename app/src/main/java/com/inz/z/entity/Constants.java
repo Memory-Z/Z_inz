@@ -18,8 +18,9 @@ public class Constants {
     private final static boolean isTest = true;
     // 服务器IP
     private final static String IP = "47.99.69.193";
+    private final static String PORT = "8080";
     // 测试链接
-    private final static String TEST_URL = "http://" + IP + "/about/api/";
+    private final static String TEST_URL = "http://" + IP + ":" + PORT + "/about/api/";
     // 正式链接
     private final static String FORMAL_URL = "";
 
