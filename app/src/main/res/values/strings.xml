@@ -14,6 +14,7 @@
     <string name="email_code_digits">1234567890abcdefghijklmnokqrstuvwxyz</string>
     <string name="get_email_code">获取验证码</string>
     <string name="please_input_account">请输入用户名或邮箱</string>
+    <string name="phone_store">手机存储</string>
 
     <string name="loading">加载中&#8230;请耐心等待</string>
     <string name="user_name">用户名</string>
@@ -56,6 +57,13 @@
     <string name="about_us">关于我们</string>
     <string name="send_time">2017&#8211;08&#8211;09 12:34:56</string>
 
-    <string name="test_text">测试文本测试文本测试文本测试文本测试文本本测试文本测试文本测试文本测试文本测试文本测试文本测试文本</string>
+    <string name="test_text">测试文本测试文本测试文本测试文本测试文本本测试文本测试文本测试文本测试文本测试文本测试文本测试文本79</string>
+
+    <string name="image">图片</string>
+    <string name="item_image">单项图片</string>
+    <string name="model">模特</string>
+    <string name="new_model">新模特</string>
+    <string name="commodity">商品</string>
+    <string name="to_bottom_slip">往下滑动</string>
 
 </resources>

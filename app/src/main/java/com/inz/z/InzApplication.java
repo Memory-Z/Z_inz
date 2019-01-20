@@ -71,11 +71,11 @@ public class InzApplication extends Application {
 //        Logger.i("初始化 Logger Logcat 完成 : " + Tools.baseDateFormat.format(System.currentTimeMillis()));
         // 保存到本地
         FormatStrategy fileStrategy = MyCsvFormatStrategy.newBuilder()
-                .dateFormat((SimpleDateFormat) Tools.baseDateFormat)
+                .dateFormat((SimpleDateFormat) Tools.getBaseDateFormat())
                 .tag(" - Inz - ")
                 .build();
         Logger.addLogAdapter(new DiskLogAdapter(fileStrategy));
-        Logger.i("初始化 Logger File 完成 : " + Tools.baseDateFormat.format(System.currentTimeMillis()));
+        Logger.i("初始化 Logger File 完成 : " + Tools.getBaseDateFormat().format(System.currentTimeMillis()));
     }
 
     /**

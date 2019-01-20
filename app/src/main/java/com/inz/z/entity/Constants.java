@@ -18,13 +18,13 @@ public class Constants {
     private final static boolean isTest = true;
     // 服务器IP
     private final static String IP = "47.99.69.193";
-    private final static String PORT = "8080";
+    private final static String PORT = "80";
     // 测试链接
-    private final static String TEST_URL = "http://" + IP + ":" + PORT + "/about/api/";
+    private final static String TEST_URL = "http://" + IP + ":" + PORT + "/api/";
     // 正式链接
     private final static String FORMAL_URL = "";
 
-    private final static String BASE_PATH = File.separator + "com.inz.z";
+    private final static String BASE_PATH = "Inz";
 
     /**
      * 获取请求 链接
@@ -43,7 +43,7 @@ public class Constants {
     }
 
     private static String getBasePath() {
-        return FileUtils.getSDPath() + BASE_PATH;
+        return FileUtils.getSDPath() + File.separator + BASE_PATH;
     }
 
     /**
@@ -52,19 +52,23 @@ public class Constants {
      * @return 目录地址
      */
     public static String getBaseDirPath() {
-        return getBasePath();
+        return getBasePath() + File.separator + "About";
     }
 
     public static String getImagePath() {
-        return getBasePath() + File.separator + "image";
+        return getBaseDirPath() + File.separator + "image";
     }
 
     public static String getTempDataPath() {
-        return getBasePath() + File.separator + "tempData";
+        return getBaseDirPath() + File.separator + "temp";
+    }
+
+    public static String getLogPath() {
+        return getBaseDirPath() + File.separator + "log";
     }
 
     public static String getCrashPath() {
-        return getBasePath() + File.separator + "Crash";
+        return getBaseDirPath() + File.separator + "crash";
     }
 
     /**

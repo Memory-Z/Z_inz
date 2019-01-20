@@ -154,7 +154,7 @@ public class MyCsvFormatStrategy implements FormatStrategy {
                 dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SSS", Locale.UK);
             }
             if (logStrategy == null) {
-                String folder = Constants.getBaseDirPath() + File.separatorChar + "logger";
+                String folder = Constants.getLogPath() + File.separatorChar + "logger";
                 Log.i("TAG", "====" + folder);
                 HandlerThread ht = new HandlerThread("AndroidFileLogger." + folder);
                 ht.start();

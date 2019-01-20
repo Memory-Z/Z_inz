@@ -18,8 +18,6 @@ import android.widget.ImageButton;
 import com.inz.z.R;
 import com.inz.z.util.Tools;
 
-import java.util.TimerTask;
-
 /**
  * 监测邮箱弹窗
  *
@@ -79,6 +77,9 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
         emailCodeEt = mView.findViewById(R.id.fragment_register_code_et);
         sendCodeBtn = mView.findViewById(R.id.fragment_register_get_code_btn);
         nextBtn = mView.findViewById(R.id.fragment_register_next_btn);
+        // 默认不可点击
+        nextBtn.setFocusable(false);
+        nextBtn.setClickable(false);
         ImageButton closeIBtn = mView.findViewById(R.id.fragment_register_close_ibtn);
         closeIBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +102,8 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
                         sendCodeBtn.setText("发送中...");
                         sendCodeBtn.setClickable(false);
                         sendCodeBtn.setFocusable(false);
-                        countDownTimer.start();
+                        // 开始倒计时 90s
+                        CheckEmailDialogFragment.this.startCountDown(90000);
                     } else {
                         Tools.showShortCenterToast(mContext, "邮箱不能为空");
                     }
@@ -169,24 +171,37 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
         this.fragmentRegisterInterface = fragmentRegisterInterface;
     }
 
-    private CountDownTimer countDownTimer = new CountDownTimer(90000, 1000) {
-        @Override
-        public void onTick(long millisUntilFinished) {
-            if (millisUntilFinished > 999) {
-                String timeStr = (millisUntilFinished / 1000) + "s";
-                sendCodeBtn.setText(timeStr);
-            } else {
+    private static CountDownTimer countDownTimer;
+
+    /**
+     * 开始倒计时
+     *
+     * @param millisInFuture 时长 单位 ms
+     */
+    private void startCountDown(long millisInFuture) {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        countDownTimer = new CountDownTimer(millisInFuture, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if (millisUntilFinished > 999) {
+                    String timeStr = (millisUntilFinished / 1000) + "s";
+                    sendCodeBtn.setText(timeStr);
+                } else {
+                    sendCodeBtn.setText(R.string.get_email_code);
+                    sendCodeBtn.setFocusable(true);
+                    sendCodeBtn.setClickable(true);
+                }
+            }
+
+            @Override
+            public void onFinish() {
                 sendCodeBtn.setText(R.string.get_email_code);
                 sendCodeBtn.setFocusable(true);
                 sendCodeBtn.setClickable(true);
             }
-        }
-
-        @Override
-        public void onFinish() {
-            sendCodeBtn.setText(R.string.get_email_code);
-            sendCodeBtn.setFocusable(true);
-            sendCodeBtn.setClickable(true);
-        }
-    };
+        };
+        countDownTimer.start();
+    }
 }

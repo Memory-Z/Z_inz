@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ExampleBeanList xmlns:android="http://schemas.android.com/apk/res/android">
+    <ExampleBean class="com.inz.z.view.fragment.ExampleFragment">
+        <ContentStr>闪屏</ContentStr>
+        <ContentHintStr>2018-12-31</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.view.fragment.example.CategoryFragment">
+        <ContentStr>分类</ContentStr>
+        <ContentHintStr>2019-01-03</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.view.fragment.example.ItemCategoryFragment">
+        <ContentStr>分类Item</ContentStr>
+        <ContentHintStr>2019-01-03</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.view.activity.LoginActivity">
+        <ContentStr>登录</ContentStr>
+        <ContentHintStr>2019-01-13</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.view.fragment.example.FileExplorerFragment">
+        <ContentStr>文件浏览</ContentStr>
+        <ContentHintStr>2019-01-13</ContentHintStr>
+    </ExampleBean>
+</ExampleBeanList>

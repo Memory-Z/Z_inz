@@ -31,6 +31,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onCreateZ(savedInstanceState);
+        mContext = this;
         initView();
     }
 

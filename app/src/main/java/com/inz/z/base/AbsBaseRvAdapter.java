@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 抽象类 ，用于 数据列表显示
+ * T : 数据对象
+ * VH : 显示视图对象
  * Create By 11654
  *
  * @author Zhenglj
@@ -20,17 +23,17 @@ public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> ex
     /**
      * 上下文
      */
-    Context mContext;
+    public Context mContext;
 
     /**
      * 数据列表
      */
-    private List<T> list;
+    public List<T> list;
 
     /**
      * 布局填充
      */
-    LayoutInflater mLayoutInflater;
+    public LayoutInflater mLayoutInflater;
 
     public AbsBaseRvAdapter(Context mContext) {
         this.mContext = mContext;
@@ -82,7 +85,7 @@ public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> ex
      * @param viewType
      * @return
      */
-    abstract VH onCreateVH(@NonNull ViewGroup parent, int viewType);
+    public abstract VH onCreateVH(@NonNull ViewGroup parent, int viewType);
 
     /**
      * 绑定 ViewHolder
@@ -90,5 +93,5 @@ public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> ex
      * @param holder
      * @param position
      */
-    abstract void onBindVH(@NonNull VH holder, int position);
+    public abstract void onBindVH(@NonNull VH holder, int position);
 }

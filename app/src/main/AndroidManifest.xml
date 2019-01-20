@@ -4,6 +4,7 @@
     package="com.inz.z">
 
     <!-- 网络 -->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 存储 -->
@@ -45,6 +46,14 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
+        <!-- 相机 -->
+        <activity
+            android:name=".view.activity.Camera2Activity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+
+        </activity>
         <!-- 登录 -->
         <activity
             android:name="com.inz.z.view.activity.LoginActivity"
@@ -62,6 +71,14 @@
 
         </activity>
 
+        <!-- 状态 Example Fragment  -->
+        <activity
+            android:name=".view.activity.ExMainActivity"
+            android:configChanges="orientation"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.inz.z.provider"
@@ -71,6 +88,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <receiver android:name=".view.widget.ImageAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_image_provider" />
+        </receiver>
 
     </application>
 

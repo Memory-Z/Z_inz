@@ -39,7 +39,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     /**
      * 时间格式: yyyy-MM-dd HH:mm:ss
      */
-    private DateFormat dateFormat = Tools.baseDateFormat;
+    private DateFormat dateFormat = Tools.getBaseDateFormat();
     private Calendar calendar = Calendar.getInstance(Locale.CHINA);
     /**
      * 系统 默认处理类
@@ -88,6 +88,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
+        // 设置崩溃状态为 true
+        SPHelper.getInstance().setCrashState(true);
         if (!handlerException(e) && uncaughtExceptionHandler != null) {
             uncaughtExceptionHandler.uncaughtException(t, e);
         } else {

@@ -22,13 +22,14 @@ import com.orhanobut.logger.Logger;
  */
 public abstract class AbsBaseFragment extends Fragment implements IBaseView {
 
-    Context mContext;
-    View mView;
+    public Context mContext;
+    public View mView;
     private Dialog loadDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mContext = getContext();
         mView = view;
         initView();
     }
@@ -68,11 +69,6 @@ public abstract class AbsBaseFragment extends Fragment implements IBaseView {
     public void showError(String errorMsg) {
         Tools.showShortCenterToast(mContext, errorMsg);
         Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
-    }
-
-    @Override
-    public Context getContext() {
-        return mContext;
     }
     /* / -- IBaseView - End -- / */
 

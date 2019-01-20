@@ -160,7 +160,7 @@ public class BaseTopConstraintLayout extends ConstraintLayout {
      *
      * @param title 标题
      */
-    private void setTitleTv(String title) {
+    public void setTitleTv(String title) {
         if (titleTv != null) {
             titleTv.setText(title);
         }

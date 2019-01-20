@@ -296,4 +296,23 @@ public class SPHelper {
     public String getUserPassword() {
         return getSharedString("userPassword");
     }
+
+
+    /**
+     * 设置 是否崩溃
+     *
+     * @param isCrash 是否崩溃
+     */
+    public void setCrashState(boolean isCrash) {
+        setSharedBoolean("isCrash", isCrash);
+    }
+
+    /**
+     * 获取是否崩溃
+     *
+     * @return 是否崩溃
+     */
+    public boolean isCrash() {
+        return getSharedBoolean("isCrash");
+    }
 }

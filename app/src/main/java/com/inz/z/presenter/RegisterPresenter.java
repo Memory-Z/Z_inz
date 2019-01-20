@@ -138,9 +138,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
                     String isSendStr = data.getData();
                     boolean isSend = "true".equals(isSendStr);
                     getBaseView().setIsSend(isSend);
-                    if (!isSend) {
-                        getBaseView().showToast(data.getMessage());
-                    }
+                    getBaseView().showToast(data.getMessage());
                 }
             }
 

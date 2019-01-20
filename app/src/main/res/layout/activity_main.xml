@@ -17,7 +17,7 @@
         android:fitsSystemWindows="true"
         tools:context=".view.activity.MainActivity">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -27,11 +27,15 @@
 
             <FrameLayout
                 android:id="@+id/main_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_include_toolbar">
 
             </FrameLayout>
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.design.widget.NavigationView
             android:id="@+id/main_nv"

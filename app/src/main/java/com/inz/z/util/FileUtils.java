@@ -1,11 +1,22 @@
 package com.inz.z.util;
 
+import android.content.res.XmlResourceParser;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 
 import com.inz.z.entity.Constants;
+import com.inz.z.entity.constants.ExampleBean;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.StringReader;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 文件 工具
@@ -19,31 +30,6 @@ public class FileUtils {
 
     // 公司名
     private static String companyNameStr = "inz";
-    // 程序包名
-    private static String packageNameStr = "z";
-    // APP 的 SD 卡 路径
-    private static String appSDPathStr = "";
-
-    /**
-     * 初始化 文件路径
-     *
-     * @param companyName 公司名
-     * @param packageName 程序包名
-     */
-    public static void init(String companyName, String packageName) {
-        StringBuilder sb = new StringBuilder();
-        packageNameStr = packageName;
-        // 注意： 这个函数 不同手机 获取到的路径 不一致：Environment.getExternalStorageDirectory()
-        sb.append(Environment.getExternalStorageDirectory().toString());
-        if (companyName != null && !companyName.isEmpty()) {
-            sb.append(File.separator);
-            sb.append(packageName);
-        }
-        sb.append(File.separator);
-        sb.append(packageNameStr);
-        appSDPathStr = sb.toString();
-        isFolderExistWithCreate(appSDPathStr);
-    }
 
     /**
      * 检查文件是否 存在 并  创建
@@ -122,5 +108,62 @@ public class FileUtils {
             return filePath;
         }
         return "";
+    }
+
+
+    /**
+     * 通过 PULL 方式 解析 XML 文件
+     *
+     * @param parser XML 文件
+     * @return 解析后的数据
+     */
+    public static List<ExampleBean> parseExampleXmlWithPull(XmlResourceParser parser) {
+        try {
+//            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+//            XmlPullParser parser = factory.newPullParser();
+//            parser.setInput(new StringReader(xmlStr));
+            boolean isStart = false;
+            ExampleBean bean = null;
+            List<ExampleBean> exampleBeanList = new ArrayList<>();
+            int eventType = parser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String nodeName = parser.getName();
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                        // 开始解析
+                        if (ExampleBean.class.getSimpleName().equals(nodeName)) {
+                            isStart = true;
+                            bean = new ExampleBean();
+                            bean.setClzName(parser.getAttributeValue(null, "class"));
+
+                        }
+                        if (isStart) {
+                            if ("ContentStr".equals(nodeName)) {
+
+                                bean.setContentStr(parser.nextText());
+                            }
+                            if ("ContentHintStr".equals(nodeName)) {
+                                bean.setContentHintStr(parser.nextText());
+                            }
+                        }
+                        break;
+                    case XmlPullParser.END_TAG:
+                        if (ExampleBean.class.getSimpleName().equals(nodeName)) {
+                            exampleBeanList.add(bean);
+                            bean = null;
+                            isStart = false;
+                        }
+                        // 解析完毕
+                        break;
+                    default:
+                        break;
+                }
+                eventType = parser.next();
+            }
+            return exampleBeanList;
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

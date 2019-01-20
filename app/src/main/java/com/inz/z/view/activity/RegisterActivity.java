@@ -17,6 +17,7 @@ import com.inz.z.util.Tools;
 import com.inz.z.view.IRegisterView;
 import com.inz.z.view.fragment.CheckEmailDialogFragment;
 import com.inz.z.view.fragment.ThirdLoginDialogFragment;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author Zhenglj
@@ -125,9 +126,7 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView, 
 
     @Override
     public void setIsSend(boolean isSend) {
-        if (isSend) {
-            Tools.showShortBottomToast(mContext, "验证码已发送");
-        }
+        Logger.i(" 邮箱验证码 发送 状态： " + isSend);
     }
 
     @Override

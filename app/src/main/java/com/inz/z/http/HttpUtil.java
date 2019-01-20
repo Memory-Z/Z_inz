@@ -1,5 +1,6 @@
 package com.inz.z.http;
 
+import com.inz.z.BuildConfig;
 import com.inz.z.entity.ApiDiaryInfo;
 import com.inz.z.entity.ApiFileInfo;
 import com.inz.z.entity.ApiString;
@@ -33,11 +34,20 @@ public class HttpUtil {
     /**
      * 网络连接管理
      */
-    private static final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-            .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-            .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-            .build();
+    private static OkHttpClient client;
+
+    static {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(new HttpLogInterceptor());
+        }
+        client = builder
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .build();
+
+    }
 
     private static Retrofit retrofit;
     private static RetrofitInterface retrofitInterface;

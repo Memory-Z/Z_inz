@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Camera2 界面 -->
+    <TextureView
+        android:id="@+id/camera2_texture_v"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/camera2_bottom_ll"
+        app:layout_constraintDimensionRatio="w,4:3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/camera2_bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/camera2_shoot"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/back" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_ring"
+        android:contentDescription="@string/other"
+        app:layout_constraintBottom_toBottomOf="@id/camera2_texture_v"
+        app:layout_constraintLeft_toLeftOf="@id/camera2_texture_v"
+        app:layout_constraintRight_toRightOf="@id/camera2_texture_v"
+        app:layout_constraintTop_toTopOf="@id/camera2_texture_v" />
+
+    <RelativeLayout
+        android:id="@+id/camera2_ring_rl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/camera2_texture_v"
+        app:layout_constraintDimensionRatio="h,1:1"
+        app:layout_constraintLeft_toLeftOf="@id/camera2_texture_v"
+        app:layout_constraintRight_toRightOf="@id/camera2_texture_v"
+        app:layout_constraintTop_toTopOf="@id/camera2_texture_v">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_ring_line"
+            android:contentDescription="@string/other" />
+
+        <ImageView
+            android:id="@+id/camera2_badge0_iv"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_badge_red"
+            android:contentDescription="@string/other" />
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
