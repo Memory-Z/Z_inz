@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- android 9.0 允许明文请求  -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <!-- 对于 Api 24 及以上，添加 system -->
+            <certificates src="system" />
+            <!-- 对于 Api 23 及 以下，添加 user -->
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

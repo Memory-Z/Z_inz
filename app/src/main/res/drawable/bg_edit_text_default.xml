@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:bottom="@dimen/dp02"
+        android:left="@dimen/dp02"
+        android:right="@dimen/dp02"
+        android:top="@dimen/dp02">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/card_white_default" />
+            <corners android:radius="@dimen/dp02" />
+        </shape>
+    </item>
+</layer-list>

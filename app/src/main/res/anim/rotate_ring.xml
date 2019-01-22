@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 环形加载 2000ms \ 始末慢，中间快、中心距图形X方向中间；Y方向150px、旋转360度-->
+    <rotate
+        android:duration="2000"
+        android:fromDegrees="0"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:pivotX="50%"
+        android:pivotY="50%p"
+        android:repeatCount="-1"
+        android:toDegrees="360" />
+</set>

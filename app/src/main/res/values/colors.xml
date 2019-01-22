@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF67B4FF</color>
-    <color name="colorPrimaryDark">#FF236AAF</color>
-    <color name="colorAccent">#6B8E23</color>
+    <color name="colorPrimary">#767676</color>
+    <color name="colorPrimaryDark">#FF363636</color>
+    <color name="colorAccent">#73A709</color>
+
+    <!-- 卡片颜色 蓝 -->
+    <color name="card_blue_default">#FF4E6EF2</color>
+    <color name="card_blue_1">#BF4E6EF2</color>
+    <color name="card_blue_2">#894E6EF2</color>
+    <color name="card_blue_3">#444E6EF2</color>
+    <color name="card_blue_4">#134E6EF2</color>
+    <!-- 卡片颜色 红 -->
+    <color name="card_red_default">#F24E6E</color>
+    <color name="card_red_1">#BFF24E6E</color>
+    <color name="card_red_2">#89F24E6E</color>
+    <color name="card_red_3">#44F24E6E</color>
+    <color name="card_red_4">#13F24E6E</color>
+    <!-- 卡片颜色 绿 -->
+    <color name="card_green_default">#6EF24E</color>
+    <color name="card_green_1">#BF6EF24E</color>
+    <color name="card_green_2">#896EF24E</color>
+    <color name="card_green_3">#446EF24E</color>
+    <color name="card_green_4">#136EF24E</color>
+    <!-- 卡片颜色 灰 -->
+    <color name="card_gray_default">#808080</color>
+    <color name="card_gray_1">#BF808080</color>
+    <color name="card_gray_2">#89808080</color>
+    <color name="card_gray_3">#44808080</color>
+    <color name="card_gray_4">#13808080</color>
+    <!-- 卡片颜色 黑 -->
+    <color name="card_black_default">#696969</color>
+    <color name="card_black_1">#BF696969</color>
+    <color name="card_black_2">#89696969</color>
+    <color name="card_black_3">#44696969</color>
+    <color name="card_black_4">#13696969</color>
+    <!-- 卡片颜色 白 -->
+    <color name="card_white_default">#FFFCFCFC</color>
+    <color name="card_white_1">#BFFCFCFC</color>
+    <color name="card_white_2">#89FCFCFC</color>
+    <color name="card_white_3">#44FCFCFC</color>
+    <color name="card_white_4">#13FCFCFC</color>
 
     <color name="white">#FFFFFF</color><!-- 白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
@@ -151,7 +188,7 @@
     <color name="navy">#000080</color><!--海军色 -->
     <color name="black">#000000</color><!--黑色 -->
 
-    <color name="transparency">#00000000</color><!--透明-->
+    <color name="transparent">#00000000</color><!--透明-->
     <color name="default_btn_color">#FF67B4FF</color><!--默认按钮颜色-->
     <color name="checked_btn_color">#FF236AAF</color><!--按钮选中颜色-->
 </resources>

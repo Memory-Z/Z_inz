@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 日志 卡片 -->
+
+    <!-- 用户 信息 -->
+    <RelativeLayout
+        android:id="@+id/item_diary_card_user_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 用户头像 -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_diary_card_user_photo_civ"
+            android:layout_width="@dimen/dp48"
+            android:layout_height="@dimen/dp48"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp16"
+            android:contentDescription="@string/user_photo"
+            android:src="@drawable/ic_vd_qq"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/dp02" />
+
+        <!-- 用户信息 -->
+        <LinearLayout
+            android:id="@+id/item_diary_card_user_info_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
+            android:layout_toEndOf="@id/item_diary_card_user_photo_civ"
+            android:orientation="vertical">
+
+            <!-- 用户名 -->
+            <TextView
+                android:id="@+id/item_diary_card_user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/user_name" />
+
+            <TextView
+                android:id="@+id/item_diary_card_send_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp04"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/send_time"
+                android:textColor="@color/card_gray_2"
+                android:textSize="@dimen/sp12" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- 日志信息 -->
+    <TextView
+        android:id="@+id/item_diary_card_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp08"
+        android:layout_marginEnd="@dimen/dp16"
+        android:text="@string/test_text"
+        app:layout_constraintTop_toBottomOf="@id/item_diary_card_user_rl" />
+
+</android.support.constraint.ConstraintLayout>

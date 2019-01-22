@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/base_top_content_cl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- 返回 -->
+        <LinearLayout
+            android:id="@+id/base_top_back_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginStart="@dimen/dp08"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/base_top_back_ibtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:contentDescription="@string/back"
+                android:src="@drawable/ic_vd_nav_left" />
+
+            <!-- 返回按钮 -->
+            <TextView
+                android:id="@+id/base_top_back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp16" />
+
+        </LinearLayout>
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/base_top_title_tv"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="@dimen/dp56"
+            android:layout_marginStart="@dimen/dp08"
+            android:layout_marginEnd="@dimen/dp08"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:text="@string/title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/base_top_end_rl"
+            app:layout_constraintStart_toEndOf="@id/base_top_back_ll"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 其他操作 -->
+        <RelativeLayout
+            android:id="@+id/base_top_end_rl"
+            android:layout_width="@dimen/dp56"
+            android:layout_height="@dimen/dp56"
+            android:layout_marginEnd="@dimen/dp08"
+            app:layout_constraintEnd_toEndOf="parent">
+            <!-- icon -->
+            <ImageButton
+                android:id="@+id/base_top_other_ibtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:contentDescription="@string/other"
+                android:visibility="gone" />
+
+            <!-- icon + 文字（上下） -->
+            <TextView
+                android:id="@+id/base_top_other_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/card_white_default"
+                android:textSize="@dimen/sp12" />
+        </RelativeLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/card_gray_3"
+        app:layout_constraintTop_toBottomOf="@id/base_top_content_cl" />
+
+</android.support.constraint.ConstraintLayout>

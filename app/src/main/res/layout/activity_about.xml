@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 关于 -->
+
+    <!-- 顶部栏 -->
+    <com.inz.z.view.widget.BaseTopConstraintLayout
+        android:id="@+id/about_btc"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:background="@drawable/bg_card_no_stroke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:top_title="@string/about">
+
+    </com.inz.z.view.widget.BaseTopConstraintLayout>
+
+    <!-- 内容 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/about_btc">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- 信息 -->
+            <RelativeLayout
+                android:id="@+id/about_app_info_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- 应用 LOGO -->
+                <ImageView
+                    android:id="@+id/about_app_logo_iv"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="@dimen/dp80"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp16"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_launcher" />
+
+                <!-- 版本号 -->
+                <TextView
+                    android:id="@+id/about_app_version_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_app_logo_iv"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp16"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/sp16" />
+
+            </RelativeLayout>
+
+            <!-- 检查更新 -->
+            <com.inz.z.view.widget.BaseOperationTextLayout
+                android:id="@+id/about_check_update_bot"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:layout_marginTop="@dimen/sp16"
+                android:background="@drawable/bg_card_1"
+                app:layout_constraintTop_toBottomOf="@id/about_app_info_rl"
+                app:op_t_bottom_line_show="true"
+                app:op_t_content_text="@string/check_update"
+                app:op_t_left_icon_show="false"
+                app:op_t_right_icon_show="false"
+                app:op_t_text="@string/local_version"
+                app:op_t_text_show="true"
+                app:op_t_top_line_show="true">
+
+            </com.inz.z.view.widget.BaseOperationTextLayout>
+
+            <!-- 意见反馈 -->
+            <com.inz.z.view.widget.BaseOperationTextLayout
+                android:id="@+id/about_feedback_bot"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:background="@drawable/bg_card_1"
+                app:layout_constraintTop_toBottomOf="@id/about_check_update_bot"
+                app:op_t_bottom_line_show="true"
+                app:op_t_content_text="@string/feedback">
+
+            </com.inz.z.view.widget.BaseOperationTextLayout>
+
+            <!-- 使用帮助 -->
+            <com.inz.z.view.widget.BaseOperationTextLayout
+                android:id="@+id/about_use_help_bot"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:background="@drawable/bg_card_1"
+                app:layout_constraintTop_toBottomOf="@id/about_feedback_bot"
+                app:op_t_bottom_line_show="true"
+                app:op_t_content_text="@string/use_help">
+
+            </com.inz.z.view.widget.BaseOperationTextLayout>
+
+            <!-- 关于我们 -->
+            <com.inz.z.view.widget.BaseOperationTextLayout
+                android:id="@+id/about_about_bot"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp48"
+                android:background="@drawable/bg_card_1"
+                app:layout_constraintTop_toBottomOf="@id/about_use_help_bot"
+                app:op_t_bottom_line_show="true"
+                app:op_t_content_text="@string/about_us">
+
+            </com.inz.z.view.widget.BaseOperationTextLayout>
+
+            <!-- power -->
+            <RelativeLayout
+                android:id="@+id/about_power_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp48"
+                app:layout_constraintTop_toBottomOf="@id/about_about_bot">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/copyright_hint"
+                    android:textColor="@color/card_gray_2"
+                    android:textSize="@dimen/sp10" />
+
+
+            </RelativeLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

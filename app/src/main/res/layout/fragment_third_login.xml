@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_no_stroke"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/dp56"
+            android:layout_height="@dimen/dp04"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp16"
+            android:layout_toStartOf="@+id/third_login_title_tv"
+            android:background="@color/card_black_1" />
+
+        <TextView
+            android:id="@+id/third_login_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp08"
+            android:layout_marginBottom="@dimen/dp08"
+            android:gravity="center"
+            android:text="@string/chose_login_method"
+            android:textSize="@dimen/sp16" />
+
+        <View
+            android:layout_width="@dimen/dp56"
+            android:layout_height="@dimen/dp04"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_toEndOf="@id/third_login_title_tv"
+            android:background="@color/card_black_1" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/dp56"
+                android:layout_height="@dimen/dp56"
+                android:contentDescription="@string/QQ"
+                android:padding="@dimen/dp04"
+                android:src="@drawable/ic_vd_qq" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/QQ" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/dp56"
+                android:layout_height="@dimen/dp56"
+                android:contentDescription="@string/sina"
+                android:src="@drawable/ic_vd_sina" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sina" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="@dimen/dp56"
+                android:layout_height="@dimen/dp56"
+                android:contentDescription="@string/weixin"
+                android:padding="@dimen/dp04"
+                android:src="@drawable/ic_vd_weixin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weixin" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp01"
+        android:layout_marginTop="@dimen/dp08"
+        android:background="@color/card_gray_default" />
+
+    <!-- 取消按钮 -->
+    <TextView
+        android:id="@+id/third_login_cancel_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp56"
+        android:background="@drawable/bg_card_2"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@drawable/bg_card_2_text"
+        android:textSize="@dimen/sp18" />
+
+</LinearLayout>

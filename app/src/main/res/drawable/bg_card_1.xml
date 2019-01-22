@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/card_black_3" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/card_white_default" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="@color/card_white_default" />
+        </shape>
+    </item>
+</selector>
