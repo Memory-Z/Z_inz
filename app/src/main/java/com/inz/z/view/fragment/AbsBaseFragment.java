@@ -22,6 +22,7 @@ import com.orhanobut.logger.Logger;
  */
 public abstract class AbsBaseFragment extends Fragment implements IBaseView {
 
+    private static final String TAG = "AbsBaseFragment";
     public Context mContext;
     public View mView;
     private Dialog loadDialog;
@@ -47,7 +48,7 @@ public abstract class AbsBaseFragment extends Fragment implements IBaseView {
             loadDialog = Tools.loadDialog(mContext);
         }
         loadDialog.show();
-        Logger.i(mContext.getPackageName() + "; showLoading.");
+        Logger.t(TAG).i(mContext.getPackageName() + "; showLoading.");
     }
 
     @Override
@@ -56,19 +57,19 @@ public abstract class AbsBaseFragment extends Fragment implements IBaseView {
             loadDialog.dismiss();
             loadDialog = null;
         }
-        Logger.i(mContext.getPackageName() + "; hideLoading.");
+        Logger.t(TAG).i(mContext.getPackageName() + "; hideLoading.");
     }
 
     @Override
     public void showToast(String msg) {
         Tools.showShortCenterToast(mContext, msg);
-        Logger.i(mContext.getPackageName() + "; showToast: " + msg);
+        Logger.t(TAG).i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
-    public void showError(String errorMsg) {
-        Tools.showShortCenterToast(mContext, errorMsg);
-        Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
+    public void showError(Throwable e) {
+        Tools.showShortCenterToast(mContext, e.getMessage());
+        Logger.t(TAG).e(mContext.getPackageName() + "; showError: " + e.getMessage());
     }
     /* / -- IBaseView - End -- / */
 

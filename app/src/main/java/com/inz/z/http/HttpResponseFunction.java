@@ -1,5 +1,7 @@
 package com.inz.z.http;
 
+import com.orhanobut.logger.Logger;
+
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 
@@ -12,8 +14,11 @@ import io.reactivex.functions.Function;
  * Create by 2018/9/20 14:07.
  */
 public class HttpResponseFunction<T> implements Function<Throwable, Observable<T>> {
+    private static final String TAG = "HttpResponseFunction";
+
     @Override
     public Observable<T> apply(Throwable throwable) {
+        Logger.t(TAG).e(throwable, "Http 请求出错！");
         return Observable.error(ExceptionHandler.handleException(throwable));
     }
 }

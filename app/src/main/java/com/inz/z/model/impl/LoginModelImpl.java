@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 public class LoginModelImpl implements ILoginModel {
 
     @Override
-    public void postLogin(String userName, String password, IBaseLoadListener<ApiUserInfo> loadListener) {
+    public void postLogin(String userName, String password, final IBaseLoadListener<ApiUserInfo> loadListener) {
         HttpUtil.postLogin(userName, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -31,21 +31,22 @@ public class LoginModelImpl implements ILoginModel {
                     @Override
                     protected void onStart() {
                         super.onStart();
+                        loadListener.loadStart();
                     }
 
                     @Override
                     public void onNext(ApiUserInfo apiUserInfo) {
-                        UserInfo userInfo = apiUserInfo.getData();
+                        loadListener.loadSuccess(apiUserInfo);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        loadListener.loadFailure(e);
                     }
 
                     @Override
                     public void onComplete() {
-
+                        loadListener.loadComplete();
                     }
                 });
 

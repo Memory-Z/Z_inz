@@ -38,7 +38,7 @@ public class UserInfoModelImpl implements IUserInfoModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        loadListener.loadFailure(e.getMessage());
+                        loadListener.loadFailure(e);
                     }
 
                     @Override
@@ -69,7 +69,7 @@ public class UserInfoModelImpl implements IUserInfoModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        loadListener.loadFailure(e.getMessage());
+                        loadListener.loadFailure(e);
                     }
 
                     @Override
@@ -99,7 +99,7 @@ public class UserInfoModelImpl implements IUserInfoModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        loadListener.loadFailure(e.getMessage());
+                        loadListener.loadFailure(e);
                     }
 
                     @Override
@@ -129,7 +129,7 @@ public class UserInfoModelImpl implements IUserInfoModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        loadListener.loadFailure(e.getMessage());
+                        loadListener.loadFailure(e);
                     }
 
                     @Override

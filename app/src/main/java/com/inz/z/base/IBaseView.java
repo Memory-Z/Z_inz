@@ -31,9 +31,9 @@ public interface IBaseView {
     /**
      * 显示错误信息
      *
-     * @param errorMsg 错误信息
+     * @param e 错误信息
      */
-    void showError(String errorMsg);
+    void showError(Throwable e);
 
     /**
      * 获取上下文

@@ -37,7 +37,7 @@ public class DiaryModelImpl implements IDiaryModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        loadListener.loadFailure(e.getMessage());
+                        loadListener.loadFailure(e);
                     }
 
                     @Override

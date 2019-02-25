@@ -18,6 +18,9 @@
             android:id="@+id/navigation_item_person_center"
             android:title="@string/person_center" />
         <item
+            android:id="@+id/navigation_item_my_plan"
+            android:title="@string/my_plan" />
+        <item
             android:id="@+id/navigation_item_my_photo_album"
             android:title="@string/my_photo_album" />
         <item

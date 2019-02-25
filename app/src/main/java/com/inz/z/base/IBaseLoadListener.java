@@ -22,9 +22,9 @@ public interface IBaseLoadListener<T> {
     /**
      * 加载失败
      *
-     * @param msg 失败内容
+     * @param e 失败内容
      */
-    void loadFailure(String msg);
+    void loadFailure(Throwable e);
 
     /**
      * 加载完成

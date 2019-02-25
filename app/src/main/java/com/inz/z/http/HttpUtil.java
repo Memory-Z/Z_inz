@@ -30,7 +30,7 @@ public class HttpUtil {
     /**
      * 默认连接超时时间，单位：秒
      */
-    private static final int DEFAULT_TIMEOUT = 80;
+    private static final int DEFAULT_TIMEOUT = 10;
     /**
      * 网络连接管理
      */

@@ -5,6 +5,7 @@
     <string name="setting">设置</string>
     <string name="about">关于</string>
     <string name="person_center">个人中心</string>
+    <string name="my_plan">我的计划</string>
     <string name="my_photo_album">我的相册</string>
     <string name="my_file">我的文件</string>
     <string name="drawer_open">Open</string>
@@ -66,4 +67,5 @@
     <string name="commodity">商品</string>
     <string name="to_bottom_slip">往下滑动</string>
 
+    <string name="hint">提示</string>
 </resources>
