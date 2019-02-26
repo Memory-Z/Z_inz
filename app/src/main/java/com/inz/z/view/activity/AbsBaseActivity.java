@@ -86,9 +86,9 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
     }
 
     @Override
-    public void showError(String errorMsg) {
-        Tools.showShortCenterToast(mContext, errorMsg);
-        Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
+    public void showError(Throwable e) {
+        Tools.showShortCenterToast(mContext, e.getMessage());
+        Logger.e(mContext.getPackageName() + "; showError: " + e.getMessage());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.inz.z.view.widget;
+package com.inz.z.view.appwidget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

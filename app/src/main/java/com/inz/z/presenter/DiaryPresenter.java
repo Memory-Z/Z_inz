@@ -46,8 +46,8 @@ public class DiaryPresenter extends BasePresenter<IDiaryView> {
                     }
 
                     @Override
-                    public void loadFailure(String msg) {
-                        System.out.println(msg);
+                    public void loadFailure(Throwable e) {
+
                     }
 
                     @Override

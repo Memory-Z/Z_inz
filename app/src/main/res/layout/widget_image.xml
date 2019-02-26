@@ -21,7 +21,13 @@
         android:layout_marginStart="@dimen/dp48"
         android:layout_marginEnd="@dimen/dp48" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
     <TextView
+        android:id="@+id/widget_diary_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

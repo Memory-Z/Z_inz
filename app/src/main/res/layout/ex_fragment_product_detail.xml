@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/card_whit_bg_default"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!-- 图片 -->
+        <com.inz.z.view.widget.RollViewPager
+            android:id="@+id/ex_fragment_project_detail_rvp"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="@dimen/dp0"
+            android:contentDescription="@string/image"
+            app:layout_constraintDimensionRatio="w, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.inz.z.view.widget.RollViewPager>
+
+        <!-- 查看大图按钮 -->
+        <ImageButton
+            android:id="@+id/ex_fragment_project_detail_full_ibtn"
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp24"
+            android:layout_marginTop="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
+            android:background="@color/transparent"
+            android:contentDescription="@string/image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_vd_full_screen"
+            app:layout_constraintEnd_toEndOf="@id/ex_fragment_project_detail_rvp"
+            app:layout_constraintTop_toTopOf="@id/ex_fragment_project_detail_rvp" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

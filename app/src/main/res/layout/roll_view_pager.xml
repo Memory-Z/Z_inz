@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/roll_view_pager_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="w, 1:1"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.v4.view.ViewPager>
+
+    <!-- 文字描述 -->
+    <LinearLayout
+        android:id="@+id/roll_view_pager_text_ll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_card_bg_to_tr"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/roll_view_pager_vp"
+        app:layout_constraintEnd_toEndOf="@id/roll_view_pager_vp"
+        app:layout_constraintStart_toStartOf="@id/roll_view_pager_vp">
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/roll_view_pager_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textSize="20sp" />
+
+        <!-- 内容提示 -->
+        <TextView
+            android:id="@+id/roll_view_pager_hint_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/sp16" />
+    </LinearLayout>
+
+    <!-- 点 -->
+    <LinearLayout
+        android:id="@+id/roll_view_pager_dot_ll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/roll_view_pager_text_ll"
+        app:layout_constraintEnd_toEndOf="@id/roll_view_pager_vp"
+        app:layout_constraintStart_toStartOf="@id/roll_view_pager_vp">
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

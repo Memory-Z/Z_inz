@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -138,6 +139,16 @@ public class Tools {
         return new AlertDialog.Builder(context, R.style.AppTheme_DialogTheme)
                 .setView(view)
                 .create();
+    }
+
+    /**
+     * 将 dp 转换成 px
+     *
+     * @return px(像素)
+     */
+    public static int dp2px(Context context, float dpValue) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5F);
     }
 
     private static class MyCountDownTimer extends CountDownTimer {

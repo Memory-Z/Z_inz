@@ -1,12 +1,10 @@
 package com.inz.z.view.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.view.KeyEvent;
 import android.view.View;
 
 import com.inz.z.base.IBaseView;
@@ -54,9 +52,9 @@ public abstract class AbsBaseDialogFragment extends DialogFragment implements IB
     }
 
     @Override
-    public void showError(String errorMsg) {
-        Tools.showShortCenterToast(mContext, errorMsg);
-        Logger.e(mContext.getPackageName() + "; showError: " + errorMsg);
+    public void showError(Throwable e) {
+        Tools.showShortCenterToast(mContext, e.getMessage());
+        Logger.e(mContext.getPackageName() + "; showError: " + e.getMessage());
     }
     /* / -- IBaseView - End -- / */
 

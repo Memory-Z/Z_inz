@@ -49,9 +49,9 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
             }
 
             @Override
-            public void loadFailure(String msg) {
+            public void loadFailure(Throwable e) {
                 if (isViewAttached()) {
-                    getBaseView().showError(msg);
+                    getBaseView().showError(e);
                     getBaseView().hideLoading();
                 }
             }
@@ -97,9 +97,9 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
             }
 
             @Override
-            public void loadFailure(String msg) {
+            public void loadFailure(Throwable e) {
                 if (isViewAttached()) {
-                    getBaseView().showError(msg);
+                    getBaseView().showError(e);
                     getBaseView().hideLoading();
                 }
             }
@@ -143,9 +143,9 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
             }
 
             @Override
-            public void loadFailure(String msg) {
+            public void loadFailure(Throwable e) {
                 if (isViewAttached()) {
-                    getBaseView().showError(msg);
+                    getBaseView().showError(e);
                 }
             }
 
@@ -188,12 +188,13 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
             }
 
             @Override
-            public void loadFailure(String msg) {
+            public void loadFailure(Throwable e) {
                 if (isViewAttached()) {
-                    getBaseView().showError(msg);
+                    getBaseView().showError(e);
                     getBaseView().hideLoading();
                 }
             }
+
 
             @Override
             public void loadComplete() {

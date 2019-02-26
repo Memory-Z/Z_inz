@@ -62,11 +62,12 @@ public class SplashActivity extends AbsBaseActivity {
                 boolean isHaveUser = SPHelper.getInstance().isHaveUser();
                 Intent intent = new Intent();
 //                if (isHaveUser) {
-                    intent.setClass(mContext, MainActivity.class);
+                intent.setClass(mContext, MainActivity.class);
 //                } else {
 //                    intent.setClass(mContext, LoginActivity.class);
 //                }
                 startActivity(intent);
+                finish();
             }
         };
         countDownTimer.start();

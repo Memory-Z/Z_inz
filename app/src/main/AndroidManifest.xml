@@ -91,7 +91,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <receiver android:name=".view.widget.ImageAppWidgetProvider">
+        <receiver android:name=".view.appwidget.ImageAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

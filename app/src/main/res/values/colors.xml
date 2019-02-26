@@ -41,6 +41,8 @@
     <color name="card_white_3">#44FCFCFC</color>
     <color name="card_white_4">#13FCFCFC</color>
 
+    <color name="card_whit_bg_default">#FFF1F1F1</color>
+
     <color name="white">#FFFFFF</color><!-- 白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
     <color name="lightyellow">#FFFFE0</color><!--亮黄色 -->

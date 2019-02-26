@@ -48,4 +48,8 @@
         <attr name="op_t_right_icon" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="RollViewPager">
+        <attr name="roll_view_pager_dot_size" format="integer" />
+    </declare-styleable>
+
 </resources>
