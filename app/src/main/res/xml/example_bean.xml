@@ -35,4 +35,9 @@
         <ContentHintStr>2019-01-27</ContentHintStr>
     </ExampleBean>
 
+    <ExampleBean class="com.inz.z.view.fragment.example.CardCalendarFragment">
+        <ContentStr>卡片日历</ContentStr>
+        <ContentHintStr>2019-02-26</ContentHintStr>
+    </ExampleBean>
+
 </ExampleBeanList>
