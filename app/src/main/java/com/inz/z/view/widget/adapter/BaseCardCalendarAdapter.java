@@ -84,7 +84,6 @@ public class BaseCardCalendarAdapter extends BaseAdapter {
         } else {
             holderView.calendarBottomV.setVisibility(View.GONE);
         }
-        holderView.itemViewCl.setSelected(bean.isSelected());
         return convertView;
     }
 
