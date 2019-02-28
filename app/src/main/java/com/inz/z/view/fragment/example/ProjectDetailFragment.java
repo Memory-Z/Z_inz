@@ -29,7 +29,6 @@ import java.util.Map;
 public class ProjectDetailFragment extends AbsBaseFragment {
 
     private RollViewPager rollViewPager;
-    private ImageButton fullIBtn;
 
     @Nullable
     @Override
@@ -40,7 +39,7 @@ public class ProjectDetailFragment extends AbsBaseFragment {
     @Override
     public void initView() {
         rollViewPager = mView.findViewById(R.id.ex_fragment_project_detail_rvp);
-        fullIBtn = mView.findViewById(R.id.ex_fragment_project_detail_full_ibtn);
+        ImageButton fullIBtn = mView.findViewById(R.id.ex_fragment_project_detail_full_ibtn);
         fullIBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,35 +52,35 @@ public class ProjectDetailFragment extends AbsBaseFragment {
     public void initData() {
         List<Map<String, Object>> imageViewList = new ArrayList<>();
         ImageView imageView = new ImageView(mContext);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         Glide.with(mContext).load(R.drawable.adolescent_casual_contemporary_1030895).into(imageView);
         Map<String, Object> map = new HashMap<>();
         map.put("order", 0);
         map.put("imageView", imageView);
         imageViewList.add(map);
         ImageView imageView1 = new ImageView(mContext);
-        imageView1.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView1.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         Glide.with(mContext).load(R.drawable.beautiful_blond_blonde_1071162).into(imageView1);
         Map<String, Object> map1 = new HashMap<>();
         map1.put("order", 1);
         map1.put("imageView", imageView1);
         imageViewList.add(map1);
         ImageView imageView2 = new ImageView(mContext);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         Glide.with(mContext).load(R.drawable.guodong_zhao_5).into(imageView2);
         Map<String, Object> map2 = new HashMap<>();
         map2.put("order", 2);
         map2.put("imageView", imageView2);
         imageViewList.add(map2);
         ImageView imageView3 = new ImageView(mContext);
-        imageView3.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView3.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         Glide.with(mContext).load(R.drawable.guodong_zhao_4).into(imageView3);
         Map<String, Object> map3 = new HashMap<>();
         map3.put("order", 3);
         map3.put("imageView", imageView3);
         imageViewList.add(map3);
         ImageView imageView4 = new ImageView(mContext);
-        imageView4.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView4.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         Glide.with(mContext).load(R.drawable.guodong_zhao_3).into(imageView4);
         Map<String, Object> map4 = new HashMap<>();
         map4.put("order", 4);

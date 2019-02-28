@@ -48,8 +48,14 @@
         <attr name="op_t_right_icon" format="reference" />
     </declare-styleable>
 
+    <!-- 循环ViewPager -->
     <declare-styleable name="RollViewPager">
-        <attr name="roll_view_pager_dot_size" format="integer" />
+        <attr name="bottom_dot_size_mode" format="enum">
+            <enum name="small" value="2" />
+            <enum name="common" value="3" />
+            <enum name="big" value="4" />
+        </attr>
+        <attr name="show_bottom_text" format="boolean"/>
     </declare-styleable>
 
 </resources>

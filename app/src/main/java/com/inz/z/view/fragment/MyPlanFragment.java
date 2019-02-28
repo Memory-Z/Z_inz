@@ -3,12 +3,19 @@ package com.inz.z.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.inz.z.R;
+import com.inz.z.entity.layout_data.CalendarScheduleItem;
+import com.inz.z.view.adapter.CalendarScheduleRvAdapter;
+import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 
 /**
  * Create By 11654
@@ -21,6 +28,7 @@ public class MyPlanFragment extends AbsBaseFragment {
     private static final String TAG = "MyPlanFragment";
 
     private RecyclerView calendarScheduleRv;
+    private MaterialCalendarView calendarView;
 
     @Nullable
     @Override
@@ -30,6 +38,18 @@ public class MyPlanFragment extends AbsBaseFragment {
 
     @Override
     public void initView() {
+        calendarView = mView.findViewById(R.id.fragment_my_plan_calendar_mcv);
+        calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_SINGLE);
+        calendarView.setDynamicHeightEnabled(true);
+        calendarScheduleRv = mView.findViewById(R.id.fragment_my_plan_calendar_1_rv);
+        calendarScheduleRv.addOnScrollListener(new CalendarScrollListenerImpl());
+        CalendarScheduleRvAdapter adapter = new CalendarScheduleRvAdapter(mContext);
+        for (int i = 0; i < 10; i++) {
+            CalendarScheduleItem item = new CalendarScheduleItem();
+            adapter.addSchedule(item);
+        }
+        calendarScheduleRv.setLayoutManager(new LinearLayoutManager(mContext));
+        calendarScheduleRv.setAdapter(adapter);
 
     }
 
@@ -37,4 +57,56 @@ public class MyPlanFragment extends AbsBaseFragment {
     public void initData() {
 
     }
+
+    private class CalendarRecyclerOnTouchImpl implements RecyclerView.OnTouchListener {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    break;
+                case MotionEvent.ACTION_UP:
+                    v.performClick();
+                    break;
+
+            }
+            return false;
+        }
+    }
+
+    private class CalendarScrollListenerImpl extends RecyclerView.OnScrollListener {
+
+        private int dy = 0;
+
+        @Override
+        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            //newState分 0,1,2三个状态,2是滚动状态,0是停止
+            //   canScrollVertically(1)的值表示是否能向上滚动，true表示能滚动，false表示已经滚动到底部
+            //   canScrollVertically(-1)的值表示是否能向下滚动，true表示能滚动，false表示已经滚动到顶部
+            boolean isTop = recyclerView.canScrollVertically(-1);
+//            boolean isBottom = recyclerView.canScrollVertically(1);
+            if (dy < 0 && !isTop) {
+                // 向下滚动（上划）
+                if (calendarView != null) {
+                    calendarView.state().edit().setCalendarDisplayMode(CalendarMode.MONTHS).commit();
+                }
+            } else if (dy > 0) {
+                // 向上滚动（下滑）
+                if (calendarView != null) {
+                    calendarView.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
+                }
+            }
+        }
+
+        @Override
+        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            this.dy = dy;
+        }
+    }
+
 }

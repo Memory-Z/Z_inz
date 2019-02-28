@@ -23,6 +23,7 @@
         android:orientation="vertical"
         android:paddingTop="8dp"
         android:paddingBottom="16dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/roll_view_pager_vp"
         app:layout_constraintEnd_toEndOf="@id/roll_view_pager_vp"
         app:layout_constraintStart_toStartOf="@id/roll_view_pager_vp">

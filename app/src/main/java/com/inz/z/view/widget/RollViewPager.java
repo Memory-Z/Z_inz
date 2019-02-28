@@ -9,6 +9,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.inz.z.R;
+import com.inz.z.util.Tools;
 import com.inz.z.view.adapter.example.RollViewPagerAdapter;
 
 import java.util.ArrayList;
@@ -77,12 +79,19 @@ public class RollViewPager extends ConstraintLayout implements ViewPager.OnPageC
         }
     }
 
-    @SuppressLint("Recycle")
     private void initStyle(AttributeSet attrs) {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.RollViewPager);
-
+        float dotSize = typedArray.getFloat(R.styleable.RollViewPager_bottom_dot_size_mode, 3);
+        setBottomDotSize(dotSize);
+        boolean showBottomText = typedArray.getBoolean(R.styleable.RollViewPager_show_bottom_text, false);
+        showBottomTextLinearLayout(showBottomText);
         typedArray.recycle();
     }
+
+    /**
+     * 底部圆点大小
+     */
+    private int dotSize = 3;
 
     /**
      * 更新下方 圆点
@@ -100,7 +109,7 @@ public class RollViewPager extends ConstraintLayout implements ViewPager.OnPageC
             } else {
                 view.setBackgroundResource(R.drawable.bg_dot_black_unselect);
             }
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(24, 24);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dotSize, dotSize);
             lp.leftMargin = 10;
             lp.rightMargin = 10;
             lp.gravity = Gravity.CENTER;
@@ -138,7 +147,7 @@ public class RollViewPager extends ConstraintLayout implements ViewPager.OnPageC
         for (int i = 0; i < imageUrlList.size(); i++) {
             map = new HashMap<>();
             ImageView imageView = new ImageView(mContext);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             String imageUrl = imageUrlList.get(i);
             Glide.with(mContext).load(imageUrl).into(imageView);
             map.put("order", i);
@@ -185,8 +194,27 @@ public class RollViewPager extends ConstraintLayout implements ViewPager.OnPageC
     }
 
     /**
-     * ViewPager 页面改变 监听
+     * 设置底部圆点大小
+     *
+     * @param dotSize 圆点大小
      */
+    public void setBottomDotSize(float dotSize) {
+        dotSize = dotSize < 2 ? 2 : dotSize;
+        this.dotSize = Tools.dp2px(mContext, dotSize);
+    }
+
+    /**
+     * 设置是否显示底部文本布局
+     *
+     * @param isShow 是否显示
+     */
+    public void showBottomTextLinearLayout(boolean isShow) {
+        if (textLl != null) {
+            textLl.setVisibility(isShow ? View.VISIBLE : GONE);
+        }
+    }
+
+    /* ==========================  ViewPager.OnPageChangeListener ========================== */
     @Override
     public void onPageScrolled(int i, float v, int i1) {
     }
@@ -200,4 +228,5 @@ public class RollViewPager extends ConstraintLayout implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int i) {
 
     }
+    /* ==========================  ViewPager.OnPageChangeListener ========================== */
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 全屏单图 -->
+    <ImageView
+        android:id="@+id/include_full_image_single_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/image" />
+
+    <com.inz.z.view.widget.RollViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.inz.z.view.widget.RollViewPager>
+
+</android.support.constraint.ConstraintLayout>

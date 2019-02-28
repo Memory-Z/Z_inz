@@ -15,8 +15,8 @@ import com.inz.z.R;
 import com.inz.z.presenter.RegisterPresenter;
 import com.inz.z.util.Tools;
 import com.inz.z.view.IRegisterView;
-import com.inz.z.view.fragment.CheckEmailDialogFragment;
-import com.inz.z.view.fragment.ThirdLoginDialogFragment;
+import com.inz.z.view.fragment.dialog.CheckEmailDialogFragment;
+import com.inz.z.view.fragment.dialog.ThirdLoginDialogFragment;
 import com.orhanobut.logger.Logger;
 
 /**

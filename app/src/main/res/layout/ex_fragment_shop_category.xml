@@ -20,9 +20,12 @@
         android:id="@+id/ex_fragment_shop_category_tl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMinWidth="@dimen/dp360"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorFullWidth="true"
-        app:tabMode="scrollable" >
+        app:tabMinWidth="@dimen/dp360"
+        app:tabMode="scrollable">
+
     </android.support.design.widget.TabLayout>
 
 </android.support.constraint.ConstraintLayout>

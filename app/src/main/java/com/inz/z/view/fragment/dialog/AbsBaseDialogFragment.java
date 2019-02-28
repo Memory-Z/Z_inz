@@ -1,4 +1,4 @@
-package com.inz.z.view.fragment;
+package com.inz.z.view.fragment.dialog;
 
 import android.content.Context;
 import android.os.Bundle;

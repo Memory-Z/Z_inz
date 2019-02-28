@@ -20,7 +20,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.inz.z.R;
 import com.inz.z.util.SPHelper;
 import com.inz.z.view.ILoginView;
-import com.inz.z.view.fragment.ThirdLoginDialogFragment;
+import com.inz.z.view.fragment.dialog.ThirdLoginDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;

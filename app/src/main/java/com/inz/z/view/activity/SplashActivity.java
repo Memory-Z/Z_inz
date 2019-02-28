@@ -51,7 +51,7 @@ public class SplashActivity extends AbsBaseActivity {
 
     @Override
     public void initData() {
-        countDownTimer = new CountDownTimer(5 * 1000 + 500, 1000) {
+        countDownTimer = new CountDownTimer(1000 + 500, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 

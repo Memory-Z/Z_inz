@@ -61,6 +61,7 @@
     <string name="test_text">测试文本测试文本测试文本测试文本测试文本本测试文本测试文本测试文本测试文本测试文本测试文本测试文本79</string>
 
     <string name="image">图片</string>
+    <string name="dot">点</string>
     <string name="item_image">单项图片</string>
     <string name="model">模特</string>
     <string name="new_model">新模特</string>
