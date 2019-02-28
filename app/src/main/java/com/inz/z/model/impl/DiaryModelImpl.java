@@ -4,12 +4,17 @@ import com.inz.z.base.IBaseLoadListener;
 import com.inz.z.entity.ApiDiaryInfo;
 import com.inz.z.http.HttpResponseFunction;
 import com.inz.z.http.HttpUtil;
+import com.inz.z.http.ProgressRequestListener;
 import com.inz.z.model.IDiaryModel;
+
+import java.io.File;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * @author Zhenglj
@@ -18,8 +23,11 @@ import okhttp3.MultipartBody;
  */
 public class DiaryModelImpl implements IDiaryModel {
     @Override
-    public void addDiaryInfo(String userId, String diaryContent, String diaryWeather, String diaryAddress, MultipartBody multipartBody, final IBaseLoadListener<ApiDiaryInfo> loadListener) {
-        HttpUtil.addDiaryInfo(userId, diaryContent, diaryWeather, diaryAddress, multipartBody)
+    public void addDiaryInfo(String userId, String diaryContent, String diaryWeather,
+                             String diaryAddress, File[] files,
+                             ProgressRequestListener progressRequestListener,
+                             final IBaseLoadListener<ApiDiaryInfo> loadListener) {
+        HttpUtil.addDiaryInfo(userId, diaryContent, diaryWeather, diaryAddress, files, progressRequestListener)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(new HttpResponseFunction<ApiDiaryInfo>())

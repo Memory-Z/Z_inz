@@ -7,12 +7,23 @@ import com.inz.z.entity.ApiString;
 import com.inz.z.entity.ApiUserInfo;
 import com.inz.z.entity.Constants;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -35,6 +46,7 @@ public class HttpUtil {
      * 网络连接管理
      */
     private static OkHttpClient client;
+    private final static MediaType textType = MediaType.parse("text/plain");
 
     static {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -69,6 +81,104 @@ public class HttpUtil {
             retrofitInterface = retrofit.create(RetrofitInterface.class);
         }
         return retrofitInterface;
+    }
+
+    /**
+     * 文件 传输 网络接口
+     */
+    private static class FileRetrofitInterfaceBuilder {
+        /**
+         * 上传进度监听
+         */
+        private ProgressRequestListener progressRequestListener;
+
+        /**
+         * 下载进度监听
+         */
+        private ProgressResponseListener progressResponseListener;
+        private OkHttpClient.Builder builder;
+
+        // 文件超时时间
+        private long fileTimeOut = 2;
+
+        FileRetrofitInterfaceBuilder() {
+            builder = new OkHttpClient.Builder();
+        }
+
+        /**
+         * 添加 上传进度监听 {@link #setProgressResponseListener}
+         *
+         * @param progressRequestListener 上传监听
+         * @return Builder
+         */
+        FileRetrofitInterfaceBuilder setProgressRequestListener(ProgressRequestListener progressRequestListener) {
+            this.progressRequestListener = progressRequestListener;
+            return this;
+        }
+
+        /**
+         * 添加 下载进度监听 {@link #setProgressRequestListener}
+         *
+         * @param progressResponseListener 下载监听
+         * @return Builder
+         */
+        FileRetrofitInterfaceBuilder setProgressResponseListener(ProgressResponseListener progressResponseListener) {
+
+            this.progressResponseListener = progressResponseListener;
+            return this;
+        }
+
+        /**
+         * 设置文件超时时间
+         *
+         * @param fileTimeOut 超时时间 单位：分
+         * @return Builder
+         */
+        FileRetrofitInterfaceBuilder setFileTimeOut(long fileTimeOut) {
+            this.fileTimeOut = fileTimeOut;
+            return this;
+        }
+
+        RetrofitInterface build() {
+            // 上传
+            if (progressRequestListener != null) {
+                builder.addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(@NotNull Chain chain) throws IOException {
+                        Request original = chain.request();
+                        Request request = original.newBuilder()
+                                .method(original.method(), new ProgressRequestBody(original.body(), progressRequestListener))
+                                .build();
+                        return chain.proceed(request);
+                    }
+                });
+            }
+            // 下载
+            if (progressResponseListener != null) {
+                builder.addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(@NotNull Chain chain) throws IOException {
+                        Response original = chain.proceed(chain.request());
+                        return original.newBuilder()
+                                .body(new ProgressResponseBody(original.body(), progressResponseListener))
+                                .build();
+                    }
+                });
+            }
+            // 请求区
+            OkHttpClient client = builder.connectTimeout(fileTimeOut, TimeUnit.MINUTES)
+                    .readTimeout(fileTimeOut, TimeUnit.MINUTES)
+                    .writeTimeout(fileTimeOut, TimeUnit.MINUTES)
+                    .build();
+            // Retrofit
+            Retrofit fileRetrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.getBaseUrl())
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+            return fileRetrofit.create(RetrofitInterface.class);
+        }
     }
 
     /**
@@ -119,12 +229,19 @@ public class HttpUtil {
     /**
      * 更新用户头像
      *
-     * @param userId 用户ID
-     * @param photo  头像文件
+     * @param userId    用户ID
+     * @param photoFile 头像文件
      * @return 状态信息
      */
-    public static Observable<ApiString> updateUserPhoto(String userId, MultipartBody.Part photo) {
-        return getRetrofitInterface().updateUserPhoto(userId, photo);
+    public static Observable<ApiString> updateUserPhoto(String userId, File photoFile, ProgressRequestListener listener) {
+//        return getRetrofitInterface().updateUserPhoto(userId, photo);
+        RequestBody photoBody = RequestBody.create(MediaType.parse("image/*"), photoFile);
+        MultipartBody.Part photo = MultipartBody.Part.createFormData("photo", photoFile.getName(), photoBody);
+        return new FileRetrofitInterfaceBuilder()
+                .setFileTimeOut(2)
+                .setProgressRequestListener(listener)
+                .build()
+                .updateUserPhoto(userId, photo);
     }
 
     /**
@@ -185,13 +302,33 @@ public class HttpUtil {
      * @param diaryContent 日志内容
      * @param diaryWeather 日志天气
      * @param diaryAddress 日志地址
-     * @param diaryPhoto   日志图片
+     * @param files        日志图片集
      * @return 日志信息
      */
     public static Observable<ApiDiaryInfo> addDiaryInfo(String userId, String diaryContent,
                                                         String diaryWeather, String diaryAddress,
-                                                        MultipartBody diaryPhoto) {
-        return getRetrofitInterface().addDiaryInfo(userId, diaryContent, diaryWeather, diaryAddress, diaryPhoto);
+                                                        File[] files,
+                                                        ProgressRequestListener listener) {
+        Map<String, RequestBody> partMap = new HashMap<>();
+        RequestBody contentBody = RequestBody.create(HttpUtil.textType, diaryContent);
+        RequestBody weatherBody = RequestBody.create(HttpUtil.textType, diaryWeather);
+        RequestBody addressBody = RequestBody.create(HttpUtil.textType, diaryAddress);
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        for (File file : files) {
+            RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
+            MultipartBody.Part diaryPhoto = MultipartBody.Part.createFormData("photo", file.getName(), requestBody);
+            builder.addPart(diaryPhoto);
+        }
+        MultipartBody photoBody = builder.build();
+        partMap.put("diaryContent", contentBody);
+        partMap.put("diaryWeather", weatherBody);
+        partMap.put("diaryAddress", addressBody);
+        return new FileRetrofitInterfaceBuilder()
+                .setFileTimeOut(10)
+                .setProgressRequestListener(listener)
+                .build()
+                .addDiaryInfo(userId, partMap, photoBody);
+//        return getRetrofitInterface().addDiaryInfo(userId, diaryContent, diaryWeather, diaryAddress, diaryPhoto);
     }
 
     /**

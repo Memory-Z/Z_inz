@@ -25,15 +25,8 @@ public class DiaryPresenter extends BasePresenter<IDiaryView> {
 
     public void addDiaryInfo(String userId, String diaryContent,
                              String diaryWeather, String diaryAddress, File[] files) {
-        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        for (File file : files) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), file);
-            MultipartBody.Part diaryPhoto = MultipartBody.Part.createFormData("diaryPhoto", file.getName(), requestBody);
-            builder.addPart(diaryPhoto);
-        }
-        MultipartBody multipartBody = builder.build();
         IDiaryModel diaryModel = new DiaryModelImpl();
-        diaryModel.addDiaryInfo(userId, diaryContent, diaryWeather, diaryAddress, multipartBody,
+        diaryModel.addDiaryInfo(userId, diaryContent, diaryWeather, diaryAddress, files, null,
                 new IBaseLoadListener<ApiDiaryInfo>() {
                     @Override
                     public void loadStart() {

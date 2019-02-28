@@ -6,14 +6,17 @@ import com.inz.z.entity.ApiString;
 import com.inz.z.entity.ApiUserInfo;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 
 /**
@@ -148,19 +151,21 @@ public interface RetrofitInterface {
     /**
      * 日志添加
      *
-     * @param userId       用户ID
-     * @param diaryContent 日志内容
-     * @param diaryWeather 日志天气
-     * @param diaryAddress 日志地址
-     * @param diaryPhoto   日志图片
+     * @param userId     用户ID
+     * @param partMap    数据对象
+     *                   //     * @param diaryContent 日志内容
+     *                   //     * @param diaryWeather 日志天气
+     *                   //     * @param diaryAddress 日志地址
+     * @param diaryPhoto 日志图片
      * @return 日志信息
      */
     @Multipart
     @POST("{userId}/diary/add")
     Observable<ApiDiaryInfo> addDiaryInfo(@Path("userId") String userId,
-                                          @Part("diaryContent") String diaryContent,
-                                          @Part("diaryWeather") String diaryWeather,
-                                          @Part("diaryAddress") String diaryAddress,
+                                          @PartMap Map<String, RequestBody> partMap,
+//                                          @Part("diaryContent") String diaryContent,
+//                                          @Part("diaryWeather") String diaryWeather,
+//                                          @Part("diaryAddress") String diaryAddress,
                                           @Part("diaryPhoto") MultipartBody diaryPhoto);
 
     /**
