@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.squareup.timessquare.CalendarPickerView
+        android:id="@+id/fragment_my_plan_calendar_cpv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.squareup.timessquare.CalendarPickerView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_my_plan_calendar_1_rv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_my_plan_calendar_cpv">
+
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

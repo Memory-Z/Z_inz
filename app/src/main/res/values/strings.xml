@@ -68,6 +68,8 @@
     <string name="to_bottom_slip">往下滑动</string>
 
     <string name="hint">提示</string>
+    <string name="icon">ICON</string>
+    <string name="date_time">23:59</string>
 
     <string name="number_0">0</string>
     <string name="number_1">1</string>

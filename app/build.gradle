@@ -90,6 +90,8 @@ dependencies {
         exclude group: 'com.android.support'
         exclude group: 'com.squareup.okhttp3'
     }
+
+    implementation 'com.squareup:android-times-square:1.7.10'
 }
 repositories {
     mavenCentral()
