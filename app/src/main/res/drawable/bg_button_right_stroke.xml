@@ -3,8 +3,8 @@
     <!-- 按下 -->
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/card_green_2" />
-            <corners android:bottomRightRadius="@dimen/dp04" android:topRightRadius="@dimen/dp04" />
+            <solid android:color="@color/card_green_50" />
+            <corners android:bottomRightRadius="@dimen/dp08" android:topRightRadius="@dimen/dp08" />
         </shape>
     </item>
 
@@ -12,14 +12,14 @@
     <item android:state_pressed="false">
         <shape>
             <solid android:color="@color/card_green_default" />
-            <corners android:bottomRightRadius="@dimen/dp04" android:topRightRadius="@dimen/dp04" />
+            <corners android:bottomRightRadius="@dimen/dp08" android:topRightRadius="@dimen/dp08" />
         </shape>
     </item>
     <!-- 默认 -->
     <item>
         <shape>
             <solid android:color="@color/card_green_default" />
-            <corners android:bottomRightRadius="@dimen/dp04" android:topRightRadius="@dimen/dp04" />
+            <corners android:bottomRightRadius="@dimen/dp08" android:topRightRadius="@dimen/dp08" />
         </shape>
     </item>
 

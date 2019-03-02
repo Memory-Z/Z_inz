@@ -33,7 +33,7 @@
                     android:paddingStart="@dimen/dp08"
                     android:paddingEnd="@dimen/dp08"
                     android:text="@string/user_name"
-                    android:textColor="@color/card_gray_3"
+                    android:textColor="@color/card_gray_75"
                     android:textSize="@dimen/sp16" />
 
                 <EditText
@@ -69,7 +69,7 @@
                     android:paddingStart="@dimen/dp08"
                     android:paddingEnd="@dimen/dp08"
                     android:text="@string/user_password"
-                    android:textColor="@color/card_gray_3"
+                    android:textColor="@color/card_gray_75"
                     android:textSize="@dimen/sp16" />
 
                 <EditText
@@ -136,7 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp56"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_card_2"
+        android:background="@drawable/bg_card_white"
         android:orientation="vertical">
 
         <View
@@ -149,7 +149,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/use_third_to_login"
-            android:textColor="@drawable/bg_card_2_text" />
+            android:textColor="@drawable/bg_card_white_to_black_text" />
 
     </LinearLayout>
 

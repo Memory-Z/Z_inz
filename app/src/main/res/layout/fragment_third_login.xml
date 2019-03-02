@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/dp16"
             android:layout_toStartOf="@+id/third_login_title_tv"
-            android:background="@color/card_black_1" />
+            android:background="@color/card_black_75" />
 
         <TextView
             android:id="@+id/third_login_title_tv"
@@ -37,7 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/dp16"
             android:layout_toEndOf="@id/third_login_title_tv"
-            android:background="@color/card_black_1" />
+            android:background="@color/card_black_75" />
     </RelativeLayout>
 
 
@@ -122,10 +122,10 @@
         android:id="@+id/third_login_cancel_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp56"
-        android:background="@drawable/bg_card_2"
+        android:background="@drawable/bg_card_white"
         android:gravity="center"
         android:text="@string/cancel"
-        android:textColor="@drawable/bg_card_2_text"
+        android:textColor="@drawable/bg_card_white_to_black_text"
         android:textSize="@dimen/sp18" />
 
 </LinearLayout>

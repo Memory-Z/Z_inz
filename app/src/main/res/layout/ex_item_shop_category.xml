@@ -99,7 +99,7 @@
                 android:lines="1"
                 android:maxLength="5"
                 android:text="1545447"
-                android:textColor="@color/card_white_1"
+                android:textColor="@color/card_white_75"
                 android:textSize="@dimen/sp26" />
 
             <TextView
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp04"
                 android:text="@string/commodity"
-                android:textColor="@color/card_white_1"
+                android:textColor="@color/card_white_75"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -126,7 +126,7 @@
                 android:lines="1"
                 android:maxLength="5"
                 android:text="1598989855898845"
-                android:textColor="@color/card_white_1"
+                android:textColor="@color/card_white_75"
                 android:textSize="@dimen/sp26" />
 
             <TextView
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp04"
                 android:text="@string/commodity"
-                android:textColor="@color/card_white_1"
+                android:textColor="@color/card_white_75"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -151,7 +151,7 @@
                 android:lines="1"
                 android:maxLength="5"
                 android:text="15451 4814145"
-                android:textColor="@color/card_white_1"
+                android:textColor="@color/card_white_75"
                 android:textSize="@dimen/sp26" />
 
             <TextView
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp04"
                 android:text="@string/commodity"
-                android:textColor="@color/card_white_1"
+                android:textColor="@color/card_white_75"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
@@ -170,9 +170,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp16"
-        android:drawableBottom="@drawable/ic_vd_nav_bottom_white"
+        android:drawableBottom="@drawable/ic_vd_nav_bottom"
         android:text="@string/to_bottom_slip"
-        android:textColor="@color/card_white_2"
+        android:textColor="@color/card_white_50"
         android:textSize="@dimen/sp12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

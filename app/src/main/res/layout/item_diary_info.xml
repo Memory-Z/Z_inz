@@ -166,7 +166,7 @@
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/more"
                 android:src="@drawable/ic_vd_nav_bottom"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <!-- 关注 -->
             <TextView
@@ -174,7 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@drawable/bg_card_attention"
+                android:background="@drawable/bg_button_default"
                 android:drawableStart="@drawable/ic_vd_add"
                 android:gravity="center"
                 android:paddingStart="@dimen/dp02"
@@ -182,7 +182,7 @@
                 android:paddingEnd="@dimen/dp04"
                 android:paddingBottom="@dimen/dp02"
                 android:text="@string/attention"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </RelativeLayout>
 
     </RelativeLayout>

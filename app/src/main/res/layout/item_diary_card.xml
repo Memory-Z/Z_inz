@@ -54,7 +54,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="@string/send_time"
-                android:textColor="@color/card_gray_2"
+                android:textColor="@color/card_gray_50"
                 android:textSize="@dimen/sp12" />
         </LinearLayout>
 

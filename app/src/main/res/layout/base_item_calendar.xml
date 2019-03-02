@@ -24,7 +24,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/number_1"
-            android:textColor="@color/card_white_1"
+            android:textColor="@color/card_white_75"
             android:textSize="@dimen/sp18"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

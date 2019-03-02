@@ -36,7 +36,7 @@
 
     <!-- 底部弹窗 -->
     <style name="AppTheme.BottomDialog" parent="AppTheme.DialogTheme">
-        <item name="android:windowBackground">@color/card_gray_3</item>
+        <item name="android:windowBackground">@color/card_gray_50</item>
     </style>
 
     <!-- 底部弹出动画 -->

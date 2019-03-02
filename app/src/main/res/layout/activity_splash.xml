@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp16"
         android:text="@string/copyright_hint"
-        android:textColor="@color/card_gray_2"
+        android:textColor="@color/card_gray_50"
         android:textSize="@dimen/sp16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

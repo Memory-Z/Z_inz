@@ -11,7 +11,7 @@
         android:id="@+id/base_op_text_top_line_v"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px01"
-        android:background="@color/card_gray_3"
+        android:background="@color/card_gray_25"
         app:layout_constraintBottom_toTopOf="@id/base_op_text_rl"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,7 +83,7 @@
         android:id="@+id/base_op_text_bottom_line_v"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/px01"
-        android:background="@color/card_gray_3"
+        android:background="@color/card_gray_25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/base_op_text_rl"

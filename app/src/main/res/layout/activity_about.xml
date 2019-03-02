@@ -35,7 +35,9 @@
             <RelativeLayout
                 android:id="@+id/about_app_info_rl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <!-- 应用 LOGO -->
                 <ImageView
@@ -66,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp48"
                 android:layout_marginTop="@dimen/sp16"
-                android:background="@drawable/bg_card_1"
+                android:background="@drawable/bg_card_white"
                 app:layout_constraintTop_toBottomOf="@id/about_app_info_rl"
                 app:op_t_bottom_line_show="true"
                 app:op_t_content_text="@string/check_update"
@@ -83,7 +85,7 @@
                 android:id="@+id/about_feedback_bot"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp48"
-                android:background="@drawable/bg_card_1"
+                android:background="@drawable/bg_card_white"
                 app:layout_constraintTop_toBottomOf="@id/about_check_update_bot"
                 app:op_t_bottom_line_show="true"
                 app:op_t_content_text="@string/feedback">
@@ -95,7 +97,7 @@
                 android:id="@+id/about_use_help_bot"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp48"
-                android:background="@drawable/bg_card_1"
+                android:background="@drawable/bg_card_white"
                 app:layout_constraintTop_toBottomOf="@id/about_feedback_bot"
                 app:op_t_bottom_line_show="true"
                 app:op_t_content_text="@string/use_help">
@@ -107,7 +109,7 @@
                 android:id="@+id/about_about_bot"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp48"
-                android:background="@drawable/bg_card_1"
+                android:background="@drawable/bg_card_white"
                 app:layout_constraintTop_toBottomOf="@id/about_use_help_bot"
                 app:op_t_bottom_line_show="true"
                 app:op_t_content_text="@string/about_us">
@@ -127,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="@string/copyright_hint"
-                    android:textColor="@color/card_gray_2"
+                    android:textColor="@color/card_gray_50"
                     android:textSize="@dimen/sp10" />
 
 

@@ -27,7 +27,7 @@
             android:layout_above="@id/item_calendar_schedule_left_icon_iv"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:background="@color/card_black_3" />
+            android:background="@color/card_black_25" />
 
         <View
             android:id="@+id/item_calendar_schedule_left_below_line_v"
@@ -36,7 +36,7 @@
             android:layout_below="@id/item_calendar_schedule_left_icon_iv"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@color/card_black_3" />
+            android:background="@color/card_black_25" />
 
     </RelativeLayout>
 

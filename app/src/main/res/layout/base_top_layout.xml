@@ -7,7 +7,9 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/base_top_content_cl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <!-- 返回 -->
         <LinearLayout
             android:id="@+id/base_top_back_ll"
@@ -63,7 +65,8 @@
             android:layout_width="@dimen/dp56"
             android:layout_height="@dimen/dp56"
             android:layout_marginEnd="@dimen/dp08"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <!-- icon -->
             <ImageButton
                 android:id="@+id/base_top_other_ibtn"
@@ -89,7 +92,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/card_gray_3"
+        android:background="@color/card_gray_25"
         app:layout_constraintTop_toBottomOf="@id/base_top_content_cl" />
 
 </android.support.constraint.ConstraintLayout>

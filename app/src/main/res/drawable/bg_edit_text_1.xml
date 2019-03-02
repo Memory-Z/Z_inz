@@ -15,7 +15,7 @@
             <corners android:radius="@dimen/dp04" />
             <stroke
                 android:width="@dimen/dp01"
-                android:color="@color/card_gray_2" />
+                android:color="@color/card_gray_50" />
         </shape>
     </item>
 </layer-list>
