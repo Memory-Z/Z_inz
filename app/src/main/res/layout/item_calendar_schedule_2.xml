@@ -19,7 +19,7 @@
             android:layout_width="@dimen/dp48"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dp08"
+            android:layout_marginStart="@dimen/dp16"
             android:gravity="center|start"
             android:text="@string/date_time"
             android:textSize="@dimen/sp16" />
@@ -36,8 +36,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:text="@string/test_text"
-            android:textSize="@dimen/sp18"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp18" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -5,23 +5,31 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true">
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/fragment_my_plan_calendar_mcv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.haibin.calendarview.CalendarLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:calendar_content_view_id="@+id/fragment_my_plan_calendar_1_rv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/fragment_my_plan_calendar_cv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_my_plan_calendar_1_rv"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp0"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_my_plan_calendar_mcv">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_my_plan_calendar_1_rv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp0"
+            android:scrollbars="none">
+
+        </android.support.v7.widget.RecyclerView>
+    </com.haibin.calendarview.CalendarLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.inz.z.R;
 import com.inz.z.base.AbsBaseRvAdapter;
 import com.inz.z.base.AbsBaseRvViewHolder;
-import com.inz.z.entity.layout_data.CalendarScheduleItem;
+import com.inz.z.entity.local_data.CalendarScheduleItem;
 
 /**
  * @author Zhenglj
@@ -32,6 +32,7 @@ public class CalendarScheduleRvAdapter extends AbsBaseRvAdapter<CalendarSchedule
 
     @Override
     public void onBindVH(@NonNull ViewHolder holder, int position) {
+        View view = holder.itemView;
 
     }
 

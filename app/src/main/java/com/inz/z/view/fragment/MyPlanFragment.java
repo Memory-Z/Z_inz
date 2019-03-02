@@ -9,13 +9,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.ScaleAnimation;
+import android.widget.CalendarView;
 
 import com.inz.z.R;
-import com.inz.z.entity.layout_data.CalendarScheduleItem;
+import com.inz.z.entity.local_data.CalendarScheduleItem;
 import com.inz.z.view.adapter.CalendarScheduleRvAdapter;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 
 /**
  * Create By 11654
@@ -28,7 +27,7 @@ public class MyPlanFragment extends AbsBaseFragment {
     private static final String TAG = "MyPlanFragment";
 
     private RecyclerView calendarScheduleRv;
-    private MaterialCalendarView calendarView;
+    private CalendarView calendarView;
 
     @Nullable
     @Override
@@ -38,9 +37,7 @@ public class MyPlanFragment extends AbsBaseFragment {
 
     @Override
     public void initView() {
-        calendarView = mView.findViewById(R.id.fragment_my_plan_calendar_mcv);
-        calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_SINGLE);
-        calendarView.setDynamicHeightEnabled(true);
+        calendarView = mView.findViewById(R.id.fragment_my_plan_calendar_cv);
         calendarScheduleRv = mView.findViewById(R.id.fragment_my_plan_calendar_1_rv);
         calendarScheduleRv.addOnScrollListener(new CalendarScrollListenerImpl());
         CalendarScheduleRvAdapter adapter = new CalendarScheduleRvAdapter(mContext);
@@ -89,17 +86,17 @@ public class MyPlanFragment extends AbsBaseFragment {
             //   canScrollVertically(-1)的值表示是否能向下滚动，true表示能滚动，false表示已经滚动到顶部
             boolean isTop = recyclerView.canScrollVertically(-1);
 //            boolean isBottom = recyclerView.canScrollVertically(1);
-            if (dy < 0 && !isTop) {
-                // 向下滚动（上划）
-                if (calendarView != null) {
-                    calendarView.state().edit().setCalendarDisplayMode(CalendarMode.MONTHS).commit();
-                }
-            } else if (dy > 0) {
-                // 向上滚动（下滑）
-                if (calendarView != null) {
-                    calendarView.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
-                }
-            }
+//            if (dy < 0 && !isTop) {
+//                // 向下滚动（上划）
+//                if (calendarView != null) {
+//                    calendarView.state().edit().setCalendarDisplayMode(CalendarMode.MONTHS).isCacheCalendarPositionEnabled(true).commit();
+//                }
+//            } else if (dy > 0) {
+//                // 向上滚动（下滑）
+//                if (calendarView != null) {
+//                    calendarView.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).isCacheCalendarPositionEnabled(true).commit();
+//                }
+//            }
         }
 
         @Override
