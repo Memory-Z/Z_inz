@@ -55,7 +55,21 @@
             <enum name="common" value="3" />
             <enum name="big" value="4" />
         </attr>
-        <attr name="show_bottom_text" format="boolean"/>
+        <attr name="show_bottom_text" format="boolean" />
+    </declare-styleable>
+
+    <!-- 环形进度条 -->
+    <declare-styleable name="CircleProgressView">
+        <!-- 环形宽度 -->
+        <attr name="circleWidth" format="dimension" />
+        <!-- 环形大小 -->
+        <attr name="circleSize" format="dimension" />
+        <!-- 进度条样式 -->
+        <attr name="circleStyle" format="reference" />
+        <!-- 当前进度条 -->
+        <attr name="currentProgress" format="float" />
+        <!-- 总进度条 -->
+        <attr name="allProgress" format="float" />
     </declare-styleable>
 
 </resources>

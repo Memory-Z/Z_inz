@@ -40,4 +40,9 @@
         <ContentHintStr>2019-02-26</ContentHintStr>
     </ExampleBean>
 
+    <ExampleBean class="com.inz.z.view.fragment.example.CircleProgressFragment">
+        <ContentStr>环形进度条</ContentStr>
+        <ContentHintStr>2019-03-03</ContentHintStr>
+    </ExampleBean>
+
 </ExampleBeanList>
