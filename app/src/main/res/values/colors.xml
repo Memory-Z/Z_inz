@@ -44,6 +44,12 @@
     <color name="card_white_10">#13FCFCFC</color>
 
     <color name="press_white">#FFE6E6E6</color>
+    <color name="text_black">#333333</color>
+    <color name="text_Dark_gray">#666666</color>
+    <color name="text_light_gray">#999999</color>
+    <color name="bg_gray">#EEEEEE</color>
+    <color name="bg_light_gray">#E5E5E5</color>
+    <color name="bg_dark_gray">#CCCCCC</color>
 
     <color name="card_whit_bg_default">#FFF1F1F1</color>
 
