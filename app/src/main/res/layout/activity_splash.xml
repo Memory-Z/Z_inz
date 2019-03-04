@@ -25,11 +25,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RelativeLayout
+    <!-- 倒计时 -->
+    <LinearLayout
+        android:id="@+id/splash_jump_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp16"
         android:layout_marginEnd="@dimen/dp16"
+        android:orientation="horizontal"
         android:padding="@dimen/dp08"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,6 +43,13 @@
             android:layout_height="wrap_content"
             android:text="@string/number_99" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/splash_jump_over_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp08"
+            android:text="@string/jump_over" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

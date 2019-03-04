@@ -7,11 +7,14 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.inz.z.R;
 import com.inz.z.entity.Constants;
 import com.inz.z.util.SPHelper;
+
+import java.util.Locale;
 
 /**
  * 闪屏
@@ -46,7 +49,8 @@ public class SplashActivity extends AbsBaseActivity {
     @Override
     public void initView() {
         ImageView imageView = findViewById(R.id.splash_iv);
-        Glide.with(mContext).load(getResources().getDrawable(R.drawable.adolescent_casual_contemporary_1030895)).into(imageView);
+        TextView hintTv = findViewById(R.id.splash_tv);
+//        Glide.with(mContext).load(getResources().getDrawable(R.drawable.adolescent_casual_contemporary_1030895)).into(imageView);
     }
 
     @Override
