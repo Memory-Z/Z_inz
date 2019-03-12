@@ -3,8 +3,10 @@ package com.inz.z.app_update.service
 import android.content.Context
 import com.inz.z.app_update.bean.VersionBean
 import com.inz.z.app_update.utils.PackageUtils
-import java.io.*
-import java.lang.Exception
+import java.io.BufferedInputStream
+import java.io.ByteArrayOutputStream
+import java.io.DataOutputStream
+import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
@@ -17,7 +19,7 @@ import java.nio.charset.Charset
  * @version 1.0.0
  * Create by inz in 2019/3/9 10:17.
  */
-class CheckUpdateRunnable(
+public class CheckUpdateRunnable(
     /**
      * 检测更新地址
      */
@@ -39,19 +41,17 @@ class CheckUpdateRunnable(
      */
     private var callBack: CallBack
 ) : Runnable {
-    private final val TAG = "CheckUpdateRunnable"
 
     override fun run() {
         var connection: HttpURLConnection? = null
         try {
-            val url: URL = URL(checkUpdateUrl)
+            val url = URL(checkUpdateUrl)
             if (checkUpdateUrl.startsWith("https//")) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-
+                TrustAllCertificates.install()
             }
             connection = url.openConnection() as HttpURLConnection?
             if (isPost) {
-                val sb: StringBuffer = StringBuffer("")
+                val sb = StringBuffer("")
                 if (postParams != null) {
                     val set = postParams!!.entries
                     val iterator = set.iterator()
@@ -76,7 +76,7 @@ class CheckUpdateRunnable(
                 connection.doOutput = true
                 connection.useCaches = false
 
-                val wr: DataOutputStream = DataOutputStream(connection.outputStream)
+                val wr = DataOutputStream(connection.outputStream)
                 wr.write(postData)
                 wr.flush()
             }
@@ -85,7 +85,7 @@ class CheckUpdateRunnable(
             inputStream.close()
 
             try {
-                val versionBean: VersionBean = VersionBean()
+                val versionBean = VersionBean()
                 versionBean.parse(data)
                 callBack.callBack(
                     versionBean,
@@ -98,7 +98,7 @@ class CheckUpdateRunnable(
                 e.printStackTrace()
                 callBack.callBack(null, false)
             }
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             callBack.callBack(null, false)
         } finally {
@@ -116,7 +116,7 @@ class CheckUpdateRunnable(
 
 
     private fun read(inputStream: InputStream): String {
-        val outStream: ByteArrayOutputStream = ByteArrayOutputStream()
+        val outStream = ByteArrayOutputStream()
 
         var b: Int = inputStream.read()
         while (b != -1) {

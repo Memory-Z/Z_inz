@@ -13,7 +13,7 @@ import javax.net.ssl.*
  * @version 1.0.0
  * Create by inz in 2019/3/9 16:01.
  */
-class TrustAllCertificates : HostnameVerifier, X509TrustManager {
+public class TrustAllCertificates : HostnameVerifier, X509TrustManager {
     override fun verify(hostname: String?, session: SSLSession?): Boolean {
         return true
     }
@@ -31,21 +31,24 @@ class TrustAllCertificates : HostnameVerifier, X509TrustManager {
         return null
     }
 
-    public fun install() {
-        try {
-            val trust = TrustAllCertificates()
-            val sc: SSLContext = SSLContext.getInstance("SSL")
-            sc.init(
-                null,
-                arrayOf(trust),
-                SecureRandom()
-            )
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
-            HttpsURLConnection.setDefaultHostnameVerifier(trust)
-        } catch (e: NoSuchAlgorithmException) {
-            throw RuntimeException("Failed setting up all thrusting certificate manager.", e)
-        } catch (e: KeyManagementException) {
-            throw RuntimeException("Failed setting up all thrusting certificate manager.", e)
+    companion object {
+
+        fun install() {
+            try {
+                val trust = TrustAllCertificates()
+                val sc: SSLContext = SSLContext.getInstance("SSL")
+                sc.init(
+                    null,
+                    arrayOf(trust),
+                    SecureRandom()
+                )
+                HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
+                HttpsURLConnection.setDefaultHostnameVerifier(trust)
+            } catch (e: NoSuchAlgorithmException) {
+                throw RuntimeException("Failed setting up all thrusting certificate manager.", e)
+            } catch (e: KeyManagementException) {
+                throw RuntimeException("Failed setting up all thrusting certificate manager.", e)
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ class VersionBean : Serializable {
      * 解析请求结果
      */
     public fun parse(jsonStr: String): VersionBean {
-        val json: JSONObject = JSONObject(jsonStr)
+        val json = JSONObject(jsonStr)
         versionCode = json.getInt("versionCode")
         versionName = json.getString("versionName")
         content = json.getString("content")
