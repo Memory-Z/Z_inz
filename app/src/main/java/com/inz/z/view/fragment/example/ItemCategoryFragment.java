@@ -1,11 +1,5 @@
 package com.inz.z.view.fragment.example;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -20,10 +14,9 @@ import com.inz.z.view.fragment.AbsBaseFragment;
 public class ItemCategoryFragment extends AbsBaseFragment {
 
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.ex_item_shop_category, container, false);
+    protected int getLayoutId() {
+        return R.layout.ex_item_shop_category;
     }
 
     @Override

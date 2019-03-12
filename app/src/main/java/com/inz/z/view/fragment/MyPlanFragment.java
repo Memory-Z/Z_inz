@@ -29,10 +29,9 @@ public class MyPlanFragment extends AbsBaseFragment {
     private RecyclerView calendarScheduleRv;
     private CalendarView calendarView;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_my_plan, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_my_plan;
     }
 
     @Override

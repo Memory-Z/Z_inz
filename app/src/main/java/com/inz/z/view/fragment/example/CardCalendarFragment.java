@@ -1,12 +1,6 @@
 package com.inz.z.view.fragment.example;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.inz.z.R;
@@ -32,10 +26,9 @@ public class CardCalendarFragment extends AbsBaseFragment {
     private GridView calendarGridView;
     private BaseCardCalendarAdapter cardCalendarAdapter;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.base_card_calendar_layout, null, false);
+    protected int getLayoutId() {
+        return R.layout.base_card_calendar_layout;
     }
 
     @Override
@@ -50,7 +43,6 @@ public class CardCalendarFragment extends AbsBaseFragment {
 
     /**
      * 设置月份
-     *
      */
     private void setMonth() {
         Calendar calendar = Calendar.getInstance(Locale.CHINA);

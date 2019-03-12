@@ -38,7 +38,7 @@
             android:ellipsize="end"
             android:lines="2"
             android:text="@string/hint"
-            android:textColor="@color/text_Dark_gray"
+            android:textColor="@color/text_dark_gray"
             android:textSize="@dimen/sp18" />
 
         <TextView

@@ -9,6 +9,11 @@ import com.inz.z.view.fragment.AbsBaseFragment;
  */
 public class FragmentSplash001 extends AbsBaseFragment {
     @Override
+    protected int getLayoutId() {
+        return 0;
+    }
+
+    @Override
     public void initView() {
 
     }

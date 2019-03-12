@@ -23,69 +23,69 @@ import com.inz.z.R;
  */
 public class ThirdLoginDialogFragment extends AbsBaseDialogFragment {
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    int theme = R.style.AppTheme_BottomDialog;
-    setStyle(DialogFragment.STYLE_NO_FRAME, theme);
-    mContext = getContext();
-  }
-
-  @Nullable
-  @Override
-  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    return LayoutInflater.from(mContext).inflate(R.layout.fragment_third_login, container, false);
-  }
-
-  @Override
-  public void onStart() {
-    super.onStart();
-    Window window = getDialog().getWindow();
-    if (window != null) {
-      WindowManager.LayoutParams lp = window.getAttributes();
-      // 底部
-      lp.gravity = Gravity.BOTTOM;
-      lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-      window.setAttributes(lp);
-      window.setWindowAnimations(R.style.AppTheme_BottomDialogAnim);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        int theme = R.style.AppTheme_BottomDialog;
+        setStyle(DialogFragment.STYLE_NO_FRAME, theme);
+        mContext = getContext();
     }
-    initData();
-  }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-  }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return LayoutInflater.from(mContext).inflate(R.layout.fragment_third_login, container, false);
+    }
 
-  @Override
-  public void onPause() {
-    super.onPause();
-  }
+    @Override
+    public void onStart() {
+        super.onStart();
+        Window window = getDialog().getWindow();
+        if (window != null) {
+            WindowManager.LayoutParams lp = window.getAttributes();
+            // 底部
+            lp.gravity = Gravity.BOTTOM;
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            window.setAttributes(lp);
+            window.setWindowAnimations(R.style.AppTheme_BottomDialogAnim);
+        }
+        initData();
+    }
 
-  @Override
-  public void onStop() {
-    super.onStop();
-  }
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-  }
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 
-  @Override
-  public void initView() {
-    // 取消按钮
-    TextView cancelTv = mView.findViewById(R.id.third_login_cancel_tv);
-    cancelTv.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        dismiss();
-      }
-    });
-  }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 
-  @Override
-  public void initData() {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
-  }
+    @Override
+    public void initView() {
+        // 取消按钮
+        TextView cancelTv = mView.findViewById(R.id.third_login_cancel_tv);
+        cancelTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void initData() {
+
+    }
 }

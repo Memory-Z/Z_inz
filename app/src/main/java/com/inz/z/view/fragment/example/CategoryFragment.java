@@ -1,16 +1,9 @@
 package com.inz.z.view.fragment.example;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.inz.z.R;
 import com.inz.z.view.adapter.example.CategoryFragmentAdapter;
@@ -29,10 +22,9 @@ public class CategoryFragment extends AbsBaseFragment {
     private TabLayout categoryTabL;
     private ViewPager categoryVp;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.ex_fragment_shop_category, container, false);
+    protected int getLayoutId() {
+        return R.layout.ex_fragment_shop_category;
     }
 
     @Override

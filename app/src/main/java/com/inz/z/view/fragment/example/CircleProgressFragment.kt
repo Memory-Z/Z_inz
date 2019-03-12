@@ -1,14 +1,7 @@
 package com.inz.z.view.fragment.example
 
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.inz.z.R
 import com.inz.z.view.fragment.AbsBaseFragment
-import com.inz.z.view.widget.CircleProgressView
-import kotlin.concurrent.fixedRateTimer
 
 /**
  *
@@ -18,13 +11,8 @@ import kotlin.concurrent.fixedRateTimer
  */
 class CircleProgressFragment : AbsBaseFragment() {
 
-    @SuppressLint("InflateParams")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.ex_fragment_circle_progress, null, false)
+    override fun getLayoutId(): Int {
+        return R.layout.ex_fragment_circle_progress
     }
 
     override fun initView() {

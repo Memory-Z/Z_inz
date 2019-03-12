@@ -1,12 +1,9 @@
 package com.inz.z.view.fragment
 
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.inz.z.R
 import com.inz.z.entity.constants.ExampleBean
@@ -25,12 +22,8 @@ class ExampleFragment : AbsBaseFragment() {
     private var exampleRv: RecyclerView? = null
     private var exampleSearchRl: RelativeLayout? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_example, container, false)
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_example
     }
 
     override fun initView() {
