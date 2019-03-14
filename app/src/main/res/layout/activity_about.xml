@@ -47,7 +47,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/dp16"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@mipmap/ic_launcher" />
 
                 <!-- 版本号 -->
                 <TextView

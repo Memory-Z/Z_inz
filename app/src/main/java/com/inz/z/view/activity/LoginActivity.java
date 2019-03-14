@@ -77,6 +77,8 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
         } else {
             String userLoginName = SPHelper.getInstance().getUserLoginName();
         }
+        // 检测更新
+        checkUpdate();
     }
 
     @Override
@@ -128,42 +130,5 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
     private void quitView() {
         LoginActivity.this.finish();
     }
-
-
-    /**
-     * 需要申请的权限
-     */
-    private String[] permissions = new String[]{
-            Manifest.permission.CAMERA,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_CALENDAR,
-            Manifest.permission.WRITE_CALENDAR
-    };
-
-    /**
-     * 权限申请(所有权限)
-     */
-    private void requestPermission() {
-        List<String> list = new ArrayList<>();
-        // 权限获取
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(mContext, permission) != PackageManager.PERMISSION_GRANTED) {
-                list.add(permission);
-            }
-        }
-        String[] ps = new String[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-            ps[i] = list.get(i);
-        }
-        if (ps.length > 0) {
-            ActivityCompat.requestPermissions(this, ps, 1);
-        }
-
-        // 检查安装APK
-//        checkInstallApk();
-    }
-
 
 }

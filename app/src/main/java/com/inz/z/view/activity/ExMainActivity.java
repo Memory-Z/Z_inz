@@ -8,13 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.inz.z.R;
 import com.inz.z.view.fragment.AbsBaseFragment;
-import com.kcode.lib.utils.ToastUtils;
 
 /**
  * ExampleActivity 装载 Example Fragment
@@ -116,7 +114,6 @@ public class ExMainActivity extends AbsBaseActivity {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
-            ToastUtils.show(mContext, "加载 Fragment 出错！ ");
             quitExMain();
         }
     }

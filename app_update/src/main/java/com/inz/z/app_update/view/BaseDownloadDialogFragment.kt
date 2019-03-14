@@ -15,7 +15,9 @@ import android.widget.Button
 import android.widget.ProgressBar
 import com.inz.z.app_update.service.DownloadService
 import com.inz.z.app_update.service.DownloadThread
+import com.inz.z.app_update.utils.FileUtils
 import com.inz.z.app_update.utils.ToastUtils
+import java.io.File
 
 /**
  *
@@ -27,7 +29,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
 
     protected var stopBtn: Button? = null
     protected var backgroundBtn: Button? = null
-    protected var downloadProcess: ProgressBar? = null
+    protected var downloadProgress: ProgressBar? = null
 
     protected var mDownloadUrl = ""
     protected var mMustUpdate = false
@@ -53,7 +55,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
     override fun initView() {
         stopBtn = mView!!.findViewById(getStopId())
         backgroundBtn = mView!!.findViewById(getBackgroundId())
-        downloadProcess = mView!!.findViewById(getProgressId())
+        downloadProgress = mView!!.findViewById(getProgressId())
         stopBtn?.setOnClickListener(this)
         backgroundBtn?.setOnClickListener(this)
         startTask()
@@ -66,9 +68,17 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (mNotificationIcon == null) {
+            mNotificationIcon = mContext!!.applicationInfo.icon
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         cancelTask()
+        downloadHandler.removeCallbacksAndMessages(null)
     }
 
     /**
@@ -173,14 +183,25 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
                 HANDLER_UPDATE -> {
                     val current = bundle!!.getLong("current", 0L)
                     val count = bundle.getLong("count", 100)
-//                    val done = bundle.getBoolean("done", false)
+                    val done = bundle.getBoolean("done", false)
                     if (downloadService != null) {
                         downloadService?.updateNotification(current.toInt(), count.toInt())
                     }
+                    if (done) {
+                        val file = File(FileUtils.getApkFilePath(mContext!!, mDownloadUrl))
+                        val intent = FileUtils.openApkFile(mContext!!, file)
+                        mContext!!.startActivity(intent)
+                        this@BaseDownloadDialogFragment.dismiss()
+                    }
+                    downloadProgress!!.max = count.toInt()
+                    downloadProgress!!.progress = current.toInt()
+
                 }
                 HANDLER_ERROR -> {
                     val error = bundle!!.getString("error", "")
-                    ToastUtils.show(mContext!!, error)
+                    if (mContext != null) {
+                        ToastUtils.show(mContext!!, error)
+                    }
                 }
             }
             return false

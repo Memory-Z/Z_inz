@@ -34,7 +34,7 @@ public class DownloadService : Service() {
     /**
      * 提示图标
      */
-    var notificationIcon = applicationInfo.icon
+    var notificationIcon: Int? = null
     /**
      * 进度监听
      */
@@ -51,10 +51,12 @@ public class DownloadService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder? {
+        mContext = applicationContext
         return downloadBinder
     }
 
     override fun onRebind(intent: Intent?) {
+        mContext = applicationContext
         super.onRebind(intent)
     }
 
@@ -115,7 +117,7 @@ public class DownloadService : Service() {
             notificationManager = NotificationUtils.getNotificationManager(mContext)
             mBuilder =
                 NotificationCompat.Builder(mContext!!, Constants.downloadServiceNotificationChannel)
-            mBuilder!!.setSmallIcon(notificationIcon)
+            mBuilder!!.setSmallIcon(notificationIcon!!)
             mBuilder!!.setChannelId(Constants.downloadServiceNotificationChannel)
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(

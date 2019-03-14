@@ -1,15 +1,26 @@
 package com.inz.z.view.activity;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
+import com.inz.z.app_update.UpdateWrapper;
+import com.inz.z.app_update.bean.VersionBean;
+import com.inz.z.app_update.service.CheckUpdateThread;
 import com.inz.z.base.IBaseView;
 import com.inz.z.util.Tools;
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 基础 Activity 类
@@ -117,4 +128,56 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
      * @return 是否拦截
      */
     public abstract boolean myOnKeyDown(int keyCode, KeyEvent event);
+
+    /**
+     * 需要申请的权限
+     */
+    private String[] permissions = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.READ_CALENDAR,
+            Manifest.permission.WRITE_CALENDAR
+    };
+
+    /**
+     * 权限申请(所有权限)
+     */
+    protected void requestPermission() {
+        List<String> list = new ArrayList<>();
+        // 权限获取
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(mContext, permission) != PackageManager.PERMISSION_GRANTED) {
+                list.add(permission);
+            }
+        }
+        String[] ps = new String[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            ps[i] = list.get(i);
+        }
+        if (ps.length > 0) {
+            ActivityCompat.requestPermissions(this, ps, 1);
+        }
+
+    }
+
+    /**
+     * 更新
+     */
+    protected void checkUpdate() {
+        UpdateWrapper updateWrapper = new UpdateWrapper.Builder(this)
+                .setIsPost(true)
+                .setIsShowToast(false)
+                .setNotificationIcon(mContext.getApplicationInfo().icon)
+                .setUrl("http://211.159.156.19:8280/itcourt/appdir/skyvislinkcourt.json")
+                .setCallback(new CheckUpdateThread.CallBack() {
+                    @Override
+                    public void callBack(@org.jetbrains.annotations.Nullable VersionBean versionBean, boolean hasNewVersion) {
+
+                    }
+                })
+                .build();
+        updateWrapper.start();
+    }
 }

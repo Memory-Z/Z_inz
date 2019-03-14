@@ -1,25 +1,18 @@
 package com.inz.z.app_update
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.support.annotation.DrawableRes
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import com.inz.z.app_update.bean.Constants
 import com.inz.z.app_update.bean.VersionBean
 import com.inz.z.app_update.service.CheckUpdateThread
 import com.inz.z.app_update.utils.NetUtils
 import com.inz.z.app_update.utils.ToastUtils
-import com.inz.z.app_update.view.AppUpdateActivity
 import com.inz.z.app_update.view.AppUpdateDialogFragment
 import com.inz.z.app_update.view.BaseDownloadDialogFragment
-import com.inz.z.app_update.view.BaseUpdateDialogFragment
-import java.lang.Exception
-import java.lang.RuntimeException
 
 /**
  *
@@ -63,7 +56,7 @@ class UpdateWrapper {
     /**
      * 构造器
      */
-    inner class Builder(activity: AppCompatActivity) {
+    public class Builder(activity: AppCompatActivity) {
         private val wrapper = UpdateWrapper()
 
         init {
@@ -128,30 +121,6 @@ class UpdateWrapper {
 
         fun build(): UpdateWrapper {
             return wrapper
-        }
-    }
-
-    fun startToActivity(context: Context, versionBean: VersionBean) {
-        try {
-            val intent = Intent(
-                mContext!!,
-                if (mCls == null) {
-                    AppUpdateActivity::class.java
-                } else {
-                    mCls
-                }
-            )
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            val bundle = Bundle()
-            bundle.putSerializable(Constants.MODEL, versionBean)
-            bundle.putString(Constants.TOAST_MSG, mToastMsg)
-            bundle.putInt(Constants.NOTIFICATION_ICON, notificationIcon!!)
-            bundle.putBoolean(Constants.IS_SHOW_TOAST_MSG, mIsShowToast)
-            bundle.putBoolean(Constants.IS_SHOW_BACKGROUND_DOWNLOAD, mIsShowBackgroundDownload)
-            intent.putExtras(bundle)
-            mContext!!.startActivity(intent)
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 

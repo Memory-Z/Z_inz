@@ -60,8 +60,7 @@ class AppUpdateDialogFragment : BaseUpdateDialogFragment() {
         mVersionBean = bundle!!.getSerializable(Constants.MODEL) as VersionBean?
         mToastMsg = bundle.getString(Constants.TOAST_MSG, "")
         mIsShowToast = bundle.getBoolean(Constants.IS_SHOW_TOAST_MSG, false)
-        mNotificationIcon =
-            bundle.getInt(Constants.NOTIFICATION_ICON, mContext!!.applicationInfo.icon)
+        mNotificationIcon = bundle.getInt(Constants.NOTIFICATION_ICON)
         mMustUpdate = bundle.getBoolean(Constants.MUST_UPDATE, false)
     }
 }

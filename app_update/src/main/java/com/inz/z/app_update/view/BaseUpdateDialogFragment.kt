@@ -1,5 +1,6 @@
 package com.inz.z.app_update.view
 
+import android.os.Bundle
 import android.support.annotation.IdRes
 import android.view.View
 import android.widget.Button
@@ -16,14 +17,13 @@ import java.lang.StringBuilder
  * @version 1.0.0
  * Create by inz in 2019/3/14 9:27.
  */
-abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment(), View.OnClickListener {
+abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment() {
 
     protected var mVersionBean: VersionBean? = null
     protected var mToastMsg = ""
     protected var mIsShowToast = false
     protected var mNotificationIcon: Int? = null
     protected var mMustUpdate = false
-    protected var mIsBackground = false
 
     protected var updateBtn: Button? = null
     protected var cancelBtn: Button? = null
@@ -53,14 +53,18 @@ abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment(), View.OnClickL
         cancelBtn = mView!!.findViewById(getCancelId())
         contentTv = mView!!.findViewById(getContentId())
         contentTv?.text = getUpdateContent()
-        updateBtn!!.setOnClickListener(this)
-        cancelBtn!!.setOnClickListener(this)
+        updateBtn!!.setOnClickListener {
+            update()
+        }
+        cancelBtn!!.setOnClickListener {
+            this.dialog.dismiss()
+        }
     }
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            getContentId() -> cancel()
-            getUpdateId() -> update()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (mNotificationIcon == null) {
+            mNotificationIcon = mContext!!.applicationInfo.icon
         }
     }
 
@@ -68,7 +72,7 @@ abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment(), View.OnClickL
      * 开始更新
      */
     private fun update() {
-        if (NetUtils.getNetworkStatus(mContext!!)) {
+        if (!NetUtils.getNetworkStatus(mContext!!)) {
             return
         }
         if (downloadDialogFragment == null) {
@@ -82,18 +86,11 @@ abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment(), View.OnClickL
             activity!!.supportFragmentManager,
             "BaseDownloadDialogFragment"
         )
-        cancel()
+        this.dismiss()
     }
 
     public fun setDownloadFragment(baseDownloadDialogFragment: BaseDownloadDialogFragment) {
         this.downloadDialogFragment = baseDownloadDialogFragment
-    }
-
-    /**
-     * 取消更新
-     */
-    private fun cancel() {
-        this@BaseUpdateDialogFragment.dismiss()
     }
 
     /**

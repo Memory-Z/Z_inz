@@ -4,10 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.DialogFragment
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.inz.z.app_update.R
 
 /**
@@ -30,7 +27,7 @@ abstract class AbsBaseDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.AppUpdate_NoTitleDialog)
+        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.AppUpdate_NoTitleDialog)
     }
 
     override fun onCreateView(
@@ -45,6 +42,12 @@ abstract class AbsBaseDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         mView = view
         mContext = context
+        val window = dialog.window
+        window?.setBackgroundDrawableResource(R.color.app_update_transparent)
+        val lp = window?.attributes
+        lp?.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp?.gravity = Gravity.CENTER
+        window?.attributes = lp
         initView()
     }
 

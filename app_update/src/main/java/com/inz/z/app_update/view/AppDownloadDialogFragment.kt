@@ -53,8 +53,7 @@ class AppDownloadDialogFragment : BaseDownloadDialogFragment() {
         super.onCreate(savedInstanceState)
         val bundle = arguments
         mDownloadUrl = bundle!!.getString(Constants.DOWNLOAD_URL, "")
-        mNotificationIcon =
-            bundle.getInt(Constants.NOTIFICATION_ICON, mContext!!.applicationInfo.icon)
+        mNotificationIcon = bundle.getInt(Constants.NOTIFICATION_ICON)
         mMustUpdate = bundle.getBoolean(Constants.MUST_UPDATE, false)
     }
 }

@@ -13,15 +13,8 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppUpdate"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <activity android:name=".view.AppUpdateActivity">
 
@@ -33,12 +26,12 @@
 
         <provider
             android:name=".AppUpdateFileProvider"
-            android:authorities="${applicationId}..provider.appupdatefileprovider"
+            android:authorities="com.inz.z.app_update.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/app_update_provider_paths" />
         </provider>
     </application>
 

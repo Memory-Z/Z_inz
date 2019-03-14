@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
+import com.inz.z.app_update.BuildConfig
 import java.io.File
 import java.lang.Exception
 
@@ -49,11 +50,16 @@ class FileUtils {
             var uri: Uri? = null
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                uri = FileProvider.getUriForFile(
-                    context,
-                    context.packageName + ".provider.appupdatefileprovider",
-                    outputFile
-                )
+                try {
+                    val authority = BuildConfig.APPLICATION_ID + ".provider"
+                    uri = FileProvider.getUriForFile(
+                        context.applicationContext,
+                        authority,
+                        outputFile
+                    )
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             } else {
                 uri = Uri.fromFile(outputFile)
             }
