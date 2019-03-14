@@ -19,7 +19,7 @@ import java.nio.charset.Charset
  * @version 1.0.0
  * Create by inz in 2019/3/9 10:17.
  */
-public class CheckUpdateRunnable(
+public class CheckUpdateThread(
     /**
      * 检测更新地址
      */
@@ -40,7 +40,7 @@ public class CheckUpdateRunnable(
      * 回调函数
      */
     private var callBack: CallBack
-) : Runnable {
+) : Thread() {
 
     override fun run() {
         var connection: HttpURLConnection? = null

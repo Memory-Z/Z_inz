@@ -1,9 +1,6 @@
 package com.inz.z.app_update.service
 
-import java.io.BufferedInputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
+import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -14,15 +11,15 @@ import java.net.URL
  * @version 1.0.0
  * Create by inz in 2019/3/9 10:15.
  */
-public class DownloadRunnable(
+public class DownloadThread(
     var mFilePath: String?,
     var mDownloadUrl: String?,
     var mProgressListener: ProgressListener?
-) : Runnable {
+) : Thread() {
 
 
     var inputStream: InputStream? = null
-    var fileOutPutStream: FileOutputStream? = null
+    var fileOutputStream: FileOutputStream? = null
 
 
     override fun run() {
@@ -50,9 +47,19 @@ public class DownloadRunnable(
             e.printStackTrace()
             mProgressListener!!.onError(e)
         } finally {
-
+            try {
+                fileOutputStream!!.flush()
+                fileOutputStream!!.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            try {
+                inputStream!!.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            connection?.disconnect()
         }
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun writeToFile(count: Int, filePath: String, inputStream: InputStream) {
@@ -61,15 +68,15 @@ public class DownloadRunnable(
         if (file.exists()) {
             file.delete()
         }
-        fileOutPutStream = FileOutputStream(file)
+        fileOutputStream = FileOutputStream(file)
         var bytesRead = 0
 
         var len: Int = inputStream.read(buf)
         while (len != -1) {
-            fileOutPutStream!!.write(buf, 0, len)
+            fileOutputStream!!.write(buf, 0, len)
             bytesRead += len
             if (mProgressListener != null) {
-                val done = bytesRead == count
+                val done = bytesRead >= count
                 mProgressListener?.update(bytesRead.toLong(), count.toLong(), done)
             }
             len = inputStream.read(buf)
