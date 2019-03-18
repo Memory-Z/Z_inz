@@ -13,10 +13,13 @@ import android.support.annotation.IdRes
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
+import com.inz.z.app_update.bean.Constants
+import com.inz.z.app_update.http.FileDownloadListener
 import com.inz.z.app_update.service.DownloadService
 import com.inz.z.app_update.service.DownloadThread
 import com.inz.z.app_update.utils.FileUtils
 import com.inz.z.app_update.utils.ToastUtils
+import com.inz.z.app_update.utils.UpdateShareUtils
 import java.io.File
 
 /**
@@ -25,7 +28,7 @@ import java.io.File
  * @version 1.0.0
  * Create by inz in 2019/3/14 9:25.
  */
-abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClickListener {
+abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
 
     protected var stopBtn: Button? = null
     protected var backgroundBtn: Button? = null
@@ -36,6 +39,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
     protected var mIsShowBackgroundDownload = false
     @DrawableRes
     protected var mNotificationIcon: Int? = null
+    protected var mUseOkDownload = true
 
     /**
      * 暂停
@@ -56,16 +60,27 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
         stopBtn = mView!!.findViewById(getStopId())
         backgroundBtn = mView!!.findViewById(getBackgroundId())
         downloadProgress = mView!!.findViewById(getProgressId())
-        stopBtn?.setOnClickListener(this)
-        backgroundBtn?.setOnClickListener(this)
+        stopBtn?.setOnClickListener {
+            stopTask()
+        }
+        stopBtn?.visibility = View.VISIBLE
+        backgroundBtn?.setOnClickListener {
+            mIsShowBackgroundDownload = true
+            backgroundTask()
+            downloadHandler.removeCallbacksAndMessages(null)
+            UpdateShareUtils.saveIsShowDownload(mContext!!, false)
+            this@BaseDownloadDialogFragment.dismiss()
+        }
         startTask()
     }
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            getStopId() -> stopTask()
-            getBackgroundId() -> backgroundTask()
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val bundle = arguments
+        mDownloadUrl = bundle!!.getString(Constants.DOWNLOAD_URL, "")
+        mNotificationIcon = bundle.getInt(Constants.NOTIFICATION_ICON)
+        mMustUpdate = bundle.getBoolean(Constants.MUST_UPDATE, false)
+        mUseOkDownload = bundle.getBoolean(Constants.USE_OK_DOWNLOAD, true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,7 +92,9 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
 
     override fun onDestroy() {
         super.onDestroy()
-        cancelTask()
+        if (!mIsShowBackgroundDownload) {
+            cancelTask()
+        }
         downloadHandler.removeCallbacksAndMessages(null)
     }
 
@@ -138,6 +155,8 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             downloadServiceBinder = service as DownloadService.DownloadBinder?
             downloadService = downloadServiceBinder?.getService()
+            downloadService?.useOkDownload = mUseOkDownload
+            downloadService?.mFileDownloadListener = FileDownloadListenerImpl()
             downloadService?.mProgressListener = DownloadTaskListenerImpl()
             downloadService?.notificationIcon = mNotificationIcon!!
             downloadService?.startDownload(mDownloadUrl)
@@ -169,6 +188,12 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
     companion object {
         private const val HANDLER_UPDATE = 0x22000
         private const val HANDLER_ERROR = 0x21000
+
+        private const val HANDLER_START = 0x10001
+        private const val HANDLER_AMOUNT = 0x10002
+        private const val HANDLER_PROGRESS = 0x10003
+        private const val HANDLER_SPEED = 0x10004
+        private const val HANDLER_DONE = 0x10005
     }
 
     private var downloadHandler = Handler(DownloadHandlerCallback())
@@ -184,13 +209,12 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
                     val current = bundle!!.getLong("current", 0L)
                     val count = bundle.getLong("count", 100)
                     val done = bundle.getBoolean("done", false)
-                    if (downloadService != null) {
-                        downloadService?.updateNotification(current.toInt(), count.toInt())
-                    }
+                    downloadService?.updateNotification(current.toInt(), count.toInt())
                     if (done) {
                         val file = File(FileUtils.getApkFilePath(mContext!!, mDownloadUrl))
                         val intent = FileUtils.openApkFile(mContext!!, file)
                         mContext!!.startActivity(intent)
+                        UpdateShareUtils.saveIsShowDownload(mContext!!, false)
                         this@BaseDownloadDialogFragment.dismiss()
                     }
                     downloadProgress!!.max = count.toInt()
@@ -201,10 +225,92 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment(), View.OnClic
                     val error = bundle!!.getString("error", "")
                     if (mContext != null) {
                         ToastUtils.show(mContext!!, error)
+                        UpdateShareUtils.saveIsShowDownload(mContext!!, false)
+                        downloadService?.setRunningStatus(false)
+                        this@BaseDownloadDialogFragment.dismiss()
                     }
+                }
+
+                HANDLER_START -> {
+
+                }
+                HANDLER_AMOUNT -> {
+                    val contentLength = bundle!!.getLong("contentLength", 100L)
+                    downloadProgress?.max = contentLength.toInt()
+                }
+                HANDLER_SPEED -> {
+                    val speed = bundle!!.getString("taskSpeed", "")
+
+                }
+                HANDLER_PROGRESS -> {
+                    val readBytes = bundle!!.getLong("progress", 0L)
+                    val contentLength = bundle.getLong("contentLength", 100L)
+                    downloadProgress?.progress = readBytes.toInt()
+                    downloadService?.updateNotification(readBytes.toInt(), contentLength.toInt())
+                }
+                HANDLER_DONE -> {
+                    downloadService?.setRunningStatus(false)
+                    UpdateShareUtils.saveIsShowDownload(mContext!!, false)
+                    this@BaseDownloadDialogFragment.dismiss()
+                    val file = File(FileUtils.getApkFilePath(mContext!!, mDownloadUrl))
+                    val intent = FileUtils.openApkFile(mContext!!, file)
+                    startActivity(intent)
                 }
             }
             return false
+        }
+    }
+
+    private inner class FileDownloadListenerImpl : FileDownloadListener {
+        var contentLength = 100L
+        override fun start() {
+            downloadService?.setRunningStatus(true)
+        }
+
+        override fun taskContent(contentLength: Long) {
+            val message = Message()
+            val bundle = Bundle()
+            bundle.putLong("contentLength", contentLength)
+            message.what = HANDLER_AMOUNT
+            message.data = bundle
+            downloadHandler.sendMessage(message)
+            this.contentLength = contentLength
+        }
+
+        override fun taskSpeed(speed: String?) {
+            val message = Message()
+            val bundle = Bundle()
+            bundle.putString("taskSpeed", speed)
+            message.what = HANDLER_SPEED
+            message.data = bundle
+            downloadHandler.sendMessage(message)
+        }
+
+        override fun progress(readBytes: Long) {
+            val message = Message()
+            val bundle = Bundle()
+            bundle.putLong("progress", readBytes)
+            bundle.putLong("contentLength", contentLength)
+            message.what = HANDLER_PROGRESS
+            message.data = bundle
+            downloadHandler.sendMessage(message)
+        }
+
+        override fun onError(error: String?) {
+            val message = Message()
+            val bundle = Bundle()
+            bundle.putString("error", error)
+            message.what = HANDLER_ERROR
+            message.data = bundle
+            downloadHandler.sendMessage(message)
+        }
+
+        override fun done() {
+            val message = Message()
+            val bundle = Bundle()
+            message.what = HANDLER_DONE
+            message.data = bundle
+            downloadHandler.sendMessage(message)
         }
     }
 }

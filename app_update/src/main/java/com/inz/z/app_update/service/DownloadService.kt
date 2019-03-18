@@ -2,6 +2,7 @@ package com.inz.z.app_update.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -10,8 +11,11 @@ import android.os.Build
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import com.inz.z.app_update.bean.Constants
+import com.inz.z.app_update.http.FileDownloadListener
+import com.inz.z.app_update.http.FileDownloadUtil
 import com.inz.z.app_update.utils.FileUtils
 import com.inz.z.app_update.utils.NotificationUtils
+import com.inz.z.app_update.utils.UpdateShareUtils
 import java.io.File
 
 /**
@@ -21,6 +25,10 @@ import java.io.File
  * Create by inz in 2019/3/13 9:00.
  */
 public class DownloadService : Service() {
+
+    companion object {
+        var isRunning = false
+    }
 
     private var mContext: Context? = null
     /**
@@ -40,6 +48,11 @@ public class DownloadService : Service() {
      */
     var mProgressListener: DownloadThread.ProgressListener? = null
     var downloadThread: DownloadThread? = null
+    /**
+     * 是否使用OkDownload
+     */
+    var useOkDownload = true
+    var mFileDownloadListener: FileDownloadListener? = null
 
 
     private val downloadBinder = DownloadBinder(this@DownloadService)
@@ -52,6 +65,7 @@ public class DownloadService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? {
         mContext = applicationContext
+        isRunning = true
         return downloadBinder
     }
 
@@ -62,25 +76,48 @@ public class DownloadService : Service() {
 
     override fun onUnbind(intent: Intent?): Boolean {
         stopSelf()
+        isRunning = false
         return super.onUnbind(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        isRunning = false
+        UpdateShareUtils.saveUpdateStatus(mContext!!, false)
     }
 
     /**
      * 开始下载
      */
     public fun startDownload(downloadUrl: String) {
+        UpdateShareUtils.saveUpdateStatus(mContext!!, true)
         filePath = FileUtils.getApkFilePath(mContext!!, downloadUrl)
-        downloadThread = DownloadThread(filePath, downloadUrl, DownloadListenerImpl())
-        downloadThread!!.start()
+        if (useOkDownload) {
+            Thread {
+                FileDownloadUtil.startDownloadFile(downloadUrl, filePath, mFileDownloadListener)
+            }.start()
+        } else {
+            downloadThread = DownloadThread(filePath, downloadUrl, DownloadListenerImpl())
+            downloadThread!!.start()
+        }
+    }
+
+    fun setRunningStatus(isRunning: Boolean) {
+        Companion.isRunning = isRunning
     }
 
     /**
      * 取消下载
      */
     public fun cancelDownload() {
-        if (downloadThread != null) {
-            downloadThread!!.interrupt()
-            downloadThread = null
+        UpdateShareUtils.saveUpdateStatus(mContext!!, false)
+        if (useOkDownload) {
+            FileDownloadUtil.cancelDownload()
+        } else {
+            if (downloadThread != null) {
+                downloadThread!!.interrupt()
+                downloadThread = null
+            }
         }
     }
 
@@ -93,7 +130,7 @@ public class DownloadService : Service() {
      * @param current 当前进度
      * @param count 总进度
      */
-    public fun updateNotification(current: Int, count: Int) {
+    fun updateNotification(current: Int, count: Int) {
         if (mBuilder == null) {
             showNotification(current, count)
             return
@@ -104,6 +141,17 @@ public class DownloadService : Service() {
             Constants.downloadServiceNotificationId,
             mBuilder!!.build()
         )
+        if (current >= count) {
+            val intent = FileUtils.openApkFile(mContext!!, File(filePath))
+            val pendingIntent =
+                PendingIntent.getActivity(
+                    mContext!!,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_CANCEL_CURRENT
+                )
+            mBuilder!!.setContentIntent(pendingIntent)
+        }
     }
 
     /**
@@ -156,12 +204,13 @@ public class DownloadService : Service() {
     private inner class DownloadListenerImpl : DownloadThread.ProgressListener {
         override fun update(bytesRead: Long, contentLength: Long, isDone: Boolean) {
             if (isDone) {
+                UpdateShareUtils.saveUpdateStatus(mContext!!, false)
                 // 下载完毕
                 if (notificationManager != null) {
                     cancelNotification()
                 }
                 if (isBackground) {
-                    startActivity(FileUtils.openApkFile(mContext!!, File(filePath)))
+//                    startActivity(FileUtils.openApkFile(mContext!!, File(filePath)))
                 }
             } else {
                 if (isBackground) {

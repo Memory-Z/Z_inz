@@ -19,6 +19,7 @@ class Constants {
         const val IS_SHOW_BACKGROUND_DOWNLOAD = "is_show_background_download"
         const val DOWNLOAD_URL = "download_url";
         const val MUST_UPDATE = "must_update"
+        const val USE_OK_DOWNLOAD = "use_ok_download"
     }
 
 

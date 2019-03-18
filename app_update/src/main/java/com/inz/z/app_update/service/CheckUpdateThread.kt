@@ -3,6 +3,7 @@ package com.inz.z.app_update.service
 import android.content.Context
 import com.inz.z.app_update.bean.VersionBean
 import com.inz.z.app_update.utils.PackageUtils
+import com.inz.z.app_update.utils.UpdateShareUtils
 import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataOutputStream
@@ -111,6 +112,15 @@ public class CheckUpdateThread(
     }
 
     private fun hasNewVersion(old: Int, n: Int): Boolean {
+        // 获取是否跳过
+        val isSkip = UpdateShareUtils.getIsSkip(mContext!!)
+        // 获取跳过版本
+        val skipVersionCode = UpdateShareUtils.getSkipVersion(mContext!!)
+
+        if (isSkip && n == skipVersionCode) {
+            // 如果跳过。且更新版本与跳过版本一致。返回 无新版
+            return false
+        }
         return old < n
     }
 

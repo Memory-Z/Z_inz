@@ -1,6 +1,7 @@
 package com.inz.z.app_update
 
 import android.content.Context
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.support.annotation.DrawableRes
@@ -9,10 +10,15 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import com.inz.z.app_update.bean.VersionBean
 import com.inz.z.app_update.service.CheckUpdateThread
+import com.inz.z.app_update.service.DownloadService
+import com.inz.z.app_update.utils.FileUtils
 import com.inz.z.app_update.utils.NetUtils
 import com.inz.z.app_update.utils.ToastUtils
+import com.inz.z.app_update.utils.UpdateShareUtils
 import com.inz.z.app_update.view.AppUpdateDialogFragment
 import com.inz.z.app_update.view.BaseDownloadDialogFragment
+import com.inz.z.app_update.view.BaseUpdateDialogFragment
+import java.io.File
 
 /**
  *
@@ -21,7 +27,14 @@ import com.inz.z.app_update.view.BaseDownloadDialogFragment
  * @version 1.0.0
  * Create by inz in 2019/3/13 11:39.
  */
-class UpdateWrapper {
+class UpdateWrapper() {
+
+    companion object {
+        /**
+         * 是否检测 过更新
+         */
+        var isCheckedUpdate = false
+    }
 
     var mContext: Context? = null
     var mActivity: AppCompatActivity? = null
@@ -41,6 +54,21 @@ class UpdateWrapper {
 
 
     fun start() {
+        val apkIsDownload = UpdateShareUtils.getDownloadApk(mContext!!)
+        val apkIsInstall = UpdateShareUtils.getInstallApk(mContext!!)
+        if (apkIsDownload && !apkIsInstall) {
+            val file = File(FileUtils.getApkFilePath(mContext!!, mUrl))
+            val intent = Intent(FileUtils.openApkFile(mContext!!, file))
+            mContext?.startActivity(intent)
+            return
+        }
+        val updateTime = UpdateShareUtils.getUpdateTime(mContext!!)
+        val currentTime = System.currentTimeMillis()
+        if (isCheckedUpdate || currentTime - updateTime < mTime) {
+            return
+        }
+        isCheckedUpdate = true
+        UpdateShareUtils.saveUpdateTime(mContext!!, currentTime)
         if (!NetUtils.getNetworkStatus(mContext!!)) {
             if (mIsShowNetworkErrorToast) {
                 ToastUtils.show(mContext!!, R.string.app_update_lib_default_toast)
@@ -49,8 +77,36 @@ class UpdateWrapper {
         }
         if (TextUtils.isEmpty(mUrl)) {
             throw RuntimeException("url not be null")
+        } else if (!checkUpdateStatus()) {
+            if (checkUpdateThread == null) {
+                checkUpdateThread = CheckUpdateThread(
+                    mUrl,
+                    mContext!!,
+                    mIsPost,
+                    mPostParams,
+                    cUpdateCallback
+                )
+            }
+            checkUpdateThread?.start()
         }
-        CheckUpdateThread(mUrl, mContext!!, mIsPost, mPostParams, CheckUpdateCallbackImpl()).start()
+    }
+
+    private val cUpdateCallback = CheckUpdateCallbackImpl()
+    private var checkUpdateThread: CheckUpdateThread? = null
+
+    /**
+     * 获取更新状态
+     */
+    private fun checkUpdateStatus(): Boolean {
+        var flag = false
+        val isShowUpdate = UpdateShareUtils.getIsShowUpdate(mContext!!)
+        val isShowDownload = UpdateShareUtils.getIsShowDownload(mContext!!)
+        val isDownload = DownloadService.isRunning
+        if (isShowUpdate || isShowDownload || isDownload) {
+            // 如果当前状态为 显示更新框、 显示下载框、正在下载
+            flag = true
+        }
+        return flag
     }
 
     /**
@@ -124,22 +180,30 @@ class UpdateWrapper {
         }
     }
 
+    private var updateDialogFragment: BaseUpdateDialogFragment? = null
+
     /**
      * 显示更新提示
      */
     fun showUpdateDialog(activity: AppCompatActivity, versionBean: VersionBean) {
-        val updateDialogFragment =
-            AppUpdateDialogFragment.newInstance(
-                versionBean,
-                notificationIcon!!,
-                mToastMsg,
-                mIsShowToast,
-                false
-            )
-        if (mDownloadFragment != null) {
-            updateDialogFragment.setDownloadFragment(mDownloadFragment!!)
+        if (updateDialogFragment == null) {
+            updateDialogFragment =
+                AppUpdateDialogFragment.newInstance(
+                    versionBean,
+                    notificationIcon!!,
+                    mToastMsg,
+                    mIsShowToast,
+                    false,
+                    true
+                )
         }
-        updateDialogFragment.show(activity.supportFragmentManager, "BaseUpdateDialogFragment")
+        if (mDownloadFragment != null) {
+            updateDialogFragment?.setDownloadFragment(mDownloadFragment!!)
+        }
+        if (!updateDialogFragment!!.isShowUpdateFragment) {
+            UpdateShareUtils.saveIsShowUpdate(mContext!!, true)
+            updateDialogFragment?.show(activity.supportFragmentManager, "BaseUpdateDialogFragment")
+        }
     }
 
 

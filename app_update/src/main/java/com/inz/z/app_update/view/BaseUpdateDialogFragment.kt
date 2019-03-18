@@ -6,9 +6,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.inz.z.app_update.R
+import com.inz.z.app_update.bean.Constants
 import com.inz.z.app_update.bean.VersionBean
 import com.inz.z.app_update.utils.NetUtils
-import java.lang.StringBuilder
+import com.inz.z.app_update.utils.UpdateShareUtils
 
 /**
  * 基础检测更新弹窗
@@ -17,13 +18,19 @@ import java.lang.StringBuilder
  * @version 1.0.0
  * Create by inz in 2019/3/14 9:27.
  */
-abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment() {
+public abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment() {
+
+    /**
+     * 是否显示更新
+     */
+    public var isShowUpdateFragment = false
 
     protected var mVersionBean: VersionBean? = null
     protected var mToastMsg = ""
     protected var mIsShowToast = false
     protected var mNotificationIcon: Int? = null
     protected var mMustUpdate = false
+    protected var mUseOkDownload = true
 
     protected var updateBtn: Button? = null
     protected var cancelBtn: Button? = null
@@ -54,6 +61,7 @@ abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment() {
         contentTv = mView!!.findViewById(getContentId())
         contentTv?.text = getUpdateContent()
         updateBtn!!.setOnClickListener {
+            UpdateShareUtils.saveIsShowUpdate(mContext!!, false)
             update()
         }
         cancelBtn!!.setOnClickListener {
@@ -61,11 +69,23 @@ abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val bundle = arguments
+        mVersionBean = bundle!!.getSerializable(Constants.MODEL) as VersionBean?
+        mToastMsg = bundle.getString(Constants.TOAST_MSG, "")
+        mIsShowToast = bundle.getBoolean(Constants.IS_SHOW_TOAST_MSG, false)
+        mNotificationIcon = bundle.getInt(Constants.NOTIFICATION_ICON)
+        mMustUpdate = bundle.getBoolean(Constants.MUST_UPDATE, false)
+        mUseOkDownload = bundle.getBoolean(Constants.USE_OK_DOWNLOAD, true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (mNotificationIcon == null) {
             mNotificationIcon = mContext!!.applicationInfo.icon
         }
+        isShowUpdateFragment = true;
     }
 
     /**
@@ -79,13 +99,16 @@ abstract class BaseUpdateDialogFragment : AbsBaseDialogFragment() {
             downloadDialogFragment = AppDownloadDialogFragment.newInstance(
                 mVersionBean!!.url,
                 mNotificationIcon!!,
-                mMustUpdate
+                mMustUpdate,
+                mUseOkDownload
             )
         }
+        UpdateShareUtils.saveIsShowDownload(mContext!!, true)
         downloadDialogFragment?.show(
             activity!!.supportFragmentManager,
             "BaseDownloadDialogFragment"
         )
+        UpdateShareUtils.saveIsShowUpdate(mContext!!, false)
         this.dismiss()
     }
 

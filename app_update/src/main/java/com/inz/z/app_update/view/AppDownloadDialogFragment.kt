@@ -36,24 +36,20 @@ class AppDownloadDialogFragment : BaseDownloadDialogFragment() {
 
     companion object {
         fun newInstance(
-            downloadUrl: String, @DrawableRes notificationIcon: Int,
-            mustUpdate: Boolean
+            downloadUrl: String,
+            @DrawableRes notificationIcon: Int,
+            mustUpdate: Boolean,
+            userOkDownload: Boolean
         ): BaseDownloadDialogFragment {
             val bundle = Bundle()
             bundle.putString(Constants.DOWNLOAD_URL, downloadUrl)
             bundle.putInt(Constants.NOTIFICATION_ICON, notificationIcon)
             bundle.putBoolean(Constants.MUST_UPDATE, mustUpdate)
+            bundle.putBoolean(Constants.USE_OK_DOWNLOAD, userOkDownload)
             val downloadDialogFragment = AppDownloadDialogFragment()
             downloadDialogFragment.arguments = bundle
             return downloadDialogFragment
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val bundle = arguments
-        mDownloadUrl = bundle!!.getString(Constants.DOWNLOAD_URL, "")
-        mNotificationIcon = bundle.getInt(Constants.NOTIFICATION_ICON)
-        mMustUpdate = bundle.getBoolean(Constants.MUST_UPDATE, false)
-    }
 }

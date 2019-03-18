@@ -12,7 +12,7 @@ import java.net.URL
  * Create by inz in 2019/3/9 10:15.
  */
 public class DownloadThread(
-    var mFilePath: String?,
+    private var mFilePath: String?,
     var mDownloadUrl: String?,
     var mProgressListener: ProgressListener?
 ) : Thread() {

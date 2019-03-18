@@ -40,7 +40,8 @@ class AppUpdateDialogFragment : BaseUpdateDialogFragment() {
             @DrawableRes notificationIcon: Int,
             toastMsg: String,
             isShowToast: Boolean,
-            isMustUpdate: Boolean
+            isMustUpdate: Boolean,
+            useOkDownload: Boolean
         ): AppUpdateDialogFragment {
             val bundle = Bundle()
             bundle.putSerializable(Constants.MODEL, versionBean)
@@ -48,19 +49,11 @@ class AppUpdateDialogFragment : BaseUpdateDialogFragment() {
             bundle.putBoolean(Constants.IS_SHOW_TOAST_MSG, isShowToast)
             bundle.putInt(Constants.NOTIFICATION_ICON, notificationIcon)
             bundle.putBoolean(Constants.MUST_UPDATE, isMustUpdate)
+            bundle.putBoolean(Constants.USE_OK_DOWNLOAD, useOkDownload)
             val appUpdateDialogFragment = AppUpdateDialogFragment()
             appUpdateDialogFragment.arguments = bundle
             return appUpdateDialogFragment
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val bundle = arguments
-        mVersionBean = bundle!!.getSerializable(Constants.MODEL) as VersionBean?
-        mToastMsg = bundle.getString(Constants.TOAST_MSG, "")
-        mIsShowToast = bundle.getBoolean(Constants.IS_SHOW_TOAST_MSG, false)
-        mNotificationIcon = bundle.getInt(Constants.NOTIFICATION_ICON)
-        mMustUpdate = bundle.getBoolean(Constants.MUST_UPDATE, false)
-    }
 }
