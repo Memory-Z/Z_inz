@@ -10,7 +10,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0.0"
+        versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -115,6 +115,9 @@ dependencies {
     implementation('com.haibin:calendarview:3.5.4') {
         exclude group: 'com.android.support'
     }
+
+    // 阿里云 热修复
+    implementation('com.aliyun.ams:alicloud-android-hotfix:3.2.6')
 }
 repositories {
     mavenCentral()

@@ -24,6 +24,8 @@ allprojects {
 //        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.google.com' }
+        // 阿里云
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/releases" }
     }
 }
 

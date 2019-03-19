@@ -129,24 +129,6 @@ class UpdateShareUtils {
         }
 
         /**
-         * 保存APK 文件是否 安装
-         */
-        fun saveInstallApk(context: Context, isInstall: Boolean) {
-            val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
-            val edit = sp.edit()
-            edit.putBoolean("isInstall", isInstall)
-            edit.apply()
-        }
-
-        /**
-         * 获取是否安装APK: 默认已安装
-         */
-        fun getInstallApk(context: Context): Boolean {
-            val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
-            return sp.getBoolean("isInstall", true)
-        }
-
-        /**
          * 保存APK 文件是否已下载
          */
         fun saveDownloadApk(context: Context, isDownload: Boolean) {
@@ -162,6 +144,43 @@ class UpdateShareUtils {
         fun getDownloadApk(context: Context): Boolean {
             val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
             return sp.getBoolean("isDownload", false)
+        }
+
+        /**
+         * 保存下载Apk 版本
+         */
+        fun saveDownloadApkVersion(context: Context, versionCode: Int) {
+            val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
+            val edit = sp.edit()
+            edit.putInt("downloadVersionCode", versionCode)
+            edit.apply()
+        }
+
+        /**
+         * 获取下载的 Apk 版本
+         */
+        fun getDownloadApkVersion(context: Context): Int {
+            val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
+            return sp.getInt("downloadVersionCode", 0)
+        }
+
+        /**
+         * 保存是否稍后安装
+         * @param isLater 是否延迟
+         */
+        fun saveLaterInstallApk(context: Context, isLater: Boolean) {
+            val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
+            val edit = sp.edit()
+            edit.putBoolean("isLaterInstallApk", isLater)
+            edit.apply()
+        }
+
+        /**
+         * 获取是否稍后安装
+         */
+        fun getLaterInstallApk(context: Context): Boolean {
+            val sp = context.getSharedPreferences(APP_UPDATE_SP, Context.MODE_PRIVATE)
+            return sp.getBoolean("isLaterInstallApk", false)
         }
     }
 

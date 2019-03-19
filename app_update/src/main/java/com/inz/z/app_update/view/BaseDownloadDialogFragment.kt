@@ -57,17 +57,19 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
     protected abstract fun getProgressId(): Int
 
     override fun initView() {
+        dialog.setCancelable(false)
         stopBtn = mView!!.findViewById(getStopId())
         backgroundBtn = mView!!.findViewById(getBackgroundId())
         downloadProgress = mView!!.findViewById(getProgressId())
         stopBtn?.setOnClickListener {
             stopTask()
         }
-        stopBtn?.visibility = View.VISIBLE
+        stopBtn?.visibility = View.INVISIBLE
         backgroundBtn?.setOnClickListener {
             mIsShowBackgroundDownload = true
             backgroundTask()
-            downloadHandler.removeCallbacksAndMessages(null)
+            downloadHandler?.removeCallbacksAndMessages(progressCallback)
+            downloadHandler = null
             UpdateShareUtils.saveIsShowDownload(mContext!!, false)
             this@BaseDownloadDialogFragment.dismiss()
         }
@@ -95,7 +97,8 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
         if (!mIsShowBackgroundDownload) {
             cancelTask()
         }
-        downloadHandler.removeCallbacksAndMessages(null)
+        downloadHandler?.removeCallbacksAndMessages(progressCallback)
+        downloadHandler = null
     }
 
     /**
@@ -172,7 +175,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             val message = Message()
             message.what = HANDLER_UPDATE
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
         }
 
         override fun onError(e: Exception) {
@@ -181,7 +184,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             val message = Message()
             message.what = HANDLER_ERROR
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
         }
     }
 
@@ -196,7 +199,8 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
         private const val HANDLER_DONE = 0x10005
     }
 
-    private var downloadHandler = Handler(DownloadHandlerCallback())
+    private var progressCallback = DownloadHandlerCallback()
+    private var downloadHandler: Handler? = Handler(progressCallback)
 
     /**
      * Handler 处理
@@ -273,7 +277,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             bundle.putLong("contentLength", contentLength)
             message.what = HANDLER_AMOUNT
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
             this.contentLength = contentLength
         }
 
@@ -283,7 +287,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             bundle.putString("taskSpeed", speed)
             message.what = HANDLER_SPEED
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
         }
 
         override fun progress(readBytes: Long) {
@@ -293,7 +297,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             bundle.putLong("contentLength", contentLength)
             message.what = HANDLER_PROGRESS
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
         }
 
         override fun onError(error: String?) {
@@ -302,7 +306,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             bundle.putString("error", error)
             message.what = HANDLER_ERROR
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
         }
 
         override fun done() {
@@ -310,7 +314,7 @@ abstract class BaseDownloadDialogFragment : AbsBaseDialogFragment() {
             val bundle = Bundle()
             message.what = HANDLER_DONE
             message.data = bundle
-            downloadHandler.sendMessage(message)
+            downloadHandler?.sendMessage(message)
         }
     }
 }

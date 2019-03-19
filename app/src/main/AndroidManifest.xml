@@ -6,16 +6,29 @@
     <!-- 网络 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 存储 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 存储 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 安装 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 安装 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    <uses-permission-sdk-23 android:name="android.permission.INSTALL_PACKAGES" /> <!-- 日程 -->
+    <uses-permission-sdk-23 android:name="android.permission.INSTALL_PACKAGES" />
+
+    <!-- 日程 -->
     <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" /> <!-- 闹铃 -->
-    <uses-permission android:name="android.permission.SET_ALARM" /> <!-- 允许程序开机自启 RECEIVE_BOOT_COMPLETED -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 允许程序重新启动 REBOOT -->
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+    <!-- 闹铃 -->
+    <uses-permission android:name="android.permission.SET_ALARM" />
+
+    <!-- 允许程序开机自启 RECEIVE_BOOT_COMPLETED -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- 允许程序重新启动 REBOOT -->
     <uses-permission-sdk-23 android:name="android.permission.REBOOT" />
 
     <application
@@ -36,6 +49,18 @@
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
 
+        <!-- 阿里云 数据配置  Start -->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="25844476" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="c9e9e4da4b8b6e79e6fabb48d38d14ad" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCRs+ThGYdjyDyk+A7cygd4MlVLoVnboTlXj1rRk9xbF9IvpYGEl6m2r0YGoEHsGcu08XwOfcaoXJchMi2+DSMSgpJ7PxL74YjNUsYNAEttRrVyCBdjv5y9OhI4lhrovIBuNMXqF4d+wYZ0XvXfoHIwdxNPq4uMu6tf+g2C3FLSt/U5FU9YYljtymgihJPaxksdYkrYcbYjICysBl1t6St30DWj/z91tdE/8k9xJX9gUdKrUG/AzI993aHkE3zzUHzP4iQy1lFgRMXSKAroFYUHIoGcbGPMQlR7Os1uN6GychRKlrqLfz/+Ft2Q6rmrtaeBkUQAE4GvMih94RdcqAepAgMBAAECggEABI4sTMFgk0USaFH9HPgQDbj9I7UyuwQqZ8tqmnzV+d8fyi+RghS/0J9gQBrIlNolnU2jhEx4ZpEmhHouJfABNbXxYHsTW96sSUcaPBPTR+JbD+qi2JKIEv56zVwcEUS7ezaZLX141gS08HR7mXdJuqwuZWJGparEa+bEf1/mEwJzQC6TqKCwk8Fv2wWEvzz79l00NPmO1lXIkNPk9ge9yFhaT/M3BQ1aC5e4BYdgKxPF/ItY1/LRDNDL/jWDWlno0lt8n5Xj1ldP3lAsP9UUoy7vt72usw0FA5tkPAlPewwNUSHrkqK2mP/Nsvpin7/LU2xUizCk1pMsKqc3hmjHxQKBgQDShHJJ0RlXhl0iEdeGiMSAyuSnSR+kacsM4ddMc4ns197dt12ObML5O14lT7rfWMzXjw6U1fNTHeaNehXe82DEJedGRlKxtj8ISDPYd/BKCOHX8sxE75bmdazxI3/UH2b1RV4k7i6wjJnes1NYFYX7w9E9Ep4G+UXgBADsKFY3owKBgQCxLplL1/PFgKmq9WR9y7ssuws/lhi+5xuKKVRzEIX/xQhgAe4ocXnkBNutiRD07mn8cex5LZvEGsSg2D+jw47fPJ6qEK6swP4XyqrJnRUN+26nFEX8CY7PhVDo+3BF+I1jFs7MRLJ7vSazTgagagfOUnhw7482l2/AUHkSY2IoQwKBgEY7OYW25KV2hgufuC+B4Uy2Y6ILmyrWwI8DqTgwM4t4WTnOur+ROVq8m6QG/WkVzwD7EPpGhm7sQsZgPHus5lOJ8aZYP65aBp1UuTc2jEumuvG4Zr140PcBuziXh0XVVBvvkIDxlVIBFjRdzyhLxe9AXMXrOB1LfCxIKaafrmPRAoGBAJPi7ibEx/5IhtVf3xG0c7VBJYFcWak1ouHt30PvPbkfDv97fPoaxP9SIr20kwes25/Owu7d546GPSp3dJ7OwjiIE3KlW/ZrW2omSejgCMvT2ibwn/1fSOjjQIZGIA73B6P2TINor4TieyPb82H/Piay5T52ZZXOToM5Z+S2OR6bAoGBAL3F5dHv4rPg/J3DaOsIiGLKsf9oTIZ2dNzzB7jpq6ORf7kbrg6aAuVWfkYn2HqXpU8MAUCEYB9rWQcoMlTV0z1MS1cIW3PQ7MjpfALwd9o/jgVsFQgbzcWXzC7j/7J4ClKyS+JPnuZKjs1NJPuBAYDJ674KYu822ojCtvz91cXk" />
+        <!-- 阿里云 数据配置  End -->
+
 
         <!-- 闪屏 -->
         <activity android:name=".view.activity.SplashActivity">
@@ -49,8 +74,8 @@
         <!-- 主界面 -->
         <activity
             android:name=".view.activity.MainActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
@@ -90,13 +115,13 @@
         </activity>
 
         <!--<provider-->
-            <!--android:name="android.support.v4.content.FileProvider"-->
-            <!--android:authorities="com.inz.z.provider"-->
-            <!--android:exported="false"-->
-            <!--android:grantUriPermissions="true">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-                <!--android:resource="@xml/app_update_provider_paths" />-->
+        <!--android:name="android.support.v4.content.FileProvider"-->
+        <!--android:authorities="com.inz.z.provider"-->
+        <!--android:exported="false"-->
+        <!--android:grantUriPermissions="true">-->
+        <!--<meta-data-->
+        <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+        <!--android:resource="@xml/app_update_provider_paths" />-->
         <!--</provider>-->
 
         <receiver android:name=".view.appwidget.ImageAppWidgetProvider">

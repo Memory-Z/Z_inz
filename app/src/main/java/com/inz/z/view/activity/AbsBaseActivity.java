@@ -34,7 +34,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
     /**
      * 上下文
      */
-    Context mContext;
+    protected Context mContext;
 
     private Dialog loadDialog;
 
@@ -57,17 +57,17 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
      *
      * @param savedInstanceState Data
      */
-    public abstract void onCreateZ(@Nullable Bundle savedInstanceState);
+    protected abstract void onCreateZ(@Nullable Bundle savedInstanceState);
 
     /**
      * 初始化界面
      */
-    public abstract void initView();
+    protected abstract void initView();
 
     /**
      * 初始化数据
      */
-    public abstract void initData();
+    protected abstract void initData();
 
     /* / -- IBaseView - Start -- / */
     @Override

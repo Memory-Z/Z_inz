@@ -94,7 +94,7 @@ public class DownloadService : Service() {
         filePath = FileUtils.getApkFilePath(mContext!!, downloadUrl)
         if (useOkDownload) {
             Thread {
-                FileDownloadUtil.startDownloadFile(downloadUrl, filePath, mFileDownloadListener)
+                FileDownloadUtil.startDownloadFile(downloadUrl, filePath, fileDownloadListener)
             }.start()
         } else {
             downloadThread = DownloadThread(filePath, downloadUrl, DownloadListenerImpl())
@@ -210,8 +210,9 @@ public class DownloadService : Service() {
                     cancelNotification()
                 }
                 if (isBackground) {
-//                    startActivity(FileUtils.openApkFile(mContext!!, File(filePath)))
+                    startActivity(FileUtils.openApkFile(mContext!!, File(filePath)))
                 }
+                UpdateShareUtils.saveDownloadApk(mContext!!, true)
             } else {
                 if (isBackground) {
                     updateNotification(bytesRead.toInt(), contentLength.toInt())
@@ -228,6 +229,45 @@ public class DownloadService : Service() {
             }
             if (mProgressListener != null) {
                 mProgressListener!!.onError(e)
+            }
+        }
+    }
+
+    /**
+     * 文件下载监听
+     */
+    private val fileDownloadListener = FileDownloadListenerImpl();
+
+    /**
+     * 文件下载监听
+     */
+    private inner class FileDownloadListenerImpl : FileDownloadListener {
+        override fun start() {
+            UpdateShareUtils.saveDownloadApk(mContext!!, false)
+            mFileDownloadListener?.start()
+        }
+
+        override fun taskContent(contentLength: Long) {
+            mFileDownloadListener?.taskContent(contentLength)
+        }
+
+        override fun taskSpeed(speed: String?) {
+            mFileDownloadListener?.taskSpeed(speed)
+        }
+
+        override fun progress(readBytes: Long) {
+            mFileDownloadListener?.progress(readBytes)
+        }
+
+        override fun onError(error: String?) {
+            mFileDownloadListener?.onError(error)
+        }
+
+        override fun done() {
+            UpdateShareUtils.saveDownloadApk(mContext!!, true)
+            mFileDownloadListener?.done()
+            if (isBackground) {
+                startActivity(FileUtils.openApkFile(mContext!!, File(filePath)))
             }
         }
     }

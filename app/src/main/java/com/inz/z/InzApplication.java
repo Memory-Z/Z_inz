@@ -14,6 +14,7 @@ import com.inz.z.util.Tools;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
+import com.taobao.sophix.SophixManager;
 
 import java.text.SimpleDateFormat;
 
@@ -46,6 +47,11 @@ public class InzApplication extends Application {
         // 初始化 SharePreferences
         SPHelper.getInstance().initSharedPreferences(mContext);
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
+
+        // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
+//        if (!BuildConfig.DEBUG) {
+//            SophixManager.getInstance().queryAndLoadNewPatch();
+//        }
     }
 
     /**

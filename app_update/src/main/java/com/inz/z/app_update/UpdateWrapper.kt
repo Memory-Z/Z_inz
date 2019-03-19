@@ -54,14 +54,6 @@ class UpdateWrapper() {
 
 
     fun start() {
-        val apkIsDownload = UpdateShareUtils.getDownloadApk(mContext!!)
-        val apkIsInstall = UpdateShareUtils.getInstallApk(mContext!!)
-        if (apkIsDownload && !apkIsInstall) {
-            val file = File(FileUtils.getApkFilePath(mContext!!, mUrl))
-            val intent = Intent(FileUtils.openApkFile(mContext!!, file))
-            mContext?.startActivity(intent)
-            return
-        }
         val updateTime = UpdateShareUtils.getUpdateTime(mContext!!)
         val currentTime = System.currentTimeMillis()
         if (isCheckedUpdate || currentTime - updateTime < mTime) {
@@ -212,6 +204,7 @@ class UpdateWrapper() {
      */
     inner class CheckUpdateCallbackImpl : CheckUpdateThread.CallBack {
         override fun callBack(versionBean: VersionBean?, hasNewVersion: Boolean) {
+            val newVersionCode = versionBean?.versionCode
             if (versionBean == null) {
                 mHandler.post(Runnable {
                     kotlin.run {
@@ -232,7 +225,17 @@ class UpdateWrapper() {
                 checkUpdateCallback!!.callBack(versionBean, hasNewVersion)
             }
             if (hasNewVersion || mIsShowToast) {
+                val apkIsDownload = UpdateShareUtils.getDownloadApk(mContext!!)
+                val downloadVersionCode = UpdateShareUtils.getDownloadApkVersion(mContext!!)
+
+                if (apkIsDownload && newVersionCode == downloadVersionCode) {
+                    val file = File(FileUtils.getApkFilePath(mContext!!, mUrl))
+                    val intent = Intent(FileUtils.openApkFile(mContext!!, file))
+                    mContext?.startActivity(intent)
+                    return
+                }
 //                startToActivity(mContext!!, versionBean)
+                UpdateShareUtils.saveDownloadApkVersion(mContext!!, newVersionCode!!)
                 showUpdateDialog(mActivity!!, versionBean)
             }
         }

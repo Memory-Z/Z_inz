@@ -6,9 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_update_dialog"
-        android:minWidth="360dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,35 +26,40 @@
             android:textColor="#323232"
             android:textSize="20sp" />
 
-        <ProgressBar
-            android:id="@+id/app_update_fragment_download_pb"
-            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        <LinearLayout
+            android:id="@+id/app_update_fragment_download_content_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/app_update_fragment_download_bottom_ll"
             android:layout_below="@id/app_update_fragment_download_title_tv"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:minHeight="4dp" />
+            android:gravity="center"
+            android:minHeight="48dp">
+
+            <ProgressBar
+                android:id="@+id/app_update_fragment_download_pb"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:minHeight="4dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/app_update_fragment_download_bottom_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
+            android:layout_below="@id/app_update_fragment_download_content_ll"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/app_update_fragment_stop_download_btn"
                 style="@style/Base.Widget.AppCompat.Button"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_update_dialog_left_btn"
                 android:gravity="center"
-                android:minHeight="48dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/update_lib_stop_download"
@@ -66,12 +70,11 @@
                 android:id="@+id/app_update_fragment_background_download_btn"
                 style="@style/Base.Widget.AppCompat.Button"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
                 android:layout_marginStart="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_update_dialog_right_btn"
                 android:gravity="center"
-                android:minHeight="48dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/update_lib_background_download"
