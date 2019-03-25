@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Gradle 3.0 以上 需要 dimension
+        flavorDimensions "app", "tiw"
     }
     buildTypes {
         release {
@@ -21,6 +24,16 @@ android {
     }
     dataBinding {
         enabled true
+    }
+
+    productFlavors {
+        app {
+            dimension "app"
+        }
+
+        tiw {
+            dimension "tiw"
+        }
     }
 }
 

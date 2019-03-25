@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tiw_action_title">tiw_action_title</string>
+    <string name="tiw_action_left_image">tiw_action_left_image</string>
+    <string name="tiw_action_right_image" >tiw_action_right_image</string>
+</resources>
