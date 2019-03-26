@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/tiw_item_base_food_rl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/tiw_item_base_food_left_civ"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:civ_border_overlay="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/guodong_zhao_5"
+            app:civ_border_width="120dp" />
+
+        <RelativeLayout
+            android:id="@+id/tiw_item_base_food_right_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tiw_item_base_food_left_civ"
+            android:layout_alignBottom="@id/tiw_item_base_food_left_civ"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/tiw_item_base_food_left_civ"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tiw_item_base_food_right_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="玉米"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/tiw_item_base_food_right_bottom_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+
+                    android:text="Buy" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tiw_item_base_food_right_detail_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tiw_item_base_food_right_bottom_ll"
+                android:layout_below="@id/tiw_item_base_food_right_name_tv"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="蔬菜"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

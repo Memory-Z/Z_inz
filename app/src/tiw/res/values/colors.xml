@@ -2,4 +2,8 @@
 <resources>
     <color name="tiw_action">#EFEFEF</color>
     <color name="tiw_action_title">#696969</color>
+    <color name="tiw_main">#6A534D</color>
+    <color name="tiw_second">#996651</color>
+    <color name="tiw_gray">#E0DCDB</color>
+    <color name="tiw_icon_color">#E5E0DD</color>
 </resources>

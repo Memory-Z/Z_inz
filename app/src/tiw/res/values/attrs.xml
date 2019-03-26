@@ -15,7 +15,13 @@
         <attr name="tiw_action_center_view_show" format="boolean" />
         <!-- ActionBar 颜色 -->
         <attr name="tiw_action_color" format="color|integer|reference" />
-        /<!-- 中间文字 -->
+        <!-- 中间文字 -->
         <attr name="tiw_action_center_title" format="string" />
+        <!-- 中间文字对其方式 -->
+        <attr name="tiw_action_center_title_align" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
     </declare-styleable>
 </resources>

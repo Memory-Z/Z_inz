@@ -27,7 +27,6 @@ android {
     }
 
     productFlavors {
-
         tiw {
             dimension "tiw"
         }
@@ -127,7 +126,7 @@ dependencies {
     }
 
     // 阿里云 热修复
-    implementation('com.aliyun.ams:alicloud-android-hotfix:3.2.6')
+    implementation 'com.aliyun.ams:alicloud-android-hotfix:3.2.6'
 }
 repositories {
     mavenCentral()

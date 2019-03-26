@@ -2,18 +2,94 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/tiw_gray">
 
     <com.inz.z.view.widget.TiwActionLayout
         android:id="@+id/tiw_base_tal"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
+        android:background="@color/tiw_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tiw_action_center_title="9090909"
+        app:tiw_action_center_title_align="center"
         app:tiw_action_color="@color/transparent">
 
     </com.inz.z.view.widget.TiwActionLayout>
+
+    <ScrollView
+        android:id="@+id/tiw_base_content_sv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tiw_base_tal">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/tiw_base_content_main_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:id="@+id/tiw_base_main_top_hor_sv"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/tiw_base_main_top_hor_content_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
+
+                    <TextView
+                        android:id="@+id/tiw_base_main_top_hor_ll_base_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tiw_bg_tab_selector"
+                        android:gravity="center"
+                        android:text="12"
+                        android:textColor="@drawable/tiw_bg_tab_text_selector"
+                        android:textIsSelectable="true"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/tiw_base_content_main_srl"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tiw_base_main_top_hor_sv">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/tiw_base_content_main_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
 
 </android.support.constraint.ConstraintLayout>
