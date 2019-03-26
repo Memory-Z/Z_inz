@@ -41,9 +41,13 @@ public class LoginActivity extends AbsBaseActivity implements ILoginView {
     private DialogFragment thirdDialogFragment;
 
     @Override
-    public void onCreateZ(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_login);
-        mContext = this;
+    protected void initWindow() {
+
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_login;
     }
 
     @Override

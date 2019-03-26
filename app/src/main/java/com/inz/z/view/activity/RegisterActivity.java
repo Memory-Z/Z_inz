@@ -38,11 +38,13 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView, 
     private String userId;
 
     @Override
-    public void onCreateZ(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_register);
-        mContext = this;
-        registerPresenter = new RegisterPresenter();
-        registerPresenter.attachView(this);
+    protected void initWindow() {
+
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_register;
     }
 
     @Override
@@ -59,6 +61,8 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView, 
 
     @Override
     public void initView() {
+        registerPresenter = new RegisterPresenter();
+        registerPresenter.attachView(this);
         userNameEt = findViewById(R.id.register_user_name_et);
         userPasswordEt = findViewById(R.id.register_user_password_et);
         // 第三方登录按钮

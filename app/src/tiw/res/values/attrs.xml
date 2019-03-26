@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TiwActionLayout">
+        <!-- 左侧图标 -->
+        <attr name="tiw_action_left_icon_id" format="integer" />
+        <!-- 是否显示左侧图标 -->
+        <attr name="tiw_action_left_icon_show" format="boolean" />
+        <!-- 右侧图标 -->
+        <attr name="tiw_action_right_icon_id" format="integer" />
+        <!-- 是否显示右侧图标 -->
+        <attr name="tiw_action_right_icon_show" format="boolean" />
+        <!-- 中间View -->
+        <attr name="tiw_action_center_view_id" format="integer" />
+        <!-- 是否显示中间视图 -->
+        <attr name="tiw_action_center_view_show" format="boolean" />
+        <!-- ActionBar 颜色 -->
+        <attr name="tiw_action_color" format="color|integer|reference" />
+        /<!-- 中间文字 -->
+        <attr name="tiw_action_center_title" format="string" />
+    </declare-styleable>
+</resources>

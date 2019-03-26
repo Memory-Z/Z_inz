@@ -31,11 +31,14 @@ public class SplashActivity extends AbsBaseActivity {
     private CountDownTimer countDownTimer;
 
     @Override
-    public void onCreateZ(@Nullable Bundle savedInstanceState) {
+    protected void initWindow() {
         // 隐藏状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash);
-        mContext = this;
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_splash;
     }
 
     @Override

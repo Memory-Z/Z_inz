@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // Gradle 3.0 以上 需要 dimension
-        flavorDimensions "app", "tiw"
+        flavorDimensions "tiw"
     }
     buildTypes {
         release {
@@ -27,9 +27,6 @@ android {
     }
 
     productFlavors {
-        app {
-            dimension "app"
-        }
 
         tiw {
             dimension "tiw"

@@ -50,8 +50,13 @@ public class ExMainActivity extends AbsBaseActivity {
     }
 
     @Override
-    public void onCreateZ(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_ex_main);
+    protected void initWindow() {
+
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_ex_main;
     }
 
     @Override

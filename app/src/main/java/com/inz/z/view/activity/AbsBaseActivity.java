@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -38,10 +40,24 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
 
     private Dialog loadDialog;
 
+    /**
+     * 初始化窗口
+     */
+    protected abstract void initWindow();
+
+    /**
+     * 获取内容布局ID
+     *
+     * @return 布局ID
+     */
+    @LayoutRes
+    protected abstract int getContentViewId();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        onCreateZ(savedInstanceState);
+        initWindow();
+        setContentView(getContentViewId());
         mContext = this;
         initView();
     }
@@ -51,13 +67,6 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
         super.onStart();
         initData();
     }
-
-    /**
-     * OnCreateView
-     *
-     * @param savedInstanceState Data
-     */
-    protected abstract void onCreateZ(@Nullable Bundle savedInstanceState);
 
     /**
      * 初始化界面
