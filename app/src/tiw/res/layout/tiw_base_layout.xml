@@ -14,9 +14,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tiw_action_center_title="9090909"
+        app:tiw_action_right_icon_id="@+id/ssss"
         app:tiw_action_center_title_align="center"
         app:tiw_action_color="@color/transparent">
 
+
+        <TextView
+            android:id="@+id/ssss"
+            android:layout_width="wrap_content"
+            android:text="@string/send_time"
+            android:layout_height="wrap_content" />
     </com.inz.z.view.widget.TiwActionLayout>
 
     <ScrollView

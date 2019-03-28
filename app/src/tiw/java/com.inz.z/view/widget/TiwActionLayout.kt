@@ -30,6 +30,7 @@ class TiwActionLayout : ConstraintLayout {
     private var mContext: Context? = null
     private var mView: View? = null
     private var mContentView: RelativeLayout? = null
+    private var childView: MutableList<View> = ArrayList()
     /**
      * 左侧布局
      */
@@ -55,15 +56,27 @@ class TiwActionLayout : ConstraintLayout {
     ) {
         mContext = context
         initView()
+        val count = this.childCount - 1
+        if (count >= 0) {
+            for (i in 0..count) {
+                val v = getChildAt(i)
+                childView.add(v)
+            }
+        }
         if (attrs != null) {
             initStyleAttrs(attrs)
         }
     }
 
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+
+    }
+
     @SuppressLint("InflateParams")
     private fun initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(mContext).inflate(R.layout.tiw_action_layout, null, false)
+            mView = LayoutInflater.from(mContext).inflate(R.layout.tiw_action_layout, this, false)
             mContentView = mView!!.findViewById(R.id.tiw_action_rl)
             mLeftView = mView!!.findViewById(R.id.tiw_action_left_ll)
             mLeftIconIv = mView!!.findViewById(R.id.tiw_action_left_icon_iv)
@@ -143,6 +156,7 @@ class TiwActionLayout : ConstraintLayout {
         if (mLeftView != null) {
             val leftView = mView!!.findViewById<View>(leftId)
             if (leftView != mLeftIconIv) {
+                mLeftView!!.removeAllViews()
                 val lp = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT
@@ -172,8 +186,18 @@ class TiwActionLayout : ConstraintLayout {
      */
     fun setRightView(@IdRes rightId: Int) {
         if (mRightView != null) {
-            val rightView = mView!!.findViewById<View>(rightId)
+            var rightView: View? = null
+            rightView = findViewById(rightId)
+//            for (v in childView) {
+//                if (v.id == rightId) {
+//                    rightView = v
+//                }
+//            }
+            if (rightView == null) {
+                return
+            }
             if (rightView != mRightIconIv) {
+                mRightView!!.removeAllViews()
                 val lp = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT
@@ -205,6 +229,7 @@ class TiwActionLayout : ConstraintLayout {
         if (mCenterView != null) {
             val centerView = mView!!.findViewById<View>(centerId)
             if (centerView != mCenterTitleTv) {
+                mContentView!!.removeAllViews()
                 val lp = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT
