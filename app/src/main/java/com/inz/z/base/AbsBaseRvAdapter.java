@@ -81,17 +81,17 @@ public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> ex
     /**
      * 创建 ViewHolder
      *
-     * @param parent
-     * @param viewType
-     * @return
+     * @param parent   父布局
+     * @param viewType 类型
+     * @return ViewHolder
      */
     public abstract VH onCreateVH(@NonNull ViewGroup parent, int viewType);
 
     /**
      * 绑定 ViewHolder
      *
-     * @param holder
-     * @param position
+     * @param holder   ViewHolder
+     * @param position N
      */
     public abstract void onBindVH(@NonNull VH holder, int position);
 }

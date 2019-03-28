@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tiw_action_title">标题</string>
+    <string name="tiw_action_left_image">左图</string>
+    <string name="tiw_action_right_image">右图</string>
+    <string name="tiw_bottom_no_more">没有更多数据</string>
+</resources>

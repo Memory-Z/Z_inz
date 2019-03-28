@@ -8,20 +8,23 @@
         android:id="@+id/tiw_item_base_food_rl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@color/tiw_white"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/tiw_item_base_food_left_civ"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            app:civ_border_overlay="true"
             android:layout_centerVertical="true"
             android:layout_margin="16dp"
-            android:src="@drawable/guodong_zhao_5"
-            app:civ_border_width="120dp" />
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/tiw_ic_vd_image_holder"
+            app:civ_border_overlay="true"
+            app:civ_circle_background_color="@color/tiw_action_title" />
 
         <RelativeLayout
             android:id="@+id/tiw_item_base_food_right_ll"
@@ -39,8 +42,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:ellipsize="end"
+                android:lines="1"
                 android:text="玉米"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -51,10 +56,23 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/tiw_item_base_food_right_one_btn"
+                    style="@style/Base.Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
+                    android:background="@drawable/tiw_bg_btn_selector_imp"
+                    android:text="Buy"
+                    android:textColor="@color/tiw_icon_color" />
 
-                    android:text="Buy" />
+                <Button
+                    android:id="@+id/tiw_item_base_food_right_two_btn"
+                    style="@style/Base.Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/tiw_bg_btn_selector_minor"
+                    android:text="CART"
+                    android:textColor="@color/tiw_second" />
             </LinearLayout>
 
             <TextView
@@ -68,7 +86,7 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:text="蔬菜"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
