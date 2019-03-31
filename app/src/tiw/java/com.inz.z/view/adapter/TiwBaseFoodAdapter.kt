@@ -1,6 +1,5 @@
 package com.inz.z.view.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +8,12 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.inz.z.R
 import com.inz.z.base.AbsBaseRvAdapter
 import com.inz.z.base.AbsBaseRvViewHolder
 import com.inz.z.bean.TiwBean
 import com.inz.z.bean.TiwFood
-import com.inz.z.view.activity.AbsBaseActivity
 import de.hdodenhof.circleimageview.CircleImageView
 
 /**
@@ -28,10 +24,10 @@ import de.hdodenhof.circleimageview.CircleImageView
 class TiwBaseFoodAdapter(mContext: Context?) :
     AbsBaseRvAdapter<TiwBean, AbsBaseRvViewHolder>(mContext) {
 
-    private var viewHolderType: Int = 0
+    private var viewHolderType: HolderType = HolderType.All
     private var requestOptions: RequestOptions? = null
 
-    private var tiwFoodList: List<TiwFood>? = null
+    private var tiwFoodList: MutableList<TiwFood> = ArrayList()
     var bottomShowText: Boolean = false
 
     private enum class HolderType {
@@ -41,22 +37,21 @@ class TiwBaseFoodAdapter(mContext: Context?) :
     init {
         requestOptions = RequestOptions()
             .error(R.drawable.tiw_ic_vd_tulie)
+            .timeout(60000)
+            .skipMemoryCache(false)
+            .useAnimationPool(true)
             .placeholder(R.drawable.tiw_ic_vd_image_holder)
-        tiwFoodList = ArrayList<TiwFood>()
     }
 
     override fun getItemCount(): Int {
-        return list.size + 1
+        return tiwFoodList.size + 1
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (viewHolderType == 0) {
-            return HolderType.All.ordinal
-        }
-        if (position >= list.size) {
+        if (position >= tiwFoodList.size) {
             return HolderType.BOTTOM.ordinal
         }
-        return super.getItemViewType(position)
+        return HolderType.All.ordinal
     }
 
     override fun onCreateVH(parent: ViewGroup, viewType: Int): AbsBaseRvViewHolder {
@@ -72,7 +67,7 @@ class TiwBaseFoodAdapter(mContext: Context?) :
 
     override fun onBindVH(holder: AbsBaseRvViewHolder, position: Int) {
         if (holder is TiwBaseFoodViewHolder) {
-            val tiwFood: TiwFood = tiwFoodList!![position]
+            val tiwFood: TiwFood = tiwFoodList[position]
             val foodImageView = holder.foodImageCiv;
             Glide.with(mContext)
                 .load(tiwFood.foodImageUrl)
@@ -87,6 +82,23 @@ class TiwBaseFoodAdapter(mContext: Context?) :
             textLl?.visibility = if (bottomShowText) View.VISIBLE else View.GONE
         }
     }
+
+    /**
+     * 添加
+     */
+    public fun addTiwFoodList(tiwFoodList: List<TiwFood>) {
+        this.tiwFoodList.addAll(tiwFoodList)
+        notifyDataSetChanged()
+    }
+
+    public fun replaceRiwFoodList(tiwFoodList: List<TiwFood>) {
+        this.tiwFoodList.removeAll {
+            true
+        }
+        this.tiwFoodList.addAll(tiwFoodList)
+        notifyDataSetChanged()
+    }
+
 
     /**
      * 食品ViewHolder

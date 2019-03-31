@@ -34,25 +34,28 @@ class TiwActionLayout : ConstraintLayout {
     /**
      * 左侧布局
      */
+    private var mLeftViewId: Int? = null
     private var mLeftView: LinearLayout? = null
     private var mLeftIconIv: ImageView? = null
     /**
      * 右侧布局
      */
+    private var mRightViewId: Int? = null
     private var mRightView: LinearLayout? = null
     private var mRightIconIv: ImageView? = null
     /**
      * 中间布局
      */
+    private var mCenterViewId: Int? = null
     private var mCenterView: LinearLayout? = null
     private var mCenterTitleTv: TextView? = null
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-            context,
-            attrs,
-            defStyleAttr
+        context,
+        attrs,
+        defStyleAttr
     ) {
         mContext = context
         initView()
@@ -68,11 +71,6 @@ class TiwActionLayout : ConstraintLayout {
         }
     }
 
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
-
-    }
-
     @SuppressLint("InflateParams")
     private fun initView() {
         if (mView == null) {
@@ -85,8 +83,8 @@ class TiwActionLayout : ConstraintLayout {
             mCenterView = mView!!.findViewById(R.id.tiw_action_center_ll)
             mCenterTitleTv = mView!!.findViewById(R.id.tiw_action_center_tv)
             val lp = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
             )
             addView(mView, lp)
         }
@@ -95,49 +93,51 @@ class TiwActionLayout : ConstraintLayout {
     @SuppressLint("RestrictedApi")
     private fun initStyleAttrs(attrs: AttributeSet) {
         val tintTypedArray = TintTypedArray.obtainStyledAttributes(
-                mContext!!, attrs,
-                R.styleable.TiwActionLayout, 0, 0
+            mContext!!, attrs,
+            R.styleable.TiwActionLayout, 0, 0
         )
-        val leftIconId = tintTypedArray.getResourceId(
-                R.styleable.TiwActionLayout_tiw_action_left_icon_id,
-                R.id.tiw_action_left_icon_iv
+        mLeftViewId = tintTypedArray.getResourceId(
+            R.styleable.TiwActionLayout_tiw_action_left_icon_id,
+            R.id.tiw_action_left_icon_iv
         )
-        setLeftView(leftIconId)
+//        setLeftView(leftIconId)
 
         val isShowLeftIcon =
-                tintTypedArray.getBoolean(R.styleable.TiwActionLayout_tiw_action_left_icon_show, true)
+            tintTypedArray.getBoolean(R.styleable.TiwActionLayout_tiw_action_left_icon_show, true)
         isShowLeftIcon(isShowLeftIcon)
 
-        val rightIconId = tintTypedArray.getResourceId(
-                R.styleable.TiwActionLayout_tiw_action_right_icon_id,
-                R.id.tiw_action_right_icon_iv
+        mRightViewId = tintTypedArray.getResourceId(
+            R.styleable.TiwActionLayout_tiw_action_right_icon_id,
+            R.id.tiw_action_right_icon_iv
         )
-        setRightView(rightIconId)
+//        setRightView(rightIconId)
 
         val isShowRightIcon =
-                tintTypedArray.getBoolean(R.styleable.TiwActionLayout_tiw_action_right_icon_show, true)
+            tintTypedArray.getBoolean(R.styleable.TiwActionLayout_tiw_action_right_icon_show, true)
         isShowRightIcon(isShowRightIcon)
 
-        val centerViewId = tintTypedArray.getResourceId(
-                R.styleable.TiwActionLayout_tiw_action_center_view_id,
-                R.id.tiw_action_center_tv
+        mCenterViewId = tintTypedArray.getResourceId(
+            R.styleable.TiwActionLayout_tiw_action_center_view_id,
+            R.id.tiw_action_center_tv
         )
-        setCenterView(centerViewId)
+//        setCenterView(centerViewId)
 
         val isShowCenterView =
-                tintTypedArray.getBoolean(R.styleable.TiwActionLayout_tiw_action_center_view_show, true)
+            tintTypedArray.getBoolean(R.styleable.TiwActionLayout_tiw_action_center_view_show, true)
         isShowCenterView(isShowCenterView)
 
         val actionColor = tintTypedArray.getResourceId(
-                R.styleable.TiwActionLayout_tiw_action_color,
-                R.color.tiw_action
+            R.styleable.TiwActionLayout_tiw_action_color,
+            R.color.tiw_action
         )
         setTiwActionBackgroundColor(actionColor)
 
-        val centerTitleStr = tintTypedArray.getString(R.styleable.TiwActionLayout_tiw_action_center_title)
+        val centerTitleStr =
+            tintTypedArray.getString(R.styleable.TiwActionLayout_tiw_action_center_title)
         setCenterTitleStr(centerTitleStr)
 
-        val centerAlign = tintTypedArray.getInt(R.styleable.TiwActionLayout_tiw_action_center_title_align, 0)
+        val centerAlign =
+            tintTypedArray.getInt(R.styleable.TiwActionLayout_tiw_action_center_title_align, 0)
         setCenterTitleAlign(centerAlign)
 
         tintTypedArray.recycle()
@@ -145,6 +145,15 @@ class TiwActionLayout : ConstraintLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+        if (mLeftViewId != R.id.tiw_action_left_icon_iv) {
+            setLeftView(mLeftViewId!!)
+        }
+        if (mRightViewId != R.id.tiw_action_right_icon_iv) {
+            setRightView(mRightViewId!!)
+        }
+        if (mCenterViewId != R.id.tiw_action_center_tv) {
+            setCenterView(mCenterViewId!!)
+        }
 
     }
 
@@ -154,12 +163,13 @@ class TiwActionLayout : ConstraintLayout {
      */
     fun setLeftView(@IdRes leftId: Int) {
         if (mLeftView != null) {
-            val leftView = mView!!.findViewById<View>(leftId)
+            val leftView: View? = findViewById(leftId) ?: return
+            removeView(leftView)
             if (leftView != mLeftIconIv) {
                 mLeftView!!.removeAllViews()
                 val lp = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 mLeftView!!.addView(leftView, lp)
             }
@@ -186,21 +196,13 @@ class TiwActionLayout : ConstraintLayout {
      */
     fun setRightView(@IdRes rightId: Int) {
         if (mRightView != null) {
-            var rightView: View? = null
-            rightView = findViewById(rightId)
-//            for (v in childView) {
-//                if (v.id == rightId) {
-//                    rightView = v
-//                }
-//            }
-            if (rightView == null) {
-                return
-            }
+            val rightView: View = findViewById(rightId) ?: return
+            removeView(rightView)
             if (rightView != mRightIconIv) {
                 mRightView!!.removeAllViews()
                 val lp = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 mRightView!!.addView(rightView, lp)
             }
@@ -227,12 +229,13 @@ class TiwActionLayout : ConstraintLayout {
      */
     fun setCenterView(@IdRes centerId: Int) {
         if (mCenterView != null) {
-            val centerView = mView!!.findViewById<View>(centerId)
+            val centerView: View? = findViewById(centerId) ?: return
+            removeView(centerView)
             if (centerView != mCenterTitleTv) {
                 mContentView!!.removeAllViews()
                 val lp = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 mCenterView!!.addView(centerView, lp)
             }
@@ -347,11 +350,33 @@ class TiwActionLayout : ConstraintLayout {
      * 设置文字对其方式
      * @param align 对其方式；0：左；1：中；2：右
      */
+    @SuppressLint("RtlHardcoded")
     fun setCenterTitleAlign(align: Int) {
         if (mCenterTitleTv != null) {
-            val p = if (align == 0) Gravity.LEFT else if (align == 1) Gravity.CENTER else Gravity.RIGHT
+            val p =
+                if (align == 0) Gravity.LEFT else if (align == 1) Gravity.CENTER else Gravity.RIGHT
             mCenterTitleTv!!.gravity = p
         }
     }
 
+    /**
+     * 获取左部View
+     */
+    fun getLeftIconView(): View? {
+        return mLeftView?.getChildAt(0)
+    }
+
+    /**
+     * 获取中部View
+     */
+    fun getCenterView(): View? {
+        return mCenterView?.getChildAt(0)
+    }
+
+    /**
+     * 获取右部View
+     */
+    fun getRightIconView(): View? {
+        return mRightView?.getChildAt(0)
+    }
 }

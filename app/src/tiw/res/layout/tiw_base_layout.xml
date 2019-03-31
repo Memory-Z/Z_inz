@@ -9,21 +9,13 @@
         android:id="@+id/tiw_base_tal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/tiw_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tiw_action_center_title="9090909"
-        app:tiw_action_right_icon_id="@+id/ssss"
-        app:tiw_action_center_title_align="center"
-        app:tiw_action_color="@color/transparent">
+        app:tiw_action_center_title="美食"
+        app:tiw_action_center_title_align="left"
+        app:tiw_action_color="@color/tiw_main">
 
-
-        <TextView
-            android:id="@+id/ssss"
-            android:layout_width="wrap_content"
-            android:text="@string/send_time"
-            android:layout_height="wrap_content" />
     </com.inz.z.view.widget.TiwActionLayout>
 
     <ScrollView
@@ -45,6 +37,7 @@
                 android:id="@+id/tiw_base_main_top_hor_sv"
                 android:layout_width="0dp"
                 android:layout_height="96dp"
+                android:overScrollMode="never"
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +61,7 @@
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/tiw_bg_tab_selector"
                         android:gravity="center"
-                        android:text="12"
+                        android:text="ALL"
                         android:textColor="@drawable/tiw_bg_tab_text_selector"
                         android:textIsSelectable="true"
                         android:textSize="18sp" />
@@ -79,8 +72,7 @@
             <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/tiw_base_content_main_srl"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tiw_base_main_top_hor_sv">
