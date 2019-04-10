@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Inz</string>
+    <string name="home_page">主页</string>
+    <string name="example">例子</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+    <string name="person_center">个人中心</string>
+    <string name="my_plan">我的计划</string>
+    <string name="my_photo_album">我的相册</string>
+    <string name="my_file">我的文件</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="please_input_email">请输入邮箱</string>
+    <string name="please_input_email_code">请输入邮箱验证码：</string>
+    <string name="email_code_digits">1234567890abcdefghijklmnokqrstuvwxyz</string>
+    <string name="get_email_code">获取验证码</string>
+    <string name="please_input_account">请输入用户名或邮箱</string>
+    <string name="phone_store">手机存储</string>
+
+    <string name="loading">加载中&#8230;请耐心等待</string>
+    <string name="user_name">用户名</string>
+    <string name="account">账号</string>
+    <string name="user_password">密码</string>
+    <string name="user_email_example">123456789@example.com</string>
+    <string name="nav_no_detail_example">登录系统 体验更多 功能</string>
+    <string name="login_immediately">立即登录</string>
+    <string name="register_immediately">立即注册</string>
+    <string name="have_account">已有账号，立即登录</string>
+    <string name="no_account">没有账号？立即注册</string>
+    <string name="use_third_to_login">使用第三方账号登录</string>
+    <string name="chose_login_method">选择登录方式</string>
+    <string name="QQ">QQ</string>
+    <string name="sina">新浪</string>
+    <string name="weixin">微信</string>
+    <string name="str_confirm">确定</string>
+    <string name="next_step">下一步</string>
+    <string name="cancel">取消</string>
+    <string name="splash_screen">闪屏</string>
+    <string name="copyright_hint">Copyright &#169; 2017&#8211;2018 Z_inz.</string>
+
+    <string name="jump_over">跳过</string>
+
+    <string name="example_name">实例名称</string>
+    <string name="black"> </string>
+
+    <string name="other">其他</string>
+    <string name="title">标题</string>
+    <string name="back">返回</string>
+    <string name="op_left_icon">左侧图标</string>
+    <string name="op_right_icon">右侧图标</string>
+    <string name="number_99">99+</string>
+    <string name="user_photo">用户头像</string>
+    <string name="more">更多</string>
+    <string name="attention">关注</string>
+    <string name="user_sign">用户标签</string>
+    <string name="check_update">检版本更新</string>
+    <string name="feedback">意见反馈</string>
+    <string name="local_version">当前版本：1.0.0</string>
+    <string name="use_help">使用帮助</string>
+    <string name="about_us">关于我们</string>
+    <string name="send_time">2017&#8211;08&#8211;09 12:34:56</string>
+
+    <string name="test_text">测试文本测试文本测试文本测试文本测试文本本测试文本测试文本测试文本测试文本测试文本测试文本测试文本79</string>
+
+    <string name="image">图片</string>
+    <string name="dot">点</string>
+    <string name="item_image">单项图片</string>
+    <string name="model">模特</string>
+    <string name="new_model">新模特</string>
+    <string name="commodity">商品</string>
+    <string name="to_bottom_slip">往下滑动</string>
+
+    <string name="hint">提示</string>
+    <string name="icon">ICON</string>
+    <string name="date_time">23:59</string>
+
+    <string name="number_0">0</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="number_6">6</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
+    <string name="number_9">9</string>
+    <string name="number_10">10</string>
+    <string name="number_11">11</string>
+    <string name="number_12">12</string>
+    <string name="number_13">13</string>
+    <string name="number_14">14</string>
+    <string name="number_15">15</string>
+    <string name="number_16">16</string>
+    <string name="number_17">17</string>
+    <string name="number_18">18</string>
+    <string name="number_19">19</string>
+    <string name="number_20">20</string>
+    <string name="number_21">20</string>
+    <string name="number_22">20</string>
+    <string name="number_23">20</string>
+    <string name="number_24">20</string>
+    <string name="number_25">20</string>
+    <string name="number_26">20</string>
+    <string name="number_27">20</string>
+    <string name="number_28">20</string>
+    <string name="number_29">20</string>
+    <string name="number_30">30</string>
+    <string name="number_31">31</string>
+</resources>
