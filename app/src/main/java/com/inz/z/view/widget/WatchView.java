@@ -6,15 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
-import java.awt.font.TextAttribute;
 import java.util.Locale;
 
 /**

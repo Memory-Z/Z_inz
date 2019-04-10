@@ -61,10 +61,10 @@
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/tiw_bg_tab_selector"
                         android:gravity="center"
-                        android:text="ALL"
                         android:textColor="@drawable/tiw_bg_tab_text_selector"
                         android:textIsSelectable="true"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </HorizontalScrollView>

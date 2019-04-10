@@ -49,4 +49,25 @@
         <ContentStr>TiwFlavor例子</ContentStr>
         <ContentHintStr>2019-03-26</ContentHintStr>
     </ExampleBean>
+
+    <ExampleBean class="com.inz.z.view.fragment.example.IndexBarFragment">
+        <ContentStr>IndexBar</ContentStr>
+        <ContentHintStr>2019-03-31</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.AddressBookActivity">
+        <ContentStr>通讯录</ContentStr>
+        <ContentHintStr>2019-04-02</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.view.activity.TiwCardActivity">
+        <ContentStr>Card</ContentStr>
+        <ContentHintStr>2019-04-09</ContentHintStr>
+    </ExampleBean>
+
+    <ExampleBean class="com.inz.z.book_2.view.AddressBook2Activity">
+        <ContentStr>通讯录2</ContentStr>
+        <ContentHintStr>2019-04-10</ContentHintStr>
+    </ExampleBean>
+
 </ExampleBeanList>

@@ -28,7 +28,14 @@ class TiwBaseFoodAdapter(mContext: Context?) :
     private var requestOptions: RequestOptions? = null
 
     private var tiwFoodList: MutableList<TiwFood> = ArrayList()
-    var bottomShowText: Boolean = false
+    /**
+     * 数据加载监听
+     */
+    var loadMoreListener: DataLoadListener? = null
+    /**
+     * 是否还有更多的数据
+     */
+    var haveMoreData: Boolean = true
 
     private enum class HolderType {
         All, M, L, XL, XXL, BOTTOM
@@ -77,9 +84,15 @@ class TiwBaseFoodAdapter(mContext: Context?) :
             holder.foodDetailTv!!.text = tiwFood.foodDetail
         } else if (holder is TiwBottomViewHolder) {
             val bottomProgressBar = holder.bottomProgressbar
-            bottomProgressBar?.visibility = if (bottomShowText) View.GONE else View.VISIBLE
             val textLl = holder.bottomTextContentRl
-            textLl?.visibility = if (bottomShowText) View.VISIBLE else View.GONE
+            if (!haveMoreData) {
+                bottomProgressBar?.visibility = View.GONE
+                textLl?.visibility = View.VISIBLE
+            } else {
+                bottomProgressBar?.visibility = View.VISIBLE
+                textLl?.visibility = View.GONE
+                loadMoreListener?.loadMoreData(position, holder.itemView)
+            }
         }
     }
 
@@ -90,6 +103,7 @@ class TiwBaseFoodAdapter(mContext: Context?) :
         this.tiwFoodList.addAll(tiwFoodList)
         notifyDataSetChanged()
     }
+
 
     public fun replaceRiwFoodList(tiwFoodList: List<TiwFood>) {
         this.tiwFoodList.removeAll {
@@ -133,6 +147,16 @@ class TiwBaseFoodAdapter(mContext: Context?) :
             bottomTextContentRl = itemView.findViewById(R.id.tiw_item_food_bottom_text_rl)
             bottomTextContextTv = itemView.findViewById(R.id.tiw_item_food_bottom_text_content_tv)
         }
+    }
+
+    /**
+     * 数据加载接口
+     */
+    public interface DataLoadListener {
+        /**
+         * 加载更多数据
+         */
+        fun loadMoreData(position: Int, view: View);
     }
 
 }

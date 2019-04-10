@@ -1,8 +1,6 @@
 package com.inz.z.view.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.View;

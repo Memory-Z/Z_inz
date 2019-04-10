@@ -1,13 +1,7 @@
 package com.inz.z.view.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,9 +15,6 @@ import com.inz.z.R;
 import com.inz.z.util.SPHelper;
 import com.inz.z.view.ILoginView;
 import com.inz.z.view.fragment.dialog.ThirdLoginDialogFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 登录界面

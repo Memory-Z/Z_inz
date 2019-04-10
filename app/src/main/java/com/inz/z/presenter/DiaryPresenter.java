@@ -3,18 +3,11 @@ package com.inz.z.presenter;
 import com.inz.z.base.BasePresenter;
 import com.inz.z.base.IBaseLoadListener;
 import com.inz.z.entity.ApiDiaryInfo;
-import com.inz.z.http.HttpUtil;
 import com.inz.z.model.IDiaryModel;
 import com.inz.z.model.impl.DiaryModelImpl;
 import com.inz.z.view.IDiaryView;
 
 import java.io.File;
-import java.io.IOException;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okio.BufferedSink;
 
 /**
  * @author Zhenglj

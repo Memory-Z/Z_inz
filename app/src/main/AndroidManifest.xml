@@ -63,7 +63,7 @@
 
 
         <!-- 闪屏 -->
-        <activity android:name=".view.activity.SplashActivity">
+        <activity android:name="com.inz.z.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -73,7 +73,7 @@
 
         <!-- 主界面 -->
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name="com.inz.z.view.activity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -82,7 +82,7 @@
 
         <!-- 相机 -->
         <activity
-            android:name=".view.activity.Camera2Activity"
+            android:name="com.inz.z.view.activity.Camera2Activity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
 
@@ -90,7 +90,7 @@
 
         <!-- 登录 -->
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name="com.inz.z.view.activity.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -99,7 +99,7 @@
 
         <!-- 注册 -->
         <activity
-            android:name=".view.activity.RegisterActivity"
+            android:name="com.inz.z.view.activity.RegisterActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -108,11 +108,13 @@
 
         <!-- 状态 Example Fragment -->
         <activity
-            android:name=".view.activity.ExMainActivity"
+            android:name="com.inz.z.view.activity.ExMainActivity"
             android:configChanges="orientation"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
+        <activity android:name="com.inz.z.AddressBookActivity"/>
 
         <!--<provider-->
         <!--android:name="android.support.v4.content.FileProvider"-->
@@ -124,7 +126,7 @@
         <!--android:resource="@xml/app_update_provider_paths" />-->
         <!--</provider>-->
 
-        <receiver android:name=".view.appwidget.ImageAppWidgetProvider">
+        <receiver android:name="com.inz.z.view.appwidget.ImageAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

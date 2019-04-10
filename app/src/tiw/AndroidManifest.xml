@@ -8,6 +8,14 @@
 
         <activity
             android:name="com.inz.z.view.activity.TiwBaseActivity"
+            android:configChanges="screenLayout|screenSize|smallestScreenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.inz.z.view.activity.TiwCardActivity"
+            android:configChanges="keyboardHidden|screenSize|screenLayout"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

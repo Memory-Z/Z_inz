@@ -1,12 +1,16 @@
-apply plugin: 'com.android.library'
+if (APP_UPDATE_IS_LIB.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
-    compileSdkVersion 28
+    compileSdkVersion APP_COMPILE_SDK_VERSION.toInteger()
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion APP_MIN_SDK_VERSION.toInteger()
+        targetSdkVersion APP_TARGET_SDK_VERSION.toInteger()
         versionCode 1
         versionName "1.0"
 
@@ -35,7 +39,7 @@ dependencies {
      *  okdownload 文件下载
      *  需配置 maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }*
      * */
-    compileOnly 'com.liulishuo.okdownload:okdownload:1.0.3'
-    compileOnly 'com.liulishuo.okdownload:sqlite:1.0.3'
-    compileOnly 'com.liulishuo.okdownload:okhttp:1.0.3'
+    implementation 'com.liulishuo.okdownload:okdownload:1.0.3'
+    implementation 'com.liulishuo.okdownload:sqlite:1.0.3'
+    implementation 'com.liulishuo.okdownload:okhttp:1.0.3'
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="address_book_department">部门</string>
+    <string name="address_book2_room">(房间号： %s)</string>
+    <string-array name="address_book2_dep">
+        <item>全部</item>
+        <item>办公室</item>
+        <item>组织人事处</item>
+        <item>法院管理处</item>
+        <item>教育培训处</item>
+        <item>信访处</item>
+        <item>立案处</item>
+        <item>再审立案处</item>
+        <item>邢一庭</item>
+        <item>邢二庭</item>
+        <item>邢三庭</item>
+        <item>邢四庭</item>
+        <item>民一庭</item>
+        <item>民二庭</item>
+        <item>民三庭</item>
+        <item>民四庭</item>
+        <item>行政庭</item>
+        <item>环境资源庭</item>
+    </string-array>
+</resources>

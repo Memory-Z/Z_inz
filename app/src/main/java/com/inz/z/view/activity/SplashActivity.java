@@ -1,20 +1,15 @@
 package com.inz.z.view.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.inz.z.R;
 import com.inz.z.entity.Constants;
 import com.inz.z.util.SPHelper;
-
-import java.util.Locale;
 
 /**
  * 闪屏

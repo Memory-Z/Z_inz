@@ -26,4 +26,14 @@
 
     </FrameLayout>
 
+    <!-- 提示 -->
+    <TextView
+        android:id="@+id/ex_main_hint_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ex_main_top_nav_inc" />
+
 </android.support.constraint.ConstraintLayout>

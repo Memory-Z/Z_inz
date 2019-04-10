@@ -1,11 +1,12 @@
 package com.inz.z.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -30,6 +31,11 @@ public class ExMainActivity extends AbsBaseActivity {
     private int showTypeValue;
     // 顶部 栏
     private ConstraintLayout topCl;
+
+    /**
+     * 提示
+     */
+    private TextView hintTv;
 
     /**
      * 显示类型
@@ -71,6 +77,7 @@ public class ExMainActivity extends AbsBaseActivity {
         });
         titleTv = findViewById(R.id.base_top_title_tv);
         topCl = findViewById(R.id.ex_main_top_nav_inc);
+        hintTv = findViewById(R.id.ex_main_hint_tv);
     }
 
     @Override
@@ -109,13 +116,13 @@ public class ExMainActivity extends AbsBaseActivity {
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.ex_main_frame_content, fragment, clz.getSimpleName());
                 transaction.commit();
-            } else if (clzObj instanceof AbsBaseActivity) {
+            } else if (clzObj instanceof AbsBaseActivity || clzObj instanceof AppCompatActivity || clzObj instanceof Activity) {
                 // 判断是否为 Activity
                 Intent intent = new Intent(mContext, clzObj.getClass());
                 startActivity(intent);
                 quitExMain();
             } else {
-                titleTv.setText("未适配当前界面");
+                hintTv.setText("未适配当前界面");
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();

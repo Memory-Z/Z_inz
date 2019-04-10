@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8F8F8">
+
+    <LinearLayout
+        android:id="@+id/activity_address_book_top_ll"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/activity_address_book_search_tv"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_address_book_search"
+            android:gravity="center"
+            android:text="根据姓名查找搜索"
+            android:textColor="#D1D1D1"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_address_book_left_rv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_address_book_top_ll">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
+        android:id="@+id/activity_address_book_right_index_bar"
+        android:layout_width="24dp"
+        android:layout_height="0dp"
+        android:background="#00FFFFFF"
+        app:indexBarPressBackground="#898989"
+        app:indexBarTextSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_address_book_top_ll" />
+
+    <TextView
+        android:id="@+id/activity_address_book_hint_tv"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_address_book_top_ll" />
+
+</android.support.constraint.ConstraintLayout>

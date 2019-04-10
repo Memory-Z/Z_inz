@@ -16,8 +16,6 @@ import com.inz.z.base.AbsBaseRvViewHolder;
 import com.inz.z.util.Tools;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;

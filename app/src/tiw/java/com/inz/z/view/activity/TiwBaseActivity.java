@@ -1,9 +1,6 @@
 package com.inz.z.view.activity;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +9,6 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -23,6 +19,8 @@ import com.inz.z.R;
 import com.inz.z.bean.TiwFood;
 import com.inz.z.view.adapter.TiwBaseFoodAdapter;
 import com.inz.z.view.widget.TiwActionLayout;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +78,7 @@ public class TiwBaseActivity extends AbsBaseActivity {
         mRecyclerView.setAdapter(tiwBaseFoodAdapter);
         setTabListData();
         setContentData();
+        tiwBaseFoodAdapter.setLoadMoreListener(new AdapterDataLoadListenerImpl());
     }
 
     @Override
@@ -160,29 +159,26 @@ public class TiwBaseActivity extends AbsBaseActivity {
     }
 
     private String[] contentImageUrl = new String[]{
-            "https://b-ssl.duitang.com/uploads/item/201506/26/20150626160448_GPnjW.jpeg",
-            "https://drscdn.500px.org/photo/300179805/q%3D80_m%3D2000/v2?webp=true&sig=77f34e1cbb9a9c265a5e4ab580576f80e52eea1c016e5c296fcb766d89f97c2c",
-            "https://drscdn.500px.org/photo/300212847/q%3D80_m%3D2000/v2?webp=true&sig=8761c9eaddd8321d6bd61f15db7b6ffc15149c8a71aa21bc6cfd36e493633f5a",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-759228.png",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-759223.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-758823.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-758366.png",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-758094.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-758054.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757836.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757833.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757832.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757738.png",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757645.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757610.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757530.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757480.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757417.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757389.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757355.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-757177.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-756834.jpg",
-            "https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-756770.png"
+            "http://papers.co/wallpaper/papers.co-bb47-circle-rainbow-minimal-illustration-art-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-ba66-circle-line-simple-illustration-art-blue-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr48-kpop-girl-asian-face-pretty-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr40-kristen-stewart-girl-film-face-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-bg96-face-black-drawing-line-art-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr45-girl-kpop-taeyeon-pink-music-snsd-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-bb48-circle-rainbow-minimal-illustration-art-dark-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr19-girl-asian-kpop-red-fan-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr13-girl-taylor-swift-white-artist-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr63-girl-face-film-emma-watson-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr65-peace-girl-tzuyu-cute-twice-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr67-kpop-girl-cute-face-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr52-kpop-krystal-girl-green-face-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr48-kpop-girl-asian-face-pretty-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr43-sana-girl-twice-blue-summer-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hq82-irene-girl-kpop-asian-blue-summer-beauty-idol-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr98-jennifer-lawrence-girl-film-green-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr92-girl-nana-bw-beauty-kpop-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr84-kpop-girl-trench-coat-36-3840x2400-4k-wallpaper.jpg",
+            "http://papers.co/wallpaper/papers.co-hr52-kpop-krystal-girl-green-face-36-3840x2400-4k-wallpaper.jpg"
     };
 
     /**
@@ -215,5 +211,31 @@ public class TiwBaseActivity extends AbsBaseActivity {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+    }
+
+    private class AdapterDataLoadListenerImpl implements TiwBaseFoodAdapter.DataLoadListener {
+        @Override
+        public void loadMoreData(int position, @NotNull View view) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    while (true) {
+                        if (mRecyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE || !mRecyclerView.isComputingLayout()) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tiwBaseFoodAdapter.setHaveMoreData(false);
+                                    setContentData();
+
+                                }
+                            });
+                            break;
+                        }
+
+                    }
+                }
+            }).start();
+        }
     }
 }
