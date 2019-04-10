@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // Gradle 3.0 以上 需要 dimension
-        flavorDimensions "tiw", "address_book", "address_book_2"
+        flavorDimensions "tiw"
     }
     buildTypes {
         release {
@@ -30,12 +30,7 @@ android {
         tiw {
             dimension "tiw"
         }
-        address_book {
-            dimension 'address_book'
-        }
-        address_book_2 {
-            dimension 'address_book_2'
-        }
+
     }
 }
 
@@ -58,6 +53,7 @@ dependencies {
     if (APP_UPDATE_IS_LIB.toBoolean()) {
         implementation project(':app_update')
     }
+    implementation project (':other_module')
 
     //    implementation project (':three_login')
 
@@ -137,8 +133,6 @@ dependencies {
     implementation 'com.aliyun.ams:alicloud-android-hotfix:3.2.6'
     // 表单
     implementation 'com.github.huangyanbin:SmartTable:2.2.0'
-    // 通讯录
-    implementation 'com.github.mcxtzhang:SuspensionIndexBar:V1.0.0'
 }
 repositories {
     mavenCentral()

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="address_book">
+        <item>al</item>
+        <item>陈毅</item>
+        <item>Happy-</item>
+        <item>海绵</item>
+        <item>猫咪 </item>
+        <item>阿玛</item>
+        <item>A</item>
+        <item>十大</item>
+        <item>爱的</item>
+        <item>股份</item>
+        <item>阿瑟东</item>
+        <item>温柔</item>
+        <item>有人而发的</item>
+        <item>湖人</item>
+        <item>入庭</item>
+        <item>公司</item>
+        <item>士大夫</item>
+        <item>公司的</item>
+        <item>根据</item>
+        <item>估计回</item>
+        <item>返回</item>
+        <item>的风格</item>
+        <item>返回她</item>
+        <item>石头人</item>
+        <item>绕太阳</item>
+        <item>开封府</item>
+        <item>温柔温柔</item>
+        <item>几乎是官方j</item>
+        <item>看见你就给你j</item>
+        <item>哦ii俄军和</item>
+        <item>i合适的发表u</item>
+        <item>结婚好不好v部分</item>
+        <item>睡大觉发货说</item>
+        <item>i将会放缓是否还会gv</item>
+        <item>方面军和</item>
+        <item>四大美女积分换u</item>
+        <item>但是不会封号b</item>
+        <item>第三方不会</item>
+        <item>那家伙都不是</item>
+        <item>北京市的v</item>
+        <item>不完全俄国人</item>
+        <item>单反</item>
+        <item>下</item>
+    </string-array>
+
+    <!-- 底部弹窗 -->
+    <style name="AddressBookSearch" parent="Theme.AppCompat.Dialog">
+        <!--Dialog的windowFrame框为无-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否显示title-->
+        <item name="android:windowNoTitle">true</item>
+        <!--设置dialog的背景，（#00000000）-->
+        <item name="android:background">@android:color/transparent</item>
+        <!--显示区域背景是否透明，（#00000000）-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--就是用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容，系统的默认值是0.5-->
+        <item name="android:backgroundDimAmount">0.5</item>
+        <!--显示区域以外是否使用黑色半透明背景-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--<item name="android:windowBackground">#89808080</item>-->
+    </style>
+</resources>

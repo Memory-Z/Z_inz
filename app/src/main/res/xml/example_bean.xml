@@ -50,10 +50,10 @@
         <ContentHintStr>2019-03-26</ContentHintStr>
     </ExampleBean>
 
-    <ExampleBean class="com.inz.z.view.fragment.example.IndexBarFragment">
-        <ContentStr>IndexBar</ContentStr>
-        <ContentHintStr>2019-03-31</ContentHintStr>
-    </ExampleBean>
+    <!--<ExampleBean class="com.inz.z.view.fragment.example.IndexBarFragment">-->
+    <!--<ContentStr>IndexBar</ContentStr>-->
+    <!--<ContentHintStr>2019-03-31</ContentHintStr>-->
+    <!--</ExampleBean>-->
 
     <ExampleBean class="com.inz.z.AddressBookActivity">
         <ContentStr>通讯录</ContentStr>
