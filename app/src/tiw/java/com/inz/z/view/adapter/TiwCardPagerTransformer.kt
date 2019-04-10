@@ -36,27 +36,38 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
     }
 
 
-    override fun transformPage(p0: View, p1: Float) {
+    override fun transformPage(page: View, position: Float) {
         if (mViewPager == null) {
-            mViewPager = p0.parent as ViewPager?
+            mViewPager = page.parent as ViewPager?
         }
-        Log.i("transformPage", "view = " + p0 + " ; postion = " + p1)
-        val view: CardView = p0 as CardView
         if (mViewPager == null) {
             return
         }
+        // 父元素 宽
+        val pWidth = mViewPager!!.measuredWidth
+        val tW = page.measuredWidth
+        val dW = (pWidth - tW) / 2
+        val pScaleX = page.scaleX
+//        if (position <= 0) {
+//            page.alpha = 0F
+//        } else if (position <= 1) {
+        page.alpha = 1 - Math.abs(position) + Math.abs(dW / tW)
+//        page.translationX = -dW.toFloat()
+//        } else if (position > 1) {
+//            page.alpha = 1F
+//        }
+        Log.i("transformPage", "view = " + page + " ; postion = " + position)
 
-        val scale = if (p1 < 0) {
-            (1 - 0.8) * p1 + 1
+        val scale = if (position < 0) {
+            (1 - 0.8) * position + 1
         } else {
-            (0.8 - 1) * p1 + 1
+            (0.8 - 1) * position + 1
         }
-        p0.translationX = Math.abs(p1)
+//        page.translationX = Math.abs(position)
 //        p0.pivotY = (p0.height / 2).toFloat()
-        val sW = p0.measuredWidth
-        val cW = view.measuredWidth
-        p0.scaleX = scale.toFloat()
-        p0.scaleY = scale.toFloat()
+//        val sW = page.measuredWidth
+//        page.scaleX = position
+//        page.scaleY = position
 
     }
 

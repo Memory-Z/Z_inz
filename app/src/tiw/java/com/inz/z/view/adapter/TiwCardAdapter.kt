@@ -1,6 +1,7 @@
 package com.inz.z.view.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,7 @@ class TiwCardAdapter : PagerAdapter {
         if (mView == null) {
             return super.instantiateItem(container, position)
         } else {
+            mView.setBackgroundColor(Color.BLUE)
             container.addView(mView)
             return mView
         }
