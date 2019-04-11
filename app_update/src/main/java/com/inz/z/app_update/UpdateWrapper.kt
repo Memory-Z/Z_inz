@@ -8,6 +8,7 @@ import android.support.annotation.DrawableRes
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.util.Log
 import com.inz.z.app_update.bean.VersionBean
 import com.inz.z.app_update.service.CheckUpdateThread
 import com.inz.z.app_update.service.DownloadService
@@ -68,7 +69,9 @@ class UpdateWrapper() {
             return
         }
         if (TextUtils.isEmpty(mUrl)) {
-            throw RuntimeException("url not be null")
+//            throw RuntimeException("url not be null")
+            Log.e("UpdateWrapper", "url is null")
+            return
         } else if (!checkUpdateStatus()) {
             if (checkUpdateThread == null) {
                 checkUpdateThread = CheckUpdateThread(

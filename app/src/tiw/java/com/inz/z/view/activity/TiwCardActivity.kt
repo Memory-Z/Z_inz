@@ -49,6 +49,8 @@ class TiwCardActivity : AbsBaseActivity() {
         viewList.add(card5)
         mViewPager?.adapter = TiwCardAdapter(mContext, viewList)
         mViewPager?.setPageTransformer(false, TiwCardPagerTransformer(mContext))
+        mViewPager?.offscreenPageLimit = 3
+        mViewPager?.pageMargin = -10
     }
 
     override fun myOnKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

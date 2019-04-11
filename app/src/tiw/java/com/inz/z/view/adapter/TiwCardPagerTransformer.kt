@@ -19,6 +19,9 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
      * ViewPager
      */
     private var mViewPager: ViewPager? = null
+    private val minAlpha = .4F
+    private val minScale = .6F
+    private val maxScale = .8F
 
     /**
      * X轴 偏移量
@@ -30,9 +33,16 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
         this.maxTransformerOffsetX = dp2px(mContext!!, 120F)
     }
 
+
     constructor(mContext: Context?, @NotNull maxTransformerOffsetX: Int) {
         this.mContext = mContext
         this.maxTransformerOffsetX = dp2px(mContext!!, maxTransformerOffsetX.toFloat())
+    }
+
+    constructor(mContext: Context?, mViewPager: ViewPager?) {
+        this.mContext = mContext
+        this.mViewPager = mViewPager
+        this.maxTransformerOffsetX = dp2px(mContext!!, 120F)
     }
 
 
@@ -45,30 +55,50 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
         }
         // 父元素 宽
         val pWidth = mViewPager!!.measuredWidth
+        // 每页 宽
         val tW = page.measuredWidth
+        // 距两边距离
         val dW = (pWidth - tW) / 2
-        val pScaleX = page.scaleX
+//        val pScaleX = page.scaleX
 //        if (position <= 0) {
 //            page.alpha = 0F
 //        } else if (position <= 1) {
-        page.alpha = 1 - Math.abs(position) + Math.abs(dW / tW)
-//        page.translationX = -dW.toFloat()
-//        } else if (position > 1) {
-//            page.alpha = 1F
-//        }
-        Log.i("transformPage", "view = " + page + " ; postion = " + position)
-
-        val scale = if (position < 0) {
-            (1 - 0.8) * position + 1
+        page.alpha = Math.max(minAlpha, 1 - Math.abs(position * minAlpha))
+        if (position <= 1) {
+            val scale = Math.min(maxScale, Math.max(Math.abs(1 - position * minScale), minScale))
+//            val scale = minScale + (1 - minScale) * (1 - position)
+            page.scaleX = scale
+            page.scaleY = scale
         } else {
-            (0.8 - 1) * position + 1
+            val scale = Math.max(minScale, Math.abs(Math.abs(position) - 1) * minScale)
+//            val w = dW * position
+////            val scale = minScale + (1 - minScale) * (1 - position)
+//            page.translationX = w
+            page.scaleX = scale
+            page.scaleY = scale
         }
-//        page.translationX = Math.abs(position)
-//        p0.pivotY = (p0.height / 2).toFloat()
-//        val sW = page.measuredWidth
-//        page.scaleX = position
-//        page.scaleY = position
-
+//        val scale = Math.max(minScale, Math.abs(1 - Math.abs(position)))
+//        page.scaleX = scale
+//        page.scaleY = scale
+//        if (position < -1) {
+//            val scale = Math.max(minScale, Math.abs(1 - Math.abs(position)))
+//            page.scaleX = scale
+//            page.scaleY = scale
+//        } else if (position <= 0) {
+//            val scale = Math.min(minScale, 1 - Math.abs(position))
+//            page.scaleX = scale
+//            page.scaleY = scale
+//        } else
+//            if (position <= 1) {
+//            val scale = Math.max(minScale, Math.abs(position))
+//            page.scaleX = scale
+//            page.scaleY = scale
+//        } else {
+//            val scale = Math.min(minScale, Math.abs(1 - Math.abs(position)))
+//            page.scaleX = scale
+//            page.scaleY = scale
+//        }
+        Log.i("transformPage", "view = $page ; position = $position")
     }
 
 
@@ -77,7 +107,7 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
      *
      * @return px(像素)
      */
-    fun dp2px(context: Context, dpValue: Float): Int {
+    private fun dp2px(context: Context, dpValue: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (dpValue * scale + 0.5f).toInt()
     }

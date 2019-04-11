@@ -177,7 +177,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
                 .setIsPost(true)
                 .setIsShowToast(false)
                 .setNotificationIcon(mContext.getApplicationInfo().icon)
-                .setUrl("http://211.159.156.19:8280/itcourt/appdir/skyvislinkcourt.json")
+                .setUrl("")
                 .setCallback(new CheckUpdateThread.CallBack() {
                     @Override
                     public void callBack(@org.jetbrains.annotations.Nullable VersionBean versionBean, boolean hasNewVersion) {
