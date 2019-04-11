@@ -70,4 +70,8 @@
         <ContentHintStr>2019-04-10</ContentHintStr>
     </ExampleBean>
 
+    <ExampleBean class="com.inz.z.other_module.view.MinaActivity">
+        <ContentStr>WebView</ContentStr>
+        <ContentHintStr>2019-04-11</ContentHintStr>
+    </ExampleBean>
 </ExampleBeanList>
