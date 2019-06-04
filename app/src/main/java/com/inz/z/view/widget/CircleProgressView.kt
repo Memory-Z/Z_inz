@@ -8,7 +8,7 @@ import android.support.v7.widget.TintTypedArray
 import android.util.AttributeSet
 import android.view.View
 import com.inz.z.R
-import com.inz.z.util.Tools
+import com.inz.z.util.AppBaseTools
 
 
 /**
@@ -159,9 +159,9 @@ class CircleProgressView : View {
         currentProgress = typedArray.getFloat(R.styleable.CircleProgressView_currentProgress, 0F)
         allProgress = typedArray.getFloat(R.styleable.CircleProgressView_allProgress, 100F)
         val circleF = typedArray.getDimension(R.styleable.CircleProgressView_circleSize, 60F)
-        circleSize = Tools.dp2px(mContext!!, circleF)
+        circleSize = AppBaseTools.dp2px(mContext!!, circleF)
         val circleWF = typedArray.getDimension(R.styleable.CircleProgressView_circleWidth, 4F)
-        circleWidth = Tools.dp2px(mContext!!, circleWF)
+        circleWidth = AppBaseTools.dp2px(mContext!!, circleWF)
         circleStyle = typedArray.getResourceId(
             R.styleable.CircleProgressView_circleStyle,
             R.style.AppTheme_ProgressHorStyle

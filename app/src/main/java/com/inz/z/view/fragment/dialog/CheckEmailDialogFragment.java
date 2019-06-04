@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.inz.z.R;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 
 /**
  * 监测邮箱弹窗
@@ -105,7 +105,7 @@ public class CheckEmailDialogFragment extends AbsBaseDialogFragment {
                         // 开始倒计时 90s
                         CheckEmailDialogFragment.this.startCountDown(90000);
                     } else {
-                        Tools.showShortCenterToast(mContext, "邮箱不能为空");
+                        AppBaseTools.showShortCenterToast(mContext, "邮箱不能为空");
                     }
                 }
             }

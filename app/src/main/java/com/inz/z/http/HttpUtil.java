@@ -1,6 +1,7 @@
 package com.inz.z.http;
 
 import com.inz.z.BuildConfig;
+import com.inz.z.base.http.BaseHttpUtil;
 import com.inz.z.entity.ApiDiaryInfo;
 import com.inz.z.entity.ApiFileInfo;
 import com.inz.z.entity.ApiString;
@@ -36,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @version 1.0.0
  * Create By 2018/8/12 14:24
  */
-public class HttpUtil {
+public class HttpUtil extends BaseHttpUtil {
 
     /**
      * 默认连接超时时间，单位：秒

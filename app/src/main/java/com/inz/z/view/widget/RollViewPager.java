@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.inz.z.R;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 import com.inz.z.view.adapter.example.RollViewPagerAdapter;
 
 import java.util.ArrayList;
@@ -197,7 +197,7 @@ public class RollViewPager extends ConstraintLayout implements ViewPager.OnPageC
      */
     public void setBottomDotSize(float dotSize) {
         dotSize = dotSize < 2 ? 2 : dotSize;
-        this.dotSize = Tools.dp2px(mContext, dotSize);
+        this.dotSize = AppBaseTools.dp2px(mContext, dotSize);
     }
 
     /**

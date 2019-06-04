@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.view.Display;
 import android.view.View;
 
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 
 /**
  * @author Zhenglj
@@ -75,9 +75,9 @@ public class DrawView extends View {
         int centerW = getWidth() / 2;
         int centerH = getHeight() / 2;
         // 内圆半径
-        int innerCircle = Tools.dp2px(mContext, 80);
+        int innerCircle = AppBaseTools.dp2px(mContext, 80);
         // 圆环宽度
-        int ringWidth = Tools.dp2px(mContext, 10);
+        int ringWidth = AppBaseTools.dp2px(mContext, 10);
 
         paint.setColor(Color.BLUE);
         paint.setAlpha(244);

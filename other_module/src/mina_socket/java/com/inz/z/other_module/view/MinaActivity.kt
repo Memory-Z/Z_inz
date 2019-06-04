@@ -1,20 +1,31 @@
 package com.inz.z.other_module.view
 
 import android.annotation.SuppressLint
+import android.app.Service
+import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.KeyEvent
-import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.webkit.*
 import android.widget.ProgressBar
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
+import com.alibaba.fastjson.JSONPObject
 import com.inz.z.other_module.R
+import com.inz.z.other_module.service.MinaSocketListener
+import com.inz.z.other_module.service.MinaSocketService
+import org.apache.mina.core.session.IoSession
+import java.io.Serializable
 
 /**
  *
@@ -26,7 +37,6 @@ class MinaActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "MinaActivity"
-
     }
 
     private var mContext: Context? = null
@@ -40,12 +50,20 @@ class MinaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mina)
         mContext = this
         initView()
+        initData()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         mContext = null
         mWebView?.destroy()
+        try {
+            unbindService(minaSocketConnection!!)
+            minaSocketConnection = null
+        } catch (e: Exception) {
+            Log.e(TAG, "close Service Error: ", e)
+        }
+        minaSocketService = null
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -61,7 +79,7 @@ class MinaActivity : AppCompatActivity() {
         settings?.blockNetworkImage = false
         settings?.loadWithOverviewMode = true
 
-        mWebView?.loadUrl("https://cn.bing.com/search?q=viewpager.pageTransformer&qs=n&form=QBRE&sp=-1&pq=viewpager.pagetrans&sc=0-19&sk=&cvid=1165407EA81A4A44B18B9B5FAB23712D")
+        mWebView?.loadUrl("https://bbs.csdn.net/topics/330144150")
         mWebView?.webChromeClient = MyWebChromeClient()
         mWebView?.webViewClient = MyWebClient()
         mWebView?.setOnKeyListener { v, keyCode, event ->
@@ -75,6 +93,14 @@ class MinaActivity : AppCompatActivity() {
             return@setOnKeyListener false
         }
 
+    }
+
+    private fun initData() {
+        val serviceIntent = Intent(mContext, MinaSocketService::class.java)
+        if (minaSocketConnection == null) {
+            minaSocketConnection = MinaSocketServiceConnection()
+        }
+        bindService(serviceIntent, minaSocketConnection!!, Service.BIND_AUTO_CREATE)
     }
 
     private inner class MyWebChromeClient : WebChromeClient() {
@@ -134,4 +160,41 @@ class MinaActivity : AppCompatActivity() {
 
     }
 
+    private var minaSocketService: MinaSocketService? = null
+
+    private var minaSocketConnection: ServiceConnection? = null
+
+    private inner class MinaSocketServiceConnection : ServiceConnection {
+        override fun onServiceDisconnected(name: ComponentName?) {
+            minaSocketService = null
+        }
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val minaSocketServiceBind: MinaSocketService.MinaSocketServiceBind =
+                service as MinaSocketService.MinaSocketServiceBind
+            minaSocketService = minaSocketServiceBind.getService()
+            minaSocketService?.minaSocketListener = MinaSocketListenerImpl()
+        }
+    }
+
+    private inner class MinaSocketListenerImpl : MinaSocketListener {
+
+        override fun connectedFailed() {
+        }
+
+        override fun messageReceived(session: IoSession?, message: Any?) {
+            Log.i(TAG, "---------------- " + message)
+            val obj = JSONObject.parseObject(message as String)
+            val url = obj.getString("msg")
+            runOnUiThread {
+                mWebView?.loadUrl(url)
+            }
+
+        }
+    }
+
+    private inner class InnerEntity : Serializable {
+        var type: Int = 0
+        var msg = ""
+    }
 }

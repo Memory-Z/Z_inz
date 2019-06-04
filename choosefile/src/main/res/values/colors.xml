@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="choose_file_green">#A1C45A</color>
+    <color name="choose_file_white">#FFF9E0</color>
+    <color name="choose_file_shade">#A91E1E1E</color>
+    <color name="choose_file_dialog_bg">#89808080</color>
+</resources>

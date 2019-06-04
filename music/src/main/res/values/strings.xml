@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">music</string>
+    <string name="choose_interest">请选择兴趣</string>
+    <string name="skip">跳过</string>
+    <string name="done">完成</string>
+</resources>

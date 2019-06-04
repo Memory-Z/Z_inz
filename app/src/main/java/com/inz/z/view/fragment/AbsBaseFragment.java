@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.inz.z.base.IBaseView;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -64,7 +64,7 @@ public abstract class AbsBaseFragment extends Fragment implements IBaseView {
     @Override
     public void showLoading() {
         if (loadDialog == null) {
-            loadDialog = Tools.loadDialog(mContext);
+            loadDialog = AppBaseTools.loadDialog(mContext);
         }
         loadDialog.show();
         Logger.t(TAG).i(mContext.getPackageName() + "; showLoading.");
@@ -81,13 +81,13 @@ public abstract class AbsBaseFragment extends Fragment implements IBaseView {
 
     @Override
     public void showToast(String msg) {
-        Tools.showShortCenterToast(mContext, msg);
+        AppBaseTools.showShortCenterToast(mContext, msg);
         Logger.t(TAG).i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
     public void showError(Throwable e) {
-        Tools.showShortCenterToast(mContext, e.getMessage());
+        AppBaseTools.showShortCenterToast(mContext, e.getMessage());
         Logger.t(TAG).e(mContext.getPackageName() + "; showError: " + e.getMessage());
     }
     /* / -- IBaseView - End -- / */

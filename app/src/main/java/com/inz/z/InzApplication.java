@@ -1,20 +1,19 @@
 package com.inz.z;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.inz.z.entity.Constants;
+import com.inz.z.util.AppBaseTools;
 import com.inz.z.util.CrashHandler;
 import com.inz.z.util.MyCsvFormatStrategy;
 import com.inz.z.util.SPHelper;
-import com.inz.z.util.Tools;
 import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
-import com.taobao.sophix.SophixManager;
 
 import java.text.SimpleDateFormat;
 
@@ -23,7 +22,7 @@ import java.text.SimpleDateFormat;
  * @version 1.0.0
  * Create by inz in 2018/10/23 19:06.
  */
-public class InzApplication extends Application {
+public class InzApplication extends OtherApplication {
     private static final String TAG = "InzApplication";
     private Context mContext;
 
@@ -37,6 +36,9 @@ public class InzApplication extends Application {
         mContext = this;
         // 初始化 日志
         initLogger();
+        ARouter.openLog();
+        ARouter.openDebug();
+        ARouter.init(this);
         // 非 测试环境
         if (!Constants.isIsTest()) {
             // 初始化 异常信息收集
@@ -74,14 +76,14 @@ public class InzApplication extends Application {
 //                return BuildConfig.DEBUG;
 //            }
 //        });
-//        Logger.i("初始化 Logger Logcat 完成 : " + Tools.baseDateFormat.format(System.currentTimeMillis()));
+//        Logger.i("初始化 Logger Logcat 完成 : " + AppBaseTools.baseDateFormat.format(System.currentTimeMillis()));
         // 保存到本地
         FormatStrategy fileStrategy = MyCsvFormatStrategy.newBuilder()
-                .dateFormat((SimpleDateFormat) Tools.getBaseDateFormat())
+                .dateFormat((SimpleDateFormat) AppBaseTools.getBaseDateFormat())
                 .tag(" - Inz - ")
                 .build();
         Logger.addLogAdapter(new DiskLogAdapter(fileStrategy));
-        Logger.i("初始化 Logger File 完成 : " + Tools.getBaseDateFormat().format(System.currentTimeMillis()));
+        Logger.i("初始化 Logger File 完成 : " + AppBaseTools.getBaseDateFormat().format(System.currentTimeMillis()));
     }
 
     /**

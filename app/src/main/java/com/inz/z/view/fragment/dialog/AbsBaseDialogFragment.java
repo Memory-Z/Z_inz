@@ -8,7 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 
 import com.inz.z.base.IBaseView;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -47,13 +47,13 @@ public abstract class AbsBaseDialogFragment extends DialogFragment implements IB
 
     @Override
     public void showToast(String msg) {
-        Tools.showShortCenterToast(mContext, msg);
+        AppBaseTools.showShortCenterToast(mContext, msg);
         Logger.i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
     public void showError(Throwable e) {
-        Tools.showShortCenterToast(mContext, e.getMessage());
+        AppBaseTools.showShortCenterToast(mContext, e.getMessage());
         Logger.e(mContext.getPackageName() + "; showError: " + e.getMessage());
     }
     /* / -- IBaseView - End -- / */

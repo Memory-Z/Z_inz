@@ -39,7 +39,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     /**
      * 时间格式: yyyy-MM-dd HH:mm:ss
      */
-    private DateFormat dateFormat = Tools.getBaseDateFormat();
+    private DateFormat dateFormat = AppBaseTools.getBaseDateFormat();
     private Calendar calendar = Calendar.getInstance(Locale.CHINA);
     /**
      * 系统 默认处理类

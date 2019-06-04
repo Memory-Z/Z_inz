@@ -8,6 +8,7 @@ import android.view.View
 import com.inz.z.R
 import com.inz.z.view.adapter.TiwCardAdapter
 import com.inz.z.view.adapter.TiwCardPagerTransformer
+import kotlinx.android.synthetic.tiw.tiw_card_layout.*
 
 /**
  *
@@ -28,8 +29,8 @@ class TiwCardActivity : AbsBaseActivity() {
     }
 
     override fun initView() {
-        mViewPager = findViewById(R.id.tiw_card_vp)
-        mTabLayout = findViewById(R.id.tiw_card_tl)
+        mViewPager = tiw_card_vp
+        mTabLayout = tiw_card_tl
 
     }
 
@@ -49,8 +50,8 @@ class TiwCardActivity : AbsBaseActivity() {
         viewList.add(card5)
         mViewPager?.adapter = TiwCardAdapter(mContext, viewList)
         mViewPager?.setPageTransformer(false, TiwCardPagerTransformer(mContext))
-        mViewPager?.offscreenPageLimit = 3
-        mViewPager?.pageMargin = -10
+//        mViewPager?.offscreenPageLimit = 3
+//        mViewPager?.pageMargin = -10
     }
 
     override fun myOnKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 数据 -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/base_choose_photo_rv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/base_choose_photo_bottom_rl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <!-- 底部栏 -->
+    <RelativeLayout
+        android:id="@+id/base_choose_photo_bottom_rl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="#474A56"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 文件夹选择器 -->
+        <LinearLayout
+            android:id="@+id/base_choose_photo_folder_check_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/base_choose_photo_folder_check_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/image_detail"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/base_choose_photo_folder_check_bottom_iv"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="4dp"
+                android:contentDescription="@string/image_detail"
+                android:src="@drawable/ic_vd_right_flag" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/base_choose_photo_folder_check_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/base_choose_photo_folder_check_ll"
+            android:gravity="end"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <!-- 显示目录 -->
+
+    <FrameLayout
+        android:id="@+id/base_choose_photo_folder_fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="48dp"
+        app:layout_constraintBottom_toBottomOf="@id/base_choose_photo_rv"
+        app:layout_constraintEnd_toEndOf="@id/base_choose_photo_rv"
+        app:layout_constraintStart_toStartOf="@id/base_choose_photo_rv"
+        app:layout_constraintTop_toTopOf="@id/base_choose_photo_rv">
+
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

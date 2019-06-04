@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.inz.z.R;
 import com.inz.z.base.AbsBaseRvAdapter;
 import com.inz.z.base.AbsBaseRvViewHolder;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 
 import java.io.File;
 import java.util.Calendar;
@@ -79,14 +79,14 @@ public class FileBrowserFragmentAdapter extends AbsBaseRvAdapter<File, FileBrows
         // 最后修改时间
         long lastModifiedTime = file.lastModified();
         Calendar calendar = Calendar.getInstance(Locale.CHINA);
-        String localY = Tools.getDateFormatY().format(calendar.getTime());
-        String fileY = Tools.getDateFormatY().format(lastModifiedTime);
+        String localY = AppBaseTools.getDateFormatY().format(calendar.getTime());
+        String fileY = AppBaseTools.getDateFormatY().format(lastModifiedTime);
         String lastModifiedTimeStr = "";
         if (localY.equals(fileY)) {
             // 如果当前年份 和文件修改年份相同，只显示 月-日
-            lastModifiedTimeStr = Tools.getDateFormatMD().format(lastModifiedTime);
+            lastModifiedTimeStr = AppBaseTools.getDateFormatMD().format(lastModifiedTime);
         } else {
-            lastModifiedTimeStr = Tools.getBaseDateFormat().format(lastModifiedTime);
+            lastModifiedTimeStr = AppBaseTools.getBaseDateFormat().format(lastModifiedTime);
         }
         holder.itemHintTv.setText(lastModifiedTimeStr);
         boolean isFile = file.isFile();

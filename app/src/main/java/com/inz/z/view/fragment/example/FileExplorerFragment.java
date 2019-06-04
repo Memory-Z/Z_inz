@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.inz.z.R;
+import com.inz.z.util.AppBaseTools;
 import com.inz.z.util.FileUtils;
-import com.inz.z.util.Tools;
 import com.inz.z.view.adapter.example.FileBrowserFragmentAdapter;
 import com.inz.z.view.fragment.AbsBaseFragment;
 
@@ -309,9 +309,9 @@ public class FileExplorerFragment extends AbsBaseFragment {
                 //  点击目录，记录地址
                 setFileList(file, true);
             } else if (file.isFile()) {
-                Tools.showShortBottomToast(mContext, "点击文件，不可打开");
+                AppBaseTools.showShortBottomToast(mContext, "点击文件，不可打开");
             } else {
-                Tools.showShortBottomToast(mContext, "点击未知，不可打开");
+                AppBaseTools.showShortBottomToast(mContext, "点击未知，不可打开");
             }
         }
 

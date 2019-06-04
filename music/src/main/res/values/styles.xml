@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MusicTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/musicPrimary</item>
+        <item name="colorPrimaryDark">@color/musicPrimaryDark</item>
+        <item name="colorAccent">@color/musicAccent</item>
+    </style>
+
+    <style name="MusicTheme.NoActionBar" parent="MusicTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

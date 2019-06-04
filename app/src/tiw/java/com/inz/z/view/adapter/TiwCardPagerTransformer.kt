@@ -23,6 +23,8 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
     private val minScale = .6F
     private val maxScale = .8F
 
+    private val defaultCenter = .5F
+
     /**
      * X轴 偏移量
      */
@@ -47,57 +49,45 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
 
 
     override fun transformPage(page: View, position: Float) {
+        val pageWidth = page.width
+        val pageHeight = page.height
+
         if (mViewPager == null) {
             mViewPager = page.parent as ViewPager?
         }
-        if (mViewPager == null) {
-            return
+
+        page.pivotY = (pageHeight / 2).toFloat()
+
+        if (position < -1) {  // [-Infinity,-1)
+            // This page is way off-screen to the left.
+            page.scaleX = minScale
+            page.scaleY = minScale
+            page.pivotX = pageWidth.toFloat()
+        } else if (position <= 1) {  // [-1,1]
+            // Modify the default slide transition to shrink the page as well
+            //1->2: 1[0,-1] / 2[1,0]
+            //2->1: 1[-1,0] / 2[0,1]
+            val pw = mViewPager!!.width
+            val pageSw: Float = (pageWidth / pw).toFloat()
+            val pageSnw: Float = (((pw - pageWidth) / 2) / pw).toFloat()
+            var scaleFactor = 1F
+            if (position < 0) {
+                scaleFactor = (1 + position) * (1 - minScale) + minScale
+            } else {
+//                if (pw * position < (pw - pageWidth) / 2) {
+//                    scaleFactor = (position) * (1 - minScale) + minScale
+//                } else {
+                    scaleFactor = (1 - position) * (1 - minScale) + minScale
+//                }
+            }
+            page.scaleX = scaleFactor
+            page.scaleY = scaleFactor
+            page.pivotX = pageWidth * ((1 - position) * defaultCenter)
+        } else { //(1,Infinity]
+            page.pivotX = 0F
+            page.scaleX = minScale
+            page.scaleY = minScale
         }
-        // 父元素 宽
-        val pWidth = mViewPager!!.measuredWidth
-        // 每页 宽
-        val tW = page.measuredWidth
-        // 距两边距离
-        val dW = (pWidth - tW) / 2
-//        val pScaleX = page.scaleX
-//        if (position <= 0) {
-//            page.alpha = 0F
-//        } else if (position <= 1) {
-        page.alpha = Math.max(minAlpha, 1 - Math.abs(position * minAlpha))
-        if (position <= 1) {
-            val scale = Math.min(maxScale, Math.max(Math.abs(1 - position * minScale), minScale))
-//            val scale = minScale + (1 - minScale) * (1 - position)
-            page.scaleX = scale
-            page.scaleY = scale
-        } else {
-            val scale = Math.max(minScale, Math.abs(Math.abs(position) - 1) * minScale)
-//            val w = dW * position
-////            val scale = minScale + (1 - minScale) * (1 - position)
-//            page.translationX = w
-            page.scaleX = scale
-            page.scaleY = scale
-        }
-//        val scale = Math.max(minScale, Math.abs(1 - Math.abs(position)))
-//        page.scaleX = scale
-//        page.scaleY = scale
-//        if (position < -1) {
-//            val scale = Math.max(minScale, Math.abs(1 - Math.abs(position)))
-//            page.scaleX = scale
-//            page.scaleY = scale
-//        } else if (position <= 0) {
-//            val scale = Math.min(minScale, 1 - Math.abs(position))
-//            page.scaleX = scale
-//            page.scaleY = scale
-//        } else
-//            if (position <= 1) {
-//            val scale = Math.max(minScale, Math.abs(position))
-//            page.scaleX = scale
-//            page.scaleY = scale
-//        } else {
-//            val scale = Math.min(minScale, Math.abs(1 - Math.abs(position)))
-//            page.scaleX = scale
-//            page.scaleY = scale
-//        }
         Log.i("transformPage", "view = $page ; position = $position")
     }
 

@@ -16,7 +16,7 @@ import com.inz.z.app_update.UpdateWrapper;
 import com.inz.z.app_update.bean.VersionBean;
 import com.inz.z.app_update.service.CheckUpdateThread;
 import com.inz.z.base.IBaseView;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -80,7 +80,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
     @Override
     public void showLoading() {
         if (loadDialog == null) {
-            loadDialog = Tools.loadDialog(mContext);
+            loadDialog = AppBaseTools.loadDialog(mContext);
         }
         if (!loadDialog.isShowing()) {
             loadDialog.show();
@@ -99,13 +99,13 @@ public abstract class AbsBaseActivity extends AppCompatActivity implements IBase
 
     @Override
     public void showToast(String msg) {
-        Tools.showShortCenterToast(mContext, msg);
+        AppBaseTools.showShortCenterToast(mContext, msg);
         Logger.i(mContext.getPackageName() + "; showToast: " + msg);
     }
 
     @Override
     public void showError(Throwable e) {
-        Tools.showShortCenterToast(mContext, e.getMessage());
+        AppBaseTools.showShortCenterToast(mContext, e.getMessage());
         Logger.e(mContext.getPackageName() + "; showError: " + e.getMessage());
     }
 

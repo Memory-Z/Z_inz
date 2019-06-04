@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.inz.z.R;
 import com.inz.z.presenter.RegisterPresenter;
-import com.inz.z.util.Tools;
+import com.inz.z.util.AppBaseTools;
 import com.inz.z.view.IRegisterView;
 import com.inz.z.view.fragment.dialog.CheckEmailDialogFragment;
 import com.inz.z.view.fragment.dialog.ThirdLoginDialogFragment;
@@ -84,7 +84,7 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView, 
                 if (!"".equals(userName) && !"".equals(userPassword)) {
                     registerPresenter.register(userName, userPassword);
                 } else {
-                    Tools.showShortCenterToast(mContext, "用户名或密码不能为空！");
+                    AppBaseTools.showShortCenterToast(mContext, "用户名或密码不能为空！");
                 }
             }
         });
@@ -148,7 +148,7 @@ public class RegisterActivity extends AbsBaseActivity implements IRegisterView, 
             // 检测通过
             if (checkEmailDialogFragment != null) {
                 checkEmailDialogFragment.dismiss();
-                Tools.showShortCenterToast(mContext, "邮箱验证成功，请登录");
+                AppBaseTools.showShortCenterToast(mContext, "邮箱验证成功，请登录");
             }
         }
 

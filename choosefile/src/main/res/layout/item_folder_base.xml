@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/choose_file_item_folder_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <!-- 图片 -->
+        <ImageView
+            android:id="@+id/choose_file_item_folder_iv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_choose_item_folder"
+            android:contentDescription="@string/image_detail"
+            android:paddingStart="0dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_vd_checkbox_checked" />
+
+        <!-- 文件夹名字 -->
+        <TextView
+            android:id="@+id/choose_file_item_folder_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="48dp"
+            android:layout_toEndOf="@id/choose_file_item_folder_iv"
+            android:text="@string/all_image"
+            android:textColor="#474A56"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/choose_file_dialog_bg" />
+</LinearLayout>
