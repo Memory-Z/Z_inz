@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BaseTopActionLayout">
+        <attr name="base_top_left_layout" format="reference" />
+        <attr name="base_top_center_layout" format="reference" />
+        <attr name="base_top_right_layout" format="reference" />
+        <attr name="base_top_title" format="string" />
+        <attr name="base_top_title_gravity" format="enum">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

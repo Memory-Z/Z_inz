@@ -4,7 +4,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp192"
+        android:layout_height="@dimen/dp200"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:orientation="vertical"
@@ -16,7 +16,8 @@
             android:layout_width="@dimen/dp80"
             android:layout_height="@dimen/dp80"
             android:layout_gravity="start"
-            android:layout_marginTop="@dimen/dp10"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/dp08"
             android:src="@mipmap/ic_launcher"
             app:civ_border_color="@android:color/white"
             app:civ_border_width="@dimen/dp02" />
@@ -25,7 +26,7 @@
             android:id="@+id/nav_header_user_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp08"
             android:text="@string/user_name"
             android:textSize="@dimen/sp18" />
 
@@ -33,7 +34,7 @@
             android:id="@+id/nav_header_user_email_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp04"
             android:text="@string/user_email_example"
             android:textSize="@dimen/sp16" />
     </LinearLayout>

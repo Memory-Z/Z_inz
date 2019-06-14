@@ -33,7 +33,7 @@ public abstract class AbsBaseRvAdapter<T, VH extends RecyclerView.ViewHolder> ex
     /**
      * 布局填充
      */
-    public LayoutInflater mLayoutInflater;
+    protected LayoutInflater mLayoutInflater;
 
     public AbsBaseRvAdapter(Context mContext) {
         this.mContext = mContext;

@@ -211,7 +211,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      */
     private String saveLogToFile(String content, String prefix) {
         String fileName = prefix + "-" + dateStr + ".log";
-        String filePath = BaseConstants.getCrashPath();
+        String filePath = BaseConstants.getCrashPath() + File.separator + fileName;
         File dir = new File(filePath);
         boolean isMkdirs = true;
         if (!dir.exists()) {
@@ -219,14 +219,14 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
         Log.i(TAG, "saveLogToFile: 文件 目录是否 已创建" + isMkdirs);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath + fileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
             fileOutputStream.write(content.getBytes());
             fileOutputStream.close();
         } catch (IOException e) {
             isMkdirs = true;
             e.printStackTrace();
         }
-        return isMkdirs ? filePath + fileName : "";
+        return isMkdirs ? filePath : "";
     }
 
     /**

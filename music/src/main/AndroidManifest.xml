@@ -1,13 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.inz.z.music">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application>
         <activity
-            android:name=".view.activity.MainBaseActivity"
+            android:name=".view.activity.FullImageActivity"
             android:theme="@style/MusicTheme.NoActionBar" />
 
         <activity
             android:name=".view.activity.PlayActivity"
+            android:theme="@style/MusicTheme.NoActionBar" />
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:configChanges="orientation"
+            android:theme="@style/MusicTheme.NoActionBar.Transparent" />
+        <activity
+            android:name=".view.activity.SongInfoActivity"
             android:theme="@style/MusicTheme.NoActionBar" />
     </application>
 </manifest>

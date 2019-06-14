@@ -65,10 +65,15 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/music_interest_skip_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
                 android:text="@string/skip"
                 android:textColor="@color/musicWhite"
                 android:textSize="16sp"

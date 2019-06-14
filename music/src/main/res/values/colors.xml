@@ -4,6 +4,7 @@
     <color name="musicPrimary">#909090</color>
     <color name="musicPrimaryDark">#897657</color>
     <color name="musicWhite">#FBF9F7</color>
+    <color name="musicGray">#8D8D8D</color>
     <color name="musicBlack">#111217</color>
     <color name="musicBlackLit">#3F3F4C</color>
     <color name="musicRed">#F8385B</color>

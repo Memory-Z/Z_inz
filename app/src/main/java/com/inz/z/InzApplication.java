@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.inz.z.entity.Constants;
+import com.inz.z.music.MusicApplication;
 import com.inz.z.util.AppBaseTools;
 import com.inz.z.util.CrashHandler;
 import com.inz.z.util.MyCsvFormatStrategy;
@@ -26,12 +27,16 @@ public class InzApplication extends OtherApplication {
     private static final String TAG = "InzApplication";
     private Context mContext;
 
+    private MusicApplication musicApplication;
+
     public InzApplication() {
+        musicApplication = new MusicApplication(this);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        musicApplication.onCreate();
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
         mContext = this;
         // 初始化 日志

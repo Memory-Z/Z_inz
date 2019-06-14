@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PlayerCircleImageView">
+        <attr name="player_civ_outer_width" format="dimension" />
+        <attr name="player_civ_outer_background" format="reference" />
+        <attr name="player_civ_outer_min_photo" format="reference" />
+        <attr name="player_civ_radius" format="dimension" />
+        <attr name="player_civ_min_size_mode" format="enum">
+            <enum name="min" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="big" value="3" />
+        </attr>
+        <attr name="player_civ_outer_margin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PlayMusicCDImageView">
+        <attr name="cd_iv_radius" format="dimension" />
+        <attr name="cd_iv_inner_radius" format="dimension" />
+        <attr name="cd_iv_background" format="reference" />
+        <attr name="cd_iv_outer_color" format="color" />
+        <attr name="cd_iv_outer_width" format="dimension" />
+        <!-- 转速 -->
+        <attr name="cd_iv_rotate_speed" format="enum">
+            <enum name="quickly" value="3" />
+            <enum name="normally" value="2" />
+            <enum name="slowly" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

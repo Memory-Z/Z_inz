@@ -15,7 +15,9 @@ open class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        mContext = this;
+        if (mContext == null) {
+            mContext = this;
+        }
         // 崩溃信息处理 初始化
         CrashHandler.instance(mContext)
     }

@@ -43,7 +43,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning, ExtraTranslation"
-        tools:replace="android:theme"
+        tools:replace="android:theme,name"
         tools:targetApi="n">
         <meta-data
             android:name="com.google.android.actions"

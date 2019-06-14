@@ -28,8 +28,6 @@ public abstract class AbsBaseDialogFragment extends DialogFragment {
 
     protected abstract void initData();
 
-    protected abstract void setStyle();
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +47,6 @@ public abstract class AbsBaseDialogFragment extends DialogFragment {
         mContext = getContext();
         initView();
         initData();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        setStyle();
     }
 
     @Override

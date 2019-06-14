@@ -1,11 +1,6 @@
 package com.inz.z.music.view.activity;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.inz.z.music.R;
@@ -16,8 +11,8 @@ import com.inz.z.music.base.AbsBaseActivity;
  * @version 1.0.0
  * Create by inz in 2019/06/04 10:49.
  */
-@Route(path = "/music/mainActivity", group = "music")
-public class MainBaseActivity extends AbsBaseActivity {
+@Route(path = "/music/fullImageActivity", group = "music")
+public class FullImageActivity extends AbsBaseActivity {
     @Override
     protected void initWindow() {
 //        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
@@ -35,7 +30,7 @@ public class MainBaseActivity extends AbsBaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.man_activity;
+        return R.layout.full_image_activity;
     }
 
     @Override

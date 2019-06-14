@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="96dp"
+    android:layout_height="120dp"
+    android:gravity="center">
+
+
+    <com.inz.z.music.view.widget.PlayerCircleImageView
+        android:id="@+id/music_item_top_player_photo_pciv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="4dp"
+        android:src="@drawable/image_holder"
+        app:player_civ_min_size_mode="normal"
+        app:player_civ_outer_background="@drawable/image_holder"
+        app:player_civ_outer_margin="2dp"
+        app:player_civ_outer_width="2dp" />
+
+    <TextView
+        android:id="@+id/music_item_top_play_user_photo_detail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/music_item_top_player_photo_pciv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:text="@string/app_name"
+        android:textColor="@color/musicGray"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

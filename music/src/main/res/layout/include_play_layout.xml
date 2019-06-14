@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.inz.z.music.view.widget.PlayMusicCDImageView
+        android:id="@+id/include_top_pcdiv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/image_holder"
+        android:visibility="visible"
+        app:cd_iv_inner_radius="36dp"
+        app:cd_iv_outer_width="8dp"
+        app:layout_constraintDimensionRatio="H ,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--<com.inz.z.music.view.widget.PlayerCircleImageView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:src="@drawable/image_holder"-->
+    <!--app:layout_constraintDimensionRatio="H, 1: 1"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/include_top_pcdiv"-->
+    <!--app:player_civ_min_size_mode="normal"-->
+    <!--app:player_civ_outer_margin="6dp"-->
+    <!--app:player_civ_outer_width="8dp"-->
+    <!--app:player_civ_outer_background="@drawable/paper"-->
+    <!--app:player_civ_outer_min_photo="@drawable/paper" />-->
+
+</android.support.constraint.ConstraintLayout>

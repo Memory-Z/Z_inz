@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 28
 
@@ -9,6 +9,9 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -28,7 +31,14 @@ android {
         }
     }
 
+
+    greendao {
+        schemaVersion 1
+
+        targetGenDir 'src/main/java'
+    }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -86,9 +96,12 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     implementation 'com.alibaba:fastjson:1.2.51'
 
+    // GreenDao
+    implementation 'org.greenrobot:greendao:3.2.2'
+
     // 阿里 路由 （多模块通信）
     implementation 'com.alibaba:arouter-api:1.5.0'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 
-    implementation project (':base')
+    implementation project(':base')
 }
