@@ -18,5 +18,16 @@
         <activity
             android:name=".view.activity.SongInfoActivity"
             android:theme="@style/MusicTheme.NoActionBar" />
+        <activity
+            android:name=".view.activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MusicTheme.NoActionBar" />
+        <activity
+            android:name=".view.activity.LibraryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MusicTheme.NoActionBar" />
+
+        <service android:name=".service.MusicPlayService" />
+
     </application>
 </manifest>

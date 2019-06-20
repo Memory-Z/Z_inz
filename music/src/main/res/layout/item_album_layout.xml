@@ -1,65 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="120dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@drawable/music_card_bg"
-    android:padding="2dp"
+    android:gravity="center"
     android:paddingBottom="4dp">
 
-    <RelativeLayout
-        android:id="@+id/music_item_album_rl"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="4dp"
-        android:background="@drawable/music_card_bg"
-        app:layout_constraintDimensionRatio="H, 1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/music_item_album_image_rl"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <com.inz.z.base.view.widget.RoundImageView
             android:id="@+id/music_item_album_iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:contentDescription="@string/album"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_holder" />
+            android:src="@drawable/image_holder"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:round_image_view_top_end_radius="4dp"
+            app:round_image_view_top_start_radius="4dp" />
 
+        <RelativeLayout
+            android:id="@+id/music_item_album_image_play_num_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/music_bg_play_num"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/music_item_album_image_play_num_icon_iv"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/album"
+                android:src="@drawable/ic_vd_video_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="2dp"
+                android:layout_toEndOf="@id/music_item_album_image_play_num_icon_iv"
+                android:gravity="center_vertical"
+                android:text="@string/more"
+                android:textColor="@color/musicWhite"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/music_item_album_image_rl"
+        android:layout_alignStart="@id/music_item_album_image_rl"
+        android:layout_alignEnd="@id/music_item_album_image_rl">
+
+        <TextView
+            android:id="@+id/music_item_album_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="@string/album"
+            android:textColor="@color/musicBlackLit"
+            android:textSize="@dimen/music_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/music_item_album_player_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/music_item_album_title_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="@string/album"
+            android:textColor="@color/musicGray"
+            android:textSize="@dimen/music_min_text_size"
+            android:textStyle="normal" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/music_item_album_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:text="@string/album"
-        android:textColor="@color/musicBlackLit"
-        android:textSize="@dimen/music_text_size"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/music_item_album_rl" />
 
-    <TextView
-        android:id="@+id/music_item_album_player_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="@string/album"
-        android:textColor="@color/musicGray"
-        android:textSize="@dimen/music_min_text_size"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/music_item_album_title_tv" />
-
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

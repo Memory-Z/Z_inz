@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MusicTheme" parent="Theme.AppCompat.Light">
+    <style name="MusicTheme" parent="Theme.AppCompat.Light" >
         <item name="colorPrimary">@color/musicPrimary</item>
         <item name="colorPrimaryDark">@color/musicPrimaryDark</item>
         <item name="colorAccent">@color/musicAccent</item>
@@ -14,8 +14,6 @@
 
     <style name="MusicTheme.NoActionBar.Transparent" parent="MusicTheme.NoActionBar">
         <item name="colorPrimary">@color/musicPrimary</item>
-        <item name="actionBarStyle">@style/TranActionBar</item>
-        <item name="toolbarStyle">@style/TranActionBar</item>
     </style>
 
     <style name="TranActionBar" parent="Widget.AppCompat.Light.ActionBar">

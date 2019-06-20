@@ -1,20 +1,31 @@
 package com.inz.z.music.view.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.inz.z.base.view.widget.BaseTopActionLayout;
+import com.inz.z.music.MusicApplication;
 import com.inz.z.music.R;
 import com.inz.z.music.base.AbsBaseActivity;
+import com.inz.z.music.database.SongsImageBean;
 import com.inz.z.music.view.adapter.AlbumRvAdapter;
+import com.inz.z.music.view.adapter.BottomPlayViewPagerAdapter;
 import com.inz.z.music.view.adapter.ItemAlbumBean;
-import com.inz.z.music.view.adapter.TopPlayerAdapter;
+import com.inz.z.music.view.adapter.ItemSongsBean;
 import com.inz.z.music.view.adapter.ItemTopPlayerBean;
+import com.inz.z.music.view.adapter.TopPlayerAdapter;
+import com.inz.z.music.view.decoration.BaseItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +58,12 @@ public class MainActivity extends AbsBaseActivity {
     private AlbumRvAdapter recentlyAlbumRvAdapter;
     private RecyclerView recentlyRv;
 
+    private ImageView settingIv;
+
+    private List<ItemSongsBean> itemSongsBeanList;
+    private ViewPager bottomPlayVp;
+    private BottomPlayViewPagerAdapter bottomPlayViewPagerAdapter;
+
     @Override
     protected void initWindow() {
         window = getWindow();
@@ -70,13 +87,15 @@ public class MainActivity extends AbsBaseActivity {
 
     @Override
     protected void initView() {
+
         topActionLayout = findViewById(R.id.main_action_btal);
         setSupportActionBar(topActionLayout.getToolbar());
         setTopActionLayoutHeight();
+        settingIv = findViewById(R.id.main_action_right_setting_iv);
 
         topRv = findViewById(R.id.main_top_play_rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-        topRv.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.HORIZONTAL));
+        topRv.addItemDecoration(new BaseItemDecoration(mContext));
         topRv.setLayoutManager(layoutManager);
         topPlayerAdapter = new TopPlayerAdapter(mContext);
         topRv.setAdapter(topPlayerAdapter);
@@ -84,8 +103,13 @@ public class MainActivity extends AbsBaseActivity {
         recentlyRv = findViewById(R.id.main_recently_rv);
         LinearLayoutManager recentlyLm = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         recentlyRv.setLayoutManager(recentlyLm);
+        recentlyRv.addItemDecoration(new BaseItemDecoration(mContext));
         recentlyAlbumRvAdapter = new AlbumRvAdapter(mContext, 6);
         recentlyRv.setAdapter(recentlyAlbumRvAdapter);
+
+        bottomPlayVp = findViewById(R.id.main_bottom_start_vp);
+        bottomPlayViewPagerAdapter = new BottomPlayViewPagerAdapter(getSupportFragmentManager(), mContext);
+        bottomPlayVp.setAdapter(bottomPlayViewPagerAdapter);
     }
 
     /**
@@ -99,10 +123,29 @@ public class MainActivity extends AbsBaseActivity {
         ViewGroup.LayoutParams layoutParams = topActionLayout.getLayoutParams();
         layoutParams.height = layoutParams.height + statusBarHeight;
         topActionLayout.setLayoutParams(layoutParams);
+        if (topActionLayout.getBackground() == null) {
+            window.setStatusBarColor(ContextCompat.getColor(mContext, R.color.musicPrimaryDark));
+        } else {
+            ColorDrawable colorDrawable = (ColorDrawable) topActionLayout.getBackground();
+            if (colorDrawable != null
+                    && (Color.TRANSPARENT == colorDrawable.getColor()
+                    || ContextCompat.getColor(mContext, R.color.transition) == colorDrawable.getColor())) {
+                window.setStatusBarColor(ContextCompat.getColor(mContext, R.color.musicPrimaryDark));
+            }
+        }
     }
 
     @Override
     protected void initData() {
+        settingIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(mContext, SettingActivity.class);
+                Intent intent = new Intent(mContext, LibraryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         itemTopPlayerBeanList = new ArrayList<>(16);
         String[] imageSrcArray = getResources().getStringArray(R.array.image_array);
         for (int i = 0; i < 10; i++) {
@@ -125,6 +168,19 @@ public class MainActivity extends AbsBaseActivity {
             recentlyItemAlbumBeanList.add(bean);
         }
         recentlyAlbumRvAdapter.refreshData(recentlyItemAlbumBeanList);
+
+        itemSongsBeanList = new ArrayList<>(16);
+        for (int i = 0; i < 20; i++) {
+            ItemSongsBean bean = new ItemSongsBean();
+            bean.setTitle("Title = " + i);
+            bean.setDetail("detail " + i);
+            SongsImageBean imageBean = new SongsImageBean();
+            imageBean.setImageSrc(imageSrcArray[i % imageSrcArray.length]);
+            bean.__setDaoSession(MusicApplication.getDaoSession());
+            itemSongsBeanList.add(bean);
+        }
+        bottomPlayViewPagerAdapter.setSongsBeanList(bottomPlayVp, itemSongsBeanList);
+
     }
 
     @Nullable

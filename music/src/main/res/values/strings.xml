@@ -5,4 +5,15 @@
     <string name="done">完成</string>
     <string name="album">专辑</string>
     <string name="more">更多</string>
+    <string name="play">播放</string>
+    <string name="stop">暂停</string>
+    <string name="list">列表</string>
+    <string name="recently">最近</string>
+    <string name="recommend">推荐</string>
+    <string name="setting">设置</string>
+    <string name="song">歌曲</string>
+    <string name="title">标题</string>
+    <string name="detail">详情</string>
+    <string name="back">返回</string>
+
 </resources>

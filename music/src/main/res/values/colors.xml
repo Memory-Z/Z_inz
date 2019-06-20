@@ -5,9 +5,11 @@
     <color name="musicPrimaryDark">#897657</color>
     <color name="musicWhite">#FBF9F7</color>
     <color name="musicGray">#8D8D8D</color>
+    <color name="musicGray50">#808D8D8D</color>
+    <color name="musicGrayGreen">#F0FFF0</color>
     <color name="musicBlack">#111217</color>
     <color name="musicBlackLit">#3F3F4C</color>
     <color name="musicRed">#F8385B</color>
     <color name="musicLitterRed">#F9622F</color>
-    <color name="transition">#00FFFFFF</color>
+    <color name="transition">#00000000</color>
 </resources>

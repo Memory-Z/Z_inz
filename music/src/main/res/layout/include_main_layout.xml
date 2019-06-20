@@ -8,7 +8,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_top_play_rv"
         android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,14 +24,116 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_top_play_rv">
 
+        <com.inz.z.base.view.widget.BaseNavLayout
+            android:id="@+id/main_recently_bnl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            app:base_center_layout="@id/main_recently_bnl_title_tv"
+            app:base_right_layout="@id/main_recently_bnl_right_iv">
 
+            <TextView
+                android:id="@+id/main_recently_bnl_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="4dp"
+                android:text="@string/recently"
+                android:textColor="@color/musicBlackLit"
+                android:textDirection="firstStrong"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/main_recently_bnl_right_iv"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/more"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_chevron_right_black_24dp"
+                android:visibility="gone" />
+        </com.inz.z.base.view.widget.BaseNavLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_recently_rv"
             android:layout_width="match_parent"
-            android:layout_height="160dp">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_recently_bnl"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
         </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
+
+    <!-- 推荐 -->
+    <RelativeLayout
+        android:id="@+id/main_recommend_rl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_recently_rl">
+
+        <com.inz.z.base.view.widget.BaseNavLayout
+            android:id="@+id/main_recommend_bnl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:base_left_layout="@id/main_recommend_nav_left_tv"
+            app:base_right_layout="@id/main_recommend_nav_right_rl">
+
+            <TextView
+                android:id="@+id/main_recommend_nav_left_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="4dp"
+                android:text="@string/recommend"
+                android:textColor="@color/musicBlackLit"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/main_recommend_nav_right_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/main_recommend_nav_right_icon_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/more"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_chevron_right_black_24dp" />
+
+                <TextView
+                    android:id="@+id/main_recommend_nav_right_text_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@id/main_recommend_nav_right_icon_iv"
+                    android:gravity="center_vertical"
+                    android:text="@string/more"
+                    android:textColor="@color/musicBlackLit"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+        </com.inz.z.base.view.widget.BaseNavLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_recommend_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_recommend_bnl">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

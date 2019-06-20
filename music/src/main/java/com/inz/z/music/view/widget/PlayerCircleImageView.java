@@ -110,7 +110,7 @@ public class PlayerCircleImageView extends AppCompatImageView {
 
         radius = array.getDimensionPixelSize(R.styleable.PlayerCircleImageView_player_civ_radius, 0);
 
-        outerRingMarinInner = array.getDimensionPixelSize(R.styleable.PlayerCircleImageView_player_civ_outer_margin, 8);
+        outerRingMarinInner = array.getDimensionPixelSize(R.styleable.PlayerCircleImageView_player_civ_outer_margin, 0);
 
         array.recycle();
     }

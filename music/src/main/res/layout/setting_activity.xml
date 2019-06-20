@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- 顶部栏 -->
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/setting_top_bnl"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:base_bottom_line_visible="true"
+        app:base_center_layout="@id/setting_top_nav_title_tv"
+        app:base_left_layout="@id/setting_top_nav_back_iv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/setting_top_nav_back_iv"
+            android:layout_marginStart="8dp"
+            style="@style/TextAppearance.AppCompat.Button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/skip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_chevron_left_black_24dp" />
+
+        <TextView
+            android:id="@+id/setting_top_nav_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:gravity="center"
+            android:text="@string/setting"
+            android:textColor="@color/musicBlackLit"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+    <!-- 用户栏 -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/setting_card_cv"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/musicBlack"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="6dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPaddingLeft="8dp"
+        app:contentPaddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_top_bnl">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.inz.z.base.view.widget.RoundImageView
+                android:id="@+id/setting_card_left_photo_riv"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/image_holder"
+                app:round_image_view_radius="28dp" />
+
+            <ImageView
+                android:id="@+id/setting_card_right_iv"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/setting"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_chevron_right_gray_24dp" />
+
+            <LinearLayout
+                android:id="@+id/setting_card_center_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/setting_card_right_iv"
+                android:layout_toEndOf="@id/setting_card_left_photo_riv"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    android:id="@+id/setting_card_center_title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="@string/setting"
+                    android:textColor="@color/musicGrayGreen"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/setting_card_center_detail_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@string/skip"
+                    android:textColor="@color/musicGray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <!-- 帐号 -->
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/setting_account_bnl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:base_bottom_line_visible="true"
+        app:base_center_layout="@id/setting_account_nav_center_tv"
+        app:base_left_layout="@id/setting_account_nav_left_icon_iv"
+        app:base_right_layout="@id/setting_account_nav_right_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_card_cv">
+
+        <ImageView
+            android:id="@+id/setting_account_nav_left_icon_iv"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/setting"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_menu_black_24dp" />
+
+        <TextView
+            android:id="@+id/setting_account_nav_center_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/more"
+            android:textColor="@color/musicBlackLit"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/setting_account_nav_right_tv"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/more"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_chevron_right_black_24dp" />
+
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+    <!-- 通知 -->
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/setting_notification_bnl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:base_center_layout="@id/setting_notification_nav_title_tv"
+        app:base_left_layout="@id/setting_notification_nav_icon_iv"
+        app:base_right_layout="@id/setting_notification_nav_right_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_account_bnl">
+
+        <ImageView
+            android:id="@+id/setting_notification_nav_icon_iv"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/setting"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_menu_black_24dp" />
+
+        <TextView
+            android:id="@+id/setting_notification_nav_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/setting"
+            android:textColor="@color/musicBlackLit"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/setting_notification_nav_right_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:thumb="@drawable/music_switch_thumb"
+            android:track="@drawable/music_switch_track" />
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+</android.support.constraint.ConstraintLayout>

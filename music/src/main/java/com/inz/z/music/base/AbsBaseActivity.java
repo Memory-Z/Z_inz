@@ -34,8 +34,8 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initWindow();
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        initWindow();
         setContentView(getLayoutId());
         mContext = this;
         initView();

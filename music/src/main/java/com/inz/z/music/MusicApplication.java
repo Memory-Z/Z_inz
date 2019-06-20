@@ -35,7 +35,7 @@ public class MusicApplication extends BaseApplication {
 
     private void setDaoMaster(Context context) {
         openHelper = new DaoMaster.DevOpenHelper(context, "music.db", null);
-        SQLiteDatabase database = openHelper.getReadableDatabase();
+        Database database = openHelper.getWritableDb();
         DaoMaster daoMaster = new DaoMaster(database);
         mDaoSession = daoMaster.newSession();
     }
