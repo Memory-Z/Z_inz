@@ -214,8 +214,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         String filePath = BaseConstants.getCrashPath() + File.separator + fileName;
         File dir = new File(filePath);
         boolean isMkdirs = true;
-        if (!dir.exists()) {
-            isMkdirs = dir.mkdirs();
+        if (!dir.getParentFile().exists()) {
+            isMkdirs = dir.getParentFile().mkdirs();
         }
         Log.i(TAG, "saveLogToFile: 文件 目录是否 已创建" + isMkdirs);
         try {
