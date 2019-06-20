@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 顶部工具栏 -->
     <declare-styleable name="BaseTopActionLayout">
         <attr name="base_top_left_layout" format="reference" />
         <attr name="base_top_center_layout" format="reference" />
@@ -10,5 +11,23 @@
             <enum name="center" value="0" />
             <enum name="right" value="1" />
         </attr>
+    </declare-styleable>
+
+    <!-- 内部导航栏 -->
+    <declare-styleable name="BaseNavLayout">
+        <attr name="base_top_line_visible" format="boolean" />
+        <attr name="base_bottom_line_visible" format="boolean" />
+        <attr name="base_center_layout" format="reference" />
+        <attr name="base_left_layout" format="reference" />
+        <attr name="base_right_layout" format="reference" />
+    </declare-styleable>
+
+    <!-- 圆角图片 -->
+    <declare-styleable name="RoundImageView">
+        <attr name="round_image_view_radius" format="dimension" />
+        <attr name="round_image_view_top_start_radius" format="dimension" />
+        <attr name="round_image_view_top_end_radius" format="dimension" />
+        <attr name="round_image_view_bottom_start_radius" format="dimension" />
+        <attr name="round_image_view_bottom_end_radius" format="dimension" />
     </declare-styleable>
 </resources>
