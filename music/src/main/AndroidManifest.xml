@@ -2,6 +2,9 @@
     package="com.inz.z.music">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
 
     <application>
         <activity
@@ -28,6 +31,27 @@
             android:theme="@style/MusicTheme.NoActionBar" />
 
         <service android:name=".service.MusicPlayService" />
+
+        <!-- 已在MusicPlayService 中动态注册 -->
+        <!--<receiver android:name=".receiver.MusicPlayIntentReceiver">-->
+        <!--<intent-filter>-->
+        <!--&lt;!&ndash;-->
+        <!--that play audio automatically stop playback when an event occurs that causes-->
+        <!--the audio to become noisy (output through external speakers).-->
+        <!--&ndash;&gt;-->
+        <!--<action android:name="android.media.AUDIO_BECOMING_NOISY" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!-- 系统 启动广播 -->
+        <receiver
+            android:name=".receiver.BootCompletedReceiver"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
 </manifest>

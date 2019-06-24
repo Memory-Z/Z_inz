@@ -1,8 +1,18 @@
 package com.inz.z.music.view.activity;
 
+import android.Manifest;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.IBinder;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -14,11 +24,13 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.inz.z.base.util.L;
 import com.inz.z.base.view.widget.BaseTopActionLayout;
 import com.inz.z.music.MusicApplication;
 import com.inz.z.music.R;
 import com.inz.z.music.base.AbsBaseActivity;
 import com.inz.z.music.database.SongsImageBean;
+import com.inz.z.music.service.MusicPlayService;
 import com.inz.z.music.view.adapter.AlbumRvAdapter;
 import com.inz.z.music.view.adapter.BottomPlayViewPagerAdapter;
 import com.inz.z.music.view.adapter.ItemAlbumBean;
@@ -27,6 +39,8 @@ import com.inz.z.music.view.adapter.ItemTopPlayerBean;
 import com.inz.z.music.view.adapter.TopPlayerAdapter;
 import com.inz.z.music.view.decoration.BaseItemDecoration;
 
+import java.security.Permission;
+import java.security.Permissions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,8 +154,8 @@ public class MainActivity extends AbsBaseActivity {
         settingIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(mContext, SettingActivity.class);
-                Intent intent = new Intent(mContext, LibraryActivity.class);
+                Intent intent = new Intent(mContext, SettingActivity.class);
+//                Intent intent = new Intent(mContext, LibraryActivity.class);
                 startActivity(intent);
             }
         });
@@ -180,6 +194,10 @@ public class MainActivity extends AbsBaseActivity {
             itemSongsBeanList.add(bean);
         }
         bottomPlayViewPagerAdapter.setSongsBeanList(bottomPlayVp, itemSongsBeanList);
+        // 请求弹窗权限
+        requestAlertWindow();
+        // 绑定MusicPlayService
+        bindMusicPlayService();
 
     }
 
@@ -192,5 +210,76 @@ public class MainActivity extends AbsBaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 解绑MusicPlayService
+        unbindMusicPlayService();
+    }
+
+    private int alertRequestCode = 10;
+
+    /**
+     * 弹窗请求
+     */
+    private void requestAlertWindow() {
+        // 权限被拒绝
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            boolean haveAlert = Settings.canDrawOverlays(mContext);
+            if (!haveAlert) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, alertRequestCode);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == alertRequestCode) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.canDrawOverlays(mContext)) {
+                    L.i(TAG, "请求弹窗权限成功！");
+                }
+            }
+        }
+    }
+
+
+    private MusicPlayService musicPlayService;
+    private ServiceConnection musicPlayServiceConnection;
+
+    private void bindMusicPlayService() {
+        Intent musicPlayServiceIntent = new Intent(mContext, MusicPlayService.class);
+        if (musicPlayServiceConnection == null) {
+            musicPlayServiceConnection = new MusicPlayServiceConnection();
+        }
+        bindService(musicPlayServiceIntent, musicPlayServiceConnection, Service.BIND_AUTO_CREATE);
+    }
+
+    private void unbindMusicPlayService() {
+        if (musicPlayServiceConnection != null) {
+            unbindService(musicPlayServiceConnection);
+        }
+    }
+
+    private class MusicPlayServiceConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MusicPlayService.MusicPlayBinder binder = (MusicPlayService.MusicPlayBinder) service;
+            if (binder != null) {
+                musicPlayService = binder.getService();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            if (musicPlayService != null) {
+                musicPlayService = null;
+            }
+        }
     }
 }
