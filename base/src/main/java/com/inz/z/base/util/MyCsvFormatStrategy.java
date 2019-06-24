@@ -117,6 +117,7 @@ public class MyCsvFormatStrategy implements FormatStrategy {
         SimpleDateFormat dateFormat;
         LogStrategy logStrategy;
         String tag = "PRETTY_LOGGER";
+        String fileName = "inz_logs";
 
         private Builder() {
         }
@@ -145,6 +146,13 @@ public class MyCsvFormatStrategy implements FormatStrategy {
             return this;
         }
 
+        public MyCsvFormatStrategy.Builder fileName(@Nullable String fileName) {
+            if (fileName != null) {
+                this.fileName = fileName;
+            }
+            return this;
+        }
+
         @NonNull
         public MyCsvFormatStrategy build() {
             if (date == null) {
@@ -154,11 +162,11 @@ public class MyCsvFormatStrategy implements FormatStrategy {
                 dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SSS", Locale.UK);
             }
             if (logStrategy == null) {
+                // 设置为项目目录下
                 String folder = BaseConstants.getLogPath() + File.separatorChar + "logger";
-                Log.i("TAG", "====" + folder);
                 HandlerThread ht = new HandlerThread("AndroidFileLogger." + folder);
                 ht.start();
-                Handler handler = new MyCsvFormatStrategy.WriteHandler(ht.getLooper(), folder, MAX_BYTES);
+                Handler handler = new MyCsvFormatStrategy.WriteHandler(ht.getLooper(), folder, fileName, MAX_BYTES);
                 logStrategy = new DiskLogStrategy(handler);
             }
             return new MyCsvFormatStrategy(this);
@@ -240,10 +248,12 @@ public class MyCsvFormatStrategy implements FormatStrategy {
         @NonNull
         private final String folder;
         private final int maxFileSize;
+        private final String fileName;
 
-        WriteHandler(@NonNull Looper looper, @NonNull String folder, int maxFileSize) {
+        WriteHandler(@NonNull Looper looper, @NonNull String folder, @NonNull String fileName, int maxFileSize) {
             super(checkNotNull(looper));
             this.folder = checkNotNull(folder);
+            this.fileName = checkNotNull(fileName);
             this.maxFileSize = maxFileSize;
         }
 
@@ -253,7 +263,7 @@ public class MyCsvFormatStrategy implements FormatStrategy {
             String content = (String) msg.obj;
 
             FileWriter fileWriter = null;
-            File logFile = getLogFile(folder, "inz_logs");
+            File logFile = getLogFile(folder, fileName);
 
             try {
                 fileWriter = new FileWriter(logFile, true);
