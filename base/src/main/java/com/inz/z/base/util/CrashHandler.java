@@ -10,7 +10,7 @@ import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.inz.z.base.entity.BaseConstants;
+import com.inz.z.base.entity.Constants;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -211,7 +211,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      */
     private String saveLogToFile(String content, String prefix) {
         String fileName = prefix + "-" + dateStr + ".log";
-        String filePath = BaseConstants.getCrashPath() + File.separator + fileName;
+        String filePath = FileUtils.getProjectCrashPath() + File.separator + fileName;
         File dir = new File(filePath);
         boolean isMkdirs = true;
         if (!dir.getParentFile().exists()) {

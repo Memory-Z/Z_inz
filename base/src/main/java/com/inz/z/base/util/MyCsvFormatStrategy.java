@@ -6,9 +6,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import com.inz.z.base.entity.BaseConstants;
+import com.inz.z.base.entity.Constants;
 import com.orhanobut.logger.DiskLogStrategy;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogStrategy;
@@ -163,7 +162,7 @@ public class MyCsvFormatStrategy implements FormatStrategy {
             }
             if (logStrategy == null) {
                 // 设置为项目目录下
-                String folder = BaseConstants.getLogPath() + File.separatorChar + "logger";
+                String folder = FileUtils.getProjectLogPath() + File.separatorChar + "logger";
                 HandlerThread ht = new HandlerThread("AndroidFileLogger." + folder);
                 ht.start();
                 Handler handler = new MyCsvFormatStrategy.WriteHandler(ht.getLooper(), folder, fileName, MAX_BYTES);

@@ -1,7 +1,7 @@
 package com.inz.z.base.http;
 
 import com.inz.z.base.BuildConfig;
-import com.inz.z.base.entity.BaseConstants;
+import com.inz.z.base.entity.Constants;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -62,7 +62,7 @@ public abstract class BaseHttpUtil {
         // 初始化 Retrofit 配置
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BaseConstants.getBaseUrl())
+                    .baseUrl(Constants.getBaseUrl())
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -161,7 +161,7 @@ public abstract class BaseHttpUtil {
                     .build();
             // Retrofit
             Retrofit fileRetrofit = new Retrofit.Builder()
-                    .baseUrl(BaseConstants.getBaseUrl())
+                    .baseUrl(Constants.getBaseUrl())
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
