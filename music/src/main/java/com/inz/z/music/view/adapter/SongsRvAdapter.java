@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.inz.z.base.base.AbsBaseRvAdapter;
 import com.inz.z.base.base.AbsBaseRvViewHolder;
 import com.inz.z.music.R;
+import com.inz.z.music.database.ItemSongsBean;
 
 import java.util.Collections;
 

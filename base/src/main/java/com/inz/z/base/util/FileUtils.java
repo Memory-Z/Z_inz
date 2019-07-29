@@ -3,14 +3,19 @@ package com.inz.z.base.util;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Base64;
 
 import com.inz.z.base.entity.Constants;
 import com.orhanobut.logger.Logger;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -506,6 +511,39 @@ public class FileUtils {
             }
         }
         return path;
+    }
+
+    /**
+     * Bitmap 转Base64 字符串
+     *
+     * @param bitmap Bitmap
+     * @return 转码后Base64 字符串
+     */
+    // FIXME: 2019/07/12  待校验
+    public static String bitmap2Base64(@NonNull Bitmap bitmap) {
+        String result = null;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        try {
+            stream.flush();
+            stream.close();
+            byte[] bytes = stream.toByteArray();
+            result = Base64.encodeToString(bytes, Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * Base64 字符串转Bitmap
+     *
+     * @param base64Str 字符串
+     * @return Bitmap
+     */
+    public static Bitmap base64ToBitmap(String base64Str) {
+        byte[] bytes = Base64.decode(base64Str, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.inz.z.music.view.adapter;
+package com.inz.z.music.database;
 
 import android.support.annotation.NonNull;
 

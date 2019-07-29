@@ -31,6 +31,8 @@
     <!-- 允许程序重新启动 REBOOT -->
     <uses-permission-sdk-23 android:name="android.permission.REBOOT" />
 
+    <uses-feature android:name="android.hardware.camera2" />
+
     <application
         android:name=".InzApplication"
         android:allowBackup="true"
@@ -114,7 +116,7 @@
 
         </activity>
 
-        <activity android:name="com.inz.z.AddressBookActivity"/>
+        <activity android:name="com.inz.z.AddressBookActivity" />
 
         <!--<provider-->
         <!--android:name="android.support.v4.content.FileProvider"-->

@@ -10,7 +10,7 @@ android {
         minSdkVersion APP_MIN_SDK_VERSION.toInteger()
         targetSdkVersion APP_TARGET_SDK_VERSION.toInteger()
         versionCode 1
-        versionName "0.0.1"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // Gradle 3.0 以上 需要 dimension
@@ -143,6 +143,7 @@ dependencies {
     implementation project (':base')
     implementation project (':face_module')
     implementation project (':music')
+    implementation project (':form')
 
     // 阿里 路由 （多模块通信）
     implementation 'com.alibaba:arouter-api:1.5.0'

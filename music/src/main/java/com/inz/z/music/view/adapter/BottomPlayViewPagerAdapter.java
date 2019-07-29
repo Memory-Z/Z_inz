@@ -7,11 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.view.ViewGroup;
 
+import com.inz.z.music.database.ItemSongsBean;
 import com.inz.z.music.database.SongsImageBean;
 import com.inz.z.music.view.fragment.BottomPlayFragment;
 
@@ -101,8 +100,8 @@ public class BottomPlayViewPagerAdapter extends FragmentPagerAdapter {
         }
         Bundle bundle = new Bundle();
         bundle.putString("imageSrc", imageBean == null ? "" : imageBean.getImageSrc());
-        bundle.putString("title", bean.getTitle());
-        bundle.putString("detail", bean.getDetail());
+        bundle.putString("songName", bean.getTitle());
+        bundle.putString("artist", bean.getArtist());
         fragment.setArguments(bundle);
         return fragment;
     }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/receiver_show_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:contentDescription="@string/screen_record_start"
+        app:layout_constraintBottom_toTopOf="@id/receiver_show_input_rl"
+        app:layout_constraintDimensionRatio="H, 9: 16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/receiver_show_input_rl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@id/receiver_show_start_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/receiver_show_ip_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:text="192.168.10.100"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/receiver_show_port_et"
+            android:hint="@string/ip" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/receiver_show_port_et"
+            android:layout_width="64dp"
+            android:text="7890"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:hint="@string/port" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/receiver_show_start_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/receiver_show_image"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

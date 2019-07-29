@@ -32,7 +32,7 @@ import java.util.*
  * @version 1.0.0
  * Create by inz in 2019/4/12 11:54.
  */
-class MinaSocketServiceTest {
+class MinaBitmapConnectionServiceTest {
 
     @Before
     fun setUp() {

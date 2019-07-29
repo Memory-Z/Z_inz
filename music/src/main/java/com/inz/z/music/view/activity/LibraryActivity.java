@@ -4,13 +4,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Window;
 
 import com.inz.z.base.util.BaseTools;
 import com.inz.z.music.R;
 import com.inz.z.music.base.AbsBaseActivity;
-import com.inz.z.music.view.adapter.ItemSongsBean;
+import com.inz.z.music.database.ItemSongsBean;
 import com.inz.z.music.view.adapter.ItemSongsTouchHelperCallback;
 import com.inz.z.music.view.adapter.SongsRvAdapter;
 import com.yanzhenjie.recyclerview.SwipeMenu;

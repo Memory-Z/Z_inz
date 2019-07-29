@@ -29,26 +29,19 @@ public class InzApplication extends OtherApplication {
 
     private MusicApplication musicApplication;
 
-    public InzApplication() {
-        musicApplication = new MusicApplication(this);
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
-        musicApplication.onCreate();
         Log.i(TAG, "onCreate: " + System.currentTimeMillis());
         mContext = this;
+        musicApplication = new MusicApplication(mContext);
         // 初始化 日志
         initLogger();
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);
-        // 非 测试环境
-        if (!Constants.isIsTest()) {
-            // 初始化 异常信息收集
-            initCrash();
-        }
+        // 初始化 异常信息收集
+        initCrash();
         // 注册 Activity 生命周期 回调 函数
         registerActivityLifecycleCallbacks(new InzActivityLifecycleCallbacks());
         // 初始化 SharePreferences
@@ -129,5 +122,9 @@ public class InzApplication extends OtherApplication {
         public void onActivityDestroyed(Activity activity) {
             Logger.i("onActivityDestroyed - " + activity.getLocalClassName() + ";");
         }
+    }
+
+    public MusicApplication getMusicApplication() {
+        return musicApplication;
     }
 }

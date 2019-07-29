@@ -34,7 +34,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
 
     companion object {
         const val PREVIEW_WIDTH = 1080                                        //预览的宽度
-        const val PREVIEW_HEIGHT = 1440                                       //预览的高度
+        const val PREVIEW_HEIGHT = 1920                                       //预览的高度
         const val SAVE_WIDTH = 720                                            //保存图片的宽度
         const val SAVE_HEIGHT = 1280                                          //保存图片的高度
     }
@@ -391,6 +391,67 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         mCameraDevice?.apply {
 
             val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+            captureRequestBuilder.addTarget(mImageReader?.surface)
+
+            captureRequestBuilder.set(
+                CaptureRequest.CONTROL_AF_MODE,
+                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE
+            ) // 自动对焦
+            captureRequestBuilder.set(
+                CaptureRequest.CONTROL_AE_MODE,
+                CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH
+            )     // 闪光灯
+            captureRequestBuilder.set(
+                CaptureRequest.JPEG_ORIENTATION,
+                mCameraSensorOrientation
+            )      //根据摄像头方向对保存的照片进行旋转，使其为"自然方向"
+            mCameraCaptureSession?.capture(captureRequestBuilder.build(), object : CameraCaptureSession.CaptureCallback() {
+                override fun onCaptureCompleted(
+                    session: CameraCaptureSession,
+                    request: CaptureRequest,
+                    result: TotalCaptureResult
+                ) {
+                    super.onCaptureCompleted(session, request, result)
+                }
+            }, mCameraHandler)
+                ?: mActivity.toast("拍照异常！")
+        }
+    }
+
+    /**
+     * 录像
+     */
+    fun takeRecord() {
+        if (mCameraDevice == null || !mTextureView.isActivated || !canTakePic) return
+
+        mCameraDevice?.apply {
+            val recordRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_RECORD)
+            recordRequestBuilder.addTarget(mImageReader?.surface)
+
+            recordRequestBuilder.set(
+                CaptureRequest.CONTROL_AF_MODE,
+                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE
+            ) // 自动对焦
+            recordRequestBuilder.set(
+                CaptureRequest.CONTROL_AE_MODE,
+                CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH
+            )     // 闪光灯
+
+//            recordRequestBuilder.set(
+//                CaptureRequest.JPEG_ORIENTATION,
+//                mCameraSensorOrientation
+//            )      //根据摄像头方向对保存的照片进行旋转，使其为"自然方向"
+//            mCameraCaptureSession?.capture(recordRequestBuilder.build(), null, mCameraHandler)
+//                ?: mActivity.toast("录像异常！")
+        }
+    }
+
+    fun takePicWithRecord() {
+        if (mCameraDevice == null || !mTextureView.isAvailable || !canTakePic) return
+
+        mCameraDevice?.apply {
+
+            val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_VIDEO_SNAPSHOT)
             captureRequestBuilder.addTarget(mImageReader?.surface)
 
             captureRequestBuilder.set(

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion APP_COMPILE_SDK_VERSION.toInteger()
@@ -13,9 +14,22 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        flavorDimensions("book", "book2", 'mina')
+        flavorDimensions("book", "book2","mina", 'camera2_t1', 'img_et1', 'screen_record1')
 
         multiDexEnabled true
+
+        // 阿里路由注册
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
 
     }
 
@@ -40,6 +54,19 @@ android {
         mina_socket {
             dimension 'mina'
         }
+
+        camera2 {
+            dimension 'camera2_t1'
+        }
+
+        image_edit {
+            dimension 'img_et1'
+        }
+
+        screen_record {
+            dimension 'screen_record1'
+        }
+
     }
 
 }
@@ -76,6 +103,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'com.bm.photoview:library:1.4.1'
+
+    implementation project(':base')
+
+    // 阿里 路由 （多模块通信）
+    implementation 'com.alibaba:arouter-api:1.5.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
 }
 repositories {
     mavenCentral()

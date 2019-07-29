@@ -26,9 +26,10 @@ class CameraActivity2Face : AppCompatActivity(), Camera2HelperFace.FaceDetectLis
 
         camera2HelperFace = Camera2HelperFace(this, textureView)
         camera2HelperFace.setFaceDetectListener(this)
-
         btnTakePic.setOnClickListener { camera2HelperFace.takePic() }
         ivExchange.setOnClickListener { camera2HelperFace.exchangeCamera() }
+        ivSetting.setOnClickListener { camera2HelperFace.takePicWithRecord()}
+
     }
 
     override fun onFaceDetect(faces: Array<Face>, facesRect: ArrayList<RectF>) {

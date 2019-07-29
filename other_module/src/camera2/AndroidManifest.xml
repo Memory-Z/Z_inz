@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.inz.z.other_module">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <uses-feature android:name="android.hardware.camera2" />
+    <application>
+        <activity
+            android:name="com.inz.z.Camera2Activity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

@@ -33,7 +33,7 @@ android {
 
 
     greendao {
-        schemaVersion 2
+        schemaVersion 1
         daoPackage 'com.inz.z.music.database'
         targetGenDir 'src/main/java'
     }

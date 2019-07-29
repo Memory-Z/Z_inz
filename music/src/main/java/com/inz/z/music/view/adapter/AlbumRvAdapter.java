@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.inz.z.base.base.AbsBaseRvAdapter;
 import com.inz.z.base.base.AbsBaseRvViewHolder;
 import com.inz.z.music.R;
+import com.inz.z.music.database.ItemAlbumBean;
 
 import java.util.List;
 

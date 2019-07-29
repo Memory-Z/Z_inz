@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="screen_record_start">开始录屏</string>
+    <string name="screen_record_end">结束录屏</string>
+
+    <string name="receiver_show_image">显示图片</string>
+    <string name="ip">IP</string>
+    <string name="create_server_socket">CreateServer</string>
+    <string name="port">Port</string>
+</resources>

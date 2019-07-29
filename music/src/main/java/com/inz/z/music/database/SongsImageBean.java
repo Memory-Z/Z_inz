@@ -1,11 +1,8 @@
 package com.inz.z.music.database;
 
-import com.inz.z.music.view.adapter.ItemSongsBean;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
@@ -35,18 +32,23 @@ public class SongsImageBean {
 
     @ToOne(joinProperty = "songsId")
     private ItemSongsBean songsBean;
-    /** Used to resolve relations */
+
+    /**
+     * Used to resolve relations
+     */
     @Generated(hash = 2040040024)
     private transient DaoSession daoSession;
-    /** Used for active entity operations. */
+    /**
+     * Used for active entity operations.
+     */
     @Generated(hash = 567633266)
     private transient SongsImageBeanDao myDao;
 
     @Generated(hash = 1512825656)
     public SongsImageBean(Long id, String imageId, @NotNull String songsId,
-            String imageSrc, String imageUrl, boolean imageIsDownload,
-            int imageWidth, int imageHeight, long imageSize, String imageType,
-            String comment) {
+                          String imageSrc, String imageUrl, boolean imageIsDownload,
+                          int imageWidth, int imageHeight, long imageSize, String imageType,
+                          String comment) {
         this.id = id;
         this.imageId = imageId;
         this.songsId = songsId;
@@ -155,7 +157,9 @@ public class SongsImageBean {
     @Generated(hash = 1684558066)
     private transient String songsBean__resolvedKey;
 
-    /** To-one relationship, resolved on first access. */
+    /**
+     * To-one relationship, resolved on first access.
+     */
     @Generated(hash = 1753836252)
     public ItemSongsBean getSongsBean() {
         String __key = this.songsId;
@@ -175,7 +179,7 @@ public class SongsImageBean {
     }
 
     /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 713924051)
+    @Generated(hash = 2125546431)
     public void setSongsBean(@NotNull ItemSongsBean songsBean) {
         if (songsBean == null) {
             throw new DaoException(
@@ -183,7 +187,7 @@ public class SongsImageBean {
         }
         synchronized (this) {
             this.songsBean = songsBean;
-            songsId = songsBean.getId();
+            songsId = songsBean.getSongsId();
             songsBean__resolvedKey = songsId;
         }
     }
@@ -224,7 +228,9 @@ public class SongsImageBean {
         myDao.update(this);
     }
 
-    /** called by internal mechanisms, do not call yourself. */
+    /**
+     * called by internal mechanisms, do not call yourself.
+     */
     @Generated(hash = 2057286908)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;

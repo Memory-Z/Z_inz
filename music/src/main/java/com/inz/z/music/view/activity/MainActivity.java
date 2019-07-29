@@ -1,23 +1,25 @@
 package com.inz.z.music.view.activity;
 
-import android.Manifest;
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -29,20 +31,32 @@ import com.inz.z.base.view.widget.BaseTopActionLayout;
 import com.inz.z.music.MusicApplication;
 import com.inz.z.music.R;
 import com.inz.z.music.base.AbsBaseActivity;
+import com.inz.z.music.bean.AudioFile;
+import com.inz.z.music.bean.AudioFolder;
+import com.inz.z.music.bean.BeanSwitchUtil;
+import com.inz.z.music.database.DaoSession;
+import com.inz.z.music.database.ItemAlbumBean;
+import com.inz.z.music.database.ItemSongsBean;
+import com.inz.z.music.database.ItemSongsBeanDao;
+import com.inz.z.music.database.SongsFolderBean;
+import com.inz.z.music.database.SongsFolderBeanDao;
 import com.inz.z.music.database.SongsImageBean;
 import com.inz.z.music.service.MusicPlayService;
+import com.inz.z.music.util.MediaUtils;
 import com.inz.z.music.view.adapter.AlbumRvAdapter;
 import com.inz.z.music.view.adapter.BottomPlayViewPagerAdapter;
-import com.inz.z.music.view.adapter.ItemAlbumBean;
-import com.inz.z.music.view.adapter.ItemSongsBean;
 import com.inz.z.music.view.adapter.ItemTopPlayerBean;
 import com.inz.z.music.view.adapter.TopPlayerAdapter;
 import com.inz.z.music.view.decoration.BaseItemDecoration;
 
-import java.security.Permission;
-import java.security.Permissions;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * 主界面
@@ -78,6 +92,8 @@ public class MainActivity extends AbsBaseActivity {
     private ViewPager bottomPlayVp;
     private BottomPlayViewPagerAdapter bottomPlayViewPagerAdapter;
 
+    private ScheduledExecutorService scheduledExecutorService;
+
     @Override
     protected void initWindow() {
         window = getWindow();
@@ -104,7 +120,19 @@ public class MainActivity extends AbsBaseActivity {
 
         topActionLayout = findViewById(R.id.main_action_btal);
         setSupportActionBar(topActionLayout.getToolbar());
-        setTopActionLayoutHeight();
+
+        ConstraintLayout rootLayout = findViewById(R.id.main_root_view_cl);
+
+        boolean hasNavigationBar = checkDeviceHasNavigationBar(mContext);
+        if (!hasNavigationBar) {
+            rootLayout.setFitsSystemWindows(false);
+            setTopActionLayoutHeight();
+//            setBottomNavigationBarHeight();
+        } else {
+            rootLayout.setFitsSystemWindows(true);
+            window.setStatusBarColor(ContextCompat.getColor(mContext, R.color.musicPrimaryDark));
+        }
+
         settingIv = findViewById(R.id.main_action_right_setting_iv);
 
         topRv = findViewById(R.id.main_top_play_rv);
@@ -149,6 +177,46 @@ public class MainActivity extends AbsBaseActivity {
         }
     }
 
+    private boolean checkDeviceHasNavigationBar(Context context) {
+        boolean hasNavigationBar = false;
+        Resources resources = context.getResources();
+        int id = resources.getIdentifier("config_showNavigationBar", "bool", "androdi");
+        if (id > 0) {
+            hasNavigationBar = resources.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClazz = Class.forName("android.os.SystemProperties");
+            Method method = systemPropertiesClazz.getMethod("get", String.class);
+            String navBarOverride = (String) method.invoke(systemPropertiesClazz, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return hasNavigationBar;
+    }
+
+    private void setBottomNavigationBarHeight() {
+        int navigationBarId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        int height = getResources().getDimensionPixelSize(navigationBarId);
+        View view = window.getDecorView();
+        view.setPadding(
+                view.getPaddingStart(),
+                view.getPaddingTop(),
+                view.getPaddingEnd(),
+                view.getPaddingBottom() + height);
+    }
+
+
     @Override
     protected void initData() {
         settingIv.setOnClickListener(new View.OnClickListener() {
@@ -183,17 +251,16 @@ public class MainActivity extends AbsBaseActivity {
         }
         recentlyAlbumRvAdapter.refreshData(recentlyItemAlbumBeanList);
 
-        itemSongsBeanList = new ArrayList<>(16);
-        for (int i = 0; i < 20; i++) {
-            ItemSongsBean bean = new ItemSongsBean();
-            bean.setTitle("Title = " + i);
-            bean.setDetail("detail " + i);
-            SongsImageBean imageBean = new SongsImageBean();
-            imageBean.setImageSrc(imageSrcArray[i % imageSrcArray.length]);
-            bean.__setDaoSession(MusicApplication.getDaoSession());
-            itemSongsBeanList.add(bean);
-        }
-        bottomPlayViewPagerAdapter.setSongsBeanList(bottomPlayVp, itemSongsBeanList);
+//        itemSongsBeanList = new ArrayList<>(16);
+//        for (int i = 0; i < 20; i++) {
+//            ItemSongsBean bean = new ItemSongsBean();
+//            bean.setTitle("Title = " + i);
+//            SongsImageBean imageBean = new SongsImageBean();
+//            imageBean.setImageSrc(imageSrcArray[i % imageSrcArray.length]);
+//            bean.__setDaoSession(MusicApplication.getDaoSession());
+//            itemSongsBeanList.add(bean);
+//        }
+//        bottomPlayViewPagerAdapter.setSongsBeanList(bottomPlayVp, itemSongsBeanList);
         // 请求弹窗权限
         requestAlertWindow();
         // 绑定MusicPlayService
@@ -226,7 +293,7 @@ public class MainActivity extends AbsBaseActivity {
      */
     private void requestAlertWindow() {
         // 权限被拒绝
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             boolean haveAlert = Settings.canDrawOverlays(mContext);
             if (!haveAlert) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
@@ -258,6 +325,8 @@ public class MainActivity extends AbsBaseActivity {
             musicPlayServiceConnection = new MusicPlayServiceConnection();
         }
         bindService(musicPlayServiceIntent, musicPlayServiceConnection, Service.BIND_AUTO_CREATE);
+//        getAudioListByMedia();
+        getAudioListByDatabase();
     }
 
     private void unbindMusicPlayService() {
@@ -280,6 +349,121 @@ public class MainActivity extends AbsBaseActivity {
             if (musicPlayService != null) {
                 musicPlayService = null;
             }
+        }
+    }
+
+
+    private AudioFile audioFile;
+    private AudioFolder audioFolder;
+    private Map<String, AudioFolder> audioFolderMap = new ArrayMap<>();
+
+    /**
+     * 通过Media 获取声音文件列表
+     */
+    private void getAudioListByMedia() {
+        audioFolder = new AudioFolder();
+        audioFolder.setFolderName("All");
+        LoaderManager.LoaderCallbacks audioLoaderCallbacks = new MediaUtils.AudioLoaderCallbacks(
+                getApplicationContext(),
+                audioFolderMap,
+                audioFolder,
+                new MediaUtils.ScanAudioListener() {
+                    @Override
+                    public void createLoader() {
+
+                    }
+
+                    @Override
+                    public void loadFinish(AudioFolder audioFolder, Map<String, AudioFolder> audioFolderMap) {
+                        // todo deal List
+                        if (audioFolder == null || audioFolder.getAudioFileList().size() == 0) {
+                            // 如果通过Media 获取的 音频数据仍为null ,可选择通过文件扫描进行查找
+                            getAudioListByScan();
+                        } else {
+                            DaoSession daoSession = MusicApplication.getDaoSession();
+                            Set<String> pathSet = audioFolderMap.keySet();
+                            for (String key : pathSet) {
+                                AudioFolder folder = audioFolderMap.get(key);
+                                if (folder != null) {
+                                    SongsFolderBean folderBean = BeanSwitchUtil.audioFolder2SongsFolder(folder);
+                                    daoSession.getSongsFolderBeanDao().insert(folderBean);
+
+                                    List<AudioFile> fileList = folder.getAudioFileList();
+                                    for (AudioFile file : fileList) {
+                                        ItemSongsBean songsBean = BeanSwitchUtil.audioFile2ItemSongs(file, folder.getFolderId());
+                                        daoSession.getItemSongsBeanDao().insert(songsBean);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void loadReset() {
+
+                    }
+                });
+        LoaderManager.getInstance(this).initLoader(100, null, audioLoaderCallbacks);
+
+
+    }
+
+    /**
+     * 通过SQLite 获取声音文件列表
+     */
+    private void getAudioListByDatabase() {
+        DaoSession daoSession = MusicApplication.getDaoSession();
+        ItemSongsBeanDao itemSongsBeanDao = daoSession.getItemSongsBeanDao();
+        SongsFolderBeanDao songsFolderBeanDao = daoSession.getSongsFolderBeanDao();
+        List<ItemSongsBean> itemSongsBeanList = itemSongsBeanDao.loadAll();
+        List<SongsFolderBean> songsFolderBeanList = songsFolderBeanDao.loadAll();
+        L.w(TAG, "getAudioListByDatabase: itemSongsBeanList -> " + itemSongsBeanList);
+        if (itemSongsBeanList.size() == 0) {
+            // 通过查询数据库获取如果为null 。则通过 Media 查询
+            getAudioListByMedia();
+        } else {
+            bottomPlayViewPagerAdapter.setSongsBeanList(bottomPlayVp, itemSongsBeanList);
+        }
+    }
+
+    /**
+     * 通过扫描 获取声音文件列表
+     */
+    private void getAudioListByScan() {
+
+    }
+
+    private class MusicPlayStatusListenerImpl implements MusicPlayService.OnPlayStatusListener {
+        @Override
+        public void getAudioList() {
+            // 线程中获取的
+            MainActivity.this.getAudioListByDatabase();
+        }
+
+        @Override
+        public void prepared(boolean isPrepared, int duration) {
+
+        }
+
+        @Override
+        public void onPlay() {
+
+        }
+
+        @Override
+        public void onPause() {
+
+        }
+
+        @Override
+        public void error(String message, MusicPlayService.PlayStatusError e) {
+
+        }
+
+        @Override
+        public void seekBar(long current, long duration) {
+
         }
     }
 }

@@ -1,1 +1,1 @@
-include ':app', ':app_update', ':three_login', ':other_module', ':base', ':choosefile', ':face_module', ':cameraview', ':music'
+include ':app', ':app_update', ':three_login', ':other_module', ':base', ':choosefile', ':face_module', ':cameraview', ':music', ':form'

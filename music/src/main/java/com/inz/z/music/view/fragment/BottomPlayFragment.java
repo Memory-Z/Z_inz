@@ -48,8 +48,8 @@ public class BottomPlayFragment extends AbsBaseFragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             imageSrc = bundle.getString("imageSrc", "");
-            titleStr = bundle.getString("title", "");
-            detailStr = bundle.getString("detail", "");
+            titleStr = bundle.getString("songName", "");
+            detailStr = bundle.getString("artist", "");
         }
         Glide.with(mContext).load(imageSrc).apply(options).into(startRiv);
         titleTv.setText(titleStr);

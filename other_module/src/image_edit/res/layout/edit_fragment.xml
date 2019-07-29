@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A1000000">
+
+    <!-- 底部 -->
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/image_edit_bottom_rl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:base_center_layout="@id/image_edit_bottom_center_ll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/image_edit_bottom_center_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/image_edit_bottom_edit_btn"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_edit_black_24dp"
+                android:gravity="center"
+                android:text="编辑"
+                android:textColor="#FFFFFF"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/image_edit_bottom_editing_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:visibility="gone">
+
+
+                <!-- 重置 -->
+                <ImageView
+                    android:id="@+id/image_edit_bottom_editing_replay_iv"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_replay_black_24dp"
+                    android:visibility="visible" />
+
+                <!-- 撤销 -->
+                <ImageView
+                    android:id="@+id/image_edit_bottom_editing_reply_iv"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_reply_black_24dp" />
+
+                <!-- 确认  -->
+                <ImageView
+                    android:id="@+id/image_edit_bottom_editing_done_iv"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_done_black_24dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+    <!-- 中间内容 -->
+    <RelativeLayout
+        android:id="@+id/image_edit_content_rl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/image_edit_bottom_rl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--<com.inz.z.widget.EditSurfaceView-->
+        <!--android:id="@+id/image_edit_esv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+        <com.inz.z.widget.EditImageView
+            android:id="@+id/image_edit_esv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <!-- 顶部 -->
+    <RelativeLayout
+        android:id="@+id/image_edit_top_rl"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.inz.z.base.view.widget.BaseNavLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:base_right_layout="@id/image_edit_top_download_iv"
+            app:base_top_left_layout="@id/image_edit_top_left_back_iv">
+
+            <ImageView
+                android:id="@+id/image_edit_top_left_back_iv"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_chevron_left_black_24dp" />
+
+            <ImageView
+                android:id="@+id/image_edit_top_download_iv"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_file_download_black_24dp"
+                android:visibility="gone" />
+
+        </com.inz.z.base.view.widget.BaseNavLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
