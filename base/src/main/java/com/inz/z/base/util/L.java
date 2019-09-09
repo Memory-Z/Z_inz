@@ -1,6 +1,6 @@
 package com.inz.z.base.util;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.inz.z.base.BuildConfig;

@@ -16,8 +16,8 @@
 
 package com.inz.z.face_module.view.google
 
-import android.support.v4.app.FragmentActivity
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.core.content.ContextCompat
 import android.widget.Toast
 
 /**
@@ -29,6 +29,6 @@ import android.widget.Toast
  *
  * @param text The message to show
  */
-fun FragmentActivity.showToast(text: String) {
+fun androidx.fragment.app.FragmentActivity.showToast(text: String) {
     runOnUiThread { Toast.makeText(this, text, Toast.LENGTH_SHORT).show() }
 }

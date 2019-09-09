@@ -1,7 +1,7 @@
 package com.inz.z.base.util;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 import android.view.Gravity;
 import android.widget.Toast;
 

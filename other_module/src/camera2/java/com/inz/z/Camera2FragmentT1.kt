@@ -5,7 +5,7 @@ import android.hardware.camera2.CameraManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +19,7 @@ import com.inz.z.other_module.R
  * @version 1.0.0
  * Create by inz in 2019/06/29 14:30.
  */
-class Camera2FragmentT1 : Fragment() {
+class Camera2FragmentT1 : androidx.fragment.app.Fragment() {
 
     companion object {
         fun newInstance() = Camera2FragmentT1()

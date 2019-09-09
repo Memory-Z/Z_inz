@@ -1,7 +1,7 @@
 package com.inz.z.app_update.view
 
 import android.os.Bundle
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import com.inz.z.app_update.R
 import com.inz.z.app_update.bean.Constants
 import com.inz.z.app_update.bean.VersionBean

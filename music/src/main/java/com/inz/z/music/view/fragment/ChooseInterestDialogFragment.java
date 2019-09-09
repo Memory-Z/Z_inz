@@ -1,9 +1,9 @@
 package com.inz.z.music.view.fragment;
 
 import android.graphics.Point;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;

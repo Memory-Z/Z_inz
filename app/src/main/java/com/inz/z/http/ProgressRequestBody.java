@@ -1,6 +1,6 @@
 package com.inz.z.http;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 

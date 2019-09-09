@@ -1,8 +1,8 @@
 package com.inz.choosefile.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.inz.choosefile.R;
 import com.inz.choosefile.bean.FileBean;
-import com.inz.choosefile.bean.ImageBean;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

@@ -1,6 +1,6 @@
 package com.inz.z.music.database;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * @author Zhenglj

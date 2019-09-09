@@ -1,7 +1,7 @@
 package com.inz.z.app_update.view
 
 import android.content.Intent
-import android.support.annotation.IdRes
+import androidx.annotation.IdRes
 import android.widget.Button
 import com.inz.z.app_update.utils.FileUtils
 import com.inz.z.app_update.utils.UpdateShareUtils

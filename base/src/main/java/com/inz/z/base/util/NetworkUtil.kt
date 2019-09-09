@@ -4,7 +4,7 @@ import android.app.usage.NetworkStats
 import android.content.Context
 import android.net.*
 import android.net.wifi.WifiManager
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import java.net.Inet4Address
 import java.net.InetAddress
 import java.net.NetworkInterface

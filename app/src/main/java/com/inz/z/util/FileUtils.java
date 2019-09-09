@@ -2,19 +2,16 @@ package com.inz.z.util;
 
 import android.content.res.XmlResourceParser;
 import android.os.Environment;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.inz.z.entity.Constants;
 import com.inz.z.entity.constants.ExampleBean;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 

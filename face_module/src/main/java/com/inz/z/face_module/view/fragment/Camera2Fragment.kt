@@ -7,7 +7,7 @@ import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CameraMetadata
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ import com.inz.z.face_module.BuildConfig
  * @version 1.0.0
  * Create by inz in 2019/05/31 10:21.
  */
-class Camera2Fragment : Fragment() {
+class Camera2Fragment : androidx.fragment.app.Fragment() {
     private var mView: View? = null;
     private var mContext: Context? = null
 

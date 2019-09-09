@@ -1,6 +1,6 @@
 package com.inz.z.entity;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package com.inz.z.music.view.activity;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.inz.z.music.R;

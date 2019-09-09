@@ -50,14 +50,14 @@ public class GaussianBlurHelper {
      *
      * @param context          *            上下文
      * @param bitmap           *            待模糊的图片
-     * @param blur_radius      *            模糊半径（1~25的正整数）
+     * @param blurRadius      *            模糊半径（1~25的正整数）
      * @param canReuseInBitmap *            原始Bitmap是否还会使用（如果原始图片还会再次使用则参数设为true，否则会报出java.lang.
      *                         * IllegalStateException异常，一般情况下设为true防止程序出错）
      * @return 模糊后的图片
      * @author lizhenya
      */
-    public static Bitmap blur(Context context, Bitmap bitmap, int blur_radius, boolean canReuseInBitmap) {
-        return blur(context, bitmap, blur_radius, BITMAP_SCALE, canReuseInBitmap);
+    public static Bitmap blur(Context context, Bitmap bitmap, int blurRadius, boolean canReuseInBitmap) {
+        return blur(context, bitmap, blurRadius, BITMAP_SCALE, canReuseInBitmap);
     }
 
     /**
@@ -75,20 +75,20 @@ public class GaussianBlurHelper {
         return blur(context, bitmap, BLUR_RADIUS, bitmapScale, canReuseInBitmap);
     }
 
-    public static Bitmap blur(Context context, Bitmap bitmap, int blur_radius, float bitmapScale, boolean canReuseInBitmap) {
+    public static Bitmap blur(Context context, Bitmap bitmap, int blurRadius, float bitmapScale, boolean canReuseInBitmap) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return RSBlur(context, bitmap, bitmapScale, blur_radius);
+            return RSBlur(context, bitmap, bitmapScale, blurRadius);
         } else {
-            return doBlur(bitmap, blur_radius, canReuseInBitmap);
+            return doBlur(bitmap, blurRadius, canReuseInBitmap);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static Bitmap RSBlur(Context context, Bitmap bitmap, float bitmap_scale, int blur_radius) {
+    public static Bitmap RSBlur(Context context, Bitmap bitmap, float bitmapScale, int blurRadius) {
         // 先对图片进行压缩然后再blur
         Bitmap inputBitmap = Bitmap.createScaledBitmap(bitmap,
-                Math.round(bitmap.getWidth() * bitmap_scale),
-                Math.round(bitmap.getHeight() * bitmap_scale), false);
+                Math.round(bitmap.getWidth() * bitmapScale),
+                Math.round(bitmap.getHeight() * bitmapScale), false);
         // 创建空的Bitmap用于输出
         Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
         // ①、初始化Renderscript
@@ -100,7 +100,7 @@ public class GaussianBlurHelper {
         Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
         Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
         // ④、设置blur的半径然后进行blur
-        theIntrinsic.setRadius(blur_radius);
+        theIntrinsic.setRadius(blurRadius);
         theIntrinsic.setInput(tmpIn);
         theIntrinsic.forEach(tmpOut);
         // ⑤、拷贝blur后的数据到java缓冲区中

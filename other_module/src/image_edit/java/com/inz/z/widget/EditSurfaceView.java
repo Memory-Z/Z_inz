@@ -7,17 +7,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.os.Build;
-import android.support.v7.widget.TintTypedArray;
+
+import androidx.appcompat.widget.TintTypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Size;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import com.inz.z.other_module.R;
 
@@ -25,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**

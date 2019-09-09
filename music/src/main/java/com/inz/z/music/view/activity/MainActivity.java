@@ -12,13 +12,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.loader.app.LoaderManager;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +40,6 @@ import com.inz.z.music.database.ItemSongsBean;
 import com.inz.z.music.database.ItemSongsBeanDao;
 import com.inz.z.music.database.SongsFolderBean;
 import com.inz.z.music.database.SongsFolderBeanDao;
-import com.inz.z.music.database.SongsImageBean;
 import com.inz.z.music.service.MusicPlayService;
 import com.inz.z.music.util.MediaUtils;
 import com.inz.z.music.view.adapter.AlbumRvAdapter;
@@ -52,7 +51,6 @@ import com.inz.z.music.view.decoration.BaseItemDecoration;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -112,7 +110,7 @@ public class MainActivity extends AbsBaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.main_activity;
+        return R.layout.base_main_activity;
     }
 
     @Override

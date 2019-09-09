@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.DrawableRes
-import android.support.v4.app.FragmentActivity
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.DrawableRes
+import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import com.inz.z.app_update.bean.VersionBean
@@ -49,7 +49,7 @@ class UpdateWrapper() {
     var mIsShowBackgroundDownload = true
     var mIsPost = false
     var mPostParams: Map<String, String>? = null
-    var mCls: Class<in FragmentActivity>? = null
+    var mCls: Class<in androidx.fragment.app.FragmentActivity>? = null
     var mHandler = Handler(Looper.getMainLooper())
     private var mDownloadFragment: BaseDownloadDialogFragment? = null
 
@@ -130,7 +130,7 @@ class UpdateWrapper() {
             return this
         }
 
-        fun setCustomsActivity(cls: Class<in FragmentActivity>): Builder {
+        fun setCustomsActivity(cls: Class<in androidx.fragment.app.FragmentActivity>): Builder {
             wrapper.mCls = cls
             return this
         }

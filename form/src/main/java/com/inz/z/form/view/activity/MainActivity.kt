@@ -1,7 +1,7 @@
 package com.inz.z.form.view.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.inz.z.form.view.widget.BaseLineChartView
 

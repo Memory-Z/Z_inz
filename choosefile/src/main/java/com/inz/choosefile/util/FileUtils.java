@@ -3,21 +3,19 @@ package com.inz.choosefile.util;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 
-import com.inz.choosefile.BuildConfig;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+
 import com.inz.choosefile.bean.FileBean;
 import com.inz.choosefile.bean.FileFolderBean;
-import com.inz.choosefile.bean.VideoBean;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -43,7 +41,7 @@ public class FileUtils {
             MediaStore.Video.Media.DATA,
             MediaStore.Video.Media.BUCKET_DISPLAY_NAME,
             MediaStore.Video.Media.MIME_TYPE,
-            MediaStore.Video.Media.DATE_ADDED,
+            MediaStore.Video.Media.DATE_MODIFIED,
             MediaStore.Video.Media.LATITUDE,
             MediaStore.Video.Media.LONGITUDE,
             MediaStore.Video.Media.SIZE,
@@ -205,7 +203,7 @@ public class FileUtils {
             MediaStore.Video.Media.DATA,
             MediaStore.Video.Media.BUCKET_DISPLAY_NAME,
             MediaStore.Video.Media.MIME_TYPE,
-            MediaStore.Video.Media.DATE_ADDED,
+            MediaStore.Video.Media.DATE_MODIFIED,
             MediaStore.Video.Media.LATITUDE,
             MediaStore.Video.Media.LONGITUDE,
             MediaStore.Video.Media.SIZE
@@ -277,8 +275,8 @@ public class FileUtils {
                                     Map<String, FileFolderBean> folderBeanMap,
                                     ScanFileListener listener) {
             this.mContext = mContext;
-            this.allFolder = allFolder;
-            this.folderBeanMap = folderBeanMap;
+            this.allFolder = new FileFolderBean();
+            this.folderBeanMap = new HashMap<>(32);
             this.listener = listener;
         }
 

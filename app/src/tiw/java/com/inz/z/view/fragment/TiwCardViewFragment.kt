@@ -1,6 +1,6 @@
 package com.inz.z.view.fragment
 
-import android.support.v7.widget.CardView
+import androidx.cardview.widget.CardView
 import com.inz.z.R
 
 /**
@@ -11,7 +11,7 @@ import com.inz.z.R
  */
 class TiwCardViewFragment : AbsBaseFragment() {
 
-    private var mCardView: CardView? = null
+    private var mCardView: androidx.cardview.widget.CardView? = null
 
     override fun getLayoutId(): Int {
         return R.layout.tiw_item_card

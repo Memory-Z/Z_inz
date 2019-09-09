@@ -1,8 +1,8 @@
 package com.inz.z.view.activity
 
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.CardView
+import com.google.android.material.tabs.TabLayout
+import androidx.viewpager.widget.ViewPager
+import androidx.cardview.widget.CardView
 import android.view.KeyEvent
 import android.view.View
 import com.inz.z.R
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.tiw.tiw_card_layout.*
  */
 class TiwCardActivity : AbsBaseActivity() {
 
-    private var mViewPager: ViewPager? = null
+    private var mViewPager: androidx.viewpager.widget.ViewPager? = null
     private var mTabLayout: TabLayout? = null
 
     override fun initWindow() {
@@ -36,17 +36,17 @@ class TiwCardActivity : AbsBaseActivity() {
 
     override fun initData() {
         val viewList: MutableList<View> = ArrayList()
-        val card0 = CardView(mContext)
+        val card0 = androidx.cardview.widget.CardView(mContext)
         viewList.add(card0)
-        val card1 = CardView(mContext)
+        val card1 = androidx.cardview.widget.CardView(mContext)
         viewList.add(card1)
-        val card2 = CardView(mContext)
+        val card2 = androidx.cardview.widget.CardView(mContext)
         viewList.add(card2)
-        val card3 = CardView(mContext)
+        val card3 = androidx.cardview.widget.CardView(mContext)
         viewList.add(card3)
-        val card4 = CardView(mContext)
+        val card4 = androidx.cardview.widget.CardView(mContext)
         viewList.add(card4)
-        val card5 = CardView(mContext)
+        val card5 = androidx.cardview.widget.CardView(mContext)
         viewList.add(card5)
         mViewPager?.adapter = TiwCardAdapter(mContext, viewList)
         mViewPager?.setPageTransformer(false, TiwCardPagerTransformer(mContext))

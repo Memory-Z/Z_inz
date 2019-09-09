@@ -2,7 +2,7 @@ package com.inz.z.face_module.view.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.cameraview.AspectRatio

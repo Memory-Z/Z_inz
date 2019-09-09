@@ -2,8 +2,8 @@ package com.inz.z.app_update.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.DialogFragment
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.DialogFragment
 import android.view.*
 import com.inz.z.app_update.R
 
@@ -13,7 +13,7 @@ import com.inz.z.app_update.R
  * @version 1.0.0
  * Create by inz in 2019/3/13 15:14.
  */
-abstract class AbsBaseDialogFragment : DialogFragment() {
+abstract class AbsBaseDialogFragment : androidx.fragment.app.DialogFragment() {
 
     protected var mContext: Context? = null
     protected var mView: View? = null
@@ -27,7 +27,7 @@ abstract class AbsBaseDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.AppUpdate_NoTitleDialog)
+        setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_FRAME, R.style.AppUpdate_NoTitleDialog)
     }
 
     override fun onCreateView(

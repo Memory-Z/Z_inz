@@ -17,7 +17,7 @@
 package com.inz.z.face_module.view.google
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.inz.z.face_module.R
 

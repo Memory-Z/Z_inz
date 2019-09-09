@@ -22,12 +22,12 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.os.ParcelableCompat;
-import android.support.v4.os.ParcelableCompatCreatorCallbacks;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.os.ParcelableCompat;
+import androidx.core.os.ParcelableCompatCreatorCallbacks;
+import androidx.core.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -158,8 +158,9 @@ public class CameraView extends FrameLayout {
 
     @NonNull
     private PreviewImpl createPreviewImpl(Context context, boolean isFallback) {
-        if (isFallback)
+        if (isFallback) {
             return new SurfaceViewPreview(context, this);
+        }
         PreviewImpl preview;
         if (Build.VERSION.SDK_INT < 14) {
             preview = new SurfaceViewPreview(context, this);
@@ -271,7 +272,7 @@ public class CameraView extends FrameLayout {
 
     /**
      * Open a camera device and start showing camera preview. This is typically called from
-     * {@link Activity#onResume()}.
+     * {@link Activity# onResume()}.
      */
     public void start() {
         if (!mImpl.start()) {
@@ -286,7 +287,7 @@ public class CameraView extends FrameLayout {
 
     /**
      * Stop camera preview and close the device. This is typically called from
-     * {@link Activity#onPause()}.
+     * {@link Activity# onPause()}.
      */
     public void stop() {
         mImpl.stop();

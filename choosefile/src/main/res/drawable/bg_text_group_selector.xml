@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:drawable="@drawable/ic_expand_more_black_24dp" android:left="16dp" />
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/ic_chevron_right_black_24dp" android:left="16dp" />
+        </layer-list>
+    </item>
+</selector>

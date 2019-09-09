@@ -1,6 +1,6 @@
 package com.inz.z.view.widget.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.inz.z.R;
 

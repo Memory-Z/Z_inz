@@ -1,7 +1,7 @@
 package com.inz.z.view.activity;
 
 import android.content.Intent;
-import android.support.v4.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;

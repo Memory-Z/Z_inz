@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import android.support.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import android.util.Log
 import android.util.Xml
 import org.apache.mina.core.service.IoHandlerAdapter
@@ -50,7 +50,7 @@ class MinaBitmapConnectionServiceTest {
     var mContext: Context? = null
 
     fun createSocket() {
-        mContext = InstrumentationRegistry.getContext();
+        mContext = InstrumentationRegistry.getInstrumentation().getContext();
         createMinaSocket()
         try {
             Thread.sleep(900000000)

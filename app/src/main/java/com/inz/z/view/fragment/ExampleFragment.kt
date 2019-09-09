@@ -1,7 +1,7 @@
 package com.inz.z.view.fragment
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
@@ -19,7 +19,7 @@ import com.inz.z.view.adapter.ExampleAdapter
 class ExampleFragment : AbsBaseFragment() {
     private val _tag = "ExampleFragment"
 
-    private var exampleRv: RecyclerView? = null
+    private var exampleRv: androidx.recyclerview.widget.RecyclerView? = null
     private var exampleSearchRl: RelativeLayout? = null
 
     override fun getLayoutId(): Int {
@@ -37,7 +37,7 @@ class ExampleFragment : AbsBaseFragment() {
     override fun initData() {
         val xmlParse = mContext.resources.getXml(R.xml.example_bean)
         exampleAdapter = ExampleAdapter(mContext)
-        exampleRv?.layoutManager = LinearLayoutManager(mContext)
+        exampleRv?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mContext)
         Log.i(_tag, "-----" + System.currentTimeMillis())
         // 通过 xml 文件 获取 列表数据
         val exampleBeanList: MutableList<ExampleBean> = FileUtils.parseExampleXmlWithPull(xmlParse)
@@ -46,8 +46,8 @@ class ExampleFragment : AbsBaseFragment() {
         Log.i(_tag, "=====" + System.currentTimeMillis())
     }
 
-    inner class ScrollLis : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    inner class ScrollLis : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             // 改变后 的如果大于改变前，手指从上向下移动
             if (dy < 0) {

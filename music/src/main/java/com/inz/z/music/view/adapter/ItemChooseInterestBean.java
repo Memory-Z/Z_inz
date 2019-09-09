@@ -1,6 +1,6 @@
 package com.inz.z.music.view.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 

@@ -3,8 +3,8 @@ package com.inz.z.view.widget
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.TintTypedArray
+import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.TintTypedArray
 import android.util.AttributeSet
 import android.view.View
 import com.inz.z.R

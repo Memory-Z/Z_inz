@@ -2,7 +2,7 @@ package com.inz.z.view.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 
@@ -12,7 +12,7 @@ import android.view.ViewGroup
  * @version 1.0.0
  * Create by inz in 2019/4/9 15:50.
  */
-class TiwCardAdapter : PagerAdapter {
+class TiwCardAdapter : androidx.viewpager.widget.PagerAdapter {
     private var mContext: Context? = null
     private var viewList: MutableList<View>? = null
 

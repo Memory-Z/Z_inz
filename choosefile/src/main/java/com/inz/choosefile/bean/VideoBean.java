@@ -1,5 +1,7 @@
 package com.inz.choosefile.bean;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 /**
@@ -15,7 +17,7 @@ public class VideoBean extends FileBean implements Serializable {
     private String mediaType;
     private long size;
     private long duration;
-    private boolean isChecked = false;
+    private boolean isVideoChecked = false;
 
     public String getName() {
         return name;
@@ -57,14 +59,15 @@ public class VideoBean extends FileBean implements Serializable {
         this.duration = duration;
     }
 
-    public boolean isChecked() {
-        return isChecked;
+    public boolean isVideoChecked() {
+        return isVideoChecked;
     }
 
-    public void setChecked(boolean checked) {
-        isChecked = checked;
+    public void setVideoChecked(boolean videoChecked) {
+        isVideoChecked = videoChecked;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "VideoBean{" +
@@ -73,9 +76,7 @@ public class VideoBean extends FileBean implements Serializable {
                 ", mediaType='" + mediaType + '\'' +
                 ", size=" + size +
                 ", duration=" + duration +
-                ", isChecked=" + isChecked +
+                ", isVideoChecked=" + isVideoChecked +
                 '}';
     }
-
-
 }

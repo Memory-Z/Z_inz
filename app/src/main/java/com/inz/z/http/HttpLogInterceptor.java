@@ -1,6 +1,6 @@
 package com.inz.z.http;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 

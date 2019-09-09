@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
 import android.os.Message
-import android.support.annotation.DrawableRes
-import android.support.annotation.IdRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar

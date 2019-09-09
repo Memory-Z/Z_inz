@@ -3,7 +3,7 @@ package com.inz.z.view.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * 抽象 处理框架

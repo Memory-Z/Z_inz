@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/item_choose_group_cbox"
+        style="@style/TextGroupCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_text_click"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:lines="1"
+        android:paddingStart="08dp"
+        android:paddingEnd="08dp"
+        android:text="@string/base_image"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+</RelativeLayout>

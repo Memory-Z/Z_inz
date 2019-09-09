@@ -1,7 +1,7 @@
 package com.inz.z
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.inz.z.other_module.R
 import kotlinx.android.synthetic.camera2.camera2_activity.*

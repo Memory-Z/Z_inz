@@ -3,6 +3,9 @@
     package="com.inz.choosefile">
 
     <application>
+        <activity android:name=".view.activity.FileChooseActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:background="#F8F9F8"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_address_book2_top_ll">
 
         <!-- 左侧部门 -->
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_address_book2_content_left_rv"
             android:layout_width="120dp"
             android:layout_height="match_parent"
@@ -45,7 +45,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <RelativeLayout
             android:id="@+id/activity_address_book2_content_right_rl"
@@ -56,14 +56,14 @@
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@id/activity_address_book2_content_left_rv">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/activity_address_book2_content_right_content_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#00EEEEEE">
 
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <com.mcxtzhang.indexlib.IndexBar.widget.IndexBar
                 android:id="@+id/activity_address_book2_content_right_index_bar"
@@ -87,4 +87,4 @@
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

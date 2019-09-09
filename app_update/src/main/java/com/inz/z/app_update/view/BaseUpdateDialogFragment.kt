@@ -1,7 +1,7 @@
 package com.inz.z.app_update.view
 
 import android.os.Bundle
-import android.support.annotation.IdRes
+import androidx.annotation.IdRes
 import android.view.View
 import android.widget.Button
 import android.widget.TextView

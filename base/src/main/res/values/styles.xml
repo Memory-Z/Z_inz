@@ -8,4 +8,7 @@
         <item name="android:contentInsetRight">0dp</item>
     </style>
 
+    <style name="BaseCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bg_check_box_selector</item>
+    </style>
 </resources>

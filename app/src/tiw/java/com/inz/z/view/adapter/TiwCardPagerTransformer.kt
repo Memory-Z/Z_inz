@@ -1,8 +1,8 @@
 package com.inz.z.view.adapter
 
 import android.content.Context
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.CardView
+import androidx.viewpager.widget.ViewPager
+import androidx.cardview.widget.CardView
 import android.util.Log
 import android.view.View
 import org.jetbrains.annotations.NotNull
@@ -13,12 +13,12 @@ import org.jetbrains.annotations.NotNull
  * @version 1.0.0
  * Create by inz in 2019/4/9 15:04.
  */
-class TiwCardPagerTransformer : ViewPager.PageTransformer {
+class TiwCardPagerTransformer : androidx.viewpager.widget.ViewPager.PageTransformer {
     private var mContext: Context? = null
     /**
      * ViewPager
      */
-    private var mViewPager: ViewPager? = null
+    private var mViewPager: androidx.viewpager.widget.ViewPager? = null
     private val minAlpha = .4F
     private val minScale = .6F
     private val maxScale = .8F
@@ -41,7 +41,7 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
         this.maxTransformerOffsetX = dp2px(mContext!!, maxTransformerOffsetX.toFloat())
     }
 
-    constructor(mContext: Context?, mViewPager: ViewPager?) {
+    constructor(mContext: Context?, mViewPager: androidx.viewpager.widget.ViewPager?) {
         this.mContext = mContext
         this.mViewPager = mViewPager
         this.maxTransformerOffsetX = dp2px(mContext!!, 120F)
@@ -53,7 +53,7 @@ class TiwCardPagerTransformer : ViewPager.PageTransformer {
         val pageHeight = page.height
 
         if (mViewPager == null) {
-            mViewPager = page.parent as ViewPager?
+            mViewPager = page.parent as androidx.viewpager.widget.ViewPager?
         }
 
         page.pivotY = (pageHeight / 2).toFloat()

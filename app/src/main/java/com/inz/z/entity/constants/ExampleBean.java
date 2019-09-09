@@ -1,8 +1,8 @@
 package com.inz.z.entity.constants;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 
 /**
  * 例子 实体数据对象

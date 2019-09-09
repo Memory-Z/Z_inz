@@ -3,6 +3,8 @@ package com.inz.choosefile.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 /**
  * @author Zhenglj
  * @version 1.0.0
@@ -10,7 +12,7 @@ import android.os.Parcelable;
  */
 public class FileBean implements Parcelable {
 
-    protected FileBean(Parcel in) {
+    private FileBean(Parcel in) {
         if (in.readByte() == 0) {
             fileType = FileType.TYPE_IMAGE;
         } else if (in.readByte() == 1) {
@@ -64,7 +66,9 @@ public class FileBean implements Parcelable {
 
 
     public enum FileType {
+        // 图片
         TYPE_IMAGE(0),
+        // 视频
         TYPE_VIDEO(1);
 
         private int type;
@@ -90,6 +94,22 @@ public class FileBean implements Parcelable {
     public FileBean() {
 
     }
+
+    public void setFileBean(FileType fileType, String mPath, String mBucketName, String mMineType, long mAddDate, float mLatitude, float mLongitude, long mSize, long mDuration, String mThumbPath, boolean isChecked, boolean isDisable) {
+        this.fileType = fileType;
+        this.mPath = mPath;
+        this.mBucketName = mBucketName;
+        this.mMineType = mMineType;
+        this.mAddDate = mAddDate;
+        this.mLatitude = mLatitude;
+        this.mLongitude = mLongitude;
+        this.mSize = mSize;
+        this.mDuration = mDuration;
+        this.mThumbPath = mThumbPath;
+        this.isChecked = isChecked;
+        this.isDisable = isDisable;
+    }
+
 
     public FileType getFileType() {
         return fileType;
@@ -185,5 +205,24 @@ public class FileBean implements Parcelable {
 
     public void setDisable(boolean disable) {
         isDisable = disable;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "FileBean{" +
+                "fileType=" + fileType +
+                ", mPath='" + mPath + '\'' +
+                ", mBucketName='" + mBucketName + '\'' +
+                ", mMineType='" + mMineType + '\'' +
+                ", mAddDate=" + mAddDate +
+                ", mLatitude=" + mLatitude +
+                ", mLongitude=" + mLongitude +
+                ", mSize=" + mSize +
+                ", mDuration=" + mDuration +
+                ", mThumbPath='" + mThumbPath + '\'' +
+                ", isChecked=" + isChecked +
+                ", isDisable=" + isDisable +
+                '}';
     }
 }

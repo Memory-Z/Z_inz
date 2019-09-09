@@ -43,4 +43,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="TextGroupCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bg_text_group_selector</item>
+        <item name="android:paddingStart">16dp</item>
+    </style>
 </resources>

@@ -16,14 +16,13 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.inz.z.base.util.L;
 import com.inz.z.music.base.Constants;
 import com.inz.z.music.database.ItemSongsBean;
-import com.inz.z.music.database.ItemSongsBeanDao;
 import com.inz.z.music.receiver.MusicPlayIntentReceiver;
 
 import java.io.IOException;

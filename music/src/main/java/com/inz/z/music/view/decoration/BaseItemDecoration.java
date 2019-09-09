@@ -2,18 +2,13 @@ package com.inz.z.music.view.decoration;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.Shader;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.inz.z.base.util.BaseTools;
-
-import java.awt.font.TextAttribute;
 
 /**
  * @author Zhenglj

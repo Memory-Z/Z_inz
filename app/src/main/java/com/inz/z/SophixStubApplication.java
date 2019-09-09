@@ -2,7 +2,7 @@ package com.inz.z;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 import android.util.Log;
 
 import com.taobao.sophix.PatchStatus;

@@ -8,7 +8,7 @@ import android.content.ServiceConnection
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.IBinder
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.inz.z.base.util.FileUtils
 
