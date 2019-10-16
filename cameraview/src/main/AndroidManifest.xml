@@ -8,5 +8,9 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-    <application />
+    <application>
+        <activity
+            android:name="com.inz.z.base_camera.view.activity.BaseCameraActivity"
+            android:screenOrientation="portrait" />
+    </application>
 </manifest>

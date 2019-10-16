@@ -6,6 +6,9 @@
         <activity android:name=".view.activity.FileChooseActivity">
 
         </activity>
+        <activity
+            android:name=".view.activity.BottomSheetLayoutActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

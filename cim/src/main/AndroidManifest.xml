@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.inz.z.cim">
+
+    <application
+        android:name=".CIMApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"
+            android:authorities="com.inz.z.cim.cim.provider"
+            android:exported="false"
+            android:process=":cimPic"/>
+        <receiver android:name=".CIMPushBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  <!-- 网络变化广播 targetVersion 24之前 -->
+
+                <action android:name="com.farsunset.cim.NETWORK_CHANGED" />  <!-- 网络变化广播 targetVersion 24之后-->
+                <action android:name="com.farsunset.cim.MESSAGE_RECEIVED" /><!-- 消息广播action -->
+                <action android:name="com.farsunset.cim.SENT_FAILED" /> <!-- 发送sendbody失败广播-->
+                <action android:name="com.farsunset.cim.SENT_SUCCESSED" /> <!-- 发送sendbody成功广播 -->
+                <action android:name="com.farsunset.cim.CONNECTION_RECOVERY" /> <!--重新连接 -->
+                <action android:name="com.farsunset.cim.CONNECTION_CLOSED" /> <!-- 链接意外关闭广播 -->
+                <action android:name="com.farsunset.cim.CONNECTION_FAILED" /> <!-- 链接失败广播 -->
+                <action android:name="com.farsunset.cim.CONNECTION_SUCCESSED" /> <!-- 链接成功广播-->
+                <action android:name="com.farsunset.cim.REPLY_RECEIVED" /> <!-- 发送sendbody成功后获得replaybody回应广播 -->
+
+                <!-- 【可选】 一些常用的系统广播，增强pushservice的复活机会-->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.farsunset.cim.sdk.android.CIMPushService"
+            android:process=":cimPic">
+
+        </service>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+</manifest>

@@ -2,6 +2,8 @@ package com.inz.z.base.view.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
         mainAdapter = new BaseMainAdapter(mContext);
+        mainAdapter.setItemListener(new BaseMainAdapter.ItemListener() {
+            @Override
+            public void onStartDrop(RecyclerView.ViewHolder viewHolder) {
+                if (itemTouchHelper != null) {
+                    itemTouchHelper.startDrag(viewHolder);
+                }
+            }
+        });
+
         recyclerView.setAdapter(mainAdapter);
         recyclerView.setItemViewCacheSize(2);
 
@@ -54,17 +65,16 @@ public class MainActivity extends AppCompatActivity {
         helperCallbackExt = new DeleteItemTouchHelperCallbackExt(new DeleteItemTouchListener() {
             @Override
             public void onSwiped(int position) {
-//                mainAdapter.swiped(position);
-//                mainAdapter.notifyItemRemoved(position);
+                mainAdapter.swiped(position);
             }
 
             @Override
             public void onSwitch(int currentPosition, int targetPosition) {
-
+                mainAdapter.switchItem(currentPosition, targetPosition);
             }
         });
-        itemTouchHelper = new ItemTouchHelper(helperCallbackExt);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+//        itemTouchHelper = new ItemTouchHelper(helperCallbackExt);
+//        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override

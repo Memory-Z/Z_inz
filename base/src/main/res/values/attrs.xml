@@ -30,4 +30,9 @@
         <attr name="round_image_view_bottom_start_radius" format="dimension" />
         <attr name="round_image_view_bottom_end_radius" format="dimension" />
     </declare-styleable>
+
+    <!-- 可滑动RelativeLayout -->
+    <declare-styleable name="BaseRelativeLayout">
+        <attr name="base_relative_layout_content_id" format="reference" />
+    </declare-styleable>
 </resources>

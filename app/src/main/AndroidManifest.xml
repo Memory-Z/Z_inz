@@ -77,6 +77,7 @@
         <activity
             android:name="com.inz.z.view.activity.MainActivity"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -137,6 +138,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_image_provider" />
         </receiver>
+
+        <service android:name=".service.NotificationService" />
     </application>
 
 </manifest>

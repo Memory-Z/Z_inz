@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="base_relative_layout_operation_ll" type="id" />
+    <item name="base_relative_layout_delete_dcv" type="id" />
+    <item name="base_relative_layout_operation_0" type="id" />
+    <item name="base_relative_layout_operation_1" type="id" />
+    <item name="base_relative_layout_operation_2" type="id" />
+    <item name="base_relative_layout_operation_3" type="id" />
+    <item name="base_relative_layout_operation_4" type="id" />
+    <item name="base_relative_layout_operation_5" type="id" />
+    <item name="base_relative_layout_operation_6" type="id" />
+    <item name="base_relative_layout_operation_7" type="id" />
+    <item name="base_relative_layout_operation_8" type="id" />
+    <item name="base_relative_layout_operation_9" type="id" />
+    <item name="base_relative_layout_operation_a" type="id" />
+    <item name="base_relative_layout_operation_b" type="id" />
+    <item name="base_relative_layout_operation_c" type="id" />
+    <item name="base_relative_layout_operation_d" type="id" />
+    <item name="base_relative_layout_operation_e" type="id" />
+    <item name="base_relative_layout_operation_f" type="id" />
+</resources>

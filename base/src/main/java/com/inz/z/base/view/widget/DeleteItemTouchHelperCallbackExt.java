@@ -1,11 +1,18 @@
 package com.inz.z.base.view.widget;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 
+import com.inz.z.base.R;
 import com.inz.z.base.util.L;
+
+import java.util.List;
 
 /**
  * @author Zhenglj
@@ -18,9 +25,14 @@ public class DeleteItemTouchHelperCallbackExt extends ItemTouchHelper.Callback {
 
     private DeleteItemTouchListener listener;
     private RecyclerView.ViewHolder swipedViewHolder;
+    private DeleteItemTouchViewHolderListener viewHolderListener;
 
     public DeleteItemTouchHelperCallbackExt(DeleteItemTouchListener listener) {
         this.listener = listener;
+    }
+
+    public void setViewHolderListener(DeleteItemTouchViewHolderListener viewHolderListener) {
+        this.viewHolderListener = viewHolderListener;
     }
 
     @Override
@@ -35,65 +47,118 @@ public class DeleteItemTouchHelperCallbackExt extends ItemTouchHelper.Callback {
 
     @Override
     public float getSwipeThreshold(@NonNull RecyclerView.ViewHolder viewHolder) {
-        return super.getSwipeThreshold(viewHolder);
+        return .8F;
     }
 
     @Override
     public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-        return makeMovementFlags(0, ItemTouchHelper.START);
+        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        int sweepFlag = ItemTouchHelper.START | ItemTouchHelper.END;
+        return makeMovementFlags(dragFlags, sweepFlag);
     }
 
     @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-        L.i(TAG, "onMove: => ");
+    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         if (listener != null) {
-            int cP = viewHolder.getAdapterPosition();
-            int tP = viewHolder1.getAdapterPosition();
-            listener.onSwitch(cP, tP);
+            L.i(TAG, "onMove: cP = " + viewHolder.getAdapterPosition() + " ; tP = " + target.getAdapterPosition());
+            listener.onSwitch(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         }
-        return false;
+        return true;
     }
 
     @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        viewHolder.itemView.getWidth();
-        L.i(TAG, "onSwiped:  ->  " + i + " ; position = " + viewHolder.getAdapterPosition());
-        if (swipedViewHolder == null) {
-            swipedViewHolder = viewHolder;
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        L.i(TAG, "onSwiped: cP = " + viewHolder.getAdapterPosition());
+        if (viewHolder.getAdapterPosition() == currentSwipePosition) {
+            if (direction == ItemTouchHelper.START) {
+                viewHolder.itemView.setTranslationX(-480);
+            } else if (direction == ItemTouchHelper.END) {
+                viewHolder.itemView.setTranslationX(480);
+            }
+        } else {
+            viewHolder.itemView.setTranslationX(0);
         }
-        if (listener != null) {
-            listener.onSwiped(viewHolder.getAdapterPosition());
-        }
-
+//        if (listener != null) {
+//            listener.onSwiped(viewHolder.getAdapterPosition());
+//        }
     }
 
     @Override
     public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-
+        L.i(TAG, "clearView: cP = " + viewHolder.getAdapterPosition() + " ; oldP = " + currentSwipePosition);
+//        if (currentSwipePosition != -1) {
+//            RecyclerView.ViewHolder oldViewHolder = recyclerView.findViewHolderForAdapterPosition(currentSwipePosition);
+//            if (oldViewHolder != null) {
+//                oldViewHolder.itemView.setTranslationX(0);
+//            }
+//            currentSwipePosition = -1;
+//        }
+        if (currentSwipePosition != viewHolder.getAdapterPosition() && currentSwipePosition != -1) {
+            RecyclerView.ViewHolder oldViewHolder = recyclerView.findViewHolderForAdapterPosition(currentSwipePosition);
+            if (oldViewHolder != null) {
+                oldViewHolder.itemView.setTranslationZ(0);
+                oldViewHolder.itemView.setX(0);
+            }
+        }
+        viewHolder.itemView.setTranslationZ(0);
+        viewHolder.itemView.setX(0);
     }
+
+    private int currentSwipePosition = -1;
 
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-        L.i(TAG, "onChildDraw: dX = " + dX + " ; dY = " + dY + " ; actionState = " + actionState + " ; isCurrentlyActive = " + isCurrentlyActive + " ; Position = " + viewHolder.getAdapterPosition());
-        int w = 192;
-        if (swipedViewHolder != null) {
-            int x, y;
-            L.i(TAG, "onChildDraw: old = " + (x = swipedViewHolder.getAdapterPosition()) + " ; new = " + (y = viewHolder.getAdapterPosition()));
-            if (x == y) {
-                super.onChildDraw(c, recyclerView, viewHolder, 0, dY, ItemTouchHelper.ACTION_STATE_IDLE, false);
+        L.i(TAG, "onChildDraw: cP = " + viewHolder.getAdapterPosition() + " ; Position = " + currentSwipePosition);
+        float xx = dX;
+        if (currentSwipePosition != -1) {
+            if (currentSwipePosition == viewHolder.getAdapterPosition()) {
+                int state = actionState;
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    if (dX > 480) {
+                        xx = 480;
+                        state = ItemTouchHelper.ACTION_STATE_IDLE;
+                    } else if (xx < -480) {
+                        xx = -480;
+                        state = ItemTouchHelper.ACTION_STATE_IDLE;
+                    }
+                    currentSwipePosition = viewHolder.getAdapterPosition();
+                }
+                super.onChildDraw(c, recyclerView, viewHolder, xx, dY, state, isCurrentlyActive);
+            } else {
+                viewHolder.itemView.setTranslationX(0);
             }
-            swipedViewHolder = null;
-            return;
+        } else {
+            viewHolder.itemView.setTranslationX(0);
         }
-        if (Math.abs(dX) > w) {
-            super.onChildDraw(c, recyclerView, viewHolder, -w, dY, actionState, true);
-            return;
-        }
-//        if (viewHolder.itemView.getWidth() - Math.abs(dX) > w) {
-//            super.onChildDraw(c, recyclerView, viewHolder, -w, dY, ItemTouchHelper.ACTION_STATE_IDLE, true);
-//        }
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
+    @Override
+    public RecyclerView.ViewHolder chooseDropTarget(@NonNull RecyclerView.ViewHolder selected, @NonNull List<RecyclerView.ViewHolder> dropTargets, int curX, int curY) {
+        return super.chooseDropTarget(selected, dropTargets, curX, curY);
+    }
+
+    @Override
+    public void onMoved(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, int fromPos, @NonNull RecyclerView.ViewHolder target, int toPos, int x, int y) {
+        super.onMoved(recyclerView, viewHolder, fromPos, target, toPos, x, y);
+        L.i(TAG, "onMoved: cP = " + viewHolder.getAdapterPosition() + " ; tP = " + target.getAdapterPosition());
+    }
+
+    @Override
+    public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
+        if (viewHolder != null) {
+            L.i(TAG, "onSelectedChanged: cP = " + viewHolder.getAdapterPosition());
+        }
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+            if (viewHolder != null) {
+                viewHolder.itemView.setTranslationZ(10);
+            }
+        } else if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+            if (viewHolder != null) {
+                currentSwipePosition = viewHolder.getAdapterPosition();
+                viewHolder.itemView.setBackgroundColor(Color.WHITE);
+            }
+        }
+        super.onSelectedChanged(viewHolder, actionState);
+    }
 }

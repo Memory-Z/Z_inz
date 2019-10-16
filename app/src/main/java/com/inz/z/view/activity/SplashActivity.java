@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.inz.z.R;
 import com.inz.z.entity.Constants;
+import com.inz.z.service.NotificationService;
 import com.inz.z.util.SPHelper;
 
 /**
@@ -49,6 +50,11 @@ public class SplashActivity extends AbsBaseActivity {
         ImageView imageView = findViewById(R.id.splash_iv);
         TextView hintTv = findViewById(R.id.splash_tv);
 //        Glide.with(mContext).load(getResources().getDrawable(R.drawable.adolescent_casual_contemporary_1030895)).into(imageView);
+        startNotificationService();
+    }
+
+    private void startNotificationService() {
+        startService(new Intent(mContext, NotificationService.class));
     }
 
     @Override

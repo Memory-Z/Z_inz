@@ -20,6 +20,5 @@ public open class OtherApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
     }
 }
