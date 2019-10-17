@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="BaseAppTheme" parent="QMUI.Compat">
+
+    </style>
+
     <style name="BaseTActionBar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="android:contentInsetLeft">0dp</item>
         <item name="android:contentInsetEnd">0dp</item>

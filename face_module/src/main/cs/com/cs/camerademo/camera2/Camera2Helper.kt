@@ -114,12 +114,12 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
         }
 
         //获取摄像头方向
-        mCameraSensorOrientation = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)
+        mCameraSensorOrientation = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
         //获取StreamConfigurationMap，它是管理摄像头支持的所有输出格式和尺寸
         val configurationMap = mCameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
 
-        val savePicSize = configurationMap.getOutputSizes(ImageFormat.JPEG)          //保存照片尺寸
-        val previewSize = configurationMap.getOutputSizes(SurfaceTexture::class.java) //预览尺寸
+        val savePicSize = configurationMap?.getOutputSizes(ImageFormat.JPEG)          //保存照片尺寸
+        val previewSize = configurationMap?.getOutputSizes(SurfaceTexture::class.java) //预览尺寸
 
         val exchange = exchangeWidthAndHeight(mDisplayRotation, mCameraSensorOrientation)
 
@@ -128,14 +128,14 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
                 if (exchange) mSavePicSize.width else mSavePicSize.height,
                 if (exchange) mSavePicSize.height else mSavePicSize.width,
                 if (exchange) mSavePicSize.width else mSavePicSize.height,
-                savePicSize.toList())
+                savePicSize!!.toList())
 
         mPreviewSize = getBestSize(
                 if (exchange) mPreviewSize.height else mPreviewSize.width,
                 if (exchange) mPreviewSize.width else mPreviewSize.height,
                 if (exchange) mTextureView.height else mTextureView.width,
                 if (exchange) mTextureView.width else mTextureView.height,
-                previewSize.toList())
+                previewSize!!.toList())
 
         mTextureView.surfaceTexture.setDefaultBufferSize(mPreviewSize.width, mPreviewSize.height)
 
@@ -209,7 +209,7 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
 
         // 为相机预览，创建一个CameraCaptureSession对象
         cameraDevice.createCaptureSession(arrayListOf(surface, mImageReader?.surface), object : CameraCaptureSession.StateCallback() {
-            override fun onConfigureFailed(session: CameraCaptureSession?) {
+            override fun onConfigureFailed(session: CameraCaptureSession) {
                 mActivity.toast("开启预览会话失败！")
             }
 
@@ -223,13 +223,21 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
 
     private val mCaptureCallBack = object : CameraCaptureSession.CaptureCallback() {
 
-        override fun onCaptureCompleted(session: CameraCaptureSession, request: CaptureRequest?, result: TotalCaptureResult) {
+        override fun onCaptureCompleted(
+            session: CameraCaptureSession,
+            request: CaptureRequest,
+            result: TotalCaptureResult
+        ) {
             super.onCaptureCompleted(session, request, result)
             canExchangeCamera = true
             canTakePic = true
         }
 
-        override fun onCaptureFailed(session: CameraCaptureSession?, request: CaptureRequest?, failure: CaptureFailure?) {
+        override fun onCaptureFailed(
+            session: CameraCaptureSession,
+            request: CaptureRequest,
+            failure: CaptureFailure
+        ) {
             super.onCaptureFailed(session, request, failure)
             log("onCaptureFailed")
             mActivity.toast("开启预览失败！")
@@ -246,7 +254,7 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
         mCameraDevice?.apply {
 
             val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
-            captureRequestBuilder.addTarget(mImageReader?.surface)
+            captureRequestBuilder.addTarget(mImageReader?.surface!!)
 
             captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE) // 自动对焦
             captureRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)     // 闪光灯

@@ -181,7 +181,7 @@ class CaptureActivity : AppCompatActivity() {
 
                 REQUEST_CODE_ALBUM -> { //从相册选择照片后，裁剪
                     data?.let {
-                        gotoCrop(it.data)
+                        gotoCrop(it.data!!)
                     }
                 }
 

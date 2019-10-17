@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.inz.z.camera_one">
+
+    <application
+        android:name=".CameraOneApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_vd_image"
+        android:label="@string/app_name"
+        android:theme="@style/BaseAppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name=".view.CameraActivity"
+            android:theme="@style/BaseAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

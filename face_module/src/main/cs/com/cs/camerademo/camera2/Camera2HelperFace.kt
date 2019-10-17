@@ -213,7 +213,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
             mCameraCharacteristics.get(CameraCharacteristics.STATISTICS_INFO_AVAILABLE_FACE_DETECT_MODES)  //人脸检测的模式
 
         mFaceDetectMode = when {
-            faceDetectModes.contains(CaptureRequest.STATISTICS_FACE_DETECT_MODE_FULL) -> CaptureRequest.STATISTICS_FACE_DETECT_MODE_FULL
+            faceDetectModes!!.contains(CaptureRequest.STATISTICS_FACE_DETECT_MODE_FULL) -> CaptureRequest.STATISTICS_FACE_DETECT_MODE_FULL
             faceDetectModes.contains(CaptureRequest.STATISTICS_FACE_DETECT_MODE_SIMPLE) -> CaptureRequest.STATISTICS_FACE_DETECT_MODE_FULL
             else -> CaptureRequest.STATISTICS_FACE_DETECT_MODE_OFF
         }
@@ -225,7 +225,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
 
         val activeArraySizeRect =
             mCameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE) //获取成像区域
-        val scaledWidth = mPreviewSize.width / activeArraySizeRect.width().toFloat()
+        val scaledWidth = mPreviewSize.width / activeArraySizeRect!!.width().toFloat()
         val scaledHeight = mPreviewSize.height / activeArraySizeRect.height().toFloat()
         val mirror = mCameraFacing == CameraCharacteristics.LENS_FACING_FRONT
 
@@ -297,7 +297,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         cameraDevice.createCaptureSession(
             arrayListOf(surface, mImageReader?.surface),
             object : CameraCaptureSession.StateCallback() {
-                override fun onConfigureFailed(session: CameraCaptureSession?) {
+                override fun onConfigureFailed(session: CameraCaptureSession) {
                     mActivity.toast("开启预览会话失败！")
                 }
 
@@ -319,7 +319,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
 
         override fun onCaptureCompleted(
             session: CameraCaptureSession,
-            request: CaptureRequest?,
+            request: CaptureRequest,
             result: TotalCaptureResult
         ) {
             super.onCaptureCompleted(session, request, result)
@@ -331,9 +331,9 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         }
 
         override fun onCaptureFailed(
-            session: CameraCaptureSession?,
-            request: CaptureRequest?,
-            failure: CaptureFailure?
+            session: CameraCaptureSession,
+            request: CaptureRequest,
+            failure: CaptureFailure
         ) {
             super.onCaptureFailed(session, request, failure)
             log("onCaptureFailed")
@@ -348,7 +348,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         val faces = result.get(CaptureResult.STATISTICS_FACES)
         mFacesRect.clear()
 
-        for (face in faces) {
+        for (face in faces!!) {
             val bounds = face.bounds
             val left = bounds.left
             val top = bounds.top
@@ -376,9 +376,9 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         }
 
         mActivity.runOnUiThread {
-            mFaceDetectListener?.onFaceDetect(faces, mFacesRect)
+            mFaceDetectListener?.onFaceDetect(faces!!, mFacesRect)
         }
-        log("onCaptureCompleted  检测到 ${faces.size} 张人脸")
+        log("onCaptureCompleted  检测到 ${faces!!.size} 张人脸")
     }
 
 
@@ -391,7 +391,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         mCameraDevice?.apply {
 
             val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
-            captureRequestBuilder.addTarget(mImageReader?.surface)
+            captureRequestBuilder.addTarget(mImageReader?.surface!!)
 
             captureRequestBuilder.set(
                 CaptureRequest.CONTROL_AF_MODE,
@@ -426,7 +426,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
 
         mCameraDevice?.apply {
             val recordRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_RECORD)
-            recordRequestBuilder.addTarget(mImageReader?.surface)
+            recordRequestBuilder.addTarget(mImageReader?.surface!!)
 
             recordRequestBuilder.set(
                 CaptureRequest.CONTROL_AF_MODE,
@@ -452,7 +452,7 @@ class Camera2HelperFace(val mActivity: Activity, private val mTextureView: AutoF
         mCameraDevice?.apply {
 
             val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_VIDEO_SNAPSHOT)
-            captureRequestBuilder.addTarget(mImageReader?.surface)
+            captureRequestBuilder.addTarget(mImageReader?.surface!!)
 
             captureRequestBuilder.set(
                 CaptureRequest.CONTROL_AF_MODE,
