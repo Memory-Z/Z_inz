@@ -6,7 +6,7 @@ android {
     compileSdkVersion APP_COMPILE_SDK_VERSION.toInteger()
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion APP_MIN_SDK_VERSION.toInteger()
         targetSdkVersion APP_TARGET_SDK_VERSION.toInteger()
         versionCode 1
         versionName "1.0"
