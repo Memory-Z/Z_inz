@@ -110,7 +110,7 @@ public class MainActivity extends AbsBaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.base_main_activity;
+        return R.layout.main_activity;
     }
 
     @Override

@@ -33,6 +33,8 @@
 
     <!-- 可滑动RelativeLayout -->
     <declare-styleable name="BaseRelativeLayout">
-        <attr name="base_relative_layout_content_id" format="reference" />
+        <attr name="base_relative_layout_header_view" format="reference" />
+        <attr name="base_relative_layout_content_view" format="reference" />
+        <attr name="base_relative_layout_footer_view" format="reference" />
     </declare-styleable>
 </resources>

@@ -1,41 +1,30 @@
 package com.inz.z.base.view.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.DrawableRes;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.TintTypedArray;
 
 import com.inz.z.base.R;
-import com.inz.z.base.util.BaseTools;
-import com.inz.z.base.util.L;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * 自定义 RelativeLayout 实现侧滑删除
- *
  * @author Zhenglj
  * @version 1.0.0
- * Create by inz in 2019/09/12 09:31.
+ * Create by inz in 2019/10/23 10:08.
  */
 public class BaseRelativeLayout extends RelativeLayout {
-    private static final String TAG = "BaseRelativeLayout";
 
     private Context mContext;
-    private List<BaseCatalogView> catalogViewList;
-    private LinearLayout catalogLl;
-    private RelativeLayout swipedRl;
-
+    private View mView;
+    private RelativeLayout headerRl, contentRl, footerRl;
+    private int headerLayoutId, contentLayoutId, footerLayoutId;
 
     public BaseRelativeLayout(Context context) {
         this(context, null);
@@ -48,164 +37,171 @@ public class BaseRelativeLayout extends RelativeLayout {
     public BaseRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        catalogViewList = new ArrayList<>(2);
-
         initView();
-        initStyle();
+        initStyle(attrs);
     }
 
-    /**
-     * 初始化内容
-     */
+    @SuppressLint("InflateParams")
     private void initView() {
-        catalogLl = new LinearLayout(mContext);
-        catalogLl.setId(R.id.base_relative_layout_operation_ll);
-        catalogLl.setOrientation(LinearLayout.HORIZONTAL);
-        catalogLl.setGravity(Gravity.CENTER);
-
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END);
-
-        addView(catalogLl, layoutParams);
-
-        View rootView = getRootView();
-        L.i(TAG, "initView: " + rootView);
-
+        if (mView == null) {
+            mView = LayoutInflater.from(mContext).inflate(R.layout.base_relative_layout, null);
+            headerRl = mView.findViewById(R.id.base_relative_layout_header_rl);
+            contentRl = mView.findViewById(R.id.base_relative_layout_content_rl);
+            footerRl = mView.findViewById(R.id.base_relative_layout_footer_rl);
+            LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            addView(mView, params);
+        }
     }
 
-    private void initStyle() {
-
-
+    @SuppressLint("RestrictedApi")
+    private void initStyle(AttributeSet attributeSet) {
+        TintTypedArray array = TintTypedArray.obtainStyledAttributes(mContext, attributeSet, R.styleable.BaseRelativeLayout, 0, 0);
+        headerLayoutId = array.getResourceId(R.styleable.BaseRelativeLayout_base_relative_layout_header_view, R.id.base_relative_layout_header_rl);
+        contentLayoutId = array.getResourceId(R.styleable.BaseRelativeLayout_base_relative_layout_content_view, R.id.base_relative_layout_content_rl);
+        footerLayoutId = array.getResourceId(R.styleable.BaseRelativeLayout_base_relative_layout_footer_view, R.id.base_relative_layout_footer_rl);
+        array.recycle();
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        View rootView = getRootView();
-        L.i(TAG, "onFinishInflate: " + rootView);
-        if (rootView instanceof BaseRelativeLayout) {
-            int childViewCount = ((BaseRelativeLayout) rootView).getChildCount();
-            if (childViewCount > 1) {
-                initSwipedView((BaseRelativeLayout) rootView, childViewCount);
+        initializeView();
+    }
+
+    private View headerView = null, footerView = null, contentView = null;
+
+    /**
+     * 初始化自定义View
+     */
+    private void initializeView() {
+        setHeaderView();
+        setFooterView();
+        setContentView();
+    }
+
+    /**
+     * 设置顶部View
+     */
+    private void setHeaderView() {
+        if (headerLayoutId != R.id.base_relative_layout_header_rl) {
+            headerView = findViewById(headerLayoutId);
+            if (headerView != null) {
+                addHeader(headerView);
             }
         }
     }
 
     /**
-     * 设置滑动布局
+     * 设置中间 View
      */
-    private void initSwipedView(BaseRelativeLayout rootView, int childViewCount) {
-        if (mContext == null) {
-            L.w(TAG, "initSwipedView: mContext is null. ");
-            return;
+    private void setContentView() {
+        if (contentLayoutId != R.id.base_relative_layout_content_rl) {
+            contentView = findViewById(contentLayoutId);
+            if (contentView != null) {
+                addContent(contentView);
+            }
+        } else {
+            int viewCount = getChildCount();
+//            View hV = null;
+//            if (headerLayoutId != R.id.base_relative_layout_header_rl) {
+//                hV = findViewById(headerLayoutId);
+//            }
+//            if (headerView != null) {
+//
+//            }
+//            View fV = null;
+//            if (footerLayoutId != R.id.base_relative_layout_footer_rl) {
+//                fV = findViewById(footerLayoutId);
+//            }
+            if (viewCount < 2) {
+                // gt 2 , is have more self view add. , because first is this view. in [@initView() ]
+                return;
+            }
+            for (int i = 1; i < viewCount; i++) {
+                View v = this.getChildAt(i);
+                if (headerView != null && v == headerView) {
+                    break;
+                }
+                if (footerView != null && v == footerView) {
+                    break;
+                }
+                addContent(v);
+            }
         }
-        if (swipedRl == null) {
-            swipedRl = new RelativeLayout(mContext);
-        }
-
-        for (int i = childViewCount - 1; i > 0; i--) {
-            View view = rootView.getChildAt(i);
-            rootView.removeViewAt(i);
-            swipedRl.addView(view, 0);
-        }
-
-        Drawable backgroundDrawable = this.getBackground();
-        swipedRl.setBackground(backgroundDrawable);
-
-//        this.setBackgroundColor(Color.TRANSPARENT);
-
-        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        addView(swipedRl, layoutParams);
     }
 
     /**
-     * 添加删除按钮
+     * 设置底部 View
      */
-    public void addDeleteView() {
-        BaseCatalogView deleteCatalogView = new BaseCatalogView(mContext);
-        deleteCatalogView.setBackgroundColor(Color.RED);
-        deleteCatalogView.setTextColor(R.color.white);
-        deleteCatalogView.setTextSize(36);
-        deleteCatalogView.setText("删除");
-        deleteCatalogView.setId(R.id.base_relative_layout_delete_dcv);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(BaseTools.dp2px(mContext, 56), ViewGroup.LayoutParams.MATCH_PARENT);
-        catalogLl.addView(deleteCatalogView, layoutParams);
-        catalogViewList.add(deleteCatalogView);
-        invalidate();
+    private void setFooterView() {
+        if (footerLayoutId != R.id.base_relative_layout_footer_rl) {
+            footerView = findViewById(footerLayoutId);
+            if (footerView != null) {
+                addFooter(footerView);
+            }
+        }
     }
 
     /**
-     * 扩展菜单创建
-     */
-    public class CatalogViewBuilder {
-
-        BaseCatalogView catalogView;
-        Context mContext;
-
-        public CatalogViewBuilder(Context mContext) {
-            this.catalogView = new BaseCatalogView(mContext);
-        }
-
-        /**
-         * 设置标题
-         *
-         * @param title 标题名称
-         */
-        public CatalogViewBuilder setTitleStr(String title) {
-            catalogView.setText(title);
-            return this;
-        }
-
-        /**
-         * 设置标题大小
-         *
-         * @param textSize 文字大小 UNIT: SP
-         */
-        public CatalogViewBuilder setTextSize(int textSize) {
-            int size = BaseTools.sp2px(mContext, textSize);
-            catalogView.setTextSize(size);
-            return this;
-        }
-
-        /**
-         * 设置显示类型
-         *
-         * @param showType 显示类型
-         */
-        public CatalogViewBuilder setShowType(BaseCatalogView.ShowType showType) {
-            catalogView.setShowType(showType);
-            return this;
-        }
-
-        public CatalogViewBuilder setIconDrawable(Drawable drawable) {
-            return this;
-        }
-
-        public CatalogViewBuilder setIcon(@DrawableRes int res) {
-            Drawable drawable = ContextCompat.getDrawable(mContext, res);
-            setIconDrawable(drawable);
-            return this;
-        }
-
-        public void build() {
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(BaseTools.dp2px(mContext, 56), ViewGroup.LayoutParams.MATCH_PARENT);
-            catalogLl.addView(catalogView, layoutParams);
-            catalogViewList.add(catalogView);
-            invalidate();
-        }
-
-    }
-
-    /**
-     * 添加菜单栏
+     * 添加头部布局
      *
-     * @param title           菜单标题
-     * @param iconDrawable    菜单图标
-     * @param showType        显示类型
-     * @param onClickListener 点击监听
+     * @param view 布局
      */
-    public void addCatalogView(String title, Drawable iconDrawable, BaseCatalogView.ShowType showType, View.OnClickListener onClickListener) {
-
+    public void addHeader(@NonNull View view) {
+        removeView(view);
+        headerRl.addView(view);
     }
 
+    /**
+     * 添加中间布局
+     *
+     * @param view 布局
+     */
+    public void addContent(@NonNull View view) {
+        if (contentLayoutId == headerLayoutId || contentLayoutId == footerLayoutId) {
+            throw new IllegalStateException("content view id already used. ");
+        }
+        removeView(view);
+        contentRl.addView(view);
+    }
+
+    /**
+     * 添加底部布局
+     *
+     * @param view 布局
+     */
+    public void addFooter(@NonNull View view) {
+        if (footerLayoutId == headerLayoutId) {
+            throw new IllegalStateException(" footer view with header view is one view id ");
+        }
+        removeView(view);
+        footerRl.addView(view);
+    }
+
+    /**
+     * 获取顶部
+     *
+     * @return 顶部
+     */
+    public RelativeLayout getHeaderRl() {
+        return headerRl;
+    }
+
+    /**
+     * 获取中间
+     *
+     * @return 中间
+     */
+    public RelativeLayout getContentRl() {
+        return contentRl;
+    }
+
+    /**
+     * 获取底部
+     *
+     * @return 底部
+     */
+    public RelativeLayout getFooterRl() {
+        return footerRl;
+    }
 }

@@ -2,6 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.inz.z.camera_one">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:name=".CameraOneApplication"
         android:allowBackup="false"
@@ -13,6 +18,16 @@
         <activity
             android:name=".view.CameraActivity"
             android:theme="@style/BaseAppTheme">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".view.activity.CameraXFragmentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CameraOne.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
