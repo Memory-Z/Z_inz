@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.inz.z.base.view.widget.BaseNavLayout
+            android:id="@+id/note_nav_near_title_bnl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:base_bottom_line_visible="true"
+            app:base_left_layout="@id/note_nav_near_title_tv"
+            app:base_right_layout="@id/note_nav_near_title_right_iv">
+
+            <TextView
+                android:id="@+id/note_nav_near_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/base_image"
+                android:textColor="@color/textBlackGray"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/note_nav_near_title_right_iv"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/base_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_chevron_right_black_24dp" />
+
+        </com.inz.z.base.view.widget.BaseNavLayout>
+
+        <!-- 最近 5 条数据  -->
+
+    </LinearLayout>
+</layout>

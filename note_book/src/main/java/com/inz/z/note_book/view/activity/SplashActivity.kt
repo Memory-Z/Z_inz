@@ -69,6 +69,7 @@ class SplashActivity : AbsBaseActivity() {
     private fun gotoMainActivity() {
         val intent = Intent(mContext, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
 

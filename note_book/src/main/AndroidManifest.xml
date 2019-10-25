@@ -7,18 +7,21 @@
         android:allowBackup="false"
         android:icon="@drawable/ic_vd_image"
         android:label="@string/app_name"
-        android:theme="@style/BaseAppTheme"
+        android:theme="@style/NoteBookAppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
             android:name=".view.activity.MainActivity"
-            android:theme="@style/BaseAppTheme">
+            android:configChanges="keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme">
 
         </activity>
 
         <activity
             android:name=".view.activity.SplashActivity"
-            android:configChanges="screenSize|screenLayout|keyboardHidden"
+            android:configChanges="screenSize|screenLayout|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/NoteBookAppTheme">
 
             <intent-filter>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.inz.z.base.view.widget.BaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:base_relative_layout_header_view="@id/note_nav_top_include">
+
+    <include
+        android:id="@+id/note_nav_top_include"
+        layout="@layout/top_search_nav_layout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/tv_color"
+        android:overScrollMode="ifContentScrolls">
+
+        <include layout="@layout/note_nav_hint_layout" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</com.inz.z.base.view.widget.BaseRelativeLayout>
