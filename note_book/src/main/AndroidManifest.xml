@@ -13,10 +13,20 @@
         <activity
             android:name=".view.activity.MainActivity"
             android:theme="@style/BaseAppTheme">
+
+        </activity>
+
+        <activity
+            android:name=".view.activity.SplashActivity"
+            android:configChanges="screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/NoteBookAppTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCAHER" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 </manifest>
