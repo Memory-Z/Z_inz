@@ -1,6 +1,8 @@
 package com.inz.z.base.util;
 
 import androidx.annotation.Nullable;
+
+import android.content.Context;
 import android.util.Log;
 
 import com.inz.z.base.BuildConfig;
@@ -21,17 +23,18 @@ import java.text.SimpleDateFormat;
  */
 public class L {
 
-    public static void initL() {
+    public static void initL(Context context) {
         // 保存到本地
         FormatStrategy fileStrategy = MyCsvFormatStrategy.newBuilder()
                 .dateFormat((SimpleDateFormat) BaseTools.getBaseDateFormat())
+                .setContext(context)
                 .tag(" - Inz - ")
                 .build();
         Logger.addLogAdapter(new DiskLogAdapter(fileStrategy));
         Logger.i("初始化 Logger File 完成 : " + BaseTools.getBaseDateFormat().format(System.currentTimeMillis()));
     }
 
-    public static void initDebug() {
+    public static void initDebug(Context context) {
         if (BuildConfig.DEBUG) {
             FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                     .tag(" - Inz - ")
@@ -44,7 +47,7 @@ public class L {
             });
             Logger.i("初始化 Logger Logcat 完成 : " + BaseTools.getBaseDateFormat().format(System.currentTimeMillis()));
         } else {
-            L.initL();
+            L.initL(context);
         }
     }
 
