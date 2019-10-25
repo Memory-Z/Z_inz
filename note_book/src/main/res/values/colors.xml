@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 主色 -->
+    <color name="mainColor">#A1C45A</color>
+    <!-- 反色 -->
+    <color name="accessoryColor">#FFB700</color>
+
+    <color name="nearColorBlue">#0048FF</color>
+    <color name="nearColorRed">#FF0048</color>
+
+    <color name="textBlackGray">#696969</color>
+    <color name="textGray">#C0C0C0</color>
+    <color name="textLightGray">#DCDCDC</color>
+    <color name="textGrayLight">#F5F5F5</color>
+    <color name="textLight">#FBFBFB</color>
+    <color name="darkGray">#A9A9A9</color>
+    <color name="lightGray">#D3D3D3</color>
+    <color name="linen">#FAF0E6</color>
+</resources>
