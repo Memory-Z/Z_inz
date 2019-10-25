@@ -204,4 +204,27 @@ public class BaseRelativeLayout extends RelativeLayout {
     public RelativeLayout getFooterRl() {
         return footerRl;
     }
+
+
+    /**
+     * 设置顶部布局显示隐藏
+     *
+     * @param show 是否显示。true: 显示
+     */
+    public void setHeaderViewVisibility(boolean show) {
+        if (headerRl != null) {
+            headerRl.setVisibility(show ? VISIBLE : GONE);
+        }
+    }
+
+    /**
+     * 设置底部布局显示隐藏
+     *
+     * @param show 是否显示。true: 显示
+     */
+    public void setFooterViewVisibility(boolean show) {
+        if (footerRl != null) {
+            footerRl.setVisibility(show ? VISIBLE : GONE);
+        }
+    }
 }
