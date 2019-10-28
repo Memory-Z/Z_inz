@@ -150,6 +150,12 @@ public class BaseRelativeLayout extends RelativeLayout {
     public void addHeader(@NonNull View view) {
         removeView(view);
         headerRl.addView(view);
+        headerRl.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                headerRl.removeAllViews();
+            }
+        }, 4000);
     }
 
     /**

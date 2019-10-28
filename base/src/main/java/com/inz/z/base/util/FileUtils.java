@@ -1,14 +1,18 @@
 package com.inz.z.base.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Environment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.provider.MediaStore;
 import android.util.Base64;
 
 import com.inz.z.base.entity.Constants;
@@ -314,6 +318,62 @@ public class FileUtils {
      */
     public static String getCacheLogPath(Context context) {
         return getCachePath(context) + File.separatorChar + "logs";
+    }
+
+    /**
+     * 是否由挂载外部存储
+     *
+     * @return 是否挂载
+     */
+    public static boolean haveExternalStorage() {
+        return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+    }
+
+    /**
+     * 获取沙盒文档地址
+     *
+     * @param context 上下文
+     * @return 文档地址
+     */
+    public static String getExternalDocumentPath(Context context) {
+        File documentFile = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState(documentFile))
+                && documentFile != null && documentFile.exists()) {
+            return documentFile.getAbsolutePath();
+        } else {
+            return getCacheFilePath(context);
+        }
+    }
+
+    /**
+     * 获取沙河下载地址
+     *
+     * @param context 上下文
+     * @return 下载文件地址
+     */
+    public static String getExternalDownloadPath(Context context) {
+        File downloadFile = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState(downloadFile))
+                && downloadFile != null && downloadFile.exists()) {
+            return downloadFile.getAbsolutePath();
+        }
+        return getCacheFilePath(context);
+    }
+
+    /**
+     * 获取相册地址
+     *
+     * @param context 上下文
+     * @return 相册地址
+     */
+    @Nullable
+    public static String getExternalDCIMPath(Context context) {
+        File dcimPath = context.getExternalFilesDir(Environment.DIRECTORY_DCIM);
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState(dcimPath))
+                && dcimPath != null && dcimPath.exists()) {
+            return dcimPath.getAbsolutePath();
+        }
+        return null;
     }
 
     /**

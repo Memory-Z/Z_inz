@@ -2,13 +2,17 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'org.greenrobot.greendao'
+
+def applicationIdName = 'com.inz.z.note_book'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
 
 
     defaultConfig {
-        applicationId 'con.inz.z.note_book'
+        applicationId applicationIdName
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -27,6 +31,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage  "${applicationIdName}.database"
+        targetGenDir 'src/main/java'
     }
 
 }
@@ -64,4 +74,10 @@ dependencies {
     implementation('de.hdodenhof:circleimageview:2.2.0') {
         exclude group: 'com.android.support'
     }
+
+    /**
+     * GreenDao
+     */
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
 }

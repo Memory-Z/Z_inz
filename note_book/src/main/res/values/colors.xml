@@ -9,6 +9,13 @@
     <color name="nearColorBlue">#0048FF</color>
     <color name="nearColorRed">#FF0048</color>
 
+    <color name="textColor">#474747</color>
+    <color name="textWhiteColor">#DE474747</color>
+    <color name="textSecondColor">#8A474747</color>
+    <color name="textHintColor">#45474747</color>
+    <color name="lineColor">#54474747</color>
+
+
     <color name="textBlackGray">#696969</color>
     <color name="textGray">#C0C0C0</color>
     <color name="textLightGray">#DCDCDC</color>

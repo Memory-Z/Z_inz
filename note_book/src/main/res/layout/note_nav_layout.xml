@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.inz.z.base.view.widget.BaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,16 +7,106 @@
 
     <include
         android:id="@+id/note_nav_top_include"
-        layout="@layout/top_search_nav_layout" />
+        layout="@layout/top_search_nav_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+    <com.inz.z.base.view.widget.BaseRelativeLayout
+        android:id="@+id/note_nav_content_base_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/tv_color"
-        android:overScrollMode="ifContentScrolls">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/note_nav_top_include">
 
-        <include layout="@layout/note_nav_hint_layout" />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/note_nav_content_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/textGrayLight"
+            android:overScrollMode="ifContentScrolls">
 
-    </androidx.core.widget.NestedScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-</com.inz.z.base.view.widget.BaseRelativeLayout>
+                <include layout="@layout/note_nav_hint_layout" />
+
+                <LinearLayout
+                    android:id="@+id/note_nav_near_five_note_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.inz.z.base.view.widget.BaseNavLayout
+                        android:id="@+id/note_nav_near_five_note_bnl"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:base_bottom_line_visible="true"
+                        app:base_right_layout="@id/note_nav_near_five_nav_right_iv"
+                        app:base_top_line_visible="true">
+
+                        <ImageView
+                            android:id="@+id/note_nav_near_five_nav_right_iv"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:contentDescription="@string/base_image"
+                            android:src="@drawable/ic_chevron_right_black_24dp" />
+
+                    </com.inz.z.base.view.widget.BaseNavLayout>
+
+                    <include
+                        android:id="@+id/note_nav_near_five_0_include"
+                        layout="@layout/item_note_sample_layout" />
+
+                    <include
+                        android:id="@+id/note_nav_near_five_1_include"
+                        layout="@layout/item_note_sample_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" />
+
+                    <include
+                        android:id="@+id/note_nav_near_five_2_include"
+                        layout="@layout/item_note_sample_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" />
+
+                    <include
+                        android:id="@+id/note_nav_near_five_3_include"
+                        layout="@layout/item_note_sample_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" />
+
+                    <include
+                        android:id="@+id/note_nav_near_five_4_include"
+                        layout="@layout/item_note_sample_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </com.inz.z.base.view.widget.BaseRelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/note_nav_add_fab"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/mainColor"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_add_black_24dp"
+        android:textAlignment="center"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
