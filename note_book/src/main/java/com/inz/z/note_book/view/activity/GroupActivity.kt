@@ -70,7 +70,7 @@ class GroupActivity : AbsBaseActivity() {
             showNewGroupDialog()
         } else {
             noteInfoList =
-                NoteGroupController.queryNoteInfoByGroupId(this@GroupActivity, currentGroupId)
+                    NoteGroupController.queryNoteInfoByGroupId(this@GroupActivity, currentGroupId)
             mNoteInfoRecyclerAdapter?.replaceNoteInfoList(noteInfoList!!)
         }
 
@@ -92,19 +92,27 @@ class GroupActivity : AbsBaseActivity() {
     private fun showNewGroupDialog() {
         val manager = supportFragmentManager
         var newGroupDialogFragment =
-            manager.findFragmentByTag("NewGroupDialogFragment") as NewGroupDialogFragment?
+                manager.findFragmentByTag("NewGroupDialogFragment") as NewGroupDialogFragment?
         if (newGroupDialogFragment == null) {
             newGroupDialogFragment =
-                NewGroupDialogFragment.getInstance(NewGroupDialogFragmentListenerImpl())
+                    NewGroupDialogFragment.getInstance(NewGroupDialogFragmentListenerImpl())
         }
         newGroupDialogFragment.show(manager, "NewGroupDialogFragment")
+    }
+
+    /**
+     * 隐藏新添加分组弹窗
+     */
+    private fun hideNewGroupDialog() {
+        val manager = supportFragmentManager
+        (manager.findFragmentByTag("NewGroupDialogFragment") as NewGroupDialogFragment?)?.dismiss()
     }
 
     /**
      * 新分组弹窗监听实现
      */
     inner class NewGroupDialogFragmentListenerImpl :
-        NewGroupDialogFragment.NewGroupDialogFragmentListener {
+            NewGroupDialogFragment.NewGroupDialogFragmentListener {
         override fun cancelCreate() {
             this@GroupActivity.finish()
         }
@@ -124,6 +132,7 @@ class GroupActivity : AbsBaseActivity() {
                 updateDate = currentDate
             }
             NoteGroupController.addNoteGroupWithGroupName(this@GroupActivity, noteGroup)
+            hideNewGroupDialog()
         }
     }
 

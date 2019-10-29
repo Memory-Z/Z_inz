@@ -3,6 +3,7 @@ package com.inz.z.note_book.view.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -64,14 +65,14 @@ class NoteNavFragment : AbsBaseFragment() {
             }
         }
 
-        note_nav_add_fab.setOnClickListener {
-            val tv = TextView(mContext)
-            val str = "notification . ! ${System.currentTimeMillis()}"
-            tv.text = str
-            tv.setPadding(4, 4, 4, 4)
-            note_nav_content_base_rl.showHeaderNotification(tv, -1)
-
-        }
+//        note_nav_add_fab.setOnClickListener {
+//            val tv = TextView(mContext)
+//            val str = "notification . ! ${System.currentTimeMillis()}"
+//            tv.text = str
+//            tv.setPadding(4, 4, 4, 4)
+//            note_nav_content_base_rl.showHeaderNotification(tv, -1)
+//
+//        }
 
         setNoteInfoListView()
 
@@ -145,9 +146,9 @@ class NoteNavFragment : AbsBaseFragment() {
     private fun setNoteGroupListView() {
         val noteGroupList = getAllNoteGroup()
         if (noteGroupList.isNotEmpty()) {
-            val lp = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+            val lp = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
             )
             for (noteGroup in noteGroupList) {
                 if (mContext != null) {

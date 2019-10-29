@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import com.inz.z.base.view.widget.BaseNavLayout
 import com.inz.z.note_book.R
@@ -17,7 +19,7 @@ import com.inz.z.note_book.databinding.ItemNoteGroupLayoutBinding
  * @version 1.0.0
  * Create by inz in 2019/10/29 09:39.
  */
-class ItemNoteGroupLayout : BaseNavLayout {
+class ItemNoteGroupLayout : LinearLayout {
     private var mView: View? = null
     private var itemNoteGroupBinding: ItemNoteGroupLayoutBinding? = null
 
@@ -40,17 +42,17 @@ class ItemNoteGroupLayout : BaseNavLayout {
      */
     private fun initView(context: Context) {
         if (mView == null) {
-//            mView =
-//                LayoutInflater.from(context).inflate(R.layout.item_note_group_layout, null, false)
-            itemNoteGroupBinding = DataBindingUtil.inflate(
-                LayoutInflater.from(context),
-                R.layout.item_note_group_layout,
-                null,
-                false
-            )
-            mView = itemNoteGroupBinding?.root
+            mView =
+                LayoutInflater.from(context).inflate(R.layout.item_note_group_layout, null, false)
+//            itemNoteGroupBinding = DataBindingUtil.inflate(
+//                LayoutInflater.from(context),
+//                R.layout.item_note_group_layout,
+//                null,
+//                false
+//            )
+//            mView = itemNoteGroupBinding?.root
             if (mView != null) {
-//                itemNoteGroupBinding = DataBindingUtil.findBinding(mView!!)
+                itemNoteGroupBinding = DataBindingUtil.bind(mView!!)
                 val layoutParams =
                     LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
                 addView(mView, layoutParams)
@@ -74,9 +76,9 @@ class ItemNoteGroupLayout : BaseNavLayout {
     fun setGroupData(noteGroup: NoteGroup) {
         if (itemNoteGroupBinding != null) {
             itemNoteGroupBinding!!.noteGroup = noteGroup
-            val noteGroupNumber = noteGroup.noteInfoList?.size
-            itemNoteGroupBinding!!.noteGroupSize =
-                noteGroupNumber?.toString() ?: ""
+//            val noteGroupNumber = noteGroup.noteInfoList?.size
+//            itemNoteGroupBinding!!.noteGroupSize =
+//                noteGroupNumber?.toString() ?: ""
             itemNoteGroupBinding!!.notifyChange()
         }
     }

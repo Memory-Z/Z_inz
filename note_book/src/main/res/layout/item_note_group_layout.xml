@@ -7,51 +7,58 @@
         <variable
             name="noteGroup"
             type="com.inz.z.note_book.bean.NoteGroup" />
+
         <variable
             name="noteGroupSize"
             type="String" />
     </data>
 
-    <com.inz.z.base.view.widget.BaseNavLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        app:base_center_layout="@id/item_note_group_title_tv"
-        app:base_left_layout="@id/item_note_group_iv"
-        app:base_right_layout="@id/item_note_group_child_number_tv">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/item_note_group_iv"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="@string/base_image"
-            android:padding="6dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_menu_black_24dp" />
-
-        <TextView
-            android:id="@+id/item_note_group_title_tv"
+        <com.inz.z.base.view.widget.BaseNavLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="@{noteGroup.groupName, default = @string/base_title}"
-            android:textColor="@color/textWhiteColor"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="48dp"
+            android:background="@color/violet"
+            app:base_center_layout="@id/item_note_group_title_tv"
+            app:base_left_layout="@id/item_note_group_iv"
+            app:base_right_layout="@id/item_note_group_child_number_tv">
 
-        <TextView
-            android:id="@+id/item_note_group_child_number_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@{noteGroupSize, default = @string/base_number}"
-            android:textColor="@color/textWhiteColor"
-            android:textSize="14sp" />
+            <ImageView
+                android:id="@+id/item_note_group_iv"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/base_image"
+                android:padding="6dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_menu_black_24dp" />
 
-    </com.inz.z.base.view.widget.BaseNavLayout>
+            <TextView
+                android:id="@+id/item_note_group_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{noteGroup.groupName, default = @string/base_title}"
+                android:textColor="@color/textWhiteColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/item_note_group_child_number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{noteGroupSize, default = @string/base_number}"
+                android:textColor="@color/textWhiteColor"
+                android:textSize="14sp" />
+
+        </com.inz.z.base.view.widget.BaseNavLayout>
+    </LinearLayout>
 
 </layout>
