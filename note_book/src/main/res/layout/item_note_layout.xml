@@ -1,122 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
 
-    <View
-        android:id="@+id/item_note_top_v"
+        <variable
+            name="noteInfo"
+            type="com.inz.z.note_book.bean.NoteInfo" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/linen"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/item_note_content_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/textGrayLight">
+
+        <View
+            android:id="@+id/item_note_top_v"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/linen"
+            android:visibility="gone" />
 
         <RelativeLayout
-            android:id="@+id/item_note_content_top_rl"
+            android:id="@+id/item_note_content_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/item_note_content_title_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
-                android:padding="8dp"
-                android:text="@string/base_title"
-                android:textColor="@color/mainColor"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/item_note_content_center_rl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_note_content_top_rl">
-
-            <TextView
-                android:id="@+id/item_note_content_center_detail_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="4dp"
-                android:ellipsize="end"
-                android:maxLines="4"
-                android:text="@string/base_content"
-                android:textColor="@color/textBlackGray"
-                android:textSize="14sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/item_note_content_bottom_rl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/item_note_content_center_rl"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:id="@+id/item_note_content_bottom_end_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="8dp"
-                android:text="@string/base_time"
-                android:textColor="@color/textGray"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/item_note_content_bottom_start_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:text="@string/base_content"
-                android:textColor="@color/textGray"
-                android:textSize="12sp" />
-
             <RelativeLayout
-                android:id="@+id/item_note_content_bottom_other_rl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toStartOf="@id/item_note_content_bottom_end_tv"
-                android:layout_toEndOf="@id/item_note_content_bottom_start_tv">
+                android:id="@+id/item_note_content_top_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/item_note_content_bottom_other_tv"
+                    android:id="@+id/item_note_content_title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="8dp"
+                    android:text="@{noteInfo.noteTitle, default = @string/base_title}"
+                    android:textColor="@color/textWhiteColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/item_note_content_center_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_note_content_top_rl">
+
+                <TextView
+                    android:id="@+id/item_note_content_center_detail_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:text="@{noteInfo.noteContent, default = @string/base_content}"
+                    android:textColor="@color/textSecondColor"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/item_note_content_bottom_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_note_content_center_rl"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/item_note_content_bottom_end_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{noteInfo.updateDate, default = @string/base_time}"
+                    android:textColor="@color/textHintColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/item_note_content_bottom_start_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textColor="@color/textGray"
+                    android:layout_marginStart="8dp"
+                    android:text="@{noteInfo.status, default = @string/base_content}"
+                    android:textColor="@color/textHintColor"
                     android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/item_note_content_bottom_other_rl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@id/item_note_content_bottom_end_tv"
+                    android:layout_toEndOf="@id/item_note_content_bottom_start_tv">
+
+                    <TextView
+                        android:id="@+id/item_note_content_bottom_other_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:textColor="@color/textHintColor"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
             </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
+        <View
+            android:id="@+id/item_note_bottom_v"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/linen"
+            android:visibility="gone" />
 
-    <View
-        android:id="@+id/item_note_bottom_v"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/linen"
-        android:visibility="gone" />
-
-</LinearLayout>
+    </LinearLayout>
+</layout>

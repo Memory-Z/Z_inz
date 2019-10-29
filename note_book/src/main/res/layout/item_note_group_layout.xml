@@ -7,6 +7,9 @@
         <variable
             name="noteGroup"
             type="com.inz.z.note_book.bean.NoteGroup" />
+        <variable
+            name="noteGroupSize"
+            type="String" />
     </data>
 
     <com.inz.z.base.view.widget.BaseNavLayout
@@ -44,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="@{noteGroup.noteInfoList.size(), default = @string/base_number}"
+            android:text="@{noteGroupSize, default = @string/base_number}"
             android:textColor="@color/textWhiteColor"
             android:textSize="14sp" />
 

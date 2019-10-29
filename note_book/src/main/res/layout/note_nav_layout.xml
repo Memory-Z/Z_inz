@@ -50,42 +50,37 @@
                             android:id="@+id/note_nav_near_five_nav_right_iv"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
+                            android:layout_marginEnd="16dp"
                             android:contentDescription="@string/base_image"
                             android:src="@drawable/ic_chevron_right_black_24dp" />
 
                     </com.inz.z.base.view.widget.BaseNavLayout>
 
-                    <include
-                        android:id="@+id/note_nav_near_five_0_include"
-                        layout="@layout/item_note_sample_layout" />
+                </LinearLayout>
 
-                    <include
-                        android:id="@+id/note_nav_near_five_1_include"
-                        layout="@layout/item_note_sample_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
+                <LinearLayout
+                    android:id="@+id/note_nav_group_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <include
-                        android:id="@+id/note_nav_near_five_2_include"
-                        layout="@layout/item_note_sample_layout"
+                    <com.inz.z.base.view.widget.BaseNavLayout
+                        android:id="@+id/note_nav_group_bnl"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
+                        android:layout_height="48dp"
+                        app:base_bottom_line_visible="true"
+                        app:base_right_layout="@id/note_nav_group_right_iv"
+                        app:base_top_line_visible="true">
 
-                    <include
-                        android:id="@+id/note_nav_near_five_3_include"
-                        layout="@layout/item_note_sample_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
-
-                    <include
-                        android:id="@+id/note_nav_near_five_4_include"
-                        layout="@layout/item_note_sample_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" />
+                        <ImageView
+                            android:id="@+id/note_nav_group_right_iv"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginEnd="16dp"
+                            android:contentDescription="@string/base_number"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_add_black_24dp" />
+                    </com.inz.z.base.view.widget.BaseNavLayout>
 
                 </LinearLayout>
 

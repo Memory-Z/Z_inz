@@ -150,12 +150,26 @@ public class BaseRelativeLayout extends RelativeLayout {
     public void addHeader(@NonNull View view) {
         removeView(view);
         headerRl.addView(view);
+    }
+
+    /**
+     * 显示顶部提示
+     *
+     * @param view    提示内容
+     * @param dismiss 消失时间， &lt; 0  不消失
+     */
+    public void showHeaderNotification(@NonNull View view, long dismiss) {
+        headerRl.removeAllViews();
+        headerRl.addView(view);
+        if (dismiss <= 0) {
+            return;
+        }
         headerRl.postDelayed(new Runnable() {
             @Override
             public void run() {
                 headerRl.removeAllViews();
             }
-        }, 4000);
+        }, dismiss);
     }
 
     /**

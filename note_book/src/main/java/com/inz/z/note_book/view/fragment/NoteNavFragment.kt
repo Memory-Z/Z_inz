@@ -1,13 +1,12 @@
 package com.inz.z.note_book.view.fragment
 
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
+import android.content.Intent
+import android.os.Bundle
 import android.view.View
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
+import com.inz.z.base.util.BaseTools
 import com.inz.z.base.util.L
 import com.inz.z.base.util.LauncherHelper
 import com.inz.z.base.view.AbsBaseFragment
@@ -15,13 +14,12 @@ import com.inz.z.note_book.NoteBookApplication
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteGroup
 import com.inz.z.note_book.bean.NoteInfo
-import com.inz.z.note_book.database.NoteGroupDao
 import com.inz.z.note_book.database.NoteInfoDao
-import com.inz.z.note_book.databinding.ItemNoteSampleLayoutBinding
+import com.inz.z.note_book.view.activity.GroupActivity
+import com.inz.z.note_book.view.widget.ItemNoteGroupLayout
+import com.inz.z.note_book.view.widget.ItemSampleNoteInfoLayout
 import kotlinx.android.synthetic.main.note_nav_hint_layout.*
 import kotlinx.android.synthetic.main.note_nav_layout.*
-import org.greenrobot.greendao.query.WhereCondition
-import java.lang.Exception
 import java.util.*
 
 /**
@@ -36,8 +34,6 @@ class NoteNavFragment : AbsBaseFragment() {
         private const val TAG = "NoteNavFragment"
     }
 
-    private val nearNoteInfoViewList: MutableList<ItemNoteSampleLayoutBinding?> = mutableListOf()
-
     override fun initWindow() {
 
     }
@@ -47,18 +43,7 @@ class NoteNavFragment : AbsBaseFragment() {
     }
 
     override fun initView() {
-        nearNoteInfoViewList.apply {
-            note_nav_near_five_0_include.visibility = View.GONE
-            note_nav_near_five_1_include.visibility = View.GONE
-            note_nav_near_five_2_include.visibility = View.GONE
-            note_nav_near_five_3_include.visibility = View.GONE
-            note_nav_near_five_4_include.visibility = View.GONE
-            add(DataBindingUtil.getBinding(note_nav_near_five_0_include))
-            add(DataBindingUtil.getBinding(note_nav_near_five_1_include))
-            add(DataBindingUtil.getBinding(note_nav_near_five_2_include))
-            add(DataBindingUtil.getBinding(note_nav_near_five_3_include))
-            add(DataBindingUtil.getBinding(note_nav_near_five_4_include))
-        }
+
     }
 
     override fun initData() {
@@ -81,12 +66,33 @@ class NoteNavFragment : AbsBaseFragment() {
 
         note_nav_add_fab.setOnClickListener {
             val tv = TextView(mContext)
-            tv.text = "notifaction . !"
-            note_nav_content_base_rl.addHeader(tv)
+            val str = "notification . ! ${System.currentTimeMillis()}"
+            tv.text = str
+            tv.setPadding(4, 4, 4, 4)
+            note_nav_content_base_rl.showHeaderNotification(tv, -1)
+
         }
 
         setNoteInfoListView()
 
+        note_nav_group_right_iv.setOnClickListener {
+            L.i(TAG, "note_nav_group_right_iv  is Click ! ")
+            val intent = Intent(mContext, GroupActivity::class.java)
+            val bundle = Bundle()
+            bundle.apply {
+                putBoolean("addNewGroup", true)
+                putString("groupId", "")
+            }
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        setNoteGroupListView()
     }
 
     /**
@@ -94,19 +100,24 @@ class NoteNavFragment : AbsBaseFragment() {
      */
     private fun setNoteInfoListView() {
         val noteInfoList = getFiveNoteInfo(5)
-        if (noteInfoList.size <= 0) {
-            return
-        }
-        var maxCount: Int = nearNoteInfoViewList.size
-        if (noteInfoList.size < maxCount) {
-            maxCount = noteInfoList.size
-        }
-        for (i in 0..maxCount) {
-            val noteInfo = noteInfoList[i]
-            val dataBinding = nearNoteInfoViewList[i]
-            if (dataBinding != null) {
-                dataBinding.noteInfo = noteInfo
-                dataBinding.root.visibility = View.VISIBLE
+        if (noteInfoList.isNotEmpty()) {
+            val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            lp.topMargin = BaseTools.dp2px(mContext, 8F)
+            for (noteInfo in noteInfoList) {
+                if (mContext != null) {
+                    val itemSampleNoteInfoLayout = ItemSampleNoteInfoLayout(mContext)
+                    itemSampleNoteInfoLayout.setSampleNoteInfo(noteInfo)
+                    itemSampleNoteInfoLayout.setSampleOnClickListener(object :
+                        View.OnClickListener {
+                        override fun onClick(v: View?) {
+                            L.i(TAG, "itemSampleNoteInfoLayout is click. ")
+                        }
+                    })
+                    note_nav_near_five_note_ll.addView(itemSampleNoteInfoLayout, lp)
+                }
             }
         }
     }
@@ -124,6 +135,44 @@ class NoteNavFragment : AbsBaseFragment() {
                 .orderDesc(NoteInfoDao.Properties.UpdateDate)
                 .limit(limit)
                 .list()
+        }
+        return emptyList()
+    }
+
+    /**
+     * 设置组信息列表 View
+     */
+    private fun setNoteGroupListView() {
+        val noteGroupList = getAllNoteGroup()
+        if (noteGroupList.isNotEmpty()) {
+            val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            for (noteGroup in noteGroupList) {
+                if (mContext != null) {
+                    val itemNoteGroupLayout = ItemNoteGroupLayout(mContext)
+                    itemNoteGroupLayout.setGroupData(noteGroup)
+                    itemNoteGroupLayout.setGroupOnClickListener(object : View.OnClickListener {
+                        override fun onClick(v: View?) {
+                            L.i(TAG, "itemNoteGroupLayout is click ! ")
+                        }
+                    })
+                    L.i(TAG, " itemNoteGroupLayout height = ${itemNoteGroupLayout.height} -- ${note_nav_group_ll.height}")
+                    note_nav_group_ll.addView(itemNoteGroupLayout, lp)
+                }
+            }
+        }
+    }
+
+    /**
+     * 查询全部分组
+     */
+    private fun getAllNoteGroup(): List<NoteGroup> {
+        val application = activity?.applicationContext as NoteBookApplication
+        val noteGroupDao = application.getDaoSession()?.noteGroupDao
+        if (noteGroupDao != null) {
+            return noteGroupDao.loadAll()
         }
         return emptyList()
     }

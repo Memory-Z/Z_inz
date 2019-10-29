@@ -5,6 +5,8 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.ToMany;
 
+import java.security.Timestamp;
+import java.util.Date;
 import java.util.List;
 import org.greenrobot.greendao.DaoException;
 import com.inz.z.note_book.database.DaoSession;
@@ -43,11 +45,11 @@ public class NoteGroup {
     /**
      * 创建时间
      */
-    private String createDate = "";
+    private Date createDate = null;
     /**
      * 更新时间
      */
-    private String updateDate = "";
+    private Date updateDate = null;
 
     @ToMany(referencedJoinProperty = "noteInfoId")
     private List<NoteInfo> noteInfoList;
@@ -58,9 +60,9 @@ public class NoteGroup {
     @Generated(hash = 825967275)
     private transient NoteGroupDao myDao;
 
-    @Generated(hash = 1805539290)
+    @Generated(hash = 2061129399)
     public NoteGroup(String noteGroupId, String groupName, int priority,
-                     int isCollectValue, int order, String createDate, String updateDate) {
+            int isCollectValue, int order, Date createDate, Date updateDate) {
         this.noteGroupId = noteGroupId;
         this.groupName = groupName;
         this.priority = priority;
@@ -114,19 +116,19 @@ public class NoteGroup {
         this.order = order;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return this.createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
+    public Date getUpdateDate() {
         return this.updateDate;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -201,4 +203,5 @@ public class NoteGroup {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getNoteGroupDao() : null;
     }
+
 }

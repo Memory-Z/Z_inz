@@ -29,8 +29,8 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
         public final static Property Priority = new Property(2, int.class, "priority", false, "PRIORITY");
         public final static Property IsCollectValue = new Property(3, int.class, "isCollectValue", false, "IS_COLLECT_VALUE");
         public final static Property Order = new Property(4, int.class, "order", false, "ORDER");
-        public final static Property CreateDate = new Property(5, String.class, "createDate", false, "CREATE_DATE");
-        public final static Property UpdateDate = new Property(6, String.class, "updateDate", false, "UPDATE_DATE");
+        public final static Property CreateDate = new Property(5, java.util.Date.class, "createDate", false, "CREATE_DATE");
+        public final static Property UpdateDate = new Property(6, java.util.Date.class, "updateDate", false, "UPDATE_DATE");
     }
 
     private DaoSession daoSession;
@@ -54,8 +54,8 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
                 "\"PRIORITY\" INTEGER NOT NULL ," + // 2: priority
                 "\"IS_COLLECT_VALUE\" INTEGER NOT NULL ," + // 3: isCollectValue
                 "\"ORDER\" INTEGER NOT NULL ," + // 4: order
-                "\"CREATE_DATE\" TEXT," + // 5: createDate
-                "\"UPDATE_DATE\" TEXT);"); // 6: updateDate
+                "\"CREATE_DATE\" INTEGER," + // 5: createDate
+                "\"UPDATE_DATE\" INTEGER);"); // 6: updateDate
     }
 
     /** Drops the underlying database table. */
@@ -81,14 +81,14 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
         stmt.bindLong(4, entity.getIsCollectValue());
         stmt.bindLong(5, entity.getOrder());
  
-        String createDate = entity.getCreateDate();
+        java.util.Date createDate = entity.getCreateDate();
         if (createDate != null) {
-            stmt.bindString(6, createDate);
+            stmt.bindLong(6, createDate.getTime());
         }
  
-        String updateDate = entity.getUpdateDate();
+        java.util.Date updateDate = entity.getUpdateDate();
         if (updateDate != null) {
-            stmt.bindString(7, updateDate);
+            stmt.bindLong(7, updateDate.getTime());
         }
     }
 
@@ -109,14 +109,14 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
         stmt.bindLong(4, entity.getIsCollectValue());
         stmt.bindLong(5, entity.getOrder());
  
-        String createDate = entity.getCreateDate();
+        java.util.Date createDate = entity.getCreateDate();
         if (createDate != null) {
-            stmt.bindString(6, createDate);
+            stmt.bindLong(6, createDate.getTime());
         }
  
-        String updateDate = entity.getUpdateDate();
+        java.util.Date updateDate = entity.getUpdateDate();
         if (updateDate != null) {
-            stmt.bindString(7, updateDate);
+            stmt.bindLong(7, updateDate.getTime());
         }
     }
 
@@ -139,8 +139,8 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
             cursor.getInt(offset + 2), // priority
             cursor.getInt(offset + 3), // isCollectValue
             cursor.getInt(offset + 4), // order
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // createDate
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // updateDate
+            cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)), // createDate
+            cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)) // updateDate
         );
         return entity;
     }
@@ -152,8 +152,8 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
         entity.setPriority(cursor.getInt(offset + 2));
         entity.setIsCollectValue(cursor.getInt(offset + 3));
         entity.setOrder(cursor.getInt(offset + 4));
-        entity.setCreateDate(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setUpdateDate(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setCreateDate(cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)));
+        entity.setUpdateDate(cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)));
      }
     
     @Override

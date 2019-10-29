@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@color/snow"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:id="@+id/dialog_add_group_icon_iv"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_add_black_24dp"
+            android:backgroundTint="@color/mainColor"
+            android:contentDescription="@string/base_image"
+            android:padding="16dp"
+            android:scaleType="centerCrop" />
+
+        <EditText
+            android:id="@+id/dialog_add_group_title_et"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/dialog_add_group_icon_iv"
+            android:background="@drawable/bg_edit_bottom"
+            android:backgroundTint="@color/mainColor"
+            android:hint="@string/input_group_title"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLength="8"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/textWhiteColor"
+            android:textColorHint="@color/textHintColor"
+            android:textSize="20sp"
+            tools:ignore="Autofill,TextFields" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_add_group_bg_type_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RadioGroup
+            android:id="@+id/dialog_add_group_bg_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/dialog_add_group_bg_one_rbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text_radian"
+                android:backgroundTint="@color/mainColor"
+                android:checked="true"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="6dp"
+                android:text="@string/base_title"
+                android:textColor="@drawable/bg_text_color"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/dialog_add_group_bg_two_rbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/bg_text_radian"
+                android:backgroundTint="@color/mainColor"
+                android:checked="true"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="6dp"
+                android:text="@string/base_title"
+                android:textColor="@drawable/bg_text_color"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <HorizontalScrollView
+            android:id="@+id/dialog_add_group_bg_detaile_hsv"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp">
+
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialog_add_group_bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dialog_add_group_bottom_cancel_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/cancel"
+            android:textColor="@color/textWhiteColor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dialog_add_group_bottom_create_group_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/create_group"
+            android:textColor="@color/textHintColor"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -31,5 +31,12 @@
             </intent-filter>
 
         </activity>
+
+        <!-- 组 -->
+        <activity
+            android:name=".view.activity.GroupActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme" />
     </application>
 </manifest>
