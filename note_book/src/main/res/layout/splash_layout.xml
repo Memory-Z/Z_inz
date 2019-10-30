@@ -33,14 +33,15 @@
 
             <TextView
                 android:id="@+id/splash_top_end_num_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/icon_normal_size"
+                android:layout_height="@dimen/icon_normal_size"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginTop="@dimen/border_lr_dimen"
+                android:layout_marginEnd="@dimen/border_lr_dimen"
+                android:gravity="center"
                 android:text="@={timeNumber, default=@string/base_number}"
-                android:textSize="16sp" />
+                android:textSize="@dimen/subheading_text_size" />
 
             <LinearLayout
                 android:id="@+id/splash_bottom_ll"
@@ -57,17 +58,17 @@
                     android:text="@string/app_name"
                     android:textAllCaps="true"
                     android:textColor="@color/mainColor"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/subheading_text_size"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/content_space_between_dimen"
                     android:text="@{version, default = @string/base_content}"
                     android:textColor="@color/textLightGray"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/caption_text_size" />
             </LinearLayout>
         </RelativeLayout>
 

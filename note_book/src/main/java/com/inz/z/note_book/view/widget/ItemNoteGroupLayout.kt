@@ -6,9 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
-import com.inz.z.base.view.widget.BaseNavLayout
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteGroup
 import com.inz.z.note_book.databinding.ItemNoteGroupLayoutBinding
@@ -42,21 +40,18 @@ class ItemNoteGroupLayout : LinearLayout {
      */
     private fun initView(context: Context) {
         if (mView == null) {
-            mView =
-                LayoutInflater.from(context).inflate(R.layout.item_note_group_layout, null, false)
-//            itemNoteGroupBinding = DataBindingUtil.inflate(
-//                LayoutInflater.from(context),
-//                R.layout.item_note_group_layout,
-//                null,
-//                false
-//            )
-//            mView = itemNoteGroupBinding?.root
-            if (mView != null) {
-                itemNoteGroupBinding = DataBindingUtil.bind(mView!!)
-                val layoutParams =
-                    LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-                addView(mView, layoutParams)
-            }
+//            LayoutInflater.from(context).inflate(R.layout.item_note_group_layout, this, true)
+//            mView = findViewById(R.id.item_note_group_bnl)
+            itemNoteGroupBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(context),
+                R.layout.item_note_group_layout,
+                this,
+                true
+            )
+            mView = itemNoteGroupBinding?.root
+//            if (mView != null) {
+//                itemNoteGroupBinding = DataBindingUtil.bind(mView!!)
+//            }
         }
     }
 
@@ -76,9 +71,9 @@ class ItemNoteGroupLayout : LinearLayout {
     fun setGroupData(noteGroup: NoteGroup) {
         if (itemNoteGroupBinding != null) {
             itemNoteGroupBinding!!.noteGroup = noteGroup
-//            val noteGroupNumber = noteGroup.noteInfoList?.size
-//            itemNoteGroupBinding!!.noteGroupSize =
-//                noteGroupNumber?.toString() ?: ""
+            val noteGroupNumber = noteGroup.noteInfoList?.size
+            itemNoteGroupBinding!!.noteGroupSize =
+                if (noteGroupNumber == 0) "" else noteGroupNumber.toString()
             itemNoteGroupBinding!!.notifyChange()
         }
     }

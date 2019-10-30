@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 状态栏 -->
+    <dimen name="status_bar_height">24dp</dimen>
+    <!-- 工具栏 -->
+    <dimen name="tool_bar_height">56dp</dimen>
+    <!-- 子标题 -->
+    <dimen name="min_title_height">48dp</dimen>
+    <!-- 边框左右边距16dp -->
+    <dimen name="border_lr_dimen">16dp</dimen>
+    <!-- 列表项 72dp -->
+    <dimen name="list_nav_height">72dp</dimen>
+    <!-- 标题和列表项 -->
+    <dimen name="list_item_normal_height">48dp</dimen>
+    <!-- 带有图标或头像的内容有 72dp 左边距 -->
+    <dimen name="have_icon_content_left_dimen">72dp</dimen>
+    <!-- 内容区域间距 8dp  -->
+    <dimen name="content_space_between_dimen">8dp</dimen>
+    <!-- 右边图标右边距 32dp  -->
+    <dimen name="right_icon_right_dimen">32dp</dimen>
+    <!-- 导航栏右边距56dp -->
+    <dimen name="nav_layout_right_dimen">56dp</dimen>
+    <!-- 头像 -->
+    <dimen name="photo_normal_size">40dp</dimen>
+    <!-- 图标 -->
+    <dimen name="icon_normal_size">24dp</dimen>
+    <!-- 触控区 -->
+    <dimen name="touch_target_size">48dp</dimen>
+    <!-- 触控区高度 -->
+    <dimen name="touch_target_height">48dp</dimen>
+    <!-- 按钮高度 -->
+    <dimen name="button_normal_height">36dp</dimen>
+    <!-- 触控图标边距 -->
+    <dimen name="touch_icon_padding">12dp</dimen>
+
+
+    <dimen name="app_bar_text_size">20sp</dimen>
+    <dimen name="button_norma_text_size">15sp</dimen>
+    <dimen name="headline_text_size">24sp</dimen>
+    <dimen name="title_size">21sp</dimen>
+    <dimen name="subheading_text_size">17sp</dimen>
+    <dimen name="body_text_size">15sp</dimen>
+    <dimen name="caption_text_size">13sp</dimen>
+
+</resources>

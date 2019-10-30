@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/textGrayLight"
-        android:paddingStart="24dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="8dp">
+        android:paddingStart="@dimen/border_lr_dimen"
+        android:paddingTop="@dimen/content_space_between_dimen"
+        android:paddingEnd="@dimen/border_lr_dimen"
+        android:paddingBottom="@dimen/content_space_between_dimen">
 
 
         <TextView
@@ -26,7 +26,7 @@
             android:lines="1"
             android:text="@{noteInfo.noteTitle, default=@string/base_title}"
             android:textColor="@color/textWhiteColor"
-            android:textSize="16sp"
+            android:textSize="@dimen/body_text_size"
             android:textStyle="bold" />
 
         <TextView
@@ -34,10 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_note_sample_title_tv"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/content_space_between_dimen"
             android:text="@{noteInfo.updateDate, default=@string/base_content}"
             android:textColor="@color/textSecondColor"
-            android:textSize="14sp" />
+            android:textSize="@dimen/caption_text_size" />
 
 
     </RelativeLayout>

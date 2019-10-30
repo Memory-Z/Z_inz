@@ -60,10 +60,10 @@ dependencies {
     implementation 'androidx.fragment:fragment:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    // 添加其他模块 module
-    if (APP_UPDATE_IS_LIB.toBoolean()) {
-        implementation project(':app_update')
-    }
+//    // 添加其他模块 module
+//    if (APP_UPDATE_IS_LIB.toBoolean()) {
+//        implementation project(':app_update')
+//    }
     implementation project (':other_module')
     implementation project (':choosefile')
 

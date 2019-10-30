@@ -10,8 +10,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/border_lr_dimen"
+        android:paddingTop="@dimen/content_space_between_dimen"
+        android:paddingEnd="@dimen/border_lr_dimen"
+        android:paddingBottom="@dimen/content_space_between_dimen">
 
 
         <View
@@ -37,10 +41,9 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:padding="8dp"
                     android:text="@{noteInfo.noteTitle, default = @string/base_title}"
                     android:textColor="@color/textWhiteColor"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/subheading_text_size"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -48,16 +51,13 @@
                 android:id="@+id/item_note_content_center_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/item_note_content_top_rl">
+                android:layout_below="@id/item_note_content_top_rl"
+                android:layout_marginTop="@dimen/content_space_between_dimen">
 
                 <TextView
                     android:id="@+id/item_note_content_center_detail_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="4dp"
                     android:ellipsize="end"
                     android:maxLines="4"
                     android:text="@{noteInfo.noteContent, default = @string/base_content}"
@@ -70,8 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/item_note_content_center_rl"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginTop="@dimen/content_space_between_dimen">
 
                 <TextView
                     android:id="@+id/item_note_content_bottom_end_tv"
@@ -79,10 +78,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
                     android:text="@{noteInfo.updateDate, default = @string/base_time}"
                     android:textColor="@color/textHintColor"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/caption_text_size" />
 
                 <TextView
                     android:id="@+id/item_note_content_bottom_start_tv"
@@ -90,17 +88,16 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="8dp"
                     android:text="@{noteInfo.status, default = @string/base_content}"
                     android:textColor="@color/textHintColor"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/caption_text_size" />
 
                 <RelativeLayout
                     android:id="@+id/item_note_content_bottom_other_rl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="@dimen/content_space_between_dimen"
+                    android:layout_marginEnd="@dimen/content_space_between_dimen"
                     android:layout_toStartOf="@id/item_note_content_bottom_end_tv"
                     android:layout_toEndOf="@id/item_note_content_bottom_start_tv">
 
@@ -113,7 +110,7 @@
                         android:ellipsize="end"
                         android:lines="1"
                         android:textColor="@color/textHintColor"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/caption_text_size" />
                 </RelativeLayout>
 
             </RelativeLayout>

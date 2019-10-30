@@ -19,14 +19,21 @@ import java.util.*
 object NoteGroupController {
 
     /**
+     * 获取 NoteGroupDao
+     */
+    private fun getNoteGroupDao(activity: Activity): NoteGroupDao? {
+        val application = activity.application as NoteBookApplication
+        return application.getDaoSession()?.noteGroupDao
+    }
+
+    /**
      * 通过组ID 查询信息列表
      * @param activity 查询所在Activity
      * @param groupId 组Id
      */
     @NonNull
     fun queryNoteInfoByGroupId(activity: Activity, groupId: String): MutableList<NoteInfo> {
-        val application = activity.application as NoteBookApplication
-        val noteGroupDao = application.getDaoSession()?.noteGroupDao
+        val noteGroupDao = getNoteGroupDao(activity)
         if (noteGroupDao != null) {
             val noteGroupList = noteGroupDao
                 .queryBuilder()
@@ -45,8 +52,7 @@ object NoteGroupController {
      * 添加分组
      */
     fun addNoteGroupWithGroupName(activity: Activity, noteGroup: NoteGroup) {
-        val application = activity.application as NoteBookApplication
-        val noteGroupDao = application.getDaoSession()?.noteGroupDao
+        val noteGroupDao = getNoteGroupDao(activity)
         if (noteGroupDao != null) {
             noteGroupDao.insert(noteGroup)
         }
@@ -56,8 +62,7 @@ object NoteGroupController {
      * 通过组名查询分组
      */
     fun findNoteGroupByGroupName(activity: Activity, groupName: String): NoteGroup? {
-        val application = activity.application as NoteBookApplication
-        val noteGroupDao = application.getDaoSession()?.noteGroupDao
+        val noteGroupDao = getNoteGroupDao(activity)
         if (noteGroupDao != null) {
             val noteGroupList = noteGroupDao
                 .queryBuilder()
@@ -70,12 +75,19 @@ object NoteGroupController {
         return null
     }
 
+    fun findNoteGroupById(activity: Activity, groupId: String): NoteGroup? {
+        val noteGroupDao = getNoteGroupDao(activity)
+        if (noteGroupDao != null) {
+            return noteGroupDao.load(groupId)
+        }
+        return null
+    }
+
     /**
      * 获取分组最后一个 排序
      */
     fun getLastNoteGroupOrder(activity: Activity): Int {
-        val application = activity.application as NoteBookApplication
-        val noteGroupDao = application.getDaoSession()?.noteGroupDao
+        val noteGroupDao = getNoteGroupDao(activity)
         if (noteGroupDao != null) {
             val noteGroupList = noteGroupDao.queryBuilder().orderDesc(NoteGroupDao.Properties.Order)
                 .limit(1)

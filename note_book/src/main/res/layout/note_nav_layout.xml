@@ -15,7 +15,8 @@
     <com.inz.z.base.view.widget.BaseRelativeLayout
         android:id="@+id/note_nav_content_base_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/note_nav_top_include">
 
         <androidx.core.widget.NestedScrollView
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/textGrayLight"
+            android:fadingEdge="none"
             android:overScrollMode="ifContentScrolls">
 
             <LinearLayout
@@ -30,7 +32,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/note_nav_hint_layout" />
+                <include
+                    layout="@layout/note_nav_hint_layout"
+                    android:visibility="visible" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/lineColor" />
 
                 <LinearLayout
                     android:id="@+id/note_nav_near_five_note_ll"
@@ -38,23 +47,39 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+
                     <com.inz.z.base.view.widget.BaseNavLayout
                         android:id="@+id/note_nav_near_five_note_bnl"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        app:base_bottom_line_visible="true"
+                        android:layout_height="@dimen/list_item_normal_height"
+                        android:paddingStart="@dimen/border_lr_dimen"
+                        android:paddingEnd="@dimen/border_lr_dimen"
+                        app:base_bottom_line_visible="false"
                         app:base_right_layout="@id/note_nav_near_five_nav_right_iv"
-                        app:base_top_line_visible="true">
+                        app:base_top_line_visible="false">
 
                         <ImageView
                             android:id="@+id/note_nav_near_five_nav_right_iv"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_width="@dimen/touch_target_size"
+                            android:layout_height="@dimen/touch_target_size"
                             android:contentDescription="@string/base_image"
+                            android:padding="@dimen/touch_icon_padding"
                             android:src="@drawable/ic_chevron_right_black_24dp" />
 
                     </com.inz.z.base.view.widget.BaseNavLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/lineColor" />
+
+                    <LinearLayout
+                        android:id="@+id/note_nav_near_five_content_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -67,20 +92,40 @@
                     <com.inz.z.base.view.widget.BaseNavLayout
                         android:id="@+id/note_nav_group_bnl"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        app:base_bottom_line_visible="true"
+                        android:layout_height="@dimen/list_item_normal_height"
+                        android:paddingStart="@dimen/border_lr_dimen"
+                        android:paddingEnd="@dimen/border_lr_dimen"
+                        app:base_bottom_line_visible="false"
                         app:base_right_layout="@id/note_nav_group_right_iv"
-                        app:base_top_line_visible="true">
+                        app:base_top_line_visible="false">
 
                         <ImageView
                             android:id="@+id/note_nav_group_right_iv"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_width="@dimen/touch_target_size"
+                            android:layout_height="@dimen/touch_target_size"
                             android:contentDescription="@string/base_number"
+                            android:padding="@dimen/touch_icon_padding"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_add_black_24dp" />
                     </com.inz.z.base.view.widget.BaseNavLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/lineColor" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/note_nav_group_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/note_nav_group_content_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -94,8 +139,8 @@
         style="@style/Widget.Design.FloatingActionButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="@dimen/border_lr_dimen"
+        android:layout_marginBottom="@dimen/border_lr_dimen"
         android:backgroundTint="@color/mainColor"
         android:scaleType="centerInside"
         android:src="@drawable/ic_add_black_24dp"

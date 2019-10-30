@@ -40,14 +40,14 @@ class ItemSampleNoteInfoLayout : RelativeLayout {
             mItemSampleNoteInfoLayoutBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(context),
                 R.layout.item_note_sample_layout,
-                null,
-                false
+                this,
+                true
             )
             mView = mItemSampleNoteInfoLayoutBinding?.root
-            if (mView != null) {
-                val lp = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-                addView(mView, lp)
-            }
+//            if (mView != null) {
+//                val lp = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+//                addView(mView, lp)
+//            }
         }
     }
 

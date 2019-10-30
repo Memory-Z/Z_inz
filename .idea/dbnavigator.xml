@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="0aebba3a-0a4b-4427-939f-0493d887967e">
-        <schema name="main" object-types="table, view" />
+        <schema name="main" object-types="view, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -41,6 +41,7 @@
     <connection id="0aebba3a-0a4b-4427-939f-0493d887967e" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.note_group" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.note_info" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.android_metadata" active-filter-id="" />
   </component>

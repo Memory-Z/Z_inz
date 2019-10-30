@@ -1,13 +1,16 @@
 package com.inz.z.base.util;
 
 import android.content.Context;
+
 import androidx.annotation.StringRes;
+
 import android.view.Gravity;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +20,15 @@ import java.util.regex.Pattern;
  * Create by inz in 2018/10/25 9:16.
  */
 public class BaseTools {
+
+    /**
+     * 获取随机数
+     *
+     * @return 大写随机数
+     */
+    public static String getUUID() {
+        return UUID.randomUUID().toString().toUpperCase(Locale.CHINA);
+    }
 
     private static DateFormat baseDateFormat;
     private static DateFormat dateFormatTime;

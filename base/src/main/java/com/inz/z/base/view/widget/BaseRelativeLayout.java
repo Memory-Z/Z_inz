@@ -44,12 +44,13 @@ public class BaseRelativeLayout extends RelativeLayout {
     @SuppressLint("InflateParams")
     private void initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(mContext).inflate(R.layout.base_relative_layout, null);
-            headerRl = mView.findViewById(R.id.base_relative_layout_header_rl);
-            contentRl = mView.findViewById(R.id.base_relative_layout_content_rl);
-            footerRl = mView.findViewById(R.id.base_relative_layout_footer_rl);
-            LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            addView(mView, params);
+            LayoutInflater.from(mContext).inflate(R.layout.base_relative_layout, this, true);
+            mView = findViewById(R.id.base_relative_layout_rl);
+            headerRl = findViewById(R.id.base_relative_layout_header_rl);
+            contentRl = findViewById(R.id.base_relative_layout_content_rl);
+            footerRl = findViewById(R.id.base_relative_layout_footer_rl);
+//            LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            addView(mView, params);
         }
     }
 

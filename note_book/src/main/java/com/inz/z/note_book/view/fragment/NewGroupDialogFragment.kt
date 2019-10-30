@@ -80,7 +80,10 @@ class NewGroupDialogFragment : AbsBaseDialogFragment() {
         })
 
         dialog_add_group_bottom_create_group_tv.setOnClickListener {
-            mNewGroupDialogFragmentListener?.createNewGroup(dialog_add_group_bottom_create_group_tv.text.toString())
+            if (dialog_add_group_title_et.text.isNullOrEmpty()) {
+                return@setOnClickListener
+            }
+            mNewGroupDialogFragmentListener?.createNewGroup(dialog_add_group_title_et.text.toString())
         }
 
         dialog_add_group_bottom_cancel_tv.setOnClickListener {

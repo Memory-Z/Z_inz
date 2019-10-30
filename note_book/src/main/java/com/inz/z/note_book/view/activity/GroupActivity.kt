@@ -37,6 +37,10 @@ class GroupActivity : AbsBaseActivity() {
      */
     private var currentGroupId = ""
     /**
+     * 当前组
+     */
+    private var noteGroup: NoteGroup? = null
+    /**
      * 组内笔记列表
      */
     private var noteInfoList: MutableList<NoteInfo>? = null
@@ -52,6 +56,9 @@ class GroupActivity : AbsBaseActivity() {
         group_content_note_info_rv.layoutManager = LinearLayoutManager(mContext)
         mNoteInfoRecyclerAdapter = NoteInfoRecyclerAdapter(mContext)
         group_content_note_info_rv.adapter = mNoteInfoRecyclerAdapter
+        group_top_back_iv.setOnClickListener {
+            finish()
+        }
     }
 
     override fun initData() {
@@ -62,15 +69,19 @@ class GroupActivity : AbsBaseActivity() {
             currentGroupId = bundle.getString("groupId", "")
         }
         if (isAddNewGroup || currentGroupId.isEmpty()) {
-            titleNumber = 0
-            val title = getGroupTitle("")
-            mGroupLayoutBinding?.groupName = title
+            mGroupLayoutBinding?.groupName =
+                String.format(resources.getString(R.string.no_title_group), "")
             // 显示新建弹窗
             L.i(TAG, "get Intent data is Null , $isAddNewGroup and $currentGroupId")
             showNewGroupDialog()
         } else {
+            noteGroup = NoteGroupController.findNoteGroupById(this@GroupActivity, currentGroupId)
+            mGroupLayoutBinding?.groupName = noteGroup?.groupName ?: String.format(
+                resources.getString(R.string.no_title_group),
+                ""
+            )
             noteInfoList =
-                    NoteGroupController.queryNoteInfoByGroupId(this@GroupActivity, currentGroupId)
+                NoteGroupController.queryNoteInfoByGroupId(this@GroupActivity, currentGroupId)
             mNoteInfoRecyclerAdapter?.replaceNoteInfoList(noteInfoList!!)
         }
 
@@ -92,10 +103,10 @@ class GroupActivity : AbsBaseActivity() {
     private fun showNewGroupDialog() {
         val manager = supportFragmentManager
         var newGroupDialogFragment =
-                manager.findFragmentByTag("NewGroupDialogFragment") as NewGroupDialogFragment?
+            manager.findFragmentByTag("NewGroupDialogFragment") as NewGroupDialogFragment?
         if (newGroupDialogFragment == null) {
             newGroupDialogFragment =
-                    NewGroupDialogFragment.getInstance(NewGroupDialogFragmentListenerImpl())
+                NewGroupDialogFragment.getInstance(NewGroupDialogFragmentListenerImpl())
         }
         newGroupDialogFragment.show(manager, "NewGroupDialogFragment")
     }
@@ -112,15 +123,17 @@ class GroupActivity : AbsBaseActivity() {
      * 新分组弹窗监听实现
      */
     inner class NewGroupDialogFragmentListenerImpl :
-            NewGroupDialogFragment.NewGroupDialogFragmentListener {
+        NewGroupDialogFragment.NewGroupDialogFragmentListener {
         override fun cancelCreate() {
             this@GroupActivity.finish()
         }
 
         override fun createNewGroup(groupName: String) {
+            L.i(TAG, "createNoteGroup name is $groupName !")
             val noteGroup = NoteGroup()
             val noteGroupOrder = NoteGroupController.getLastNoteGroupOrder(this@GroupActivity)
-            val title = getGroupTitle(groupName)
+            this@GroupActivity.titleNumber = 0
+            val title = getGroupTitle(groupName, this@GroupActivity.titleNumber)
             val currentDate = Date(System.currentTimeMillis())
             noteGroup.apply {
                 noteGroupId = UUID.randomUUID().toString()
@@ -133,6 +146,9 @@ class GroupActivity : AbsBaseActivity() {
             }
             NoteGroupController.addNoteGroupWithGroupName(this@GroupActivity, noteGroup)
             hideNewGroupDialog()
+
+            mGroupLayoutBinding?.groupName = title
+            mGroupLayoutBinding?.notifyChange()
         }
     }
 
@@ -144,12 +160,18 @@ class GroupActivity : AbsBaseActivity() {
     /**
      * 设置标题
      */
-    private fun getGroupTitle(suffix: String): String {
-        val title = String.format(resources.getString(R.string.no_title_group), suffix)
+    private fun getGroupTitle(suffix: String, order: Int): String {
+        var title = suffix
+        if (title.isEmpty()) {
+            title = String.format(resources.getString(R.string.no_title_group), suffix)
+        }
+        if (order > 0) {
+            title += " ($order)"
+        }
         val noteGroup = NoteGroupController.findNoteGroupByGroupName(this, title)
         if (noteGroup != null) {
             titleNumber += 1
-            return getGroupTitle(" $titleNumber")
+            return getGroupTitle(suffix, titleNumber)
         } else {
             return title
         }
