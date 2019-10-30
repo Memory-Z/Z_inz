@@ -69,13 +69,13 @@ class NoteNavFragment : AbsBaseFragment() {
 
     override fun initView() {
         mNoteGroupRvAdapter = NoteGroupRvAdapter(mContext)
-            .apply {
-                setAdapterListener(object : NoteGroupRvAdapter.NoteGroupItemListener {
-                    override fun onItemClick(v: View, position: Int) {
-                        L.i(TAG, "noteGroupRvAdapter $position is Click ")
-                    }
-                })
-            }
+                .apply {
+                    setAdapterListener(object : NoteGroupRvAdapter.NoteGroupItemListener {
+                        override fun onItemClick(v: View, position: Int) {
+                            L.i(TAG, "noteGroupRvAdapter $position is Click ")
+                        }
+                    })
+                }
 
         note_nav_group_rv.apply {
             layoutManager = LinearLayoutManager(mContext)
@@ -140,11 +140,11 @@ class NoteNavFragment : AbsBaseFragment() {
      */
     private fun setDateText(date: Date) {
         note_nav_hint_year_tv.text =
-            String.format(getString(R.string.base_format_year_month), date)
+                String.format(getString(R.string.base_format_year_month), date)
         note_nav_hint_data_tv.text =
-            String.format(getString(R.string.base_format_day), date)
+                String.format(getString(R.string.base_format_day), date)
         note_nav_hint_week_tv.text =
-            String.format(getString(R.string.base_format_week), date)
+                String.format(getString(R.string.base_format_week), date)
         // 启动时检测，确认当前时间
         checkDateText(0)
     }
@@ -153,39 +153,38 @@ class NoteNavFragment : AbsBaseFragment() {
      * 检测时间线程
      */
     private val checkDataRunnable = Runnable {
-        var date: Date? = null
-        var longTime: Long = 0
-        var hour = 0
-        var minute = 0
-        var seconds = 0
-        Calendar.getInstance(Locale.CHINA)
-            .apply {
-                date = time
-                longTime = timeInMillis
-                hour = get(Calendar.HOUR_OF_DAY)
-                minute = get(Calendar.MINUTE)
-                seconds = get(Calendar.SECOND)
-            }
+        var hour: Int
+        var minute: Int
+        var seconds: Int
+        val date = Calendar.getInstance(Locale.CHINA)
+                .apply {
+                    hour = get(Calendar.HOUR_OF_DAY)
+                    minute = get(Calendar.MINUTE)
+                    seconds = get(Calendar.SECOND)
+                }.time
         if (hour < 22) {
             // 小于 22 点。 每两小时检测一次
             checkDateText(2 * 60 * 60 * 1000)
         } else if (hour < 23) {
             // 小于 23 点。每一小时检测一次
             checkDateText(60 * 60 * 1000)
-        } else if (minute < 30) {
-            // 小于 23点30分，每 30 分检测一次
-            checkDateText(30 * 60 * 1000)
-        }
-        // TODO ----
-
-        if (minute < 55) {
+        } else if (minute < 50) {
+            // 小于 23点50 分，每 10 分检测一次
+            checkDateText(10 * 60 * 1000)
+        } else if (minute < 55) {
+            // 小于 23 点55 分每5分执行这一次
+            checkDateText(5 * 60 * 1000)
+        } else if (minute < 59) {
+            // 小于 23 点59 分，每 1 分钟执行一次
             checkDateText(60 * 1000)
-        }
-        if (seconds > 50) {
-            checkDateText(500)
+        } else if (seconds < 50) {
+            // 小于 23 点 59 分 50s 每 10s 执行一次
+            checkDateText(10 * 1000)
         } else {
+            setDateText(date!!)
+            // 否则，每秒执行一次
+            checkDateText(1000)
         }
-
     }
 
     /**
@@ -196,8 +195,8 @@ class NoteNavFragment : AbsBaseFragment() {
         val noteInfoList = getFiveNoteInfo(5)
         if (noteInfoList.isNotEmpty()) {
             val lp = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
             )
             lp.topMargin = BaseTools.dp2px(mContext, 8F)
             for (noteInfo in noteInfoList) {
@@ -205,7 +204,7 @@ class NoteNavFragment : AbsBaseFragment() {
                     val itemSampleNoteInfoLayout = ItemSampleNoteInfoLayout(mContext)
                     itemSampleNoteInfoLayout.setSampleNoteInfo(noteInfo)
                     itemSampleNoteInfoLayout.setSampleOnClickListener(object :
-                        View.OnClickListener {
+                            View.OnClickListener {
                         override fun onClick(v: View?) {
                             L.i(TAG, "itemSampleNoteInfoLayout is click. ")
                         }
@@ -225,10 +224,10 @@ class NoteNavFragment : AbsBaseFragment() {
         val noteInfoDao = application.getDaoSession()?.noteInfoDao
         if (noteInfoDao != null) {
             return noteInfoDao.queryBuilder()
-                .where(NoteInfoDao.Properties.NoteInfoId.isNotNull)
-                .orderDesc(NoteInfoDao.Properties.UpdateDate)
-                .limit(limit)
-                .list()
+                    .where(NoteInfoDao.Properties.NoteInfoId.isNotNull)
+                    .orderDesc(NoteInfoDao.Properties.UpdateDate)
+                    .limit(limit)
+                    .list()
         }
         return emptyList()
     }
@@ -246,8 +245,8 @@ class NoteNavFragment : AbsBaseFragment() {
         val noteGroupList = getAllNoteGroup()
         if (noteGroupList.isNotEmpty()) {
             val lp = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
             )
             lp.height = BaseTools.dp2px(mContext, 48F)
 
