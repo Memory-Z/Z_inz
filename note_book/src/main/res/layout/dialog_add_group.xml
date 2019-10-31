@@ -65,7 +65,7 @@
                 android:id="@+id/dialog_add_group_bg_one_rbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_text_radian"
+                android:background="@drawable/bg_text_selector_radian"
                 android:backgroundTint="@color/mainColor"
                 android:checked="true"
                 android:gravity="center"
@@ -74,7 +74,7 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="6dp"
                 android:text="@string/base_title"
-                android:textColor="@drawable/bg_text_color"
+                android:textColor="@drawable/bg_text_selector_color"
                 android:textSize="16sp" />
 
             <RadioButton
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="@drawable/bg_text_radian"
+                android:background="@drawable/bg_text_selector_radian"
                 android:backgroundTint="@color/mainColor"
                 android:checked="true"
                 android:gravity="center"
@@ -91,7 +91,7 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="6dp"
                 android:text="@string/base_title"
-                android:textColor="@drawable/bg_text_color"
+                android:textColor="@drawable/bg_text_selector_color"
                 android:textSize="16sp" />
         </RadioGroup>
 

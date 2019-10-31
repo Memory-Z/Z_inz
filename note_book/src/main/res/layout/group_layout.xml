@@ -31,8 +31,6 @@
             android:id="@+id/group_top_bnl"
             android:layout_width="0dp"
             android:layout_height="@dimen/tool_bar_height"
-            android:paddingStart="@dimen/border_lr_dimen"
-            android:paddingEnd="@dimen/border_lr_dimen"
             app:base_bottom_line_visible="false"
             app:base_center_layout="@id/group_top_title_tv"
             app:base_left_layout="@id/group_top_back_iv"
@@ -105,6 +103,14 @@
                 android:layout_height="match_parent" />
 
         </com.inz.z.base.view.widget.BaseRelativeLayout>
+
+        <include
+            android:id="@+id/group_bottom_add_note_sample_include"
+            layout="@layout/note_info_add_sample_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/group_add_note_info_fab"

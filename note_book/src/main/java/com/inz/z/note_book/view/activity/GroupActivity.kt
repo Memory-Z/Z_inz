@@ -1,5 +1,8 @@
 package com.inz.z.note_book.view.activity
 
+import android.view.KeyEvent
+import android.view.View
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inz.z.base.util.L
@@ -12,6 +15,7 @@ import com.inz.z.note_book.databinding.GroupLayoutBinding
 import com.inz.z.note_book.view.adapter.NoteInfoRecyclerAdapter
 import com.inz.z.note_book.view.fragment.NewGroupDialogFragment
 import kotlinx.android.synthetic.main.group_layout.*
+import kotlinx.android.synthetic.main.note_info_add_sample_layout.*
 import java.util.*
 
 /**
@@ -59,6 +63,11 @@ class GroupActivity : AbsBaseActivity() {
         group_top_back_iv.setOnClickListener {
             finish()
         }
+        group_add_note_info_fab.setOnClickListener {
+            group_add_note_info_fab.hide()
+            group_bottom_add_note_sample_include.visibility = View.VISIBLE
+            note_info_add_sample_title_et.requestFocus()
+        }
     }
 
     override fun initData() {
@@ -96,6 +105,14 @@ class GroupActivity : AbsBaseActivity() {
         mGroupLayoutBinding = DataBindingUtil.setContentView(this, R.layout.group_layout)
     }
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (group_bottom_add_note_sample_include.visibility == View.VISIBLE) {
+            group_add_note_info_fab.show()
+            group_bottom_add_note_sample_include.visibility = View.GONE
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
 
     /**
      * 显示新添加分组弹窗
@@ -175,5 +192,13 @@ class GroupActivity : AbsBaseActivity() {
         } else {
             return title
         }
+    }
+
+    /**
+     * 添加笔记
+     */
+    private fun addNoteInfo() {
+        TODO("显示笔录添加。。。 ")
+
     }
 }

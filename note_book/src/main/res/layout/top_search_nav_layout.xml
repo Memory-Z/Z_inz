@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/tool_bar_height"
     android:background="@color/snow"
-    android:paddingStart="@dimen/border_lr_dimen"
-    android:paddingEnd="@dimen/border_lr_dimen"
     app:base_center_layout="@id/top_search_nav_content_rl"
     app:base_left_layout="@id/top_search_nav_scan_iv"
     app:base_right_layout="@id/top_search_nav_end_rl">

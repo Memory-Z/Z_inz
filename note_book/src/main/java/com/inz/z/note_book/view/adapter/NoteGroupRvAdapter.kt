@@ -29,7 +29,7 @@ class NoteGroupRvAdapter(mContext: Context?) :
     }
 
     override fun onCreateVH(parent: ViewGroup, viewType: Int): NoteGroupRvHolder {
-        val view = mLayoutInflater.inflate(R.layout.item_note_group_layout, null, false)
+        val view = mLayoutInflater.inflate(R.layout.item_note_group_layout, parent, false)
         return NoteGroupRvHolder(view)
     }
 
@@ -48,7 +48,7 @@ class NoteGroupRvAdapter(mContext: Context?) :
         var mItemNoteGroupLayoutBinding: ItemNoteGroupLayoutBinding? = null
 
         init {
-            mItemNoteGroupLayoutBinding = DataBindingUtil.findBinding(itemView)
+            mItemNoteGroupLayoutBinding = DataBindingUtil.bind(itemView)
             itemView.setOnClickListener {
                 noteGroupItemListener?.onItemClick(it, adapterPosition)
             }

@@ -27,9 +27,11 @@
             android:fadingEdge="none"
             android:overScrollMode="ifContentScrolls">
 
+            <!-- descendantFocusability 防止 RecyclerView 加载时默认滑动至底部 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical">
 
                 <include
@@ -117,13 +119,17 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/note_nav_group_rv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:fadingEdge="none"
+                        android:minHeight="0dp" />
 
+                    <!-- 使用 RecyclerView 代替 addView  -->
                     <LinearLayout
                         android:id="@+id/note_nav_group_content_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                     </LinearLayout>
 

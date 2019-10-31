@@ -12,4 +12,23 @@
         <item name="android:windowBackground">@android:color/transparent</item>
 
     </style>
+
+    <style name="NoteBookAppTheme.Icon">
+        <item name="android:height">@dimen/touch_target_size</item>
+        <item name="android:width">@dimen/touch_target_size</item>
+        <item name="android:padding">@dimen/touch_icon_padding</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!-- 标签按钮 -->
+    <style name="NoteBookAppTheme.TextButtonTag" parent="TextAppearance.AppCompat.Widget.Button">
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:background">@drawable/bg_text_radian</item>
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:textColor">@color/textWhiteColor</item>
+        <item name="android:height">36dp</item>
+    </style>
 </resources>

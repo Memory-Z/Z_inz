@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.inz.z.base.util.BaseTools
 import com.inz.z.base.util.L
 import com.inz.z.base.util.LauncherHelper
@@ -38,10 +39,12 @@ class NoteNavFragment : AbsBaseFragment() {
 
     companion object {
         private const val TAG = "NoteNavFragment"
+        private const val SHOW_NOTE_INFO_NUMBER = 5
         private const val NOTE_NAV_GET_NOTE_GROUP = 0x0001
         private const val NOTE_NAV_GET_NOTE_INFO = 0x0002
     }
 
+    private lateinit var mNoteGroupLayoutManager: LinearLayoutManager
     /**
      * noteGroup 适配器
      */
@@ -50,6 +53,10 @@ class NoteNavFragment : AbsBaseFragment() {
      * handler
      */
     private lateinit var mNoteNavHandler: Handler
+    /**
+     * 显示笔记数量
+     */
+    private var showNoteInfoNumber = SHOW_NOTE_INFO_NUMBER
     /**
      * 笔记组列表
      */
@@ -69,17 +76,26 @@ class NoteNavFragment : AbsBaseFragment() {
 
     override fun initView() {
         mNoteGroupRvAdapter = NoteGroupRvAdapter(mContext)
-                .apply {
-                    setAdapterListener(object : NoteGroupRvAdapter.NoteGroupItemListener {
-                        override fun onItemClick(v: View, position: Int) {
-                            L.i(TAG, "noteGroupRvAdapter $position is Click ")
+            .apply {
+                setAdapterListener(object : NoteGroupRvAdapter.NoteGroupItemListener {
+                    override fun onItemClick(v: View, position: Int) {
+                        val noteGroup = noteGroupList?.get(position)
+                        L.i(TAG, "noteGroupRvAdapter $position is Click , noteGroup = $noteGroup")
+                        if (noteGroup != null) {
+                            gotoGroupActivity(false, noteGroup.noteGroupId)
                         }
-                    })
-                }
+                    }
+                })
+            }
 
+        mNoteGroupLayoutManager = LinearLayoutManager(mContext)
+            .apply {
+                orientation = RecyclerView.VERTICAL
+            }
         note_nav_group_rv.apply {
-            layoutManager = LinearLayoutManager(mContext)
+            layoutManager = mNoteGroupLayoutManager
             adapter = mNoteGroupRvAdapter
+            isNestedScrollingEnabled = false
         }
     }
 
@@ -120,7 +136,10 @@ class NoteNavFragment : AbsBaseFragment() {
     override fun onResume() {
         super.onResume()
         setNoteInfoListView()
-        setNoteGroupListView()
+//        setNoteGroupListView()
+        noteGroupList = getAllNoteGroup() as MutableList
+        mNoteGroupRvAdapter?.replaceNoteGroupList(noteGroupList!!)
+
     }
 
     override fun onDestroy() {
@@ -132,6 +151,7 @@ class NoteNavFragment : AbsBaseFragment() {
      * 检测日期
      */
     private fun checkDateText(delay: Long) {
+        L.i(TAG, "checnDateText: ---- ${delay}. ")
         note_nav_hint_data_tv.postDelayed(checkDataRunnable, delay)
     }
 
@@ -140,11 +160,11 @@ class NoteNavFragment : AbsBaseFragment() {
      */
     private fun setDateText(date: Date) {
         note_nav_hint_year_tv.text =
-                String.format(getString(R.string.base_format_year_month), date)
+            String.format(getString(R.string.base_format_year_month), date)
         note_nav_hint_data_tv.text =
-                String.format(getString(R.string.base_format_day), date)
+            String.format(getString(R.string.base_format_day), date)
         note_nav_hint_week_tv.text =
-                String.format(getString(R.string.base_format_week), date)
+            String.format(getString(R.string.base_format_week), date)
         // 启动时检测，确认当前时间
         checkDateText(0)
     }
@@ -157,11 +177,11 @@ class NoteNavFragment : AbsBaseFragment() {
         var minute: Int
         var seconds: Int
         val date = Calendar.getInstance(Locale.CHINA)
-                .apply {
-                    hour = get(Calendar.HOUR_OF_DAY)
-                    minute = get(Calendar.MINUTE)
-                    seconds = get(Calendar.SECOND)
-                }.time
+            .apply {
+                hour = get(Calendar.HOUR_OF_DAY)
+                minute = get(Calendar.MINUTE)
+                seconds = get(Calendar.SECOND)
+            }.time
         if (hour < 22) {
             // 小于 22 点。 每两小时检测一次
             checkDateText(2 * 60 * 60 * 1000)
@@ -181,7 +201,7 @@ class NoteNavFragment : AbsBaseFragment() {
             // 小于 23 点 59 分 50s 每 10s 执行一次
             checkDateText(10 * 1000)
         } else {
-            setDateText(date!!)
+            setDateText(date)
             // 否则，每秒执行一次
             checkDateText(1000)
         }
@@ -192,22 +212,19 @@ class NoteNavFragment : AbsBaseFragment() {
      */
     private fun setNoteInfoListView() {
         note_nav_near_five_content_ll.removeAllViews()
-        val noteInfoList = getFiveNoteInfo(5)
+        val noteInfoList = getFiveNoteInfo(showNoteInfoNumber)
         if (noteInfoList.isNotEmpty()) {
             val lp = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
             lp.topMargin = BaseTools.dp2px(mContext, 8F)
             for (noteInfo in noteInfoList) {
                 if (mContext != null) {
                     val itemSampleNoteInfoLayout = ItemSampleNoteInfoLayout(mContext)
                     itemSampleNoteInfoLayout.setSampleNoteInfo(noteInfo)
-                    itemSampleNoteInfoLayout.setSampleOnClickListener(object :
-                            View.OnClickListener {
-                        override fun onClick(v: View?) {
-                            L.i(TAG, "itemSampleNoteInfoLayout is click. ")
-                        }
+                    itemSampleNoteInfoLayout.setSampleOnClickListener(View.OnClickListener {
+                        L.i(TAG, "itemSampleNoteInfoLayout is click. ")
                     })
                     note_nav_near_five_content_ll.addView(itemSampleNoteInfoLayout, lp)
                 }
@@ -224,10 +241,10 @@ class NoteNavFragment : AbsBaseFragment() {
         val noteInfoDao = application.getDaoSession()?.noteInfoDao
         if (noteInfoDao != null) {
             return noteInfoDao.queryBuilder()
-                    .where(NoteInfoDao.Properties.NoteInfoId.isNotNull)
-                    .orderDesc(NoteInfoDao.Properties.UpdateDate)
-                    .limit(limit)
-                    .list()
+                .where(NoteInfoDao.Properties.NoteInfoId.isNotNull)
+                .orderDesc(NoteInfoDao.Properties.UpdateDate)
+                .limit(limit)
+                .list()
         }
         return emptyList()
     }
@@ -235,18 +252,19 @@ class NoteNavFragment : AbsBaseFragment() {
     /**
      * 组名后缀号
      */
-    var groupNumberCount = 0
+    private var groupNumberCount = 0
 
     /**
      * 设置组信息列表 View
      */
+    @Deprecated(" Use RecyclerView replace this one by one to add. ")
     private fun setNoteGroupListView() {
         note_nav_group_content_ll.removeAllViews()
         val noteGroupList = getAllNoteGroup()
         if (noteGroupList.isNotEmpty()) {
             val lp = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
             lp.height = BaseTools.dp2px(mContext, 48F)
 
@@ -322,4 +340,5 @@ class NoteNavFragment : AbsBaseFragment() {
             return true
         }
     }
+
 }
