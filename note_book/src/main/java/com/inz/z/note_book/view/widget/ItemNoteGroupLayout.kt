@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteGroup
+import com.inz.z.note_book.database.controller.NoteGroupWithInfoService
 import com.inz.z.note_book.databinding.ItemNoteGroupLayoutBinding
 
 /**
@@ -71,9 +72,10 @@ class ItemNoteGroupLayout : LinearLayout {
     fun setGroupData(noteGroup: NoteGroup) {
         if (itemNoteGroupBinding != null) {
             itemNoteGroupBinding!!.noteGroup = noteGroup
-            val noteGroupNumber = noteGroup.noteInfoList?.size
+            val noteGroupNumber =
+                NoteGroupWithInfoService.getGroupChildCountByGroupId(noteGroup.noteGroupId)
             itemNoteGroupBinding!!.noteGroupSize =
-                if (noteGroupNumber == 0) "" else noteGroupNumber.toString()
+                if (noteGroupNumber == 0L) "" else noteGroupNumber.toString()
             itemNoteGroupBinding!!.notifyChange()
         }
     }

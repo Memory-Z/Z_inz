@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.inz.z.base.base.AbsBaseRvAdapter
 import com.inz.z.base.base.AbsBaseRvViewHolder
+import com.inz.z.base.util.BaseTools
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteInfo
 import com.inz.z.note_book.databinding.ItemNoteLayoutBinding
@@ -22,7 +23,11 @@ class NoteInfoRecyclerAdapter(mContext: Context?) :
     AbsBaseRvAdapter<NoteInfo, NoteInfoRecyclerAdapter.NoteInfoRecyclerViewHolder>(mContext) {
 
     companion object {
-        var itemClickListener: View.OnClickListener? = null
+        var noteInfoRvAdapterListener: NoteInfoRvAdapterListener? = null
+    }
+
+    interface NoteInfoRvAdapterListener {
+        fun onItemClickListener(v: View, position: Int)
     }
 
     override fun onCreateVH(parent: ViewGroup, viewType: Int): NoteInfoRecyclerViewHolder {
@@ -33,6 +38,8 @@ class NoteInfoRecyclerAdapter(mContext: Context?) :
     override fun onBindVH(holder: NoteInfoRecyclerViewHolder, position: Int) {
         val noteInfo = list[position]
         holder.mItemNoteLayoutBinding?.noteInfo = noteInfo
+        holder.mItemNoteLayoutBinding?.noteInfoUpdateDateStr =
+            BaseTools.getBaseDateFormat().format(noteInfo.updateDate)
     }
 
     class NoteInfoRecyclerViewHolder(itemView: View) : AbsBaseRvViewHolder(itemView) {
@@ -40,8 +47,10 @@ class NoteInfoRecyclerAdapter(mContext: Context?) :
         var mItemNoteLayoutBinding: ItemNoteLayoutBinding? = null
 
         init {
-            mItemNoteLayoutBinding = DataBindingUtil.findBinding(itemView)
-            itemView.setOnClickListener(itemClickListener)
+            mItemNoteLayoutBinding = DataBindingUtil.bind(itemView)
+            itemView.setOnClickListener {
+                noteInfoRvAdapterListener?.onItemClickListener(it, adapterPosition)
+            }
         }
     }
 

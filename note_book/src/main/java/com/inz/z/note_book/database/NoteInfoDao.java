@@ -1,6 +1,5 @@
 package com.inz.z.note_book.database;
 
-import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -9,8 +8,6 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
-import org.greenrobot.greendao.query.Query;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import com.inz.z.note_book.bean.NoteInfo;
 
@@ -30,12 +27,11 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
         public final static Property NoteInfoId = new Property(0, String.class, "noteInfoId", true, "NOTE_INFO_ID");
         public final static Property NoteTitle = new Property(1, String.class, "noteTitle", false, "NOTE_TITLE");
         public final static Property NoteContent = new Property(2, String.class, "noteContent", false, "NOTE_CONTENT");
-        public final static Property CreateDate = new Property(3, String.class, "createDate", false, "CREATE_DATE");
-        public final static Property UpdateDate = new Property(4, String.class, "updateDate", false, "UPDATE_DATE");
+        public final static Property CreateDate = new Property(3, java.util.Date.class, "createDate", false, "CREATE_DATE");
+        public final static Property UpdateDate = new Property(4, java.util.Date.class, "updateDate", false, "UPDATE_DATE");
         public final static Property Status = new Property(5, int.class, "status", false, "STATUS");
     }
 
-    private Query<NoteInfo> noteGroup_NoteInfoListQuery;
 
     public NoteInfoDao(DaoConfig config) {
         super(config);
@@ -52,8 +48,8 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
                 "\"NOTE_INFO_ID\" TEXT PRIMARY KEY NOT NULL ," + // 0: noteInfoId
                 "\"NOTE_TITLE\" TEXT," + // 1: noteTitle
                 "\"NOTE_CONTENT\" TEXT," + // 2: noteContent
-                "\"CREATE_DATE\" TEXT," + // 3: createDate
-                "\"UPDATE_DATE\" TEXT," + // 4: updateDate
+                "\"CREATE_DATE\" INTEGER," + // 3: createDate
+                "\"UPDATE_DATE\" INTEGER," + // 4: updateDate
                 "\"STATUS\" INTEGER NOT NULL );"); // 5: status
     }
 
@@ -82,14 +78,14 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
             stmt.bindString(3, noteContent);
         }
  
-        String createDate = entity.getCreateDate();
+        java.util.Date createDate = entity.getCreateDate();
         if (createDate != null) {
-            stmt.bindString(4, createDate);
+            stmt.bindLong(4, createDate.getTime());
         }
  
-        String updateDate = entity.getUpdateDate();
+        java.util.Date updateDate = entity.getUpdateDate();
         if (updateDate != null) {
-            stmt.bindString(5, updateDate);
+            stmt.bindLong(5, updateDate.getTime());
         }
         stmt.bindLong(6, entity.getStatus());
     }
@@ -113,14 +109,14 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
             stmt.bindString(3, noteContent);
         }
  
-        String createDate = entity.getCreateDate();
+        java.util.Date createDate = entity.getCreateDate();
         if (createDate != null) {
-            stmt.bindString(4, createDate);
+            stmt.bindLong(4, createDate.getTime());
         }
  
-        String updateDate = entity.getUpdateDate();
+        java.util.Date updateDate = entity.getUpdateDate();
         if (updateDate != null) {
-            stmt.bindString(5, updateDate);
+            stmt.bindLong(5, updateDate.getTime());
         }
         stmt.bindLong(6, entity.getStatus());
     }
@@ -136,8 +132,8 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // noteInfoId
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // noteTitle
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // noteContent
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // createDate
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // updateDate
+            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)), // createDate
+            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)), // updateDate
             cursor.getInt(offset + 5) // status
         );
         return entity;
@@ -148,8 +144,8 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
         entity.setNoteInfoId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setNoteTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setNoteContent(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setCreateDate(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setUpdateDate(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setCreateDate(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
+        entity.setUpdateDate(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
         entity.setStatus(cursor.getInt(offset + 5));
      }
     
@@ -177,18 +173,4 @@ public class NoteInfoDao extends AbstractDao<NoteInfo, String> {
         return true;
     }
     
-    /** Internal query to resolve the "noteInfoList" to-many relationship of NoteGroup. */
-    public List<NoteInfo> _queryNoteGroup_NoteInfoList(String noteInfoId) {
-        synchronized (this) {
-            if (noteGroup_NoteInfoListQuery == null) {
-                QueryBuilder<NoteInfo> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.NoteInfoId.eq(null));
-                noteGroup_NoteInfoListQuery = queryBuilder.build();
-            }
-        }
-        Query<NoteInfo> query = noteGroup_NoteInfoListQuery.forCurrentThread();
-        query.setParameter(0, noteInfoId);
-        return query.list();
-    }
-
 }

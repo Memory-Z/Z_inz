@@ -1,8 +1,10 @@
 package com.inz.z.note_book.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+
+import java.util.Date;
 
 /**
  * @author Zhenglj
@@ -15,7 +17,7 @@ public class NoteInfo {
     /**
      * id
      */
-    @Id
+    @Id(autoincrement = false)
     private String noteInfoId = "";
     /**
      * 标题
@@ -28,11 +30,11 @@ public class NoteInfo {
     /**
      * 创建时间
      */
-    private String createDate = "";
+    private Date createDate;
     /**
      * 更新时间
      */
-    private String updateDate = "";
+    private Date updateDate;
     /**
      * 状态
      *
@@ -40,9 +42,9 @@ public class NoteInfo {
      */
     private int status = 0;
 
-    @Generated(hash = 1537587588)
+    @Generated(hash = 675196626)
     public NoteInfo(String noteInfoId, String noteTitle, String noteContent,
-            String createDate, String updateDate, int status) {
+                    Date createDate, Date updateDate, int status) {
         this.noteInfoId = noteInfoId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
@@ -141,27 +143,31 @@ public class NoteInfo {
         this.noteContent = noteContent;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return this.createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
+    public Date getUpdateDate() {
         return this.updateDate;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public int getStatus() {
         return this.status;
+    }
+
+    public String getStatusStr() {
+        return String.valueOf(this.status);
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

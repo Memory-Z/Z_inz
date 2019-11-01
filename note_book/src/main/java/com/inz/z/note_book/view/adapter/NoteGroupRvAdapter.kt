@@ -8,6 +8,7 @@ import com.inz.z.base.base.AbsBaseRvAdapter
 import com.inz.z.base.base.AbsBaseRvViewHolder
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteGroup
+import com.inz.z.note_book.database.controller.NoteGroupWithInfoService
 import com.inz.z.note_book.databinding.ItemNoteGroupLayoutBinding
 
 /**
@@ -36,9 +37,9 @@ class NoteGroupRvAdapter(mContext: Context?) :
     override fun onBindVH(holder: NoteGroupRvHolder, position: Int) {
         val noteGroup = list[position]
         holder.mItemNoteGroupLayoutBinding?.noteGroup = noteGroup
-        val groupSize = noteGroup.noteInfoList.size
+        val groupSize = NoteGroupWithInfoService.getGroupChildCountByGroupId(noteGroup.noteGroupId)
         holder.mItemNoteGroupLayoutBinding?.noteGroupSize =
-            if (groupSize == 0) "" else groupSize.toString()
+            if (groupSize == 0L) "" else groupSize.toString()
 
     }
 

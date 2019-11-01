@@ -1,9 +1,8 @@
 package com.inz.z.note_book.database.controller
 
-import android.app.Activity
-import com.inz.z.note_book.NoteBookApplication
 import com.inz.z.note_book.bean.NoteInfo
 import com.inz.z.note_book.database.NoteInfoDao
+import com.inz.z.note_book.database.util.GreenDaoHelper
 
 /**
  * NoteInfo 数据库控制
@@ -16,19 +15,25 @@ object NoteInfoController {
     /**
      * 获取 NoteInfoDao
      */
-    private fun getNoteInfoDao(activity: Activity): NoteInfoDao? {
-        val application = activity.application as NoteBookApplication
-        return application.getDaoSession()?.noteInfoDao
+    private fun getNoteInfoDao(): NoteInfoDao? {
+        return GreenDaoHelper.getInstance().getDaoSession()?.noteInfoDao
+    }
+
+    fun findById(id: String): NoteInfo? {
+        return getNoteInfoDao()?.load(id)
     }
 
     /**
-     * 查询 groupId 对应的全部 列表信息
+     * 查询 对应的全部 列表信息
      * @param groupId 组ID
      */
-    fun findAllNoteInfoListByGroupId(activity: Activity, groupId: String): List<NoteInfo> {
-        val noteInfoDao = getNoteInfoDao(activity)
+    fun findAllNoteInfoListWithLimit(limit: Int): List<NoteInfo> {
+        val noteInfoDao = getNoteInfoDao()
         if (noteInfoDao != null) {
-            return noteInfoDao.loadAll()
+            return noteInfoDao.queryBuilder()
+                .orderDesc(NoteInfoDao.Properties.UpdateDate)
+                .limit(limit)
+                .list()
         }
         return emptyList()
     }
@@ -37,28 +42,32 @@ object NoteInfoController {
      * 通过 主键查询
      * @param noteInfoId 主键
      */
-    fun findNoteInfoById(activity: Activity, noteInfoId: String): NoteInfo? {
-        val noteInfoDao = getNoteInfoDao(activity)
+    fun findNoteInfoById(noteInfoId: String): NoteInfo? {
+        val noteInfoDao = getNoteInfoDao()
         if (noteInfoDao != null) {
             return noteInfoDao.load(noteInfoId)
         }
         return null
     }
 
+    fun insert(noteInfo: NoteInfo) {
+        getNoteInfoDao()?.insert(noteInfo)
+    }
+
     /**
      * 更新 笔记
      * @param noteInfo 笔记信息
      */
-    fun updateNoteInfo(activity: Activity, noteInfo: NoteInfo) {
-        getNoteInfoDao(activity)?.update(noteInfo)
+    fun updateNoteInfo(noteInfo: NoteInfo) {
+        getNoteInfoDao()?.update(noteInfo)
     }
 
     /**
      * 删除笔记
      * @param noteInfoId 笔记ID
      */
-    fun delNoteInfoById(activity: Activity, noteInfoId: String) {
-        getNoteInfoDao(activity)?.deleteByKey(noteInfoId)
+    fun delNoteInfoById(noteInfoId: String) {
+        getNoteInfoDao()?.deleteByKey(noteInfoId)
     }
 
 }

@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
+import com.inz.z.base.util.BaseTools
 import com.inz.z.base.util.L
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteInfo
@@ -17,7 +19,7 @@ import com.inz.z.note_book.databinding.ItemNoteSampleLayoutBinding
  * @version 1.0.0
  * Create by inz in 2019/10/29 10:17.
  */
-class ItemSampleNoteInfoLayout : RelativeLayout {
+class ItemSampleNoteInfoLayout : LinearLayout {
     private var mView: View? = null
     private var mItemSampleNoteInfoLayoutBinding: ItemNoteSampleLayoutBinding? = null
 
@@ -58,6 +60,8 @@ class ItemSampleNoteInfoLayout : RelativeLayout {
     fun setSampleNoteInfo(noteInfo: NoteInfo) {
         if (mItemSampleNoteInfoLayoutBinding != null) {
             mItemSampleNoteInfoLayoutBinding!!.noteInfo = noteInfo
+            val updateDateStr = BaseTools.getBaseDateFormat().format(noteInfo.updateDate)
+            mItemSampleNoteInfoLayoutBinding!!.noteInfoUpdateDateStr = updateDateStr
             mItemSampleNoteInfoLayoutBinding!!.notifyChange()
         }
     }

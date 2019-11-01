@@ -33,8 +33,6 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
         public final static Property UpdateDate = new Property(6, java.util.Date.class, "updateDate", false, "UPDATE_DATE");
     }
 
-    private DaoSession daoSession;
-
 
     public NoteGroupDao(DaoConfig config) {
         super(config);
@@ -42,7 +40,6 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
     
     public NoteGroupDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -118,12 +115,6 @@ public class NoteGroupDao extends AbstractDao<NoteGroup, String> {
         if (updateDate != null) {
             stmt.bindLong(7, updateDate.getTime());
         }
-    }
-
-    @Override
-    protected final void attachEntity(NoteGroup entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
     }
 
     @Override
