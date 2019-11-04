@@ -54,6 +54,12 @@ class NoteInfoRecyclerAdapter(mContext: Context?) :
         }
     }
 
+    /**
+     * 设置笔记信息列表适配器监听
+     */
+    fun setNoteInfoRvAdapterListener(listener: NoteInfoRvAdapterListener) {
+        noteInfoRvAdapterListener = listener
+    }
 
     /**
      * 添加单项数据

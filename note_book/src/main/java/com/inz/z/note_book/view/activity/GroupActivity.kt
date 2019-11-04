@@ -1,9 +1,16 @@
 package com.inz.z.note_book.view.activity
 
+import android.content.Context
+import android.content.Intent
+import android.inputmethodservice.InputMethodService
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,9 +70,28 @@ class GroupActivity : AbsBaseActivity() {
     override fun initView() {
         group_content_note_info_rv.layoutManager = LinearLayoutManager(mContext)
         mNoteInfoRecyclerAdapter = NoteInfoRecyclerAdapter(mContext)
+        mNoteInfoRecyclerAdapter?.setNoteInfoRvAdapterListener(
+            object : NoteInfoRecyclerAdapter.NoteInfoRvAdapterListener {
+                override fun onItemClickListener(v: View, position: Int) {
+                    val noteInfo = noteInfoList?.get(position)
+                    val intent = Intent(mContext, NewNoteActivity::class.java)
+                    val bundle = Bundle()
+                    bundle.putString("noteInfoId", noteInfo?.noteInfoId ?: "")
+                    intent.putExtras(bundle)
+                    startActivity(intent)
+                }
+            }
+        )
         group_content_note_info_rv.adapter = mNoteInfoRecyclerAdapter
         group_top_back_iv.setOnClickListener {
             finish()
+        }
+        group_content_srl.setOnRefreshListener {
+            setNoteInfoListData()
+            if (group_content_srl.isRefreshing) {
+                Toast.makeText(mContext, "刷新成功", Toast.LENGTH_SHORT).show()
+                group_content_srl.isRefreshing = false
+            }
         }
         group_add_note_info_fab.setOnClickListener {
             targetFabView(false)
@@ -93,8 +119,7 @@ class GroupActivity : AbsBaseActivity() {
                 resources.getString(R.string.no_title_group),
                 ""
             )
-            noteInfoList = NoteController.findAllNoteInfoByGroupId(currentGroupId).toMutableList()
-            mNoteInfoRecyclerAdapter?.replaceNoteInfoList(noteInfoList!!)
+            setNoteInfoListData()
         }
 
     }
@@ -114,6 +139,14 @@ class GroupActivity : AbsBaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    /**
+     * 设置笔记列表数据
+     */
+    private fun setNoteInfoListData() {
+        noteInfoList = NoteController.findAllNoteInfoByGroupId(currentGroupId).toMutableList()
+        mNoteInfoRecyclerAdapter?.replaceNoteInfoList(noteInfoList!!)
     }
 
     /* ========================================= 分组相关 ===================================== */
@@ -235,6 +268,12 @@ class GroupActivity : AbsBaseActivity() {
                     // 添加数据成功
                     targetAddView(false)
                     targetFabView(true)
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    if (imm.isActive) {
+                        imm.hideSoftInputFromWindow(windowToken, 0)
+                    }
+                    setNoteInfoListData()
+
                 }
             }
         }

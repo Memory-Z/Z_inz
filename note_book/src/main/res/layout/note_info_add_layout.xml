@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/note_info_add_top_bnl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_title_height"
+        app:base_center_layout="@id/note_info_add_top_title_tv"
+        app:base_left_layout="@id/note_info_add_top_back_iv"
+        app:base_right_layout="@id/note_info_add_top_finish_tv">
+
+        <ImageView
+            android:id="@+id/note_info_add_top_back_iv"
+            android:layout_width="@dimen/touch_target_size"
+            android:layout_height="@dimen/touch_target_size"
+            android:contentDescription="@string/base_image"
+            android:padding="@dimen/touch_icon_padding"
+            android:src="@drawable/ic_chevron_left_black_24dp" />
+
+        <TextView
+            android:id="@+id/note_info_add_top_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/border_lr_dimen"
+            android:layout_marginEnd="@dimen/border_lr_dimen"
+            android:gravity="center_vertical"
+            android:text="@string/base_title"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/note_info_add_top_finish_tv"
+            android:layout_width="@dimen/touch_target_size"
+            android:layout_height="@dimen/touch_target_size"
+            android:gravity="center"
+            android:text="@string/base_title"
+            android:textSize="14sp" />
+
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lineColor" />
+
+    <com.inz.z.base.view.widget.BaseRelativeLayout
+        android:id="@+id/note_info_add_content_brl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/note_info_add_content_bottom_not_edit_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar_height"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:id="@+id/note_info_add_content_bottom_not_share_ll"
+                android:layout_width="@dimen/touch_target_size"
+                android:layout_height="@dimen/touch_target_size"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="72dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_normal_size"
+                    android:layout_height="@dimen/icon_normal_size"
+                    android:contentDescription="@string/base_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_delete_sweep_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/del_group"
+                    android:textColor="@color/textWhiteColor"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/note_info_add_content_bottom_not_del_ll"
+                android:layout_width="@dimen/touch_target_size"
+                android:layout_height="@dimen/touch_target_size"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="72dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_normal_size"
+                    android:layout_height="@dimen/icon_normal_size"
+                    android:contentDescription="@string/base_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_delete_sweep_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/base_image"
+                    android:textColor="@color/textWhiteColor"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.inz.z.base.view.widget.BaseRelativeLayout>
+
+
+</LinearLayout>

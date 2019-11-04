@@ -38,5 +38,14 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/NoteBookAppTheme" />
+
+        <!-- 笔记信息 -->
+        <activity
+            android:name=".view.activity.NewNoteActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme">
+
+        </activity>
     </application>
 </manifest>
