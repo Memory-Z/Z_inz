@@ -5,13 +5,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
 import com.inz.z.base.util.BaseTools
 import com.inz.z.base.util.L
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteInfo
-import com.inz.z.note_book.databinding.ItemNoteSampleLayoutBinding
+import com.inz.z.note_book.databinding.WidgetItemNoteSampleLayoutBinding
 
 /**
  *
@@ -21,7 +20,7 @@ import com.inz.z.note_book.databinding.ItemNoteSampleLayoutBinding
  */
 class ItemSampleNoteInfoLayout : LinearLayout {
     private var mView: View? = null
-    private var mItemSampleNoteInfoLayoutBinding: ItemNoteSampleLayoutBinding? = null
+    private var mItemSampleNoteInfoLayoutBinding: WidgetItemNoteSampleLayoutBinding? = null
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -41,7 +40,7 @@ class ItemSampleNoteInfoLayout : LinearLayout {
         if (mView == null) {
             mItemSampleNoteInfoLayoutBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(context),
-                R.layout.item_note_sample_layout,
+                R.layout.widget_item_note_sample_layout,
                 this,
                 true
             )

@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="0aebba3a-0a4b-4427-939f-0493d887967e">
-        <schema name="main" object-types="view, table" />
+        <schema name="main" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -523,7 +523,7 @@
       </extensions>
       <general>
         <lookup-ddl-files value="true" />
-        <create-ddl-files value="false" />
+        <create-ddl-files value="true" />
         <synchronize-ddl-files value="true" />
         <use-qualified-names value="false" />
         <make-scripts-rerunnable value="true" />

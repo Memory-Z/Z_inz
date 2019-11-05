@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScheduleLayout">
+        <attr name="have_schedule_check_box" format="boolean" />
+    </declare-styleable>
+</resources>
