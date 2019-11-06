@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <CheckBox
@@ -13,10 +13,12 @@
         android:background="@drawable/bg_check_box_selector"
         android:gravity="center" />
 
-    <EditText
+    <com.inz.z.base.view.widget.BaseRichEditText
         android:id="@+id/widget_schedule_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="start|fill_horizontal"
         android:hint="@string/base_content"
         android:inputType="textMultiLine"
         android:labelFor="@id/widget_schedule_check_box"

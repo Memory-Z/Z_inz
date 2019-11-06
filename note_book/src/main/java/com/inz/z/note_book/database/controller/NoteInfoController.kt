@@ -38,18 +38,6 @@ object NoteInfoController {
         return emptyList()
     }
 
-    /**
-     * 通过 主键查询
-     * @param noteInfoId 主键
-     */
-    fun findNoteInfoById(noteInfoId: String): NoteInfo? {
-        val noteInfoDao = getNoteInfoDao()
-        if (noteInfoDao != null) {
-            return noteInfoDao.load(noteInfoId)
-        }
-        return null
-    }
-
     fun insert(noteInfo: NoteInfo) {
         getNoteInfoDao()?.insert(noteInfo)
     }

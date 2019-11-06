@@ -9,7 +9,7 @@
     <string name="base_list">列表</string>
     <string name="base_long_text">长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789</string>
     <string name="base_time">2019&#8211;12&#8211;31</string>
-    <string name="base_number">99</string>
+    <string name="base_number">99+</string>
     <string name="base_format_year_month_day">%tF</string>
     <string name="base_format_year_month">%1$tY年%1$tm月</string>
     <string name="base_format_week">%tA</string>

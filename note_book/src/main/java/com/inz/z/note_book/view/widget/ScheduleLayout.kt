@@ -35,7 +35,7 @@ class ScheduleLayout : LinearLayout {
     /**
      * 内容文字大小
      */
-    private var contextTextSize = 24F
+    private var contentTextSize = 24F
     /**
      * 是否显示选择框-
      */
@@ -86,7 +86,20 @@ class ScheduleLayout : LinearLayout {
      */
     private fun initParameter() {
         mCheckBox?.visibility = if (haveScheduleCheckBox) View.VISIBLE else View.GONE
+        setContent(contentStr)
     }
 
+    fun setContent(content: String) {
+        contentStr = content
+        mEditText?.setText(contentStr)
+    }
+
+
+    /* ---------------------------- 设置 高度 ------------------------------ */
+    fun setEditTextHeight(height: Float) {
+        val lp = mEditText?.layoutParams
+        lp?.height = height.toInt()
+        mEditText?.layoutParams = lp
+    }
 
 }
