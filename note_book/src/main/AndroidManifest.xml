@@ -44,7 +44,8 @@
             android:name=".view.activity.NewNoteActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/NoteBookAppTheme">
+            android:theme="@style/NoteBookAppTheme"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
     </application>
