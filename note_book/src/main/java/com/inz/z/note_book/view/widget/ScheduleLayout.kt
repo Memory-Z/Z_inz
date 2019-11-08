@@ -12,6 +12,7 @@ import android.widget.CheckedTextView
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.widget.TintTypedArray
+import com.inz.z.base.view.widget.BaseRichEditText
 import com.inz.z.note_book.R
 import kotlinx.android.synthetic.main.widget_schedule_item_layout.view.*
 
@@ -32,6 +33,10 @@ class ScheduleLayout : LinearLayout {
      * 内容
      */
     private var contentStr = ""
+    /**
+     * 更新时间
+     */
+    private var updateTimeStr = ""
     /**
      * 内容文字大小
      */
@@ -91,7 +96,15 @@ class ScheduleLayout : LinearLayout {
 
     fun setContent(content: String) {
         contentStr = content
-        mEditText?.setText(contentStr)
+        mEditText?.apply {
+            setText(content)
+            setSelection(content.length)
+        }
+
+    }
+
+    fun getContent(): String {
+        return mEditText?.text.toString()
     }
 
 

@@ -119,7 +119,7 @@ class GroupActivity : AbsBaseActivity() {
                 resources.getString(R.string.no_title_group),
                 ""
             )
-            setNoteInfoListData()
+//            setNoteInfoListData()
         }
 
     }
@@ -139,6 +139,14 @@ class GroupActivity : AbsBaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        if (!isAddNewGroup && currentGroupId.isNotEmpty()) {
+            setNoteInfoListData()
+        }
     }
 
     /**

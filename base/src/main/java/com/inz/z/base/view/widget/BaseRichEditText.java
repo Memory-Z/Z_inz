@@ -311,7 +311,7 @@ public class BaseRichEditText extends AppCompatEditText {
          */
         private String content;
 
-        public ChangeTextRunnable(String content) {
+        ChangeTextRunnable(String content) {
             this.content = content;
         }
 
