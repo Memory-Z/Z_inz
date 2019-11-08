@@ -1,11 +1,10 @@
 package com.inz.z.note_book
 
 import android.app.Application
-import android.database.sqlite.SQLiteDatabase
+import com.inz.z.base.util.CrashHandler
 import com.inz.z.base.util.L
-import com.inz.z.note_book.database.DaoMaster
-import com.inz.z.note_book.database.DaoSession
 import com.inz.z.note_book.database.util.GreenDaoHelper
+import com.inz.z.note_book.util.SPHelper
 
 /**
  *
@@ -18,6 +17,8 @@ class NoteBookApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         L.initL(applicationContext)
+        SPHelper.init(applicationContext)
         GreenDaoHelper.getInstance().initGreenDaoHelper(applicationContext)
+        CrashHandler.instance(applicationContext)
     }
 }

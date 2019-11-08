@@ -29,7 +29,7 @@ public class ImageAppWidgetProvider extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_image);
 //        remoteViews.setImageViewResource(R.id.widget_image_iv, R.drawable.adolescent_casual_contemporary_1030895);
         AppWidgetTarget imageHintAwt = new AppWidgetTarget(context, R.id.widget_image_iv, remoteViews, appWidgetIds);
-        Glide.with(context).asBitmap().load(R.drawable.adolescent_casual_contemporary_1030895).into(imageHintAwt);
+//        Glide.with(context).asBitmap().load(R.drawable.adolescent_casual_contemporary_1030895).into(imageHintAwt);
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
 
     }

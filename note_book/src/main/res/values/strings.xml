@@ -29,6 +29,8 @@
     <string name="about">关于</string>
     <string name="version">版本</string>
     <string name="inform">通知</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 
 </resources>

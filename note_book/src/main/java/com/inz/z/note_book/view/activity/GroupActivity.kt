@@ -134,9 +134,11 @@ class GroupActivity : AbsBaseActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (group_bottom_add_note_sample_include.visibility == View.VISIBLE) {
-            targetFabView(true)
-            return true
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (group_bottom_add_note_sample_include.visibility == View.VISIBLE) {
+                targetFabView(true)
+                return true
+            }
         }
         return super.onKeyDown(keyCode, event)
     }
