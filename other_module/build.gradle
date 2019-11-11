@@ -14,7 +14,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        flavorDimensions("book", "book2","mina", 'camera2_t1', 'img_et1', 'screen_record1')
+        flavorDimensions("book", "book2","mina", 'camera2_t1', 'img_et1', 'screen_record1', 'finger_base')
 
         multiDexEnabled true
 
@@ -45,6 +45,9 @@ android {
     }
 
     productFlavors {
+        finger {
+            dimension 'finger_base'
+        }
         address_book {
             dimension 'book'
         }

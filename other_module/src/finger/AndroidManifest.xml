@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.inz.z.other_module">
+
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission
+        android:name="android.permission.USE_FINGERPRINT"
+        android:maxSdkVersion="28" />
+
+    <application>
+        <activity
+            android:name="com.inz.z.finger.FingerBaseActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

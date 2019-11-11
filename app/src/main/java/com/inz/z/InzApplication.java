@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.inz.z.base.util.L;
 import com.inz.z.entity.Constants;
 import com.inz.z.music.MusicApplication;
 import com.inz.z.util.AppBaseTools;
@@ -36,7 +37,8 @@ public class InzApplication extends OtherApplication {
         mContext = this;
         musicApplication = new MusicApplication(mContext);
         // 初始化 日志
-        initLogger();
+//        initLogger();
+        L.initL();
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);

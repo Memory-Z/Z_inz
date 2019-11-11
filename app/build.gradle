@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion APP_COMPILE_SDK_VERSION.toInteger()
-    buildToolsVersion('28.0.3')
+    buildToolsVersion('29.0.0')
     defaultConfig {
         applicationId "com.inz.z"
         minSdkVersion APP_MIN_SDK_VERSION.toInteger()
@@ -142,7 +142,7 @@ dependencies {
     implementation 'com.github.huangyanbin:SmartTable:2.2.0'
 
     implementation project (':base')
-    implementation project (':face_module')
+//    implementation project (':face_module')
     implementation project (':music')
     implementation project (':form')
 
