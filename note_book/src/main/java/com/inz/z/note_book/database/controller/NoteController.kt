@@ -1,8 +1,13 @@
 package com.inz.z.note_book.database.controller
 
+import android.content.Context
+import android.net.Uri
+import androidx.core.content.FileProvider
 import com.inz.z.base.util.BaseTools
 import com.inz.z.note_book.bean.NoteGroupWithInfo
 import com.inz.z.note_book.bean.NoteInfo
+import com.inz.z.note_book.database.util.GreenDaoHelper
+import java.io.File
 
 /**
  *
@@ -12,6 +17,28 @@ import com.inz.z.note_book.bean.NoteInfo
  * Create by inz in 2019/11/01 10:12.
  */
 object NoteController {
+
+//    /**
+//     * 获取数据库 Uri
+//     */
+//    fun getNoteDatabaseUri(context: Context): Uri? {
+//        val path = GreenDaoHelper.getInstance().getDatabase()?.path ?: ""
+//        if (path.isNotEmpty()) {
+//            val file = File(path)
+//            if (file.exists()) {
+//                val authority = context.packageName + ".fileprovider"
+//                return FileProvider.getUriForFile(context, authority, file)
+//            }
+//        }
+//        return null
+//
+//    }
+//
+//    fun getNoteInfoDatabaseUri(context: Context): Uri? {
+//        val rootUri = getNoteDatabaseUri(context);
+//        Uri.withAppendedPath(rootUri, "content")
+//        return rootUri
+//    }
 
     /**
      * 添加笔记
@@ -73,7 +100,8 @@ object NoteController {
                     }
 
                 }
-            })        }
+            })
+        }
         return emptyList()
     }
 

@@ -2,8 +2,13 @@ package com.inz.z.note_book.service
 
 import android.app.Service
 import android.appwidget.AppWidgetManager
+import android.content.ContentResolver
 import android.content.Intent
+import android.database.ContentObserver
+import android.net.Uri
+import android.os.Handler
 import android.os.IBinder
+import android.os.Message
 
 /**
  *
@@ -18,6 +23,8 @@ class NoteInfoAppWidgetService : Service() {
     }
 
     private var noteGroupId = ""
+
+    private var noteInfoAppWidgetServiceHandler = Handler(NoteInoObserverHandlerCallback())
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -43,7 +50,39 @@ class NoteInfoAppWidgetService : Service() {
      * 更新 RemoteView
      */
     private fun updateRemoteView() {
-//        val appWidgetManager = AppWidgetManager.getInstance(this)
+        // 发送更新广播
+        val broadcast = Intent()
+            .apply {
+                action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            }
+        sendBroadcast(broadcast)
 
+    }
+
+    /**
+     * 笔记信息数据库监听
+     */
+    private inner class NoteInfoDBContentObserver(handler: Handler?) : ContentObserver(handler) {
+
+        override fun onChange(selfChange: Boolean) {
+            super.onChange(selfChange)
+        }
+
+        override fun onChange(selfChange: Boolean, uri: Uri?) {
+            super.onChange(selfChange, uri)
+        }
+
+        override fun deliverSelfNotifications(): Boolean {
+            return super.deliverSelfNotifications()
+        }
+    }
+
+    /**
+     * 笔记信息数库 Handler 回调
+     */
+    private inner class NoteInoObserverHandlerCallback : Handler.Callback {
+        override fun handleMessage(msg: Message): Boolean {
+            return true
+        }
     }
 }

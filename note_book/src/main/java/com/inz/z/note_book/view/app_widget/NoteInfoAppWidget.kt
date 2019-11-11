@@ -67,6 +67,12 @@ class NoteInfoAppWidget : AppWidgetProvider() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         L.i(TAG, "onReceive. ---> ${intent?.action}")
+//
+//        L.i(
+//            TAG,
+//            "onReceive\n\n ---> ${NoteController.getNoteDatabaseUri(context!!)} " +
+//                    "------------- ${NoteController.getNoteInfoDatabaseUri(context)}"
+//        )
         super.onReceive(context, intent)
         if (NOTE_INFO_APP_WIDGET_ITEM_CLICK_ACTION.equals(intent?.action)) {
             L.i(TAG, "-item on click .ing .")
