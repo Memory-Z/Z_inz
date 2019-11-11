@@ -210,6 +210,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * @param prefix  前缀
      */
     private String saveLogToFile(String content, String prefix) {
+        L.i(TAG, "--------------- " + content);
         String fileName = prefix + "-" + dateStr + ".log";
         String filePath = FileUtils.getCacheLogPath(mContext) + File.separator + fileName;
         File dir = new File(filePath);

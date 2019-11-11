@@ -37,6 +37,11 @@ public class BaseTools {
     private static DateFormat dateFormatMD;
     private static DateFormat dateFormatY;
 
+    /**
+     * yyyy-MM-dd HH:mm:ss
+     *
+     * @return yyyy-MM-dd HH:mm:ss
+     */
     public static DateFormat getBaseDateFormat() {
         if (baseDateFormat == null) {
             baseDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);

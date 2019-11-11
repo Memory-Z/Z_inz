@@ -77,4 +77,19 @@ object NoteGroupService {
         }
         return 0
     }
+
+    /**
+     * 获取最新更新的笔记组
+     */
+    fun getNearUpdateNoteGroup(): NoteGroup? {
+        val noteGroupDao = getNoteGroupDao()
+        if (noteGroupDao != null) {
+            val list = noteGroupDao.queryBuilder()
+                .orderDesc(NoteGroupDao.Properties.UpdateDate)
+                .limit(1)
+                .list()
+            return if (list.isEmpty()) null else list[0]
+        }
+        return null
+    }
 }

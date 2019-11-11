@@ -48,10 +48,21 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
+            <!-- 自定义 过滤 -->
+            <intent-filter>
+                <!-- 单项点击事项.  -->
+                <action android:name="com.inz.z.note_book.action.NOTE_INFO_ITEM_CLICK" />
+            </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/note_info_app_widget_info" />
         </receiver>
+        <!-- 桌面插件 笔记列表更新服务 -->
+        <service
+            android:name=".view.app_widget.service.WidgetNoteInfoListRemoteViewsService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <service android:name=".service.NoteInfoAppWidgetService" />
     </application>
