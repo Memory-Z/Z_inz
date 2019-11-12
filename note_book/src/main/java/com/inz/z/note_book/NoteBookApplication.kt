@@ -17,8 +17,8 @@ class NoteBookApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         L.initL(applicationContext)
-        SPHelper.init(applicationContext)
-        GreenDaoHelper.getInstance().initGreenDaoHelper(applicationContext)
         CrashHandler.instance(applicationContext)
+        GreenDaoHelper.getInstance().initGreenDaoHelper(applicationContext)
+        SPHelper.init(applicationContext)
     }
 }

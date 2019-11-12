@@ -5,19 +5,27 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.graphics.PixelFormat
+import android.os.Build
+import android.view.View
+import android.view.WindowManager
 import android.widget.ListView
 import android.widget.RemoteViews
+import android.widget.Toast
 import com.inz.z.base.util.L
 import com.inz.z.note_book.R
 import com.inz.z.note_book.bean.NoteInfo
 import com.inz.z.note_book.database.controller.NoteController
 import com.inz.z.note_book.database.controller.NoteGroupService
 import com.inz.z.note_book.util.SPHelper
+import com.inz.z.note_book.view.activity.NewNoteInfoSampleActivity
 import com.inz.z.note_book.view.app_widget.adapter.WidgetNoteInfoListAdapter
+import com.inz.z.note_book.view.app_widget.bean.WidgetNoteInfo.NOTE_INFO_APP_WIDGET_ADD_NOTE_CLICK_ACTION
 import com.inz.z.note_book.view.app_widget.bean.WidgetNoteInfo.NOTE_INFO_APP_WIDGET_ITEM_CLICK_ACTION
 import com.inz.z.note_book.view.app_widget.bean.WidgetNoteInfo.NOTE_INFO_APP_WIDGET_ITEM_CLICK_NOTE_INFO_ID
 import com.inz.z.note_book.view.app_widget.bean.WidgetNoteInfo.NOTE_INFO_APP_WIDGET_NOTE_GROUP_ID
 import com.inz.z.note_book.view.app_widget.service.WidgetNoteInfoListRemoteViewsService
+import com.inz.z.note_book.view.dialog.AddNoteInfoDialog
 
 
 /**
@@ -74,16 +82,28 @@ class NoteInfoAppWidget : AppWidgetProvider() {
 //                    "------------- ${NoteController.getNoteInfoDatabaseUri(context)}"
 //        )
         super.onReceive(context, intent)
-        if (NOTE_INFO_APP_WIDGET_ITEM_CLICK_ACTION.equals(intent?.action)) {
-            L.i(TAG, "-item on click .ing .")
-            val bundle = intent?.extras
-            if (bundle != null) {
-                val noteInfoId = bundle.getString(NOTE_INFO_APP_WIDGET_ITEM_CLICK_NOTE_INFO_ID, "")
-                val noteGroupId = bundle.getString(NOTE_INFO_APP_WIDGET_NOTE_GROUP_ID, "")
-                L.i(
-                    TAG,
-                    "onReceive: on item click noteInfoId = ${noteInfoId} ; noteGroupId = ${noteGroupId} . "
-                )
+        when (intent?.action) {
+            NOTE_INFO_APP_WIDGET_ITEM_CLICK_ACTION -> {
+                L.i(TAG, "-item on click .ing .")
+                val bundle = intent.extras
+                if (bundle != null) {
+                    val noteInfoId =
+                        bundle.getString(NOTE_INFO_APP_WIDGET_ITEM_CLICK_NOTE_INFO_ID, "")
+                    val noteGroupId = bundle.getString(NOTE_INFO_APP_WIDGET_NOTE_GROUP_ID, "")
+                    L.i(
+                        TAG,
+                        "onReceive: on item click noteInfoId = ${noteInfoId} ; noteGroupId = ${noteGroupId} . "
+                    )
+                }
+            }
+            NOTE_INFO_APP_WIDGET_ADD_NOTE_CLICK_ACTION -> {
+                L.i(TAG, " add note -info is click . ")
+                if (context != null) {
+//                    showAddNewNoteInfoDialog(context)
+                }
+            }
+            else -> {
+                L.i(TAG, " other .de ")
             }
         }
     }
@@ -113,7 +133,7 @@ class NoteInfoAppWidget : AppWidgetProvider() {
     }
 
 
-    fun updateAppWidget(
+    private fun updateAppWidget(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetId: Int
@@ -124,6 +144,16 @@ class NoteInfoAppWidget : AppWidgetProvider() {
 
         // Construct the RemoteViews object
         val views = RemoteViews(context.packageName, R.layout.note_info_app_widget)
+
+        val addNoteIntent = Intent(context, NewNoteInfoSampleActivity::class.java)
+            .apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    .or(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                    .or(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                    .or(Intent.FLAG_ACTIVITY_TASK_ON_HOME)
+            }
+        val addNotePendingIntent = PendingIntent.getActivity(context, 0, addNoteIntent, 0)
+        views.setOnClickPendingIntent(R.id.app_widget_top_add_iv, addNotePendingIntent)
 
         // 设置 ListView  Adapter
         val noteIntentService = Intent(context, WidgetNoteInfoListRemoteViewsService::class.java)
@@ -146,6 +176,7 @@ class NoteInfoAppWidget : AppWidgetProvider() {
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
+
 }
 
 

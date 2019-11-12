@@ -6,6 +6,7 @@ import android.database.DataSetObserver
 import androidx.databinding.Bindable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
+import com.inz.z.base.util.L
 import com.inz.z.base.view.AbsBaseActivity
 import com.inz.z.note_book.BuildConfig
 import com.inz.z.note_book.R
@@ -19,7 +20,15 @@ import kotlinx.android.synthetic.main.splash_layout.*
  * Create by inz in 2019/10/24 10:05.
  */
 class SplashActivity : AbsBaseActivity() {
+
+    companion object {
+        const val TAG = "SplashActivity"
+    }
+
     private lateinit var splashLayoutBinding: SplashLayoutBinding
+    private var isPause = false
+
+
     override fun initWindow() {
     }
 
@@ -46,6 +55,16 @@ class SplashActivity : AbsBaseActivity() {
         setRightTopTimer()
     }
 
+    override fun onResume() {
+        super.onResume()
+        isPause = false
+    }
+
+    override fun onPause() {
+        super.onPause()
+        isPause = true
+    }
+
     private var time = 5
 
     /**
@@ -67,6 +86,12 @@ class SplashActivity : AbsBaseActivity() {
      * 前往主界面
      */
     private fun gotoMainActivity() {
+
+        if (this.isPause) {
+            L.i(TAG, "gotoMainActivity: this activity is isPause. ")
+            this@SplashActivity.finish()
+            return
+        }
         val intent = Intent(mContext, MainActivity::class.java)
         startActivity(intent)
         finish()

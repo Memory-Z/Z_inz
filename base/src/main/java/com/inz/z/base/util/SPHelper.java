@@ -148,7 +148,7 @@ public class SPHelper {
      * @return 返回的值，默认-1
      */
     public Integer getSharedInteger(String key) {
-        return sharedPreferences.getInt(key, -1);
+        return sharedPreferences.getInt(key, 0);
     }
 
     /**
@@ -168,7 +168,7 @@ public class SPHelper {
      * @return 返回的值，默认 -1F
      */
     public Float getSharedFloat(String key) {
-        return sharedPreferences.getFloat(key, -1F);
+        return sharedPreferences.getFloat(key, 0);
     }
 
     /**
@@ -188,7 +188,7 @@ public class SPHelper {
      * @return 返回的值，默认 -1L
      */
     public Long getSharedLong(String key) {
-        return sharedPreferences.getLong(key, -1L);
+        return sharedPreferences.getLong(key, 0);
     }
 
     /**

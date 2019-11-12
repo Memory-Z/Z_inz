@@ -10,7 +10,13 @@ object WidgetNoteInfo {
     /**
      * noteInfo 单项点击事件 ..
      */
-    const val NOTE_INFO_APP_WIDGET_ITEM_CLICK_ACTION = "com.inz.z.note_book.action.NOTE_INFO_ITEM_CLICK"
+    const val NOTE_INFO_APP_WIDGET_ITEM_CLICK_ACTION =
+        "com.inz.z.note_book.action.NOTE_INFO_ITEM_CLICK"
+    /**
+     * 添加 笔记点击事件
+     */
+    const val NOTE_INFO_APP_WIDGET_ADD_NOTE_CLICK_ACTION =
+        "com.inz.z.note_book.action.NOTE_INFO_ADD_NOTE_CLICK"
 
     const val NOTE_INFO_APP_WIDGET_NOTE_GROUP_ID =
         "note_info_app_widget_note_group_id"

@@ -26,6 +26,20 @@ object SPHelper {
     }
 
     /**
+     * 保存最后一次开启时间
+     */
+    fun saveLastOpenTime(lastTime: Long) {
+        instance?.setSharedLong("noteLastOpenTime", lastTime)
+    }
+
+    /**
+     * 获取最后一次开启时间
+     */
+    fun getLastOpenTime(): Long {
+        return instance?.getSharedLong("noteLastOpenTime") ?: 0
+    }
+
+    /**
      * 保存对应的笔记分组ID 【桌面插件】
      */
     fun saveAppWidgetNoteGroupId(noteGroupId: String) {

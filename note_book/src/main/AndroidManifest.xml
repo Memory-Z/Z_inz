@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.inz.z.note_book">
 
+
+    <uses-permission
+        android:name="android.permission.SYSTEM_ALERT_WINDOW"
+        android:maxSdkVersion="23" />
+
     <application
         android:name=".NoteBookApplication"
         android:allowBackup="false"
@@ -18,6 +23,7 @@
             android:configChanges="keyboardHidden|screenLayout|screenSize|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/NoteBookAppTheme" />
+
         <activity
             android:name=".view.activity.SplashActivity"
             android:configChanges="screenSize|screenLayout|keyboardHidden|orientation"
@@ -28,12 +34,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 组 -->
+        </activity>
+
+        <!-- 组 -->
         <activity
             android:name=".view.activity.GroupActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/NoteBookAppTheme" /> <!-- 笔记信息 -->
+            android:theme="@style/NoteBookAppTheme" />
+
+        <!-- 笔记信息 -->
         <activity
             android:name=".view.activity.NewNoteActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
@@ -41,6 +51,14 @@
             android:theme="@style/NoteBookAppTheme"
             android:windowSoftInputMode="adjustResize" />
 
+
+        <!-- 透明层 -->
+        <activity
+            android:name=".view.activity.NewNoteInfoSampleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme.Transparent"
+            android:windowSoftInputMode="adjustResize" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -64,6 +82,8 @@
             <intent-filter>
                 <!-- 单项点击事项.  -->
                 <action android:name="com.inz.z.note_book.action.NOTE_INFO_ITEM_CLICK" />
+                <!-- 快速添加 -->
+                <action android:name="com.inz.z.note_book.action.NOTE_INFO_ADD_NOTE_CLICK" />
             </intent-filter>
 
             <meta-data

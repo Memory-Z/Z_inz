@@ -6,11 +6,33 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="NoteBookAppTheme.Transparent" parent="NoteBookAppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">
+            @style/NoteBookAppTheme.Transparent.Animation
+        </item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="NoteBookAppTheme.Dialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
 
+    </style>
+
+    <style name="NoteBookAppTheme.Transparent.Animation" parent="Animation.Design.BottomSheetDialog">
+        <item name="android:activityOpenExitAnimation">@anim/alpha_50_to_0</item>
+        <item name="android:activityCloseExitAnimation">@anim/alpha_50_to_0</item>
+        <item name="android:activityCloseEnterAnimation">@anim/alpha_0_to_50</item>
+        <item name="android:activityOpenEnterAnimation">@anim/alpha_0_to_50</item>
+    </style>
+
+    <style name="NoteBookAppTheme.Dialog.BottomToTop" parent="NoteBookAppTheme.Dialog">
+        <item name="android:windowEnterAnimation">@anim/enter_bottom_to_top</item>
+        <item name="android:windowExitAnimation">@anim/exit_top_to_bottom</item>
     </style>
 
     <style name="NoteBookAppTheme.Icon">
