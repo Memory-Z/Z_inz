@@ -46,7 +46,6 @@ class GreenDaoHelper private constructor() {
             // 此处 note_book 表示数据库名称 可以任意填写
             val mDaoHelper = DaoMaster.DevOpenHelper(context, "note_book", null)
             database = mDaoHelper.writableDatabase
-            database?.beginTransaction()
             // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
             mDaoMaster = DaoMaster(database)
             mDaoSession = mDaoMaster?.newSession()

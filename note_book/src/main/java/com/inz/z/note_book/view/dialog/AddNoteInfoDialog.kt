@@ -3,16 +3,13 @@ package com.inz.z.note_book.view.dialog
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatDialog
 import com.inz.z.note_book.R
-import kotlinx.android.synthetic.main.note_info_add_sample_layout.*
 
 /**
  *
@@ -20,6 +17,7 @@ import kotlinx.android.synthetic.main.note_info_add_sample_layout.*
  * @version 1.0.0
  * Create by inz in 2019/11/12 11:20.
  */
+@Deprecated("miss")
 class AddNoteInfoDialog : AppCompatDialog {
     constructor(context: Context?) : this(context, R.style.NoteBookAppTheme_Dialog_BottomToTop)
     constructor(context: Context?, theme: Int) : super(context, theme) {

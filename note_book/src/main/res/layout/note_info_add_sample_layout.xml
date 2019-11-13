@@ -67,6 +67,8 @@
                 android:id="@+id/note_info_add_sample_add_ll"
                 android:layout_width="@dimen/touch_target_size"
                 android:layout_height="@dimen/touch_target_size"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical">
 

@@ -55,7 +55,7 @@
         <!-- 透明层 -->
         <activity
             android:name=".view.activity.NewNoteInfoSampleActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
             android:screenOrientation="portrait"
             android:theme="@style/NoteBookAppTheme.Transparent"
             android:windowSoftInputMode="adjustResize" />
@@ -82,8 +82,8 @@
             <intent-filter>
                 <!-- 单项点击事项.  -->
                 <action android:name="com.inz.z.note_book.action.NOTE_INFO_ITEM_CLICK" />
-                <!-- 快速添加 -->
-                <action android:name="com.inz.z.note_book.action.NOTE_INFO_ADD_NOTE_CLICK" />
+                <!-- 切换选中的组 -->
+                <action android:name="com.inz.z.note_book.action.NOTE_INFO_CHANGE_NOTE_GROUP" />
             </intent-filter>
 
             <meta-data

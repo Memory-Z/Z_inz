@@ -1,9 +1,13 @@
 package com.inz.z.note_book.view.app_widget.util
 
 import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import com.inz.z.base.util.L
+import com.inz.z.note_book.R
+import com.inz.z.note_book.view.app_widget.NoteInfoAppWidget
+import com.inz.z.note_book.view.app_widget.bean.WidgetNoteInfo
 
 /**
  * 小部件广播工具
@@ -20,10 +24,12 @@ object WidgetBroadcastUtil {
      */
     fun updateNoteWidget(context: Context?) {
         L.i(TAG, "updateNoteWidget: ---------------------------")
-        val intent = Intent().apply {
-            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        if (context != null) {
+            val manager = AppWidgetManager.getInstance(context)
+            val componentName = ComponentName(context, NoteInfoAppWidget::class.java)
+            val appIds = manager.getAppWidgetIds(componentName)
+            manager.notifyAppWidgetViewDataChanged(appIds, R.id.app_widget_content_lv)
         }
-        context?.sendBroadcast(intent) ?: L.w(TAG, "updateNoteWidget: context is null. ")
     }
 
 

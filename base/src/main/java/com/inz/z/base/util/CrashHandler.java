@@ -10,8 +10,6 @@ import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.inz.z.base.entity.Constants;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -185,6 +183,12 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             String value = (String) entry.getValue();
             sb.append(key).append(" = ").append(value).append(" ,\r\n");
         }
+        // 添加崩溃日志写入时间：
+        sb.append("------------ CRASH_WRITER_TIME --------------------- \n")
+                .append(BaseTools.getBaseDateFormat().format(System.currentTimeMillis()))
+                .append("\n")
+                .append("------------ CRASH_WRITER_TIME --------------------- \n")
+                .append("\n\n");
         Writer writer = new StringWriter();
         PrintWriter printWriter = new PrintWriter(writer);
         e.printStackTrace(printWriter);
@@ -212,7 +216,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private String saveLogToFile(String content, String prefix) {
         L.i(TAG, "--------------- " + content);
         String fileName = prefix + "-" + dateStr + ".log";
-        String filePath = FileUtils.getCacheLogPath(mContext) + File.separator + fileName;
+        String filePath = FileUtils.getCacheCrashLogPath(mContext) + File.separator + fileName;
         File dir = new File(filePath);
         boolean isMkdirs = true;
         if (!dir.getParentFile().exists()) {

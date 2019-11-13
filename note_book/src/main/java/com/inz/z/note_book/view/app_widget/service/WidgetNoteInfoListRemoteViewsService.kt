@@ -1,14 +1,12 @@
 package com.inz.z.note_book.view.app_widget.service
 
-import android.accessibilityservice.FingerprintGestureController
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
-import android.hardware.biometrics.BiometricPrompt
 import android.os.Bundle
+import android.view.View
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat
 import com.inz.z.base.util.BaseTools
 import com.inz.z.base.util.L
 import com.inz.z.note_book.R
@@ -50,14 +48,14 @@ class WidgetNoteInfoListRemoteViewsService : RemoteViewsService() {
 
     private inner class WidgetNoteInfoListRemoteViewsServiceFactory(
         private var mContext: Context?,
-        private var appWidgetId: Int?
+        appWidgetId: Int?
     ) : RemoteViewsFactory {
 
         private var noteInfoList: MutableList<NoteInfo> = mutableListOf()
         private var noteGroupId = ""
 
         init {
-            L.i(TAG, "WeigetNoteInfoListRVSFactory init . ${appWidgetId}")
+            L.i(TAG, "WidgetNoteInfoListRVSFactory init . $appWidgetId")
         }
 
 
@@ -73,12 +71,13 @@ class WidgetNoteInfoListRemoteViewsService : RemoteViewsService() {
         }
 
         override fun getItemId(position: Int): Long {
-            L.i(TAG, "getItemId: ${position}")
+            L.i(TAG, "getItemId: $position")
             return position.toLong()
         }
 
         override fun onDataSetChanged() {
             L.i(TAG, "onDataSetChanged .")
+            updateNoteInfoData()
         }
 
         override fun hasStableIds(): Boolean {
@@ -88,12 +87,13 @@ class WidgetNoteInfoListRemoteViewsService : RemoteViewsService() {
 
         override fun getViewAt(position: Int): RemoteViews {
             val noteInfo = noteInfoList[position]
-            L.i(TAG, "getViewAt: ${position} ---- ${noteInfo}")
+            L.i(TAG, "getViewAt: $position ---- $noteInfo")
             val remoteViews =
                 RemoteViews(mContext?.packageName, R.layout.widget_item_note_sample_layout)
             val updateDateStr = BaseTools.getBaseDateFormat().format(noteInfo.updateDate)
             remoteViews.setTextViewText(R.id.item_note_sample_title_tv, noteInfo.noteTitle)
             remoteViews.setTextViewText(R.id.item_note_sample_update_date_tv, updateDateStr)
+            remoteViews.setViewVisibility(R.id.item_note_sample_update_date_tv, View.GONE)
             val clickIntent = Intent()
                 .apply {
                     val bundle = Bundle()
@@ -113,7 +113,7 @@ class WidgetNoteInfoListRemoteViewsService : RemoteViewsService() {
         }
 
         override fun getCount(): Int {
-            L.i(TAG, "getCount . ")
+            L.i(TAG, "getCount . ${noteInfoList.size} ")
             return noteInfoList.size
         }
 
@@ -130,16 +130,29 @@ class WidgetNoteInfoListRemoteViewsService : RemoteViewsService() {
          * 初始化 NoteInfo 数据
          */
         private fun initNoteInfoData() {
+            L.i(TAG, "initNoteInfoData ----------------- ")
             if (noteGroupId.isEmpty()) {
                 noteGroupId = NoteGroupService.getNearUpdateNoteGroup()?.noteGroupId ?: ""
             }
+//            if (noteGroupId.isEmpty()) {
+//                L.w(TAG, "initNoteInfoData: noteGroupId is null . ---> ${this}")
+//                return
+//            }
+//            noteInfoList =
+//                NoteController.findAllNoteInfoByGroupId(noteGroupId) as MutableList<NoteInfo>
+
+        }
+
+        /**
+         * 更新
+         */
+        private fun updateNoteInfoData() {
             if (noteGroupId.isEmpty()) {
-                L.w(TAG, "initNoteInfoData: noteGroupId is null . ---> ${this}")
+                L.w(TAG, "updateNoteInfoData: noteGroupId is null . ---> ${this}")
                 return
             }
             noteInfoList =
                 NoteController.findAllNoteInfoByGroupId(noteGroupId) as MutableList<NoteInfo>
-
         }
     }
 

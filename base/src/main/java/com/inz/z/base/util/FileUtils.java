@@ -321,6 +321,16 @@ public class FileUtils {
     }
 
     /**
+     * 获取缓存崩溃日志路径
+     *
+     * @param context 上下文
+     * @return 崩溃日志路径
+     */
+    public static String getCacheCrashLogPath(Context context) {
+        return getCacheLogPath(context) + File.separatorChar + "crash";
+    }
+
+    /**
      * 是否由挂载外部存储
      *
      * @return 是否挂载

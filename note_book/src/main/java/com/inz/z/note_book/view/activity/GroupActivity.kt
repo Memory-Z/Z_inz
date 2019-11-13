@@ -2,13 +2,11 @@ package com.inz.z.note_book.view.activity
 
 import android.content.Context
 import android.content.Intent
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -263,6 +261,7 @@ class GroupActivity : AbsBaseActivity() {
                 targetAddView(s.isNullOrBlank())
             }
         })
+
         /**
          * 添加笔记按钮
          */
@@ -339,10 +338,6 @@ class GroupActivity : AbsBaseActivity() {
                 updateDate = Date()
             }
         return NoteController.addNoteInfo(noteGroupId, noteInfo)
-    }
-
-    private fun findAllNoteInfoList(groupId: String) {
-
     }
 
     /* ---------------------------------------- 笔记相关 ------------------------------------- */
