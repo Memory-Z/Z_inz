@@ -3,6 +3,7 @@ package com.inz.z.note_book.view.activity
 import android.content.Intent
 import android.database.DataSetObservable
 import android.database.DataSetObserver
+import android.os.Build
 import androidx.databinding.Bindable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
@@ -11,6 +12,7 @@ import com.inz.z.base.view.AbsBaseActivity
 import com.inz.z.note_book.BuildConfig
 import com.inz.z.note_book.R
 import com.inz.z.note_book.databinding.SplashLayoutBinding
+import com.inz.z.note_book.service.NotificationForegroundService
 import kotlinx.android.synthetic.main.splash_layout.*
 
 /**
@@ -53,6 +55,12 @@ class SplashActivity : AbsBaseActivity() {
 
     override fun initData() {
         setRightTopTimer()
+        val service = Intent(mContext, NotificationForegroundService::class.java)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(service)
+        } else {
+            startService(service)
+        }
     }
 
     override fun onResume() {

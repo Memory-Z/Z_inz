@@ -19,6 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/gray"
+        android:focusable="true"
         app:base_relative_layout_content_view="@id/note_main_left_content_tv"
         app:base_relative_layout_header_view="@id/note_main_left_header_tv">
 

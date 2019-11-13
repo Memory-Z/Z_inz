@@ -56,11 +56,22 @@
         <activity
             android:name=".view.activity.NewNoteInfoSampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:taskAffinity="com.inz.z.note_book.sample_activity"
             android:theme="@style/NoteBookAppTheme.Transparent"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- 通知服务 -->
+        <service
+            android:name=".service.NotificationForegroundService"
+            android:exported="false"
+            android:label="@string/app_name">
+            <!--            <intent-filter>-->
+            <!--                &lt;!&ndash; 新通知 &ndash;&gt;-->
+            <!--                <action android:name="com.inz.z.note_book.action.NewNotification" />-->
+            <!--            </intent-filter>-->
+        </service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
