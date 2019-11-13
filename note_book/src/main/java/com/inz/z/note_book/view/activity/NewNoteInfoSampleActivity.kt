@@ -127,6 +127,10 @@ class NewNoteInfoSampleActivity : AbsBaseActivity() {
                 }
             })
         }
+        if (addNoteInfoAddDialogFragment!!.isAdded) {
+            L.w(TAG, "NoteInfoAddDialogFragment is added . don't deal. ")
+            return
+        }
         addNoteInfoAddDialogFragment!!.show(manager, "NoteInfoAddDialogFragment")
     }
 
