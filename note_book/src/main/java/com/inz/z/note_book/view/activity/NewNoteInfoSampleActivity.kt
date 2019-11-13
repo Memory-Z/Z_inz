@@ -80,6 +80,7 @@ class NewNoteInfoSampleActivity : AbsBaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        isSaveStated = false
         val bundle = intent.extras
         if (bundle != null) {
             val launchTypeInt = bundle.getInt("launchType", 0)
@@ -103,6 +104,16 @@ class NewNoteInfoSampleActivity : AbsBaseActivity() {
                 }
             }
         }
+    }
+
+    /**
+     * 是否保存了状态
+     */
+    private var isSaveStated = false
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        isSaveStated = true
+        super.onSaveInstanceState(outState)
     }
 
     private var addNoteInfoAddDialogFragment: NoteInfoAddDialogFragment? = null
@@ -131,7 +142,11 @@ class NewNoteInfoSampleActivity : AbsBaseActivity() {
             L.w(TAG, "NoteInfoAddDialogFragment is added . don't deal. ")
             return
         }
-        addNoteInfoAddDialogFragment!!.show(manager, "NoteInfoAddDialogFragment")
+        if (!isSaveStated) {
+            manager.beginTransaction()
+                .add(addNoteInfoAddDialogFragment!!, "NoteInfoAddDialogFragment")
+                .commitAllowingStateLoss()
+        }
     }
 
 

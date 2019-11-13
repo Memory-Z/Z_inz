@@ -132,9 +132,8 @@ class NoteInfoAppWidget : AppWidgetProvider() {
         // 切换分组
         val changeGroupIntent = Intent(context, NewNoteInfoSampleActivity::class.java)
             .apply {
-                flags = Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-                    .or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    .or(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    .or(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 val bundle = Bundle()
                 bundle.putInt("launchType", 2)
                 putExtras(bundle)
@@ -151,9 +150,7 @@ class NoteInfoAppWidget : AppWidgetProvider() {
         val addNoteIntent = Intent(context, NewNoteInfoSampleActivity::class.java)
             .apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    .or(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-                    .or(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                    .or(Intent.FLAG_ACTIVITY_TASK_ON_HOME)
+                    .or(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 val bundle = Bundle()
                 bundle.putInt("launchType", 1)
                 bundle.putString("groupId", noteGroupId)

@@ -57,6 +57,8 @@
             android:name=".view.activity.NewNoteInfoSampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.inz.z.note_book.sample_activity"
             android:theme="@style/NoteBookAppTheme.Transparent"
             android:windowSoftInputMode="adjustResize" />
 
