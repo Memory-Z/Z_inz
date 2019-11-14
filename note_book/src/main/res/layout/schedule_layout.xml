@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <Spinner
+        android:id="@+id/schedule_spinner"
         android:layout_width="0dp"
         android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="parent"

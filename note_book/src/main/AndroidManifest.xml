@@ -62,6 +62,13 @@
             android:theme="@style/NoteBookAppTheme.Transparent"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- 任务计划列表 -->
+        <activity
+            android:name=".view.activity.ScheduleActivity"
+            android:configChanges="screenLayout|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme" />
+
         <!-- 通知服务 -->
         <service
             android:name=".service.NotificationForegroundService"
