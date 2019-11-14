@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="0aebba3a-0a4b-4427-939f-0493d887967e">
-        <schema name="main" object-types="dataset trigger, constraint, table, column, view, index" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0aebba3a-0a4b-4427-939f-0493d887967e">
@@ -44,7 +40,7 @@
     <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.note_group" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.rel_note_group_info" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.note_info" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.android_metadata" active-filter-id="" />
+    <filter-actions connection-id="0aebba3a-0a4b-4427-939f-0493d887967e" dataset="main.android_metadata" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
