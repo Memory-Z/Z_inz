@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.inz.z.z_demo">
+
+    <application
+        android:name="com.inz.z.dial_phone.MyApplication"
+        android:icon="@drawable/ic_error_red_24dp"
+        android:theme="@style/BaseAppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name="com.inz.z.dial_phone.view.MyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
