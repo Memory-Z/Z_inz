@@ -1,17 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.inz.z.z_demo">
-
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    package="com.inz.z.zlauncher">
 
     <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/BaseAppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning,MissingApplicationIcon">
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoAction"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <!-- 桌面程序  -->
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activity.ZLauncherActivity"
+            android:configChanges="keyboardHidden|screenSize|screenLayout"
             android:screenOrientation="portrait"
-            android:theme="@style/BaseAppTheme">
+            android:theme="@style/AppTheme.NoAction">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

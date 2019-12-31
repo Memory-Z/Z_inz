@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="app_bar_text_size">20sp</dimen>
+    <dimen name="button_norma_text_size">15sp</dimen>
+    <dimen name="headline_text_size">24sp</dimen>
+    <dimen name="title_size">21sp</dimen>
+    <dimen name="subheading_text_size">17sp</dimen>
+    <dimen name="body_text_size">15sp</dimen>
+    <dimen name="caption_text_size">13sp</dimen>
+</resources>
