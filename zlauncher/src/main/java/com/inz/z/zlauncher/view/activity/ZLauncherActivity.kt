@@ -1,13 +1,20 @@
 package com.inz.z.zlauncher.view.activity
 
+import android.app.Activity
+import android.app.Application
+import android.appwidget.AppWidgetHost
+import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.LauncherActivityInfo
+import android.content.pm.LauncherApps
 import android.util.LayoutDirection
 import android.view.View
 import androidx.constraintlayout.solver.widgets.ConstraintHorizontalLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inz.z.base.util.L
+import com.inz.z.base.util.LauncherHelper
 import com.inz.z.base.view.AbsBaseActivity
 import com.inz.z.zlauncher.R
 import com.inz.z.zlauncher.view.activity.adapter.LauncherIconAdapter
@@ -23,6 +30,8 @@ import java.nio.file.DirectoryIteratorException
 class ZLauncherActivity : AbsBaseActivity() {
     companion object {
         const val TAG = "ZLauncherActivity"
+        const val APP_WIDGET_HOST_ID = 0x00010A
+        const val REQUEST_APP_WIDGET_PICK = 0x0012;
     }
 
     private var launcherIconAdapter: LauncherIconAdapter? = null
@@ -55,6 +64,7 @@ class ZLauncherActivity : AbsBaseActivity() {
                                 val intent = Intent()
                                     .apply {
                                         component = componentName
+                                        addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY)
                                     }
                                 startActivity(intent)
                             }
@@ -76,6 +86,15 @@ class ZLauncherActivity : AbsBaseActivity() {
         loadSystemAllApplication()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_APP_WIDGET_PICK) {
+                addAppWidget(data)
+            }
+        }
+    }
+
     /**
      * 加载系统全部应用程序
      */
@@ -95,4 +114,31 @@ class ZLauncherActivity : AbsBaseActivity() {
         L.i(TAG, " all Applications [ $allApplications ]")
         launcherIconAdapter?.refreshData(allApplications)
     }
+
+    /**
+     * 选择桌面控件
+     */
+    private fun pickSystemAllWidget() {
+        val widgetId = AppWidgetHost(mContext, APP_WIDGET_HOST_ID).allocateAppWidgetId()
+        val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_PICK)
+            .apply {
+                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
+            }
+        startActivityForResult(intent, REQUEST_APP_WIDGET_PICK)
+    }
+
+    private fun addAppWidget(data: Intent?) {
+        val widgetId = data?.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1)
+        val appWidget = AppWidgetManager.getInstance(mContext).getAppWidgetInfo(widgetId ?: -1)
+        if (appWidget?.configure != null) {
+            val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE)
+                .apply {
+                    setComponent(appWidget.configure)
+                    putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
+//                    startActi
+                }
+        }
+    }
+
+
 }
