@@ -1,9 +1,14 @@
 package com.inz.z.note_book.service
 
 import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.Service
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.IBinder
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.inz.z.base.util.L
 import com.inz.z.note_book.R
@@ -33,7 +38,9 @@ class NotificationForegroundService : Service() {
     override fun onCreate() {
         super.onCreate()
         L.i(TAG, "onCreate: --------------- ")
-        initNotification()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            initNotification()
+        }
     }
 
     override fun onDestroy() {
@@ -44,7 +51,16 @@ class NotificationForegroundService : Service() {
     /**
      * 初始化通知栏
      */
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initNotification() {
+        val channel = NotificationChannel(
+            NOTIFICATION_CHANNEL_ID,
+            getString(R.string.app_name),
+            NotificationManager.IMPORTANCE_LOW
+        )
+        val manager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(channel)
         notification = NotificationCompat
             .Builder(applicationContext, NOTIFICATION_CHANNEL_ID)
             .setContentTitle(applicationContext.getString(R.string.app_name))
