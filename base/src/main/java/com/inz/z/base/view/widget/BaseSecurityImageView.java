@@ -95,7 +95,7 @@ public class BaseSecurityImageView extends AppCompatImageView {
         float textCenterY = centerY - (fontMetricsInt.bottom - fontMetricsInt.top) / 2F;
         messagePaint.getTextBounds(securityMessage, 0, securityMessage.length(), messageRect);
         float textWidth = messageRect.right - messageRect.left;
-        int baseBlockWidth = (int) Math.abs(Math.sqrt(textWidth * textWidth / 2)) + 400;
+        int baseBlockWidth = (int) Math.abs(Math.sqrt(textWidth * textWidth / 2)) + 200;
         float baseBlockCenterX = baseBlockWidth / 2F;
         int xBlockNum = 3 * getWidth() / baseBlockWidth + 1;
         int yBlockNum = 2 * getHeight() / baseBlockWidth + 1;

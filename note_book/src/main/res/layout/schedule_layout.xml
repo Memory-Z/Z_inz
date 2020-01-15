@@ -18,7 +18,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/image_load_error"
         app:layout_constraintStart_toStartOf="parent"
-        app:text="绝密"
+        app:text="绝密绝密"
         app:textSize="@dimen/text_body_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
