@@ -1,3 +1,5 @@
-include ':app', ':app_update', ':three_login', ':other_module', ':base', ':choosefile',
-        //':face_module',
-        ':cameraview', ':music', ':form', ':cim', ':camera_one', ':note_book', ':web_view'
+include ':app', ':three_login', ':other_module', ':base', ':choosefile', ':face_module', ':cameraview', ':music', ':form', ':cim', ':camera_one', ':zlauncher'
+include ':note_book' // , ':note_book-annotation', ':note_book-compiler'
+include ':app_update'
+include ':z-demo'
+//include ':web_view'

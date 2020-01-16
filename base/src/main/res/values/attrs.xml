@@ -33,6 +33,15 @@
 
     <!-- 可滑动RelativeLayout -->
     <declare-styleable name="BaseRelativeLayout">
-        <attr name="base_relative_layout_content_id" format="reference" />
+        <attr name="base_relative_layout_header_view" format="reference" />
+        <attr name="base_relative_layout_content_view" format="reference" />
+        <attr name="base_relative_layout_footer_view" format="reference" />
+    </declare-styleable>
+
+    <!-- 保密 ImageView  -->
+    <declare-styleable name="BaseSecurityImageView">
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="text" format="string" />
     </declare-styleable>
 </resources>

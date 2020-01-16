@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">note_book</string>
+
+    <string name="input_group_title">输入分组标题</string>
+    <string name="cancel">取消</string>
+    <string name="create_group">创建列表</string>
+    <string name="no_title_group">无标题分组%s</string>
+    <string name="color">颜色</string>
+    <string name="photo">照片</string>
+    <string name="image">图片</string>
+    <string name="del_group">删除分组</string>
+    <string name="rename_group_title">重命名分组</string>
+
+    <string name="delete">删除</string>
+    <string name="share">分享</string>
+    <string name="completed">完成</string>
+    <string name="choose">选择</string>
+    <string name="schedule">待办事项</string>
+    <string name="task">任务</string>
+    <string name="importance">重要</string>
+    <string name="finished_schedule">已完成计划</string>
+    <string name="show_finished_task">显示已完成任务</string>
+    <string name="setting_end_date">设置截止日期</string>
+    <string name="repetition">重复</string>
+    <string name="remind_me">提醒我</string>
+
+
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+    <string name="version">版本</string>
+    <string name="inform">通知</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+
+</resources>

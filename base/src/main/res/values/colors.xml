@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="text_black_base_color">#FF474747</color>
+    <color name="text_black_70_color">#B3474747</color>
+    <color name="text_black_50_color">#80474747</color>
+    <color name="text_black_20_color">#33474747</color>
+
+    <color name="text_white_base_color">#FFF5F5F5</color>
+    <color name="text_white_70_color">#B3F5F5F5</color>
+    <color name="text_white_50_color">#80F5F5F5</color>
+    <color name="text_white_20_color">#33F5F5F5</color>
+
+
     <color name="base_iamge_background_color">#EFEFEF</color>
     <!-- Base Color  -->
     <!-- 灰色 -->

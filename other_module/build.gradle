@@ -50,25 +50,25 @@ android {
         }
         address_book {
             dimension 'book'
-        }
+        };
         address_book_2 {
             dimension 'book2'
-        }
+        };
         mina_socket {
             dimension 'mina'
-        }
+        };
 
         camera2 {
             dimension 'camera2_t1'
-        }
+        };
 
         image_edit {
             dimension 'img_et1'
-        }
+        };
 
         screen_record {
             dimension 'screen_record1'
-        }
+        };
 
     }
 

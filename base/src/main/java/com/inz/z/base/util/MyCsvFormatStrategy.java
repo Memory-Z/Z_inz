@@ -1,9 +1,11 @@
 package com.inz.z.base.util;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -46,6 +48,8 @@ public class MyCsvFormatStrategy implements FormatStrategy {
     private final LogStrategy logStrategy;
     @Nullable
     private final String tag;
+    @Nullable
+    private Context mContext;
 
     private MyCsvFormatStrategy(@NonNull MyCsvFormatStrategy.Builder builder) {
         checkNotNull(builder);
@@ -116,6 +120,7 @@ public class MyCsvFormatStrategy implements FormatStrategy {
         LogStrategy logStrategy;
         String tag = "PRETTY_LOGGER";
         String fileName = "inz_logs";
+        Context mContext = null;
 
         private Builder() {
         }
@@ -129,6 +134,11 @@ public class MyCsvFormatStrategy implements FormatStrategy {
         @NonNull
         public MyCsvFormatStrategy.Builder dateFormat(@Nullable SimpleDateFormat val) {
             dateFormat = val;
+            return this;
+        }
+
+        public MyCsvFormatStrategy.Builder setContext(@Nullable Context context) {
+            mContext = context;
             return this;
         }
 
@@ -162,6 +172,9 @@ public class MyCsvFormatStrategy implements FormatStrategy {
             if (logStrategy == null) {
                 // 设置为项目目录下
                 String folder = FileUtils.getProjectLogPath() + File.separatorChar + "logger";
+                if (mContext != null) {
+                    folder = FileUtils.getCacheLogPath(mContext) + File.separatorChar + "logger";
+                }
                 HandlerThread ht = new HandlerThread("AndroidFileLogger." + folder);
                 ht.start();
                 Handler handler = new MyCsvFormatStrategy.WriteHandler(ht.getLooper(), folder, fileName, MAX_BYTES);

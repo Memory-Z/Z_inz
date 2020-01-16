@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="noteInfo"
+            type="com.inz.z.note_book.bean.NoteInfo" />
+
+        <variable
+            name="noteInfoUpdateDateStr"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/textGrayLight">
+
+        <LinearLayout
+            android:id="@+id/item_note_sample_left_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/content_space_between_dimen"
+            android:layout_marginEnd="@dimen/content_space_between_dimen"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/item_note_sample_left_cb"
+                android:layout_width="@dimen/button_normal_height"
+                android:layout_height="@dimen/button_normal_height"
+                android:background="@null"
+                android:contentDescription="@string/base_image"
+                android:padding="6dp"
+                android:src="@drawable/ic_vd_check" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_note_sample_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@id/item_note_sample_left_ll"
+            android:orientation="vertical"
+            android:padding="@dimen/content_space_between_dimen">
+
+            <TextView
+                android:id="@+id/item_note_sample_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{noteInfo.noteTitle, default=@string/base_title}"
+                android:textColor="@color/textWhiteColor"
+                android:textSize="@dimen/body_text_size" />
+
+            <TextView
+                android:id="@+id/item_note_sample_update_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/content_space_between_dimen"
+                android:text="@{noteInfoUpdateDateStr, default=@string/base_content}"
+                android:textColor="@color/textSecondColor"
+                android:textSize="@dimen/caption_text_size" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

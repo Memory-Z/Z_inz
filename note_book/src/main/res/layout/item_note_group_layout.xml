@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="noteGroup"
+            type="com.inz.z.note_book.bean.NoteGroup" />
+
+        <variable
+            name="noteGroupSize"
+            type="String" />
+    </data>
+
+
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/item_note_group_bnl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_normal_height"
+        android:paddingStart="@dimen/border_lr_dimen"
+        android:paddingEnd="@dimen/border_lr_dimen"
+        app:base_center_layout="@id/item_note_group_title_tv"
+        app:base_left_layout="@id/item_note_group_iv"
+        app:base_right_layout="@id/item_note_group_child_number_tv">
+
+        <ImageView
+            android:id="@+id/item_note_group_iv"
+            android:layout_width="@dimen/touch_target_size"
+            android:layout_height="@dimen/touch_target_size"
+            android:contentDescription="@string/base_image"
+            android:padding="12dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_menu_black_24dp" />
+
+        <TextView
+            android:id="@+id/item_note_group_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/touch_target_size"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/border_lr_dimen"
+            android:paddingEnd="@dimen/border_lr_dimen"
+            android:lines="1"
+            android:text="@{noteGroup.groupName, default = @string/base_title}"
+            android:textColor="@color/textWhiteColor"
+            android:textSize="@dimen/body_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_note_group_child_number_tv"
+            android:layout_width="@dimen/touch_target_size"
+            android:layout_height="@dimen/touch_target_size"
+            android:gravity="center"
+            android:text="@{noteGroupSize, default = @string/base_number}"
+            android:textColor="@color/textWhiteColor"
+            android:textSize="@dimen/caption_text_size" />
+
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+</layout>

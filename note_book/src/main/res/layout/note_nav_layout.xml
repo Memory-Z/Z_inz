@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:base_relative_layout_header_view="@id/note_nav_top_include">
+
+    <include
+        android:id="@+id/note_nav_top_include"
+        layout="@layout/top_search_nav_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.inz.z.base.view.widget.BaseRelativeLayout
+        android:id="@+id/note_nav_content_base_rl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/note_nav_top_include">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/note_nav_content_nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/textGrayLight"
+            android:fadingEdge="none"
+            android:overScrollMode="ifContentScrolls">
+
+            <!-- descendantFocusability 防止 RecyclerView 加载时默认滑动至底部 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/note_nav_hint_layout"
+                    android:visibility="visible" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/lineColor" />
+
+                <LinearLayout
+                    android:id="@+id/note_nav_near_five_note_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.inz.z.base.view.widget.BaseNavLayout
+                        android:id="@+id/note_nav_near_five_note_bnl"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/list_item_normal_height"
+                        android:paddingStart="@dimen/border_lr_dimen"
+                        android:paddingEnd="@dimen/border_lr_dimen"
+                        app:base_bottom_line_visible="false"
+                        app:base_right_layout="@id/note_nav_near_five_nav_right_iv"
+                        app:base_top_line_visible="false">
+
+                        <ImageView
+                            android:id="@+id/note_nav_near_five_nav_right_iv"
+                            android:layout_width="@dimen/touch_target_size"
+                            android:layout_height="@dimen/touch_target_size"
+                            android:contentDescription="@string/base_image"
+                            android:padding="@dimen/touch_icon_padding"
+                            android:src="@drawable/ic_chevron_right_black_24dp" />
+
+                    </com.inz.z.base.view.widget.BaseNavLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/lineColor" />
+
+                    <LinearLayout
+                        android:id="@+id/note_nav_near_five_content_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/lineColor" />
+
+                <LinearLayout
+                    android:id="@+id/note_nav_group_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.inz.z.base.view.widget.BaseNavLayout
+                        android:id="@+id/note_nav_group_bnl"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/list_item_normal_height"
+                        android:paddingStart="@dimen/border_lr_dimen"
+                        android:paddingEnd="@dimen/border_lr_dimen"
+                        app:base_bottom_line_visible="false"
+                        app:base_right_layout="@id/note_nav_group_right_iv"
+                        app:base_top_line_visible="false">
+
+                        <ImageView
+                            android:id="@+id/note_nav_group_right_iv"
+                            android:layout_width="@dimen/touch_target_size"
+                            android:layout_height="@dimen/touch_target_size"
+                            android:contentDescription="@string/base_number"
+                            android:padding="@dimen/touch_icon_padding"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_add_black_24dp" />
+                    </com.inz.z.base.view.widget.BaseNavLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/lineColor" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/note_nav_group_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fadingEdge="none"
+                        android:minHeight="0dp" />
+
+                    <!-- 使用 RecyclerView 代替 addView  -->
+                    <LinearLayout
+                        android:id="@+id/note_nav_group_content_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </com.inz.z.base.view.widget.BaseRelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/note_nav_add_fab"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="@dimen/border_lr_dimen"
+        android:layout_marginBottom="@dimen/border_lr_dimen"
+        android:backgroundTint="@color/mainColor"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_add_black_24dp"
+        android:textAlignment="center"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

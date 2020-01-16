@@ -2,6 +2,7 @@ package com.inz.z.base.view;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +24,31 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
 
     protected abstract void initData();
 
+    /**
+     * 是否使用 DataBinding , 返回true时，{@linkplain #setDataBindingView()} 必须复写
+     *
+     * @return 默认不使用
+     */
+    protected boolean useDataBinding() {
+        return false;
+    }
+
+    /**
+     * 设置DataBindingView 内容
+     */
+    protected void setDataBindingView() {
+
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initWindow();
-        setContentView(getLayoutId());
+        if (!useDataBinding()) {
+            setContentView(getLayoutId());
+        } else {
+            setDataBindingView();
+        }
         mContext = this;
         initView();
         initData();

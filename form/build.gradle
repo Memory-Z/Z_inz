@@ -3,13 +3,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+ext {
+    flavorName = "dev"
+}
 android {
-    compileSdkVersion 28
-
+    compileSdkVersion APP_COMPILE_SDK_VERSION.toInteger()
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion APP_MIN_SDK_VERSION.toInteger()
+        targetSdkVersion APP_TARGET_SDK_VERSION.toInteger()
         versionCode 1
         versionName "1.0"
 
@@ -20,6 +22,9 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
+
+        flavorDimensions flavorName
+
     }
 
     buildTypes {
@@ -29,17 +34,26 @@ android {
         }
     }
 
+    productFlavors {
+
+        list_form {
+            dimension flavorName
+        }
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation project(":base")
 
     // 阿里 路由 （多模块通信）
     implementation 'com.alibaba:arouter-api:1.5.0'

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.inz.z.base.view.widget.BaseNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/top_search_nav_rl"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tool_bar_height"
+    android:background="@color/snow"
+    app:base_center_layout="@id/top_search_nav_content_rl"
+    app:base_left_layout="@id/top_search_nav_scan_iv"
+    app:base_right_layout="@id/top_search_nav_end_rl">
+
+    <ImageView
+        android:id="@+id/top_search_nav_scan_iv"
+        android:layout_width="@dimen/touch_target_size"
+        android:layout_height="@dimen/touch_target_size"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/base_image"
+        android:padding="@dimen/touch_icon_padding"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_chevron_left_black_24dp" />
+
+    <RelativeLayout
+        android:id="@+id/top_search_nav_content_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_normal_height"
+        android:layout_marginStart="@dimen/border_lr_dimen"
+        android:layout_marginEnd="@dimen/border_lr_dimen"
+        android:background="@drawable/bg_nav_search"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="@string/base_image"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_vd_word" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/top_search_nav_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top_search_nav_end_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/touch_target_size"
+            android:layout_height="@dimen/touch_target_size"
+            android:contentDescription="@string/base_image"
+            android:padding="@dimen/touch_icon_padding"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_vd_image" />
+    </RelativeLayout>
+
+
+</com.inz.z.base.view.widget.BaseNavLayout>

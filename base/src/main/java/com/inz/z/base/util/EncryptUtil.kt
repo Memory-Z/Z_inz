@@ -2,6 +2,7 @@ package com.inz.z.base.util
 
 import android.util.Base64
 import java.security.MessageDigest
+import java.util.*
 
 /**
  * 加密工具类
@@ -56,7 +57,7 @@ object EncryptUtil {
             val s = b.toString(16)
             sb.append(s)
         }
-        return sb.toString().toLowerCase()
+        return sb.toString().toLowerCase(Locale.CHINA)
     }
 
     /**

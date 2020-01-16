@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="groupName"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/group_backgroud_iv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/base_image"
+            android:scaleType="centerCrop"
+            android:src="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 组视图 -->
+
+        <com.inz.z.base.view.widget.BaseNavLayout
+            android:id="@+id/group_top_bnl"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tool_bar_height"
+            app:base_bottom_line_visible="false"
+            app:base_center_layout="@id/group_top_title_tv"
+            app:base_left_layout="@id/group_top_back_iv"
+            app:base_right_layout="@id/group_top_right_ll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/group_top_back_iv"
+                android:layout_width="@dimen/touch_target_size"
+                android:layout_height="@dimen/touch_target_size"
+                android:contentDescription="@string/base_image"
+                android:padding="@dimen/touch_icon_padding"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_chevron_left_black_24dp" />
+
+            <TextView
+                android:id="@+id/group_top_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:paddingStart="@dimen/border_lr_dimen"
+                android:paddingEnd="@dimen/border_lr_dimen"
+                android:text="@={groupName, default = @string/no_title_group}"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/group_top_right_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/group_top_right_more_iv"
+                    android:layout_width="@dimen/touch_target_size"
+                    android:layout_height="@dimen/touch_target_size"
+                    android:contentDescription="@string/base_image"
+                    android:padding="@dimen/touch_icon_padding"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_more_vert_black_24dp" />
+
+            </LinearLayout>
+
+        </com.inz.z.base.view.widget.BaseNavLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/lineColor"
+            app:layout_constraintTop_toBottomOf="@id/group_top_bnl" />
+
+        <com.inz.z.base.view.widget.BaseRelativeLayout
+            android:id="@+id/group_content_brl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/group_top_bnl">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/group_content_srl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/group_content_note_info_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </com.inz.z.base.view.widget.BaseRelativeLayout>
+
+        <include
+            android:id="@+id/group_bottom_add_note_sample_include"
+            layout="@layout/note_info_add_sample_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/group_add_note_info_fab"
+            style="@style/Widget.Design.FloatingActionButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="@dimen/border_lr_dimen"
+            android:layout_marginBottom="@dimen/border_lr_dimen"
+            android:backgroundTint="@color/mainColor"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_add_black_24dp"
+            app:elevation="5dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

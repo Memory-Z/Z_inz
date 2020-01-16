@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.LayoutRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.widget.TintTypedArray;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,14 +50,15 @@ public class BaseNavLayout extends ConstraintLayout {
     @SuppressLint("InflateParams")
     private void initView() {
         if (mView == null) {
-            mView = LayoutInflater.from(mContext).inflate(R.layout.base_nav_layout, null, false);
-            topLineV = mView.findViewById(R.id.base_nav_top_line_v);
-            bottomLineV = mView.findViewById(R.id.base_nav_bottom_line_v);
-            leftLayout = mView.findViewById(R.id.base_nav_center_start_rl);
-            centerLayout = mView.findViewById(R.id.base_nav_center_content_rl);
-            rightLayout = mView.findViewById(R.id.base_nav_center_end_rl);
-            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            addView(mView, layoutParams);
+            LayoutInflater.from(mContext).inflate(R.layout.base_nav_layout, this, true);
+            mView = findViewById(R.id.base_nav_cl);
+            topLineV = findViewById(R.id.base_nav_top_line_v);
+            bottomLineV = findViewById(R.id.base_nav_bottom_line_v);
+            leftLayout = findViewById(R.id.base_nav_center_start_rl);
+            centerLayout = findViewById(R.id.base_nav_center_content_rl);
+            rightLayout = findViewById(R.id.base_nav_center_end_rl);
+//            LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//            addView(mView, layoutParams);
         }
     }
 

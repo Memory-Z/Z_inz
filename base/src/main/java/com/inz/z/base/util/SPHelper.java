@@ -3,6 +3,8 @@ package com.inz.z.base.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.Nullable;
+
 import java.util.Set;
 
 /**
@@ -18,6 +20,10 @@ public class SPHelper {
     // 默认保存文件名
     private static final String FILE_NAME = "inzBaseShareData";
     private static SharedPreferences sharedPreferences = null;
+    /**
+     * 自定义 Share 文件名
+     */
+    private String fileName = FILE_NAME;
     private static SPHelper spHelper;
 
     /**
@@ -42,7 +48,18 @@ public class SPHelper {
      * @param context 上下文
      */
     public void initSharedPreferences(Context context) {
-        sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        this.fileName = FILE_NAME;
+        initSharedPreferences(context, fileName);
+    }
+
+    public void initSharedPreferences(Context context, @Nullable String fileName) {
+        if (fileName == null) {
+            fileName = "";
+        }
+        if (fileName.isEmpty()) {
+            fileName = FILE_NAME;
+        }
+        sharedPreferences = context.getSharedPreferences(fileName, Context.MODE_PRIVATE);
     }
 
     /**
@@ -52,7 +69,7 @@ public class SPHelper {
      * @param object 值
      */
     @SuppressWarnings("unchecked")
-    private void setShared(String key, Object object) {
+    public void setShared(String key, Object object) {
         try {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             if (object instanceof String) {
@@ -80,7 +97,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    private void setSharedString(String key, String value) {
+    public void setSharedString(String key, String value) {
         setShared(key, value);
     }
 
@@ -90,7 +107,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 null
      */
-    private String getSharedString(String key) {
+    public String getSharedString(String key) {
         return sharedPreferences.getString(key, null);
     }
 
@@ -100,7 +117,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    private void setSharedBoolean(String key, boolean value) {
+    public void setSharedBoolean(String key, boolean value) {
         setShared(key, value);
     }
 
@@ -110,7 +127,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认false
      */
-    private boolean getSharedBoolean(String key) {
+    public boolean getSharedBoolean(String key) {
         return sharedPreferences.getBoolean(key, false);
     }
 
@@ -120,7 +137,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    private void setSharedInteger(String key, int value) {
+    public void setSharedInteger(String key, int value) {
         setShared(key, value);
     }
 
@@ -130,8 +147,8 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认-1
      */
-    private Integer getSharedInteger(String key) {
-        return sharedPreferences.getInt(key, -1);
+    public Integer getSharedInteger(String key) {
+        return sharedPreferences.getInt(key, 0);
     }
 
     /**
@@ -140,7 +157,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    private void setSharedFloat(String key, Float value) {
+    public void setSharedFloat(String key, Float value) {
         setShared(key, value);
     }
 
@@ -150,8 +167,8 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 -1F
      */
-    private Float getSharedFloat(String key) {
-        return sharedPreferences.getFloat(key, -1F);
+    public Float getSharedFloat(String key) {
+        return sharedPreferences.getFloat(key, 0);
     }
 
     /**
@@ -160,7 +177,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    private void setSharedLong(String key, Long value) {
+    public void setSharedLong(String key, Long value) {
         setShared(key, value);
     }
 
@@ -170,8 +187,8 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 -1L
      */
-    private Long getSharedLong(String key) {
-        return sharedPreferences.getLong(key, -1L);
+    public Long getSharedLong(String key) {
+        return sharedPreferences.getLong(key, 0);
     }
 
     /**
@@ -180,7 +197,7 @@ public class SPHelper {
      * @param key   键
      * @param value 值
      */
-    private void setSharedSet(String key, Set<String> value) {
+    public void setSharedSet(String key, Set<String> value) {
         setShared(key, value);
     }
 
@@ -190,7 +207,7 @@ public class SPHelper {
      * @param key 键
      * @return 返回的值，默认 null
      */
-    private Set<String> getSharedSet(String key) {
+    public Set<String> getSharedSet(String key) {
         return sharedPreferences.getStringSet(key, null);
     }
 
@@ -199,7 +216,7 @@ public class SPHelper {
      *
      * @param key 保存的 键
      */
-    private void delShare(String key) {
+    public void delShare(String key) {
         try {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove(key);

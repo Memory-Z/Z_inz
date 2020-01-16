@@ -10,4 +10,13 @@
     <string name="base_long_text">长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789长文本长文本长文本长文本长文本长文本0123456789</string>
     <string name="base_time">2019&#8211;12&#8211;31</string>
     <string name="base_number">99+</string>
+    <string name="base_format_year_month_day">%tF</string>
+    <string name="base_format_year_month">%1$tY年%1$tm月</string>
+    <string name="base_format_week">%tA</string>
+    <string name="base_format_year">%tY</string>
+    <string name="base_format_month">%tm</string>
+    <string name="base_format_day">%td</string>
+    <string name="base_format_time_24">%1$tH:%1$tM:%1$tS</string>
+    <string name="base_format_time_12">%1$tI:%1$tM:%1$tS %1$Tp</string>
+
 </resources>

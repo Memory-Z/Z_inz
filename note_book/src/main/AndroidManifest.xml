@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.inz.z.note_book">
+
+
+    <uses-permission
+        android:name="android.permission.SYSTEM_ALERT_WINDOW"
+        android:maxSdkVersion="23" />
+
+    <application
+        android:name=".NoteBookApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_vd_image"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/NoteBookAppTheme"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+
+
+        <activity
+            android:name=".view.activity.MainActivity"
+            android:configChanges="keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme" />
+
+        <activity
+            android:name=".view.activity.SplashActivity"
+            android:configChanges="screenSize|screenLayout|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 组 -->
+        <activity
+            android:name=".view.activity.GroupActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme" />
+
+        <!-- 笔记信息 -->
+        <activity
+            android:name=".view.activity.NewNoteActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- 透明层 -->
+        <activity
+            android:name=".view.activity.NewNoteInfoSampleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.inz.z.note_book.sample_activity"
+            android:theme="@style/NoteBookAppTheme.Transparent"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 任务计划列表 -->
+        <activity
+            android:name=".view.activity.ScheduleActivity"
+            android:configChanges="screenLayout|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoteBookAppTheme" />
+
+        <!-- 通知服务 -->
+        <service
+            android:name=".service.NotificationForegroundService"
+            android:exported="false"
+            android:label="@string/app_name">
+            <!--            <intent-filter>-->
+            <!--                &lt;!&ndash; 新通知 &ndash;&gt;-->
+            <!--                <action android:name="com.inz.z.note_book.action.NewNotification" />-->
+            <!--            </intent-filter>-->
+        </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+
+        </provider>
+
+
+        <!-- 桌面插件 -->
+        <receiver android:name=".view.app_widget.NoteInfoAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <!-- 自定义 过滤 -->
+            <intent-filter>
+                <!-- 单项点击事项.  -->
+                <action android:name="com.inz.z.note_book.action.NOTE_INFO_ITEM_CLICK" />
+                <!-- 切换选中的组 -->
+                <action android:name="com.inz.z.note_book.action.NOTE_INFO_CHANGE_NOTE_GROUP" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/note_info_app_widget_info" />
+        </receiver>
+        <!-- 桌面插件 笔记列表更新服务 -->
+        <service
+            android:name=".view.app_widget.service.WidgetNoteInfoListRemoteViewsService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service android:name=".service.NoteInfoAppWidgetService" />
+    </application>
+
+</manifest>
