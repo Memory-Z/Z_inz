@@ -38,7 +38,7 @@ public class InzApplication extends OtherApplication {
         musicApplication = new MusicApplication(mContext);
         // 初始化 日志
 //        initLogger();
-        L.initL();
+        L.initL(this);
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);

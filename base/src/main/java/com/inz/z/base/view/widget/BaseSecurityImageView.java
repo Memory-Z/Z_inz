@@ -81,7 +81,7 @@ public class BaseSecurityImageView extends AppCompatImageView {
         messagePaint.setTextSize(messageTextSize);
         messagePaint.setColor(messageTextColor);
         messagePaint.setTextAlign(Paint.Align.CENTER);
-        messagePaint.setStyle(Paint.Style.STROKE);
+        messagePaint.setStyle(Paint.Style.FILL);
 
         messageRect = new Rect();
     }

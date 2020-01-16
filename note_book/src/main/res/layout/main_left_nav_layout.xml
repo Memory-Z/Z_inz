@@ -7,12 +7,14 @@
     <com.inz.z.base.view.widget.BaseSecurityImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/whiteColorSecond"
+        android:background="@color/blackWhiteColor"
         app:layout_constraintBottom_toBottomOf="@id/main_left_nav_content_nsv"
         app:layout_constraintEnd_toEndOf="@id/main_left_nav_content_nsv"
         app:layout_constraintStart_toStartOf="@id/main_left_nav_content_nsv"
         app:layout_constraintTop_toTopOf="@id/main_left_nav_content_nsv"
-        app:text="@string/app_name" />
+        app:textSize="@dimen/text_body_size"
+        app:text="@string/app_name"
+        app:textColor="@color/whiteColor" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/main_left_nav_content_nsv"
@@ -71,10 +73,58 @@
                 android:background="@color/lineColor" />
 
             <com.inz.z.base.view.widget.BaseNavLayout
+                android:id="@+id/mln_0_bnl"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/touch_target_height">
+                android:layout_height="@dimen/touch_target_height"
+                android:background="@color/text_black_70_color"
+                android:paddingStart="@dimen/border_lr_dimen"
+                android:paddingEnd="@dimen/border_lr_dimen"
+                app:base_center_layout="@id/mln_0_tv"
+                app:base_left_layout="@id/mln_0_iv"
+                app:base_right_layout="@id/mln_0_right_ll">
+
+                <ImageView
+                    android:id="@+id/mln_0_iv"
+                    android:layout_width="@dimen/icon_normal_size"
+                    android:layout_height="@dimen/icon_normal_size"
+                    android:contentDescription="@string/image"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_vd_word" />
+
+                <TextView
+                    android:id="@+id/mln_0_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/content_space_between_dimen"
+                    android:text="@string/setting"
+                    android:textSize="@dimen/text_body_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/mln_0_right_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
 
             </com.inz.z.base.view.widget.BaseNavLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:backgroundTint="@color/lineColor" />
+
+            <com.inz.z.base.view.widget.BaseNavLayout
+                android:id="@+id/mln_1_bnl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/touch_target_height"
+                android:background="@color/text_black_70_color"
+                android:paddingStart="@dimen/border_lr_dimen"
+                android:paddingEnd="@dimen/border_lr_dimen">
+
+            </com.inz.z.base.view.widget.BaseNavLayout>
+
 
         </LinearLayout>
 
@@ -84,10 +134,80 @@
         android:id="@+id/main_left_nav_bottom_rl"
         android:layout_width="0dp"
         android:layout_height="@dimen/touch_target_height"
+        android:background="@color/text_black_70_color"
+        android:paddingStart="@dimen/border_lr_dimen"
+        android:paddingEnd="@dimen/border_lr_dimen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <LinearLayout
+            android:id="@+id/main_left_nav_bottom_setting_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_button_black_pressed"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/photo_normal_size"
+                android:layout_height="@dimen/photo_normal_size"
+                android:contentDescription="@string/setting"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_settings_white_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/whiteColorSecond"
+                android:textSize="@dimen/text_body_size" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_left_nav_bottom_quit_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_button_black_pressed"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/photo_normal_size"
+                android:layout_height="@dimen/photo_normal_size"
+                android:contentDescription="@string/_quit"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_exit_to_app_white_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/_quit"
+                android:textColor="@color/whiteColor"
+                android:textColorHint="@color/whiteColorSecond"
+                android:textSize="@dimen/text_body_size" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/main_left_nav_bottom_back_v"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/main_left_nav_bottom_quit_ll"
+            android:layout_toEndOf="@id/main_left_nav_bottom_setting_ll" />
 
     </RelativeLayout>
 
