@@ -43,6 +43,9 @@
     <dimen name="body_text_size">15sp</dimen>
     <dimen name="caption_text_size">13sp</dimen>
 
+    <dimen name="setting_height">160dp</dimen>
+    <dimen name="image_phone_height">68dp</dimen>
+
     <!--
 Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout

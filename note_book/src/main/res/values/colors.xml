@@ -2,7 +2,10 @@
 <resources>
 
     <!-- 主色 -->
-    <color name="mainColor">#A1C45A</color>
+    <color name="mainColor">#F5E1DA</color>
+    <color name="secondColor">#F1F1F1</color>
+    <color name="threadColor">#40A798</color>
+    <color name="fourColor">#476268</color>
     <!-- 反色 -->
     <color name="accessoryColor">#FFB700</color>
 
@@ -17,10 +20,16 @@
     <color name="blackWhiteColor">#28474747</color>
 
     <color name="whiteColor">#FFF5F5F5</color>
-    <color name="whiteColorSecond">#DEF5F5F5</color>
-    <color name="whiteColorThread">#8AF5F5F5</color>
-    <color name="whiteColorFour">#45F5F5F5</color>
-    <color name="whiteColorFive">#54F5F5F5</color>
+    <color name="whiteColor70">#B3F5F5F5</color>
+    <color name="whiteColor50">#80F5F5F5</color>
+    <color name="whiteColor30">#4DF5F5F5</color>
+    <color name="whiteColor10">#1AF5F5F5</color>
+
+    <color name="blackColor">#FF474747</color>
+    <color name="blackColor70">#B3474747</color>
+    <color name="blackColor50">#80474747</color>
+    <color name="blackColor30">#4D474747</color>
+    <color name="blackColor10">#1A474747</color>
 
 
     <color name="textBlackGray">#696969</color>
