@@ -12,5 +12,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.inz.z.base.view.widget.BaseSecurityImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_load_error"
+        app:layout_constraintStart_toStartOf="parent"
+        app:text="绝密绝密"
+        app:textSize="@dimen/text_body_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

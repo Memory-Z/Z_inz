@@ -31,4 +31,9 @@
     <dimen name="touch_target_height">48dp</dimen>
     <!-- 按钮高度 -->
     <dimen name="button_normal_height">36dp</dimen>
+
+    <dimen name="text_title_size">20sp</dimen>
+    <dimen name="text_subhead_size">18sp</dimen>
+    <dimen name="text_body_size">16sp</dimen>
+    <dimen name="text_min_body_size">12sp</dimen>
 </resources>
