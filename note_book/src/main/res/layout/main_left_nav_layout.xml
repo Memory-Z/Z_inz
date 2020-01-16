@@ -24,10 +24,57 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/main_left_nav_content_ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mln_user_info_rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_left_top_height"
+                android:background="@color/text_black_70_color"
+                android:paddingStart="@dimen/border_lr_dimen"
+                android:paddingEnd="@dimen/border_lr_dimen">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mln_user_photo_civ"
+                    android:layout_width="@dimen/touch_target_size"
+                    android:layout_height="@dimen/touch_target_size"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/content_space_between_dimen"
+                    android:src="@drawable/image_load_error" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/content_space_between_dimen"
+                    android:layout_toEndOf="@id/mln_user_photo_civ">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textSize="@dimen/text_body_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/lineColor" />
+
+            <com.inz.z.base.view.widget.BaseNavLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/touch_target_height">
+
+            </com.inz.z.base.view.widget.BaseNavLayout>
 
         </LinearLayout>
 

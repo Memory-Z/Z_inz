@@ -4,6 +4,7 @@
     <style name="NoteBookAppTheme" parent="BaseAppTheme">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="NoteBookAppTheme.Transparent" parent="NoteBookAppTheme">
