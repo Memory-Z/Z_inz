@@ -54,4 +54,15 @@
         <item name="android:textColor">@color/textWhiteColor</item>
         <item name="android:height">36dp</item>
     </style>
+
+    <style name="NoteBookAppTheme.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:textColor">@color/blackColor70</item>
+        <item name="android:text">@string/_text_format</item>
+    </style>
+
+    <style name="NoteBookAppTheme.ImageView">
+        <item name="android:tint">@color/whiteColor</item>
+        <item name="android:scaleType">center</item>
+    </style>
 </resources>

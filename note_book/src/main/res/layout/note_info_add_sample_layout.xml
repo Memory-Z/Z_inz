@@ -76,7 +76,7 @@
                     android:id="@+id/note_info_add_sample_add_iv"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@drawable/bg_card_gray"
+                    android:background="@color/nearColorBlue"
                     android:contentDescription="@string/base_image"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_arrow_upward_white_24dp" />

@@ -33,7 +33,6 @@
                 android:layout_height="@dimen/button_normal_height"
                 android:background="@null"
                 android:contentDescription="@string/base_image"
-                android:padding="6dp"
                 android:src="@drawable/ic_vd_check" />
         </LinearLayout>
 

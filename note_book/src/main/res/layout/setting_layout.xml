@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.inz.z.base.view.widget.BaseNavLayout
+        android:id="@+id/setting_info_nav_bnl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/touch_target_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/blackColor"
+        app:base_center_layout="@id/setting_info_nav_center_rl"
+        app:base_left_layout="@id/setting_info_nav_left_rl"
+        app:base_right_layout="@id/setting_info_nav_right_rl">
+
+        <RelativeLayout
+            android:id="@+id/setting_info_nav_left_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                style="@style/NoteBookAppTheme.ImageView"
+                android:layout_width="@dimen/touch_target_size"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/base_image"
+                android:src="@drawable/ic_chevron_left_black_24dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setting_info_nav_center_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                style="@style/NoteBookAppTheme.Text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:text="@string/setting"
+                android:textColor="@color/whiteColor"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/setting_info_nav_right_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                style="@style/NoteBookAppTheme.ImageView"
+                android:layout_width="@dimen/touch_target_size"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/base_image"
+                android:src="@drawable/ic_more_vert_black_24dp" />
+        </RelativeLayout>
+
+    </com.inz.z.base.view.widget.BaseNavLayout>
+
+    <RelativeLayout
+        android:id="@+id/setting_user_info_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/setting_height"
+        android:layout_below="@id/setting_info_nav_bnl">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <com.inz.z.base.view.widget.RoundImageView
+                android:layout_width="@dimen/image_phone_height"
+                android:layout_height="@dimen/image_phone_height"
+                android:src="@drawable/image_load_error"
+                app:round_image_view_radius="@dimen/image_phone_height" />
+
+            <TextView
+                style="@style/NoteBookAppTheme.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/border_lr_dimen"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.inz.z.base.view.widget.BaseRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setting_user_info_rl">
+
+    </com.inz.z.base.view.widget.BaseRelativeLayout>
+
+</RelativeLayout>

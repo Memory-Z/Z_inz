@@ -32,6 +32,6 @@
     <string name="_quit">退出</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
-
+    <string name="_text_format">文本</string>
 
 </resources>
