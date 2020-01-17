@@ -1,9 +1,12 @@
 package com.inz.z.note_book.view.activity
 
+import android.content.Intent
 import com.inz.z.base.util.L
 import com.inz.z.base.view.AbsBaseActivity
 import com.inz.z.note_book.R
+import com.inz.z.note_book.view.BaseNoteActivity
 import com.inz.z.note_book.view.fragment.NoteNavFragment
+import kotlinx.android.synthetic.main.main_left_nav_layout.*
 
 /**
  * 主页面
@@ -12,7 +15,7 @@ import com.inz.z.note_book.view.fragment.NoteNavFragment
  * @version 1.0.0
  * Create by inz in 2019/10/17 14:40.
  */
-class MainActivity : AbsBaseActivity() {
+class MainActivity : BaseNoteActivity() {
 
     private var noteNavFragment: NoteNavFragment? = null
 
@@ -30,11 +33,22 @@ class MainActivity : AbsBaseActivity() {
 
     override fun initView() {
         L.i(TAG, "initView: ")
+        initLeftNavView()
         showNoteNavFragment()
     }
 
     override fun initData() {
 
+    }
+
+    /**
+     * 初始化左侧导航视图
+     */
+    private fun initLeftNavView() {
+        main_left_nav_bottom_setting_ll.setOnClickListener {
+            val intent = Intent(mContext, SettingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
@@ -52,4 +66,5 @@ class MainActivity : AbsBaseActivity() {
         fragmentTransient.show(noteNavFragment!!)
         fragmentTransient.commit()
     }
+
 }

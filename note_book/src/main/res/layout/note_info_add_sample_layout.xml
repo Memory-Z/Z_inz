@@ -47,6 +47,7 @@
 
             <EditText
                 android:id="@+id/note_info_add_sample_title_et"
+                style="@style/NoteBookAppTheme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/border_lr_dimen"
@@ -58,8 +59,6 @@
                 android:lines="1"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:textColor="@color/textWhiteColor"
-                android:textColorHint="@color/textSecondColor"
                 android:textSize="@dimen/subheading_text_size"
                 tools:ignore="Autofill,TextFields" />
 

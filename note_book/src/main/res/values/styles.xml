@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="NoteBookAppTheme" parent="BaseAppTheme">
+    <style name="NoteBookAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">@color/card_main_color</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:fitsSystemWindows">true</item>
@@ -43,6 +47,10 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="NoteBookAppTheme.TopAction">
+        <item name="android:background">@color/card_main_color</item>
+        <item name="android:backgroundTint">@color/card_second_color</item>
+    </style>
     <!-- 标签按钮 -->
     <style name="NoteBookAppTheme.TextButtonTag" parent="TextAppearance.AppCompat.Widget.Button">
         <item name="android:drawablePadding">4dp</item>
@@ -51,18 +59,39 @@
         <item name="android:paddingStart">12dp</item>
         <item name="android:background">@drawable/bg_text_radian</item>
         <item name="android:textSize">@dimen/body_text_size</item>
-        <item name="android:textColor">@color/textWhiteColor</item>
+        <item name="android:textColor">@color/textInverseColor</item>
         <item name="android:height">36dp</item>
     </style>
 
     <style name="NoteBookAppTheme.Text" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">@dimen/body_text_size</item>
-        <item name="android:textColor">@color/blackColor70</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:text">@string/_text_format</item>
     </style>
 
-    <style name="NoteBookAppTheme.ImageView">
-        <item name="android:tint">@color/whiteColor</item>
-        <item name="android:scaleType">center</item>
+    <style name="NoteBookAppTheme.Text.Second" parent="NoteBookAppTheme.Text">
+        <item name="android:textColor">@color/textColor70</item>
     </style>
+
+    <style name="NoteBookAppTheme.Text.Hint" parent="NoteBookAppTheme.Text">
+        <item name="android:textColor">@color/textColor50</item>
+    </style>
+
+    <style name="NoteBookAppTheme.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="NoteBookAppTheme.EditText.Second" parent="NoteBookAppTheme.EditText">
+        <item name="android:textColor">@color/textColor70</item>
+    </style>
+
+    <style name="NoteBookAppTheme.ImageView">
+        <item name="android:tint">@color/textColor</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:contentDescription">@string/base_image</item>
+    </style>
+
 </resources>

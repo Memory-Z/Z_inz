@@ -35,25 +35,25 @@
 
         <TextView
             android:id="@+id/item_note_group_title_tv"
+            style="@style/NoteBookAppTheme.Text"
             android:layout_width="match_parent"
             android:layout_height="@dimen/touch_target_size"
             android:ellipsize="end"
             android:gravity="center_vertical"
+            android:lines="1"
             android:paddingStart="@dimen/border_lr_dimen"
             android:paddingEnd="@dimen/border_lr_dimen"
-            android:lines="1"
             android:text="@{noteGroup.groupName, default = @string/base_title}"
-            android:textColor="@color/textWhiteColor"
             android:textSize="@dimen/body_text_size"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/item_note_group_child_number_tv"
+            style="@style/NoteBookAppTheme.Text"
             android:layout_width="@dimen/touch_target_size"
             android:layout_height="@dimen/touch_target_size"
             android:gravity="center"
             android:text="@{noteGroupSize, default = @string/base_number}"
-            android:textColor="@color/textWhiteColor"
             android:textSize="@dimen/caption_text_size" />
 
     </com.inz.z.base.view.widget.BaseNavLayout>

@@ -15,7 +15,7 @@
     <color name="nearColorBlue">#0048FF</color>
     <color name="nearColorRed">#FF0048</color>
 
-    <color name="lineColor">@color/textColor50</color>
+
 
     <color name="card_main_color">@color/cardColor</color>
     <color name="card_second_color">@color/textInverseColor70</color>
@@ -26,19 +26,22 @@
     <color name="card_inverse_thread_color">@color/textColor50</color>
     <color name="card_inverse_four_color">@color/textColor30</color>
 
-    <color name="cardColor">#E7E7E7</color>
+    <color name="cardColor">#666666</color>
 
-    <color name="textInverseColor">#FFF5F5F5</color>
-    <color name="textInverseColor70">#B3F5F5F5</color>
-    <color name="textInverseColor50">#80F5F5F5</color>
-    <color name="textInverseColor30">#4DF5F5F5</color>
-    <color name="textInverseColor10">#1AF5F5F5</color>
+    <color name="textColor">#FFF5F5F5</color>
+    <color name="textColor70">#B3F5F5F5</color>
+    <color name="textColor50">#80F5F5F5</color>
+    <color name="textColor30">#4DF5F5F5</color>
+    <color name="textColor10">#1AF5F5F5</color>
 
-    <color name="textColor">#FF474747</color>
-    <color name="textColor70">#B3474747</color>
-    <color name="textColor50">#80474747</color>
-    <color name="textColor30">#4D474747</color>
-    <color name="textColor10">#1A474747</color>
+    <color name="textInverseColor">#FF474747</color>
+    <color name="textInverseColor70">#B3474747</color>
+    <color name="textInverseColor50">#80474747</color>
+    <color name="textInverseColor30">#4D474747</color>
+    <color name="textInverseColor10">#1A474747</color>
+
+    <color name="lineColor">@color/textColor50</color>
+
 
 
     <color name="textBlackGray">#696969</color>

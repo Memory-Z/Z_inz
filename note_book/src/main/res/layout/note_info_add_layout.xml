@@ -128,11 +128,11 @@
                     android:src="@drawable/ic_share_black_24dp" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/share"
-                    android:textColor="@color/textWhiteColor"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -154,11 +154,11 @@
                     android:src="@drawable/ic_delete_black_24dp" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/delete"
-                    android:textColor="@color/textWhiteColor"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -188,10 +188,10 @@
                     android:src="@drawable/ic_alarm_add_black_24dp" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/base_image"
-                    android:textColor="@color/textWhiteColor"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -210,10 +210,10 @@
                     android:src="@drawable/ic_alarm_add_black_24dp" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/base_image"
-                    android:textColor="@color/textWhiteColor"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -232,10 +232,10 @@
                     android:src="@drawable/ic_alarm_add_black_24dp" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/base_image"
-                    android:textColor="@color/textWhiteColor"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -254,10 +254,10 @@
                     android:src="@drawable/ic_alarm_add_black_24dp" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/base_image"
-                    android:textColor="@color/textWhiteColor"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>

@@ -3,7 +3,7 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/text_black_70_color" />
+            <solid android:color="@color/textInverseColor70" />
             <padding android:left="@dimen/content_space_between_dimen" android:right="@dimen/border_lr_dimen" />
         </shape>
     </item>

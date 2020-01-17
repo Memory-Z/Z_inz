@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/base_format_day"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/colorPrimary"
             android:textSize="48sp" />
 
         <TextView

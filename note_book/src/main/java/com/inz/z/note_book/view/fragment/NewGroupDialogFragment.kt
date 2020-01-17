@@ -130,7 +130,7 @@ class NewGroupDialogFragment : AbsBaseDialogFragment() {
                     setTextColor(
                         ContextCompat.getColor(
                             mContext,
-                            R.color.textHintColor
+                            R.color.textColor50
                         )
                     )
                     isFocusable = false

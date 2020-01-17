@@ -7,7 +7,7 @@
         android:id="@+id/app_widget_top_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/min_title_height"
-        android:background="@color/whiteColorSecond">
+        android:background="@color/textInverseColor50">
 
         <ImageView
             android:id="@+id/app_widget_top_add_iv"
@@ -28,6 +28,7 @@
 
         <TextView
             android:id="@+id/app_widget_top_title_tv"
+            style="@style/NoteBookAppTheme.Text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
@@ -41,7 +42,6 @@
             android:paddingStart="@dimen/border_lr_dimen"
             android:paddingEnd="4dp"
             android:text="@string/base_title"
-            android:textColor="@color/textWhiteColor"
             android:textSize="@dimen/app_bar_text_size" />
 
     </RelativeLayout>

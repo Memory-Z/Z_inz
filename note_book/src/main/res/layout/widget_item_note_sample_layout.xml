@@ -47,21 +47,21 @@
 
             <TextView
                 android:id="@+id/item_note_sample_title_tv"
+                style="@style/NoteBookAppTheme.Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="@{noteInfo.noteTitle, default=@string/base_title}"
-                android:textColor="@color/textWhiteColor"
                 android:textSize="@dimen/body_text_size" />
 
             <TextView
                 android:id="@+id/item_note_sample_update_date_tv"
+                style="@style/NoteBookAppTheme.Text.Second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_space_between_dimen"
                 android:text="@{noteInfoUpdateDateStr, default=@string/base_content}"
-                android:textColor="@color/textSecondColor"
                 android:textSize="@dimen/caption_text_size" />
 
         </LinearLayout>

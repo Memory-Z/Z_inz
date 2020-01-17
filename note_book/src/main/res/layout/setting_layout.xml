@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/touch_target_height"
         android:layout_alignParentTop="true"
-        android:background="@color/blackColor"
+        android:background="@color/card_main_color"
         app:base_center_layout="@id/setting_info_nav_center_rl"
         app:base_left_layout="@id/setting_info_nav_left_rl"
         app:base_right_layout="@id/setting_info_nav_right_rl">
@@ -40,7 +40,6 @@
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:text="@string/setting"
-                android:textColor="@color/whiteColor"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -74,7 +73,7 @@
             <com.inz.z.base.view.widget.RoundImageView
                 android:layout_width="@dimen/image_phone_height"
                 android:layout_height="@dimen/image_phone_height"
-                android:src="@drawable/image_load_error"
+                android:src="@drawable/img_photo_0"
                 app:round_image_view_radius="@dimen/image_phone_height" />
 
             <TextView

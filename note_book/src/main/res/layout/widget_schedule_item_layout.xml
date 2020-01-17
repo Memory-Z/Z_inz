@@ -15,6 +15,7 @@
 
     <com.inz.z.base.view.widget.BaseRichEditText
         android:id="@+id/widget_schedule_et"
+        style="@style/NoteBookAppTheme.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -23,7 +24,6 @@
         android:inputType="textMultiLine"
         android:labelFor="@id/widget_schedule_check_box"
         android:text="@string/base_long_text"
-        android:textColor="@color/textWhiteColor"
         android:textSize="@dimen/body_text_size"
         android:textStyle="normal"
         tools:ignore="Autofill" />

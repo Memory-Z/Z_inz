@@ -3,15 +3,15 @@
 
     <item android:state_pressed="true">
         <shape>
-            <stroke android:width="@dimen/line_size" android:color="@color/whiteColor" />
+            <stroke android:width="@dimen/line_size" android:color="@color/textInverseColor" />
             <corners android:radius="@dimen/line_size" />
             <padding android:bottom="@dimen/content_space_between_dimen" android:left="@dimen/content_space_between_dimen" android:right="@dimen/content_space_between_dimen" android:top="@dimen/content_space_between_dimen" />
-            <solid android:color="@color/whiteColorFive" />
+            <solid android:color="@color/textInverseColor70" />
         </shape>
     </item>
     <item>
         <shape>
-            <stroke android:width="@dimen/line_size" android:color="@color/whiteColor" />
+            <stroke android:width="@dimen/line_size" android:color="@color/textInverseColor" />
             <corners android:radius="@dimen/line_size" />
             <padding android:bottom="@dimen/content_space_between_dimen" android:left="@dimen/content_space_between_dimen" android:right="@dimen/content_space_between_dimen" android:top="@dimen/content_space_between_dimen" />
         </shape>

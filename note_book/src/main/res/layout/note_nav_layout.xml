@@ -152,10 +152,11 @@
         android:layout_height="56dp"
         android:layout_marginEnd="@dimen/border_lr_dimen"
         android:layout_marginBottom="@dimen/border_lr_dimen"
-        android:backgroundTint="@color/mainColor"
+        android:backgroundTint="@color/colorPrimary"
         android:scaleType="centerInside"
         android:src="@drawable/ic_add_black_24dp"
         android:textAlignment="center"
+        android:tint="@color/textInverseColor"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

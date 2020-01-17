@@ -25,7 +25,6 @@
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/gray"
         android:focusable="true"
         app:base_relative_layout_content_view="@id/note_maint_left_inc">
 

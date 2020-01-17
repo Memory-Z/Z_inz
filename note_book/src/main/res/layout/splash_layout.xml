@@ -48,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_alignParentBottom="true"
+                android:background="@color/card_main_color"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -57,17 +58,17 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/app_name"
                     android:textAllCaps="true"
-                    android:textColor="@color/mainColor"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/subheading_text_size"
                     android:textStyle="bold" />
 
                 <TextView
+                    style="@style/NoteBookAppTheme.Text.Hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/content_space_between_dimen"
                     android:text="@{version, default = @string/base_content}"
-                    android:textColor="@color/textLightGray"
                     android:textSize="@dimen/caption_text_size" />
             </LinearLayout>
         </RelativeLayout>

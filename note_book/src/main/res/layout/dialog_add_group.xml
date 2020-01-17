@@ -19,14 +19,14 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_add_black_24dp"
-            android:backgroundTint="@color/mainColor"
+            android:backgroundTint="@color/colorPrimary"
             android:contentDescription="@string/base_image"
             android:padding="@dimen/touch_icon_padding"
             android:scaleType="centerInside" />
 
         <EditText
             android:id="@+id/dialog_add_group_title_et"
-            style="@style/Widget.AppCompat.EditText"
+            style="@style/NoteBookAppTheme.EditText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/touch_target_height"
             android:layout_alignParentEnd="true"
@@ -34,15 +34,13 @@
             android:layout_marginStart="@dimen/border_lr_dimen"
             android:layout_toEndOf="@id/dialog_add_group_icon_iv"
             android:background="@drawable/bg_edit_bottom"
-            android:backgroundTint="@color/mainColor"
+            android:backgroundTint="@color/colorPrimary"
             android:hint="@string/input_group_title"
             android:inputType="text"
             android:lines="1"
             android:maxLength="8"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:textColor="@color/textWhiteColor"
-            android:textColorHint="@color/textHintColor"
             android:textSize="@dimen/title_size"
             tools:ignore="Autofill,TextFields" />
     </RelativeLayout>
@@ -66,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_text_selector_radian"
-                android:backgroundTint="@color/mainColor"
+                android:backgroundTint="@color/colorPrimary"
                 android:checked="true"
                 android:gravity="center"
                 android:paddingStart="20dp"
@@ -83,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/bg_text_selector_radian"
-                android:backgroundTint="@color/mainColor"
+                android:backgroundTint="@color/colorPrimary"
                 android:checked="true"
                 android:gravity="center"
                 android:paddingStart="20dp"
@@ -114,6 +112,7 @@
 
         <TextView
             android:id="@+id/dialog_add_group_bottom_cancel_tv"
+            style="@style/NoteBookAppTheme.Text.Second"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/touch_target_height"
             android:clickable="true"
@@ -122,11 +121,11 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/cancel"
-            android:textColor="@color/textWhiteColor"
             android:textSize="@dimen/button_norma_text_size" />
 
         <TextView
             android:id="@+id/dialog_add_group_bottom_create_group_tv"
+            style="@style/NoteBookAppTheme.Text"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/touch_target_height"
             android:layout_marginStart="@dimen/border_lr_dimen"
@@ -136,7 +135,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@string/create_group"
-            android:textColor="@color/textHintColor"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/button_norma_text_size" />
     </LinearLayout>
 </LinearLayout>
