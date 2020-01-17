@@ -23,4 +23,8 @@ class SettingActivity : AbsBaseActivity() {
 
     override fun initData() {
     }
+
+    private fun getCacheSize() {
+
+    }
 }

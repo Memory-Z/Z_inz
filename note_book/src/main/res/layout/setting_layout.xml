@@ -6,10 +6,10 @@
 
     <com.inz.z.base.view.widget.BaseNavLayout
         android:id="@+id/setting_info_nav_bnl"
+        style="@style/NoteBookAppTheme.TopAction"
         android:layout_width="match_parent"
         android:layout_height="@dimen/touch_target_height"
         android:layout_alignParentTop="true"
-        android:background="@color/card_main_color"
         app:base_center_layout="@id/setting_info_nav_center_rl"
         app:base_left_layout="@id/setting_info_nav_left_rl"
         app:base_right_layout="@id/setting_info_nav_right_rl">
@@ -58,32 +58,55 @@
 
     </com.inz.z.base.view.widget.BaseNavLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/setting_info_nav_bnl"
+        android:overScrollMode="ifContentScrolls">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_height"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.inz.z.base.view.widget.RoundImageView
+                    android:layout_width="@dimen/image_phone_height"
+                    android:layout_height="@dimen/image_phone_height"
+                    android:src="@drawable/img_photo_0"
+                    app:round_image_view_radius="@dimen/image_phone_height" />
+
+                <TextView
+                    style="@style/NoteBookAppTheme.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/border_lr_dimen"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
     <RelativeLayout
         android:id="@+id/setting_user_info_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/setting_height"
         android:layout_below="@id/setting_info_nav_bnl">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-
-            <com.inz.z.base.view.widget.RoundImageView
-                android:layout_width="@dimen/image_phone_height"
-                android:layout_height="@dimen/image_phone_height"
-                android:src="@drawable/img_photo_0"
-                app:round_image_view_radius="@dimen/image_phone_height" />
-
-            <TextView
-                style="@style/NoteBookAppTheme.Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/border_lr_dimen"
-                android:textStyle="bold" />
-        </LinearLayout>
     </RelativeLayout>
 
     <com.inz.z.base.view.widget.BaseRelativeLayout

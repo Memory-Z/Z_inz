@@ -49,7 +49,7 @@
 
     <style name="NoteBookAppTheme.TopAction">
         <item name="android:background">@color/card_main_color</item>
-        <item name="android:backgroundTint">@color/card_second_color</item>
+        <item name="android:backgroundTint">@color/textInverseColor</item>
     </style>
     <!-- 标签按钮 -->
     <style name="NoteBookAppTheme.TextButtonTag" parent="TextAppearance.AppCompat.Widget.Button">
