@@ -10,6 +10,7 @@ import com.inz.z.note_book.R
  * Create by inz in 2020/01/17 09:35.
  */
 class SettingActivity : AbsBaseActivity() {
+
     override fun initWindow() {
 
     }
