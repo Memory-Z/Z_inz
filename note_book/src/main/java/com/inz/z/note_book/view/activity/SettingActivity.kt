@@ -12,7 +12,7 @@ import com.inz.z.note_book.R
 class SettingActivity : AbsBaseActivity() {
 
     override fun initWindow() {
-
+        // s
     }
 
     override fun getLayoutId(): Int {
